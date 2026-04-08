@@ -66,14 +66,12 @@ These are Claude Code custom slash commands. They work with any Claude Code setu
 
 Full versions include complete templates, all reference tables, every edge case, and advanced features not available in the lite editions.
 
-| Bundle | Skills | Link |
-|--------|--------|------|
-| UK Freelancer Pack (4 skills) | Tax, Proposals, Client Comms, Expense Categoriser | [Get the full pack](https://gumroad.com/l/PLACEHOLDER-freelancer) |
-| UK Employer Pack (4 skills) | Employment Law, Handbooks, H&S Risk Assessments, Meeting Notes | [Get the full pack](https://gumroad.com/l/PLACEHOLDER-employer) |
-| UK Landlord Pack (2 skills) | Landlord Compliance, Property Yield | [Get the full pack](https://gumroad.com/l/PLACEHOLDER-landlord) |
-| Legal & Compliance Pack (4 skills) | Contract Review, GDPR, AML/KYC, IR35 | [Get the full pack](https://gumroad.com/l/PLACEHOLDER-legal) |
-| Specialist Pack (5 skills) | Construction, Food Hygiene, Teacher, Creative Contracts, Grants | [Get the full pack](https://gumroad.com/l/PLACEHOLDER-specialist) |
-| Complete Bundle (all 19 skills) | Everything above | [Get the full bundle](https://gumroad.com/l/PLACEHOLDER-complete) |
+| Bundle | Skills | Price | Link |
+|--------|--------|-------|------|
+| UK Freelancer Toolkit 2026 (4 skills) | Tax, Proposals, Client Comms, Expense Categoriser | £29 | [Get the full pack](https://externalos.gumroad.com/l/aavttu) |
+| UK Employer Compliance Pack 2026 (4 skills) | Employment Law, Handbooks, H&S Risk Assessments, GDPR | £49 | [Get the full pack](https://externalos.gumroad.com/l/fxlgeq) |
+| UK Landlord Legal Pack 2026 (2 skills) | Landlord Compliance, Property Yield | £29 | [Get the full pack](https://externalos.gumroad.com/l/iuffuj) |
+| Full UK Business Suite 2026 (all 19 skills) | Everything above + 9 specialist tools | £79 | [Get the full bundle](https://externalos.gumroad.com/l/vrmevr) |
 
 ---
 
