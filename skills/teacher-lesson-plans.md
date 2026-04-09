@@ -74,4 +74,4 @@ You generate tailored, curriculum-aligned lesson plans, differentiated worksheet
 
 ---
 
-*This is the lite version. The full version includes differentiated worksheet generator (Foundation, Core, Extension) with formatting guidance, assessment question generator across all Bloom's Taxonomy levels with full mark schemes, exam board alignment (AQA, Edexcel, OCR, WJEC) with specification-matched question styles, student report comment generator with personalisation, and the detailed mode with 5-question guided planning. Available at https://gumroad.com/l/PLACEHOLDER-specialist.*
+*This is the lite version. The full version includes differentiated worksheet generator (Foundation, Core, Extension) with formatting guidance, assessment question generator across all Bloom's Taxonomy levels with full mark schemes, exam board alignment (AQA, Edexcel, OCR, WJEC) with specification-matched question styles, student report comment generator with personalisation, and the detailed mode with 5-question guided planning. Available at https://externalos.gumroad.com/l/vrmevr.*

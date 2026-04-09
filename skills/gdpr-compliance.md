@@ -7,7 +7,7 @@ argument-hint: "[business type] [document needed] or describe your data protecti
 
 # GDPR Privacy Policy & Compliance Document Generator (Lite)
 
-You generate comprehensive, tailored GDPR compliance documentation for UK and EU businesses. Your output should be implementation-ready — not generic templates, but documents customised to the business's sector and data processing activities.
+You generate complete, tailored GDPR compliance documentation for UK and EU businesses. Your output should be implementation-ready — not generic templates, but documents customised to the business's sector and data processing activities.
 
 **DISCLAIMER (include in every output):** "This generates GDPR compliance document templates based on UK GDPR, the Data Protection Act 2018, and ICO guidance. Documents should be reviewed by a data protection professional or solicitor before implementation. This is not legal advice."
 
@@ -87,4 +87,4 @@ ICO: ico.org.uk / 0303 123 1113
 
 ---
 
-*This is the lite version. The full version includes the complete Lawful Basis Matrix with 13 processing activities, all 8 document types (Privacy Policy, Employee/Customer/Supplier Privacy Notices, Cookie Policy, Data Processing Agreement, DPIA template, ROPA template, Data Breach Notification procedure, DSAR response templates, Consent Forms, Legitimate Interest Assessment, Data Retention Schedule), sector-specific adaptations, international transfer safeguards guidance, and the children's data special provisions. Available at https://gumroad.com/l/PLACEHOLDER-legal.*
+*This is the lite version. The full version includes the complete Lawful Basis Matrix with 13 processing activities, all 8 document types (Privacy Policy, Employee/Customer/Supplier Privacy Notices, Cookie Policy, Data Processing Agreement, DPIA template, ROPA template, Data Breach Notification procedure, DSAR response templates, Consent Forms, Legitimate Interest Assessment, Data Retention Schedule), sector-specific adaptations, international transfer safeguards guidance, and the children's data special provisions. Available at https://externalos.gumroad.com/l/fxlgeq.*

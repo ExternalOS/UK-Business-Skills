@@ -73,4 +73,4 @@ The user describes the situation. You write the email.
 
 ---
 
-*This is the lite version. The full version includes feedback request templates with deadline framing, difficult conversation scripts (deadline slips, disagreements, project termination), project wrap-up emails with testimonial and referral prompts, cold outreach and post-meeting follow-ups, UK Late Payment Act statutory interest rates and compensation amounts, tone calibration system (5 presets), and multi-variation mode for sensitive situations. Available at https://gumroad.com/l/PLACEHOLDER-freelancer.*
+*This is the lite version. The full version includes feedback request templates with deadline framing, difficult conversation scripts (deadline slips, disagreements, project termination), project wrap-up emails with testimonial and referral prompts, cold outreach and post-meeting follow-ups, UK Late Payment Act statutory interest rates and compensation amounts, tone calibration system (5 presets), and multi-variation mode for sensitive situations. Available at https://externalos.gumroad.com/l/aavttu.*

@@ -80,4 +80,4 @@ Always present categorised expenses in this structure:
 
 ---
 
-*This is the lite version. The full version includes Capital Allowances guidance (AIA, WDA, car rules), Home Office simplified expenses calculator, four input modes (paste transactions, natural language, quarterly batch, single query), VAT summary reporting for registered businesses, MTD quarterly position tracker, and flagged items system for borderline deductions. Available at https://gumroad.com/l/PLACEHOLDER-freelancer.*
+*This is the lite version. The full version includes Capital Allowances guidance (AIA, WDA, car rules), Home Office simplified expenses calculator, four input modes (paste transactions, natural language, quarterly batch, single query), VAT summary reporting for registered businesses, MTD quarterly position tracker, and flagged items system for borderline deductions. Available at https://externalos.gumroad.com/l/aavttu.*

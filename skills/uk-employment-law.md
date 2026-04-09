@@ -108,4 +108,4 @@ Maximum years counted = 20
 
 ---
 
-*This is the lite version. The full version includes Statutory Maternity Pay and Shared Parental Leave calculators, all 10 HR letter templates (disciplinary, dismissal, grievance, flexible working, redundancy, settlement, reference, probation, right to work), full ERA 2025 provisions with case law references, and complete legislation reference table. Available at https://gumroad.com/l/PLACEHOLDER-employer.*
+*This is the lite version. The full version includes Statutory Maternity Pay and Shared Parental Leave calculators, all 10 HR letter templates (disciplinary, dismissal, grievance, flexible working, redundancy, settlement, reference, probation, right to work), full ERA 2025 provisions with case law references, and complete legislation reference table. Available at https://externalos.gumroad.com/l/fxlgeq.*

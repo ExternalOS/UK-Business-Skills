@@ -1,6 +1,6 @@
 # UK Business Skills for Claude Code — Lite Editions
 
-19 Claude Code skills for UK businesses, freelancers, landlords, and professionals. Each skill is a `.md` file you drop into your Claude Code project — no install, no dependencies, no subscription.
+Built by [ExternalOS](https://externalos.gumroad.com/l/vrmevr). 19 Claude Code skills for UK businesses, freelancers, landlords, and professionals. Each skill is a `.md` file you drop into your Claude Code project — no install, no dependencies, no subscription.
 
 These are **lite versions** with core functionality. Full versions include complete templates, advanced features, and detailed reference tables.
 
@@ -22,7 +22,7 @@ These are **lite versions** with core functionality. Full versions include compl
 | [uk-employment-law](skills/uk-employment-law.md) | Calculate statutory entitlements and generate HR letters using 2025/26 rates and ERA 2025 |
 | [employee-handbook-generator](skills/employee-handbook-generator.md) | Generate complete, legally referenced UK employee handbooks by industry and size |
 | [health-safety-risk-assessment](skills/health-safety-risk-assessment.md) | Generate HSE-compliant risk assessments from plain English descriptions |
-| [meeting-notes-actions](skills/meeting-notes-actions.md) | Transform raw meeting notes into structured summaries, actions, and follow-up emails |
+| [gdpr-compliance](skills/gdpr-compliance.md) | Generate privacy policies, cookie policies, DPIAs, ROPA, and breach notifications |
 
 ## UK Landlord
 
@@ -36,7 +36,6 @@ These are **lite versions** with core functionality. Full versions include compl
 | Skill | What it does |
 |-------|-------------|
 | [contract-review](skills/contract-review.md) | Review contracts for risks, unfair terms, and missing clauses with negotiation talking points |
-| [gdpr-compliance](skills/gdpr-compliance.md) | Generate privacy policies, cookie policies, DPIAs, ROPA, and breach notifications |
 | [aml-kyc-docs](skills/aml-kyc-docs.md) | Generate CDD records, EDD records, risk assessments, and SAR drafts for regulated businesses |
 | [ir35-assessment](skills/ir35-assessment.md) | Assess IR35 status using the three key tests and case law factors |
 
@@ -49,6 +48,7 @@ These are **lite versions** with core functionality. Full versions include compl
 | [teacher-lesson-plans](skills/teacher-lesson-plans.md) | National Curriculum-aligned lesson plans, worksheets, assessments, and mark schemes |
 | [creative-contracts](skills/creative-contracts.md) | Photography and creative professional contracts, model releases, and usage licences |
 | [grant-application-writer](skills/grant-application-writer.md) | Grant applications with need statements, budgets, theories of change, and M&E frameworks |
+| [meeting-notes-actions](skills/meeting-notes-actions.md) | Transform raw meeting notes into structured summaries, actions, and follow-up emails |
 
 ---
 
@@ -71,7 +71,7 @@ Full versions include complete templates, all reference tables, every edge case,
 | UK Freelancer Toolkit 2026 (4 skills) | Tax, Proposals, Client Comms, Expense Categoriser | £29 | [Get the full pack](https://externalos.gumroad.com/l/aavttu) |
 | UK Employer Compliance Pack 2026 (4 skills) | Employment Law, Handbooks, H&S Risk Assessments, GDPR | £49 | [Get the full pack](https://externalos.gumroad.com/l/fxlgeq) |
 | UK Landlord Legal Pack 2026 (2 skills) | Landlord Compliance, Property Yield | £29 | [Get the full pack](https://externalos.gumroad.com/l/iuffuj) |
-| Full UK Business Suite 2026 (all 19 skills) | Everything above + 9 specialist tools | £79 | [Get the full bundle](https://externalos.gumroad.com/l/vrmevr) |
+| Full UK Business Suite 2026 (19 skills) | All 10 skills from the three packs + 9 specialist tools | £79 | [Get the full bundle](https://externalos.gumroad.com/l/vrmevr) |
 
 ---
 

@@ -94,4 +94,4 @@ Hierarchy of control:
 
 ---
 
-*This is the lite version. The full version includes 10 assessment types (General, COSHH, Fire, Manual Handling, DSE, Lone Working, Working at Height, Construction Method Statement, New & Expectant Mothers, Young Workers), industry preset hazard libraries (office, construction, restaurant, retail, warehouse, manufacturing, school, salon, gym, farm, events), COSHH and Construction Method Statement output templates, and complete legal references table with all relevant regulations. Available at https://gumroad.com/l/PLACEHOLDER-employer.*
+*This is the lite version. The full version includes 10 assessment types (General, COSHH, Fire, Manual Handling, DSE, Lone Working, Working at Height, Construction Method Statement, New & Expectant Mothers, Young Workers), industry preset hazard libraries (office, construction, restaurant, retail, warehouse, manufacturing, school, salon, gym, farm, events), COSHH and Construction Method Statement output templates, and complete legal references table with all relevant regulations. Available at https://externalos.gumroad.com/l/fxlgeq.*

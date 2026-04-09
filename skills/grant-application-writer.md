@@ -70,4 +70,4 @@ Inputs --> Activities --> Outputs --> Outcomes --> Impact
 
 ---
 
-*This is the lite version. The full version includes the logic model and monitoring framework with SMART indicators, full M&E framework (validated tools, qualitative methods, data protection), sustainability plan template, risk register, funder type presets (National Lottery, Arts Council, Trusts, Innovate UK, Research Councils, Local Authority), organisational capacity section, equalities statement, and the complete budget template with match funding and value-for-money calculations. Available at https://gumroad.com/l/PLACEHOLDER-specialist.*
+*This is the lite version. The full version includes the logic model and monitoring framework with SMART indicators, full M&E framework (validated tools, qualitative methods, data protection), sustainability plan template, risk register, funder type presets (National Lottery, Arts Council, Trusts, Innovate UK, Research Councils, Local Authority), organisational capacity section, equalities statement, and the complete budget template with match funding and value-for-money calculations. Available at https://externalos.gumroad.com/l/vrmevr.*

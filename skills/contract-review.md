@@ -93,4 +93,4 @@ ALWAYS flag these when found:
 
 ---
 
-*This is the lite version. The full version includes Unfair Contract Terms Act 1977 and Consumer Rights Act 2015 compliance checks, 9 contract type presets (freelancer, employment, NDA, SaaS, partnership, lease, subcontractor, agency, commercial supply), overall severity scoring matrix, detailed legislative framework references, Quick Mode for single-clause risk checks, and ready-to-use negotiation talking point scripts. Available at https://gumroad.com/l/PLACEHOLDER-legal.*
+*This is the lite version. The full version includes Unfair Contract Terms Act 1977 and Consumer Rights Act 2015 compliance checks, 9 contract type presets (freelancer, employment, NDA, SaaS, partnership, lease, subcontractor, agency, commercial supply), overall severity scoring matrix, detailed legislative framework references, Quick Mode for single-clause risk checks, and ready-to-use negotiation talking point scripts. Available at https://externalos.gumroad.com/l/vrmevr.*

@@ -84,4 +84,4 @@ Beyond the three key tests, consider:
 
 ---
 
-*This is the lite version. The full version includes the complete assessment output format with weighted scoring across all factors, Status Determination Statement (SDS) template for medium/large businesses, recommended contract amendment wording for each risk factor, CEST tool comparison analysis, detailed case law analysis for each factor with 10+ leading cases, and the information gathering questionnaire for thorough assessments. Available at https://gumroad.com/l/PLACEHOLDER-legal.*
+*This is the lite version. The full version includes the complete assessment output format with weighted scoring across all factors, Status Determination Statement (SDS) template for medium/large businesses, recommended contract amendment wording for each risk factor, CEST tool comparison analysis, detailed case law analysis for each factor with 10+ leading cases, and the information gathering questionnaire for thorough assessments. Available at https://externalos.gumroad.com/l/vrmevr.*

@@ -97,4 +97,4 @@ Best,
 
 ---
 
-*This is the lite version. The full version includes 7 meeting type presets (client call, standup, board meeting, 1:1, sprint retro, sales call, interview) with type-specific output formats, project status update generation, CRM update notes, formal board minutes format, and priority inference from discussion emphasis. Available at https://gumroad.com/l/PLACEHOLDER-employer.*
+*This is the lite version. The full version includes 7 meeting type presets (client call, standup, board meeting, 1:1, sprint retro, sales call, interview) with type-specific output formats, project status update generation, CRM update notes, formal board minutes format, and priority inference from discussion emphasis. Available at https://externalos.gumroad.com/l/vrmevr.*

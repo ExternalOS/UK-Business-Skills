@@ -99,4 +99,4 @@ Always include:
 
 ---
 
-*This is the lite version. The full version includes industry-specific presets (Tech, Design, Marketing, Consulting), UK freelancer pricing guidance tables by project type, Quick Mode for compact quotes, detailed terms section (revision rounds, IP transfer, cancellation, NDA), and the "Why Me" credentials section. Available at https://gumroad.com/l/PLACEHOLDER-freelancer.*
+*This is the lite version. The full version includes industry-specific presets (Tech, Design, Marketing, Consulting), UK freelancer pricing guidance tables by project type, Quick Mode for compact quotes, detailed terms section (revision rounds, IP transfer, cancellation, NDA), and the "Why Me" credentials section. Available at https://externalos.gumroad.com/l/aavttu.*

@@ -31,7 +31,7 @@ If the user provides minimal detail, ask for these essentials (max 4 questions):
 |------|-----------|----------|
 | Micro | 1-9 | Essential policies only. Simpler procedures. |
 | Small | 10-49 | Full handbook. Formal procedures. |
-| Medium | 50-249 | Comprehensive handbook. H&S committee. Mental health first aiders. |
+| Medium | 50-249 | Full handbook. H&S committee. Mental health first aiders. |
 | Large | 250+ | Enterprise handbook. Modern slavery statement. Gender pay gap reporting. |
 
 ---
@@ -105,4 +105,4 @@ Generate ALL of the following sections. Each section must cite the relevant legi
 
 ---
 
-*This is the lite version. The full version includes all 20 handbook sections (pay & benefits, performance management, anti-harassment with ERA 2025 prevention duty, equal opportunities, GDPR employee data, IT & social media, remote working, health & safety, whistleblowing, alcohol & drugs, dress code, termination procedures), industry-specific adaptations (construction, hospitality, retail, office, creative, healthcare), ERA 2025 change markers throughout, and the employee acknowledgement page. Available at https://gumroad.com/l/PLACEHOLDER-employer.*
+*This is the lite version. The full version includes all 20 handbook sections (pay & benefits, performance management, anti-harassment with ERA 2025 prevention duty, equal opportunities, GDPR employee data, IT & social media, remote working, health & safety, whistleblowing, alcohol & drugs, dress code, termination procedures), industry-specific adaptations (construction, hospitality, retail, office, creative, healthcare), ERA 2025 change markers throughout, and the employee acknowledgement page. Available at https://externalos.gumroad.com/l/fxlgeq.*

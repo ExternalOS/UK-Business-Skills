@@ -85,4 +85,4 @@ Lower end = outside London. Higher end = London/SE or specialist.
 
 ---
 
-*This is the lite version. The full version includes 16 job type presets (kitchen, bathroom, single/double-storey extension, loft conversion, garage conversion, roofing, plastering, rewire, plumbing, painting, fencing, driveway, windows, structural alterations, damp proofing) with specific material lists and scope breakdowns, regional pricing adjustment factors, client-ready quote document format, and the complete additional costs reference table. Available at https://gumroad.com/l/PLACEHOLDER-specialist.*
+*This is the lite version. The full version includes 16 job type presets (kitchen, bathroom, single/double-storey extension, loft conversion, garage conversion, roofing, plastering, rewire, plumbing, painting, fencing, driveway, windows, structural alterations, damp proofing) with specific material lists and scope breakdowns, regional pricing adjustment factors, client-ready quote document format, and the complete additional costs reference table. Available at https://externalos.gumroad.com/l/vrmevr.*

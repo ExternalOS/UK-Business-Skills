@@ -125,4 +125,4 @@ Always present results in this structure:
 
 ---
 
-*This is the lite version. The full version includes HMRC expense category breakdown with all SA103 boxes, MTD quarterly period schedules with deadlines, Payment on Account calculations, tax comparison mode for scenario planning, and the Flat Rate VAT Scheme analysis. Available at https://gumroad.com/l/PLACEHOLDER-freelancer.*
+*This is the lite version. The full version includes HMRC expense category breakdown with all SA103 boxes, MTD quarterly period schedules with deadlines, Payment on Account calculations, tax comparison mode for scenario planning, and the Flat Rate VAT Scheme analysis. Available at https://externalos.gumroad.com/l/aavttu.*

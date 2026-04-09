@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jamespatrickthom2003-star.github.io/uk-business-skills/sitemap.xml
