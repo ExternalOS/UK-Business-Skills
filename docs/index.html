@@ -443,6 +443,23 @@
  .reveal-stagger > .reveal:nth-child(4) { transition-delay: 0.3s; }
 
  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
+
+ /* SKILLS NAV DROPDOWN */
+ .skills-dropdown { position: relative; display: inline-flex; align-items: center; }
+ .skills-dropdown-trigger { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: var(--warm-mid); background: transparent; border: 0; cursor: pointer; padding: 0; display: inline-flex; align-items: center; gap: 6px; transition: color 0.15s ease; }
+ .skills-dropdown-trigger:hover, .skills-dropdown.is-open .skills-dropdown-trigger { color: var(--purple-hero); }
+ .skills-dropdown-trigger svg { transition: transform 0.15s ease; }
+ .skills-dropdown.is-open .skills-dropdown-trigger svg { transform: rotate(180deg); }
+ .skills-menu { position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(-6px); background: var(--warm-white); border: 1px solid var(--warm-cream); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: 24px 28px; min-width: 820px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s; z-index: 200; }
+ .skills-dropdown.is-open .skills-menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+ .skills-menu::before { content: ''; position: absolute; top: -6px; left: 50%; transform: translateX(-50%) rotate(45deg); width: 10px; height: 10px; background: var(--warm-white); border-left: 1px solid var(--warm-cream); border-top: 1px solid var(--warm-cream); }
+ .skills-menu-col { min-width: 0; }
+ .skills-menu-title { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--purple-hero); padding-bottom: 10px; margin-bottom: 8px; border-bottom: 1px solid var(--warm-cream); }
+ .skills-menu-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 2px; }
+ .skills-menu-list a { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--ink); text-decoration: none; padding: 7px 10px; margin: 0 -10px; border-radius: var(--radius-sm); display: flex; align-items: center; gap: 8px; line-height: 1.4; transition: background 0.12s ease, color 0.12s ease; }
+ .skills-menu-list a:hover { background: var(--purple-tint); color: var(--purple-hero); }
+ .skills-menu-badge { font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: #F4EAD5; color: #8A6A1F; padding: 2px 7px; border-radius: 100px; margin-left: auto; flex-shrink: 0; }
+ @media (max-width: 880px) { .skills-menu { position: fixed; top: 68px; left: 16px; right: 16px; transform: none; min-width: 0; width: auto; grid-template-columns: 1fr; gap: 18px; padding: 20px; max-height: calc(100vh - 100px); overflow-y: auto; } .skills-dropdown.is-open .skills-menu { transform: none; } .skills-menu::before { display: none; } }
 </style>
 </head>
 <body>
@@ -466,8 +483,9 @@
     <span class="wordmark">External<span>OS</span></span>
    </a>
    <nav class="masthead-nav" aria-label="Main navigation">
-    <a href="#products">Products</a>
-    <a href="#free-tool">Free tools</a>
+    <span data-skills-nav></span>
+    <a href="#products">Bundles</a>
+    <a href="./ir35-checker.html">Free IR35 check</a>
     <a class="btn-nav" href="#products">Get the bundle &pound;79</a>
    </nav>
   </div>
@@ -1120,5 +1138,6 @@
  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(alignRails); }
 })();
 </script>
+<script src="./skills-nav.js" defer></script>
 </body>
 </html>
