@@ -110,11 +110,11 @@
  .masthead-nav .btn-nav:hover { background: var(--purple-deep); color: #fff; }
  @media (max-width: 640px) { .masthead-nav > a:not(.btn-nav) { display: none; } .masthead-nav .skills-dropdown { display: none; } .masthead-nav .btn-nav { font-size: 12px; padding: 8px 14px; white-space: nowrap; } .masthead-brand .wordmark { font-size: 15px; } .masthead { padding: 20px 0 0; } }
 
- /* ═══════════════════════════════════════════════════════════════
+ /* ---------------------------------------------------------------
     MARK RAILS - static, hero-only decor. No scroll animation.
     Rails live inside the hero so they scroll away naturally
     as the user moves down. Diamond cluster centered on the H1.
-    ═══════════════════════════════════════════════════════════════ */
+    --------------------------------------------------------------- */
  .mark-rail {
   position: absolute;
   top: 0;
@@ -985,7 +985,7 @@
  var RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
  var vw = window.innerWidth;
 
- // ── Smooth anchor scroll ──
+ // -- Smooth anchor scroll --
  document.querySelectorAll('a[href^="#"]').forEach(function(a){
   a.addEventListener('click', function(e){
    var id = a.getAttribute('href');
@@ -993,7 +993,7 @@
   });
  });
 
- // ── FAQ smooth open/close ──
+ // -- FAQ smooth open/close --
  // Native <details> snaps. We intercept summary clicks, animate height of
  // .faq-body, then settle the [open] state. Falls back to native behaviour
  // for users with reduced motion.
@@ -1040,7 +1040,7 @@
   });
  });
 
- // ── Two-step opt-in ──
+ // -- Two-step opt-in --
  var revealBtn = null;
  var step2El = document.getElementById('email-step2');
  var emailRevealed = false;
@@ -1054,7 +1054,7 @@
   revealBtn.addEventListener('click', doEmailReveal);
  }
 
- // ── Lerped 3D tilt on cards ──
+ // -- Lerped 3D tilt on cards --
  if (!RM) {
   document.querySelectorAll('.tilt-card').forEach(function(card){
    var cur = {x:0, y:0}, tgt = {x:0, y:0}, running = false;
@@ -1086,7 +1086,7 @@
   });
  }
 
- // ── Section reveal on scroll ──
+ // -- Section reveal on scroll --
  // We add .js-reveal at runtime so non-JS / pre-JS users see the content.
  // If anything's already on screen, mark it visible immediately so it never
  // animates in from below the fold.
@@ -1103,7 +1103,7 @@
   document.querySelectorAll('.js-reveal').forEach(function(el){ ro.observe(el); });
  }
 
- // ── Sticky CTA: hidden by default (CSS), reveal once user scrolls past hero ──
+ // -- Sticky CTA: hidden by default (CSS), reveal once user scrolls past hero --
  var sticky = document.querySelector('.sticky-cta');
  if (sticky && 'IntersectionObserver' in window) {
   var heroEl = document.querySelector('.hero');

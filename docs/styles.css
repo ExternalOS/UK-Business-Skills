@@ -54,7 +54,7 @@ a:focus-visible { outline: 2px solid var(--purple-mid); outline-offset: 3px; bor
 
 img { max-width: 100%; display: block; }
 
-/* ── NAV ── */
+/* -- NAV -- */
 .nav {
   padding: 28px 0 0;
   position: relative;
@@ -118,7 +118,7 @@ img { max-width: 100%; display: block; }
 }
 .nav-links .nav-cta:hover { background: var(--purple-deep); color: #ffffff; }
 
-/* ── MARK RAILS (hero decor) ── */
+/* -- MARK RAILS (hero decor) -- */
 .mark-rail {
   position: absolute;
   top: 0;
@@ -148,7 +148,7 @@ img { max-width: 100%; display: block; }
 }
 @media (max-width: 900px) { .mark-rail { display: none; } }
 
-/* ── HERO ── */
+/* -- HERO -- */
 .hero {
   padding: 72px 0 64px;
   text-align: center;
@@ -198,7 +198,7 @@ img { max-width: 100%; display: block; }
 }
 @media (max-width: 480px) { .hero { padding: 48px 0 48px; } }
 
-/* ── CONTAINER / LAYOUT ── */
+/* -- CONTAINER / LAYOUT -- */
 .container {
   max-width: 1100px;
   margin: 0 auto;
@@ -207,7 +207,7 @@ img { max-width: 100%; display: block; }
 }
 @media (max-width: 720px) { .container { padding: 0 22px; } .nav-inner { padding: 0 22px; } }
 
-/* ── BUTTONS ── */
+/* -- BUTTONS -- */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -238,7 +238,7 @@ img { max-width: 100%; display: block; }
 }
 .btn-lg { font-size: 16px; padding: 18px 32px; }
 
-/* ── BADGES ── */
+/* -- BADGES -- */
 .badge {
   display: inline-block;
   font-family: 'Syne', sans-serif;
@@ -256,7 +256,7 @@ img { max-width: 100%; display: block; }
 .badge-green { background: #E2F0E4; color: #2D6A3A; }
 .badge-red { background: #F5E0DC; color: #8A2D1F; }
 
-/* ── STAT ROW ── */
+/* -- STAT ROW -- */
 .stat-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -290,14 +290,14 @@ img { max-width: 100%; display: block; }
 }
 @media (max-width: 720px) { .stat-row { grid-template-columns: repeat(2, 1fr); } }
 
-/* ── DIVIDER ── */
+/* -- DIVIDER -- */
 .divider {
   height: 1px;
   background: var(--warm-cream);
   margin: 32px 0;
 }
 
-/* ── BUNDLE SECTIONS ── */
+/* -- BUNDLE SECTIONS -- */
 .bundle-section { padding: 32px 0 8px; }
 .bundle-header {
   display: flex;
@@ -344,7 +344,7 @@ img { max-width: 100%; display: block; }
   .bundle-price { text-align: left; }
 }
 
-/* ── CARD GRID + SKILL CARDS ── */
+/* -- CARD GRID + SKILL CARDS -- */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -393,7 +393,7 @@ img { max-width: 100%; display: block; }
   color: var(--warm-mid);
 }
 
-/* ── FREE-TOOL BANNER (on-brand replacement for the navy inline div) ── */
+/* -- FREE-TOOL BANNER (on-brand replacement for the navy inline div) -- */
 .free-tool-banner {
   background: var(--warm-white);
   border: 1px solid var(--purple-pale);
@@ -451,7 +451,7 @@ img { max-width: 100%; display: block; }
   line-height: 1.6;
 }
 
-/* ── PAIN/SOLUTION + FEATURE LIST + CTA + PROSE (skill pages) ── */
+/* -- PAIN/SOLUTION + FEATURE LIST + CTA + PROSE (skill pages) -- */
 .pain-solution {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -569,7 +569,7 @@ img { max-width: 100%; display: block; }
 .prose ul, .prose ol { margin: 0 0 16px 22px; }
 .prose li { margin-bottom: 6px; }
 
-/* ── BREADCRUMB ── */
+/* -- BREADCRUMB -- */
 .breadcrumb {
   font-family: 'Inter', sans-serif;
   font-size: 12px;
@@ -583,7 +583,7 @@ img { max-width: 100%; display: block; }
 .breadcrumb a:hover { color: var(--purple-hero); }
 .breadcrumb .sep { margin: 0 8px; color: var(--warm-sand); }
 
-/* ── NOTICE ── */
+/* -- NOTICE -- */
 .notice {
   background: var(--purple-tint);
   border-left: 3px solid var(--purple-hero);
@@ -595,7 +595,7 @@ img { max-width: 100%; display: block; }
   line-height: 1.6;
 }
 
-/* ── FOOTER (canonical, shared across landing + tool + skill pages) ── */
+/* -- FOOTER (canonical, shared across landing + tool + skill pages) -- */
 .footer { padding: 56px 0 40px; border-top: 1px solid var(--warm-cream); margin-top: 24px; }
 .footer .wrap { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
 .footer-inner { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; align-items: flex-start; }
@@ -617,7 +617,7 @@ img { max-width: 100%; display: block; }
 @media (max-width: 760px) { .footer .wrap { padding: 0 22px; } .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; } .footer-bottom { flex-direction: column; gap: 12px; text-align: center; } }
 @media (max-width: 480px) { .footer-inner { grid-template-columns: 1fr; } }
 
-/* ── REDUCED MOTION ── */
+/* -- REDUCED MOTION -- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -1047,10 +1047,10 @@ img { max-width: 100%; display: block; }
   .eos-card-btn::after { transition: none; }
 }
 
-/* ─────────────────────────────────────────────────────
+/* -----------------------------------------------------
    MIGRATED FROM LANDING PAGE INLINE CSS (for page cohesion)
    Added S129, 2026-04-17, landing-parity for skill pages + ir35-checker
-   ───────────────────────────────────────────────────── */
+   ----------------------------------------------------- */
 <style>
  /* RESET AND TOKENS */
  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1103,11 +1103,11 @@ img { max-width: 100%; display: block; }
  .masthead-nav .btn-nav:hover { background: var(--purple-deep); color: #fff; }
  @media (max-width: 640px) { .masthead-nav > a:not(.btn-nav) { display: none; } .masthead-nav .skills-dropdown { display: none; } .masthead-nav .btn-nav { font-size: 12px; padding: 8px 14px; white-space: nowrap; } .masthead-brand .wordmark { font-size: 15px; } .masthead { padding: 20px 0 0; } }
 
- /* ═══════════════════════════════════════════════════════════════
+ /* ---------------------------------------------------------------
     MARK RAILS - static, hero-only decor. No scroll animation.
     Rails live inside the hero so they scroll away naturally
     as the user moves down. Diamond cluster centered on the H1.
-    ═══════════════════════════════════════════════════════════════ */
+    --------------------------------------------------------------- */
  .mark-rail {
   position: absolute;
   top: 0;
@@ -1434,9 +1434,9 @@ img { max-width: 100%; display: block; }
  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
 </style>
 
-/* ─────────────────────────────────────────────────────
+/* -----------------------------------------------------
    SKILL PAGE BODY SECTIONS (canonical, matches landing rhythm)
-   ───────────────────────────────────────────────────── */
+   ----------------------------------------------------- */
 .page-body { max-width: 820px; margin: 0 auto; padding: 0 40px; text-align: center; }
 .content-section { padding: 64px 0 56px; border-top: 1px solid var(--warm-cream); text-align: center; }
 .content-section:first-child { border-top: none; padding-top: 72px; }
