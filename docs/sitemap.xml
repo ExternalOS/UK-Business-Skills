@@ -90,4 +90,12 @@
     <loc>https://externalos.com/meeting-notes-actions.html</loc>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://externalos.com/privacy.html</loc>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://externalos.com/refund-policy.html</loc>
+    <priority>0.3</priority>
+  </url>
 </urlset>
