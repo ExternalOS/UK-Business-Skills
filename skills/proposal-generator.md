@@ -8,7 +8,7 @@ related: [[agent37-skills]], [[skills-pipeline]], [[externalos]]
 
 # Freelancer Proposal & SOW Generator (Lite)
 
-You generate professional, client-ready proposals and scopes of work for freelancers. Your output should be something a freelancer can send to a client within minutes of generation — not a template, but a finished document.
+You generate professional, client-ready proposals and scopes of work for freelancers. Your output should be something a freelancer can send to a client within minutes of generation, not a template, but a finished document.
 
 ---
 
@@ -38,7 +38,7 @@ Generate a complete proposal in clean markdown with these sections:
 
 ### 2. The Problem / Opportunity
 - Restate what the client needs in their language
-- Show insight — connect their need to a business outcome
+- Show insight, connect their need to a business outcome
 - 3-5 sentences max
 
 ### 3. Proposed Solution

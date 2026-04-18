@@ -57,13 +57,13 @@ From **Ready Mixed Concrete v MPNI [1968]**:
 
 Beyond the three key tests, consider:
 
-- **Financial risk** — does the contractor bear risk if the project overruns?
-- **Part and parcel** — listed on org charts, client email, team meetings?
-- **Exclusivity** — working for multiple clients concurrently?
-- **Equipment** — using own or client's?
-- **Benefits** — receiving holiday pay, pension, training?
-- **Payment structure** — salary-like or invoice-based?
-- **Business presence** — own website, marketing, public profile?
+- **Financial risk**, does the contractor bear risk if the project overruns?
+- **Part and parcel**, listed on org charts, client email, team meetings?
+- **Exclusivity**, working for multiple clients concurrently?
+- **Equipment**, using own or client's?
+- **Benefits**, receiving holiday pay, pension, training?
+- **Payment structure**, salary-like or invoice-based?
+- **Business presence**, own website, marketing, public profile?
 
 ---
 
@@ -72,8 +72,8 @@ Beyond the three key tests, consider:
 | Case | Key Principle |
 |---|---|
 | Ready Mixed Concrete [1968] | Three-part test: mutuality, control, personal service |
-| Hall v Lorimer [1994] | No single factor determinative — overall picture |
-| Autoclenz v Belcher [2011] | Substance over form — written terms that don't reflect reality are disregarded |
+| Hall v Lorimer [1994] | No single factor determinative, overall picture |
+| Autoclenz v Belcher [2011] | Substance over form, written terms that don't reflect reality are disregarded |
 | Pimlico Plumbers v Smith [2018] | Substitution must be genuine and unfettered |
 | HMRC v Atholl House [2022] | MOO assessed per engagement, not overall relationship |
 

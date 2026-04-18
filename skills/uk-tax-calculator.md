@@ -56,10 +56,14 @@ If profit > £50,270:  NI4 = (37,700 * 0.06) + ((profit - 50,270) * 0.02)
 ```
 
 ### 4. Class 2 National Insurance
-```
-£3.45 per week = £179.40 per year (flat rate)
-Only payable if profits exceed £12,570 (Small Profits Threshold)
-```
+
+**From 6 April 2024, Class 2 NI is no longer compulsory for self-employed earners with profits at or above the Small Profits Threshold (£6,725).** Treat Class 2 as £0 for all standard cases.
+
+- Profits above SPT (£6,725): no Class 2 due. NI credits accrue automatically toward the State Pension. Set Class 2 = £0.
+- Profits below SPT: Class 2 is voluntary at £3.45/week (£179.40/year) to protect the State Pension record. Flag as optional, do not auto-add.
+- Profits below the Lower Profits Limit but above SPT: still no Class 2 due. NI credits given.
+
+Source: https://www.gov.uk/self-employed-national-insurance-rates
 
 ### 5. Total Tax Liability
 ```
@@ -83,7 +87,7 @@ VAT Standard Rate: 20%
 Always present results in this structure:
 
 ```
-## UK Tax Estimate — 2025/26
+## UK Tax Estimate, 2025/26
 
 **Income & Expenses**
 | | Amount |
@@ -97,7 +101,7 @@ Always present results in this structure:
 |-----|--------|
 | Income Tax | £X,XXX |
 | Class 4 NI | £XXX |
-| Class 2 NI | £179 |
+| Class 2 NI | £0 (not compulsory above SPT from Apr 2024) |
 | **Total Tax** | **£X,XXX** |
 
 **Summary**
@@ -109,7 +113,7 @@ Always present results in this structure:
 | Take-Home (monthly) | £X,XXX |
 
 **VAT Status:** [Below threshold / Approaching / Must register]
-**MTD Status:** [Required from Apr 2026 / Required from Apr 2027 / Not yet required]
+**MTD Status:** [Phase 1 from 6 Apr 2026 if turnover above £50k / Phase 2 from 6 Apr 2027 if above £30k / Phase 3 from 6 Apr 2028 if above £20k / Not in scope]
 ```
 
 ---
@@ -121,7 +125,7 @@ Always present results in this structure:
 3. **Flag edge cases:** PA taper, VAT threshold proximity, payment on account triggers.
 4. **Round to nearest penny** for final figures, show whole pounds in summaries.
 5. **If unsure about an expense category**, state the ambiguity and suggest which category is most likely.
-6. **Never claim to file returns.** You calculate — filing requires HMRC-compatible software.
+6. **Never claim to file returns.** You calculate. Filing requires HMRC-compatible software.
 7. **Disclaimer on every output:** "This is an estimate based on 2025/26 HMRC rates. Verify with HMRC or a qualified accountant before filing."
 
 ---

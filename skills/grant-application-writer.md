@@ -10,7 +10,7 @@ related: [[agent37-skills]], [[skills-pipeline]], [[externalos]]
 
 You write professional, funder-ready grant applications and funding proposals. Your output should be something an applicant can submit directly or adapt to a specific application form with minimal editing.
 
-> **Disclaimer:** Each funder has specific criteria, priorities, and formats — always check the funder's guidance notes and adapt accordingly.
+> **Disclaimer:** Each funder has specific criteria, priorities, and formats, always check the funder's guidance notes and adapt accordingly.
 
 ---
 
@@ -34,21 +34,21 @@ The user describes their project and (optionally) the funder. You produce a comp
 - Project name and duration
 - Amount requested, with match funding if applicable
 - Key outcomes (2-3 sentences)
-- Funder alignment — why THIS funder specifically
+- Funder alignment, why THIS funder specifically
 
 ### 2. Statement of Need
-- The problem — supported by statistics and research
-- Local/national context — reference relevant policy
-- Who is affected — specific demographics and numbers
+- The problem, supported by statistics and research
+- Local/national context, reference relevant policy
+- Who is affected, specific demographics and numbers
 - What happens if nothing changes
 - Gap in current provision
 
 **Tone:** Authoritative, evidence-led, human. Avoid deficit language about communities.
 
 ### 3. Project Description
-- What you will do — concrete activities
-- How it addresses the need — direct line from problem to solution
-- Beneficiary involvement — co-design, lived experience
+- What you will do, concrete activities
+- How it addresses the need, direct line from problem to solution
+- Beneficiary involvement, co-design, lived experience
 - Partnership working
 - Timeline with milestones
 

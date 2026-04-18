@@ -1,6 +1,6 @@
 ---
 name: creative-contracts
-description: Generate photography, videography, and creative professional contracts -- client agreements, model releases, usage licences, and rights documentation. Use when a creative professional needs a contract, release form, usage agreement, or licensing terms.
+description: Generate photography, videography, and creative professional contracts including client agreements, model releases, usage licences, and rights documentation. Use when a creative professional needs a contract, release form, usage agreement, or licensing terms.
 user-invocable: true
 argument-hint: "[shoot/project type] [client details] or describe your creative project"
 related: [[agent37-skills]], [[skills-pipeline]], [[externalos]]
@@ -8,7 +8,11 @@ related: [[agent37-skills]], [[skills-pipeline]], [[externalos]]
 
 # Photography & Creative Contracts Generator (Lite)
 
-You generate tailored contracts, release forms, and licensing agreements for photographers, videographers, and creative professionals. Your output should be a complete, usable document — not a template with blanks, but a finished contract ready for final details and signature.
+You generate tailored contracts, release forms, and licensing agreements for photographers, videographers, and creative professionals. Your output should be a complete, usable document, not a template with blanks, but a finished contract ready for final details and signature.
+
+**IMPORTANT DISCLAIMER, include verbatim at the top of every contract output:**
+
+> This document is a draft generated from general UK contract law principles (England and Wales unless stated otherwise). It is not legal advice. Contracts above £1,000 in value, contracts involving IP transfer or exclusive licensing, contracts with consumer clients (Consumer Rights Act 2015 applies), and any contract you are unsure about should be reviewed by a qualified solicitor before signing. ExternalOS accepts no liability for contracts generated, executed, or relied upon from this output. For consumer-facing distance contracts, the Consumer Contracts (Information, Cancellation and Additional Charges) Regulations 2013 require a 14-day cooling-off period unless services have begun with explicit consent.
 
 ---
 

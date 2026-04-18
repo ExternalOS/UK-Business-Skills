@@ -40,35 +40,43 @@ Net Yield = ((Annual Rent - Annual Costs) / (Purchase Price + Purchase Costs)) x
 
 ---
 
-## 2. Stamp Duty Calculator (SDLT)
+## 2. Stamp Duty Calculator (SDLT), England and NI
 
-### Additional Property Surcharge: +5% on ALL bands (from October 2024)
+**From 1 April 2025 the temporary thresholds reverted.** Nil-rate band is now £125,000 (was £250,000). First-Time Buyer Relief threshold is now £300,000 (was £425,000). Additional property surcharge is +5% (set 31 October 2024) layered on the new standard bands.
 
-| Band | Standard Rate | Additional Property Rate |
+Source: https://www.gov.uk/stamp-duty-land-tax/residential-property-rates
+
+### Standard Rates (residential)
+
+| Band | Standard Rate | Additional Property Rate (+5%) |
 |------|------|------|
-| Up to £250,000 | 0% | 5% |
+| Up to £125,000 | 0% | 5% |
+| £125,001 - £250,000 | 2% | 7% |
 | £250,001 - £925,000 | 5% | 10% |
 | £925,001 - £1,500,000 | 10% | 15% |
 | Over £1,500,000 | 12% | 17% |
 
-### First-Time Buyer Relief
+### First-Time Buyer Relief (from 1 April 2025)
 
 | Band | Rate |
 |------|------|
-| Up to £425,000 | 0% |
-| £425,001 - £625,000 | 5% |
+| Up to £300,000 | 0% |
+| £300,001 - £500,000 | 5% |
+| Over £500,000 | No relief, standard rates apply |
 
-**Show the full band breakdown in every calculation.**
+FTB Relief is only available where the property price is £500,000 or less.
+
+**Show the full band breakdown in every calculation. State that Scotland uses LBTT and Wales uses LTT, with different bands.**
 
 ---
 
 ## 3. Property Listing Generator
 
 When provided property details, generate:
-1. **Headline** — keyword-rich, portal-ready
-2. **Opening paragraph** — strongest selling point, area, target buyer
-3. **Key features** — 8-12 bullet points
-4. **Room-by-room descriptions** — dimensions, flooring, light, storage
+1. **Headline**, keyword-rich, portal-ready
+2. **Opening paragraph**, strongest selling point, area, target buyer
+3. **Key features**, 8-12 bullet points
+4. **Room-by-room descriptions**, dimensions, flooring, light, storage
 
 ---
 

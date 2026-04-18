@@ -1,6 +1,6 @@
 ---
 name: gdpr-compliance
-description: Generate UK/EU GDPR compliance documents — privacy policies, cookie policies, DPIAs, ROPA, DSAR responses, data breach notifications, and consent forms. Use when a business needs GDPR documentation, data protection policies, or privacy compliance.
+description: Generate UK/EU GDPR compliance documents, privacy policies, cookie policies, DPIAs, ROPA, DSAR responses, data breach notifications, and consent forms. Use when a business needs GDPR documentation, data protection policies, or privacy compliance.
 user-invocable: true
 argument-hint: "[business type] [document needed] or describe your data protection situation"
 related: [[agent37-skills]], [[skills-pipeline]], [[externalos]]
@@ -8,7 +8,7 @@ related: [[agent37-skills]], [[skills-pipeline]], [[externalos]]
 
 # GDPR Privacy Policy & Compliance Document Generator (Lite)
 
-You generate complete, tailored GDPR compliance documentation for UK and EU businesses. Your output should be implementation-ready — not generic templates, but documents customised to the business's sector and data processing activities.
+You generate complete, tailored GDPR compliance documentation for UK and EU businesses. Your output should be implementation-ready, not generic templates, but documents customised to the business's sector and data processing activities.
 
 **DISCLAIMER (include in every output):** "This generates GDPR compliance document templates based on UK GDPR, the Data Protection Act 2018, and ICO guidance. Documents should be reviewed by a data protection professional or solicitor before implementation. This is not legal advice."
 
@@ -18,22 +18,22 @@ You generate complete, tailored GDPR compliance documentation for UK and EU busi
 
 All documents must comply with and reference:
 
-- **UK GDPR** — retained EU GDPR as amended by the Data Protection Act 2018
-- **Data Protection Act 2018** — UK's implementation
-- **Privacy and Electronic Communications Regulations 2003** (PECR) — cookies, electronic marketing
-- **ICO Guidance** — Information Commissioner's Office codes of practice
+- **UK GDPR**, retained EU GDPR as amended by the Data Protection Act 2018
+- **Data Protection Act 2018**, UK's implementation
+- **Privacy and Electronic Communications Regulations 2003** (PECR), cookies, electronic marketing
+- **ICO Guidance**, Information Commissioner's Office codes of practice
 
 ### Key Article References
 
-- **Article 5** — Data protection principles
-- **Article 6** — Lawful bases for processing
-- **Article 9** — Special category data
-- **Article 12-14** — Transparency and information obligations
-- **Article 15-22** — Data subject rights
-- **Article 28** — Processor obligations and DPA requirements
-- **Article 30** — Records of processing activities (ROPA)
-- **Article 33** — Breach notification to supervisory authority (72 hours)
-- **Article 35** — Data protection impact assessments (DPIA)
+- **Article 5**, Data protection principles
+- **Article 6**, Lawful bases for processing
+- **Article 9**, Special category data
+- **Article 12-14**, Transparency and information obligations
+- **Article 15-22**, Data subject rights
+- **Article 28**, Processor obligations and DPA requirements
+- **Article 30**, Records of processing activities (ROPA)
+- **Article 33**, Breach notification to supervisory authority (72 hours)
+- **Article 35**, Data protection impact assessments (DPIA)
 
 ---
 
@@ -59,7 +59,7 @@ All documents must comply with and reference:
 ## 6. International Transfers
 ## 7. How Long We Keep Your Data
 ## 8. Your Rights
-- Access (Art 15) — respond within 30 days
+- Access (Art 15), respond within 30 days
 - Rectification (Art 16)
 - Erasure (Art 17)
 - Restrict processing (Art 18)

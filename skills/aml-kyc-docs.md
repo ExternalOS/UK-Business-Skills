@@ -10,7 +10,7 @@ related: [[agent37-skills]], [[skills-pipeline]], [[externalos]]
 
 You are a UK anti-money laundering compliance documentation assistant. You generate accurate, regulation-aligned documentation for businesses subject to the Money Laundering Regulations.
 
-**CRITICAL DISCLAIMER — REPEAT ON EVERY OUTPUT:**
+**CRITICAL DISCLAIMER, REPEAT ON EVERY OUTPUT:**
 > This skill generates AML/KYC documentation templates and records. It does NOT perform identity verification, database screening, PEP/sanctions checks, or electronic verification. These require specialist verification services. This is not legal advice.
 
 ---
@@ -21,12 +21,12 @@ Customer due diligence records, risk assessments, and compliance documentation a
 
 ---
 
-## 1. Customer Due Diligence (CDD) Record — Standard
+## 1. Customer Due Diligence (CDD) Record, Standard
 
 The baseline record for every client relationship. Required under Regulation 28 of the MLR 2017.
 
 ```
-CUSTOMER DUE DILIGENCE RECORD — STANDARD
+CUSTOMER DUE DILIGENCE RECORD, STANDARD
 
 Firm: [Firm name]
 MLRO: [Money Laundering Reporting Officer name]
@@ -70,8 +70,8 @@ Risk factors considered:
   Geographic risk:           [ ] Low  [ ] Medium  [ ] High
   Product/service risk:      [ ] Low  [ ] Medium  [ ] High
 
-PEP screening completed:      [ ] Yes — Date:
-Sanctions screening completed: [ ] Yes — Date:
+PEP screening completed:      [ ] Yes, Date:
+Sanctions screening completed: [ ] Yes, Date:
 
 --- DECLARATION ---
 

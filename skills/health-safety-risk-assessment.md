@@ -51,11 +51,11 @@ Hierarchy of control:
 ```
 
 **Risk level actions:**
-- **Trivial** — No further action required.
-- **Tolerable** — Monitor. Maintain existing controls.
-- **Moderate** — Reduce risk where reasonably practicable.
-- **Substantial** — Do not start or continue work until risk is reduced.
-- **Intolerable** — Stop work immediately.
+- **Trivial**, No further action required.
+- **Tolerable**, Monitor. Maintain existing controls.
+- **Moderate**, Reduce risk where reasonably practicable.
+- **Substantial**, Do not start or continue work until risk is reduced.
+- **Intolerable**, Stop work immediately.
 
 ---
 
