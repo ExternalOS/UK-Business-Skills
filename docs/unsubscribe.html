@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Unsubscribe | The Brief | ExternalOS</title>
+<meta name="description" content="Unsubscribe from The Brief, the weekly UK compliance newsletter from ExternalOS." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="canonical" href="https://externalos.com/unsubscribe.html" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Unsubscribe | The Brief | ExternalOS" />
+<meta property="og:description" content="Unsubscribe from The Brief." />
+<meta property="og:url" content="https://externalos.com/unsubscribe.html" />
+<meta property="og:site_name" content="ExternalOS" />
+<meta property="og:locale" content="en_GB" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css?v=135" />
+
+<style>
+ .unsub-wrap { max-width: 560px; margin: 0 auto; padding: 72px 24px 96px; }
+ .unsub-eyebrow { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--purple-hero); margin-bottom: 14px; }
+ .unsub-wrap h1 { font-family: 'Libre Baskerville', serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.15; color: var(--ink); margin-bottom: 18px; }
+ .unsub-wrap p { font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.7; color: var(--warm-dark); margin-bottom: 14px; }
+ .unsub-wrap strong { font-weight: 600; color: var(--ink); }
+ .unsub-wrap a { color: var(--purple-hero); }
+ .unsub-form { margin-top: 28px; display: flex; flex-direction: column; gap: 12px; }
+ .unsub-form label { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--warm-dark); }
+ .unsub-form input[type="email"] { font-family: 'Inter', sans-serif; font-size: 15px; padding: 14px 16px; border: 1px solid var(--warm-cream); border-radius: 8px; background: #fff; color: var(--ink); }
+ .unsub-form input[type="email"]:focus { outline: 2px solid var(--purple-hero); outline-offset: 2px; }
+ .unsub-form button { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.04em; padding: 14px 20px; background: var(--purple-hero); color: #fff; border: none; border-radius: 8px; cursor: pointer; }
+ .unsub-form button:hover { background: #4A1290; }
+ .confirmed { background: #F6F1EC; border: 1px solid var(--warm-cream); border-radius: 10px; padding: 20px; margin-top: 28px; font-family: 'Inter', sans-serif; font-size: 14px; color: var(--ink); line-height: 1.6; display: none; }
+ .fallback { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--warm-cream); font-size: 13px; color: var(--warm-mid); }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+ <div class="wrap">
+  <div class="masthead-inner">
+   <a class="masthead-brand" href="/" aria-label="ExternalOS home">
+    <span class="mark-wrap" aria-hidden="true">
+     <svg viewBox="0 0 40 40" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="20,4 34,18 20,32 6,18" fill="#DBC8F0"/>
+      <polygon points="20,8.6 31.7,20.3 20,32 8.3,20.3" fill="#BEA0E0"/>
+      <polygon points="20,13.2 29.4,22.6 20,32 10.6,22.6" fill="#9F72D0"/>
+      <polygon points="20,17.8 27.1,24.9 20,32 12.9,24.9" fill="#8248BF"/>
+      <polygon points="20,22.4 24.8,27.2 20,32 15.2,27.2" fill="#6525AB"/>
+      <polygon points="20,27 22.5,29.5 20,32 17.5,29.5" fill="#4A1290"/>
+      <circle cx="20" cy="36" r="2" fill="#4A1290"/>
+     </svg>
+    </span>
+    <span class="wordmark">External<span>OS</span></span>
+   </a>
+   <nav class="masthead-nav" aria-label="Main navigation">
+    <span data-skills-nav></span>
+    <a href="/#products">Bundles</a>
+    <a href="./ir35-checker.html">Free IR35 check</a>
+    <a class="btn-nav" href="/#products">Get the bundle &pound;79</a>
+   </nav>
+  </div>
+ </div>
+</div>
+
+<main class="unsub-wrap">
+ <div class="unsub-eyebrow">The Brief</div>
+ <h1>Unsubscribe</h1>
+ <p>Enter the address that receives The Brief and we will remove it from the list. Processed manually within 48 hours. You will get a one-line reply once it is done.</p>
+ <p>No question asked, no survey, no retention flow.</p>
+
+ <form class="unsub-form" action="https://formspree.io/f/mwvaveor" method="POST" id="unsub-form">
+  <label for="email">Email to unsubscribe</label>
+  <input type="email" id="email" name="email" required placeholder="you@example.com" autocomplete="email" />
+  <input type="hidden" name="_subject" value="Unsubscribe: The Brief" />
+  <input type="hidden" name="request_type" value="unsubscribe" />
+  <input type="hidden" name="_next" value="https://externalos.com/unsubscribe.html?confirmed=1" />
+  <button type="submit">Remove me from The Brief</button>
+ </form>
+
+ <div class="confirmed" id="confirmed">
+  <strong>Request received.</strong> We will remove the address within 48 hours and reply from <a href="mailto:hello@externalos.com">hello@externalos.com</a> once it is done. If you sent this in error, just reply to that email and we will put it back.
+ </div>
+
+ <div class="fallback">
+  Prefer email? Write to <a href="mailto:hello@externalos.com?subject=Unsubscribe%20from%20The%20Brief&amp;body=Please%20remove%20this%20address%20from%20The%20Brief.">hello@externalos.com</a> with the subject "Unsubscribe from The Brief". We treat the two routes the same.
+ </div>
+</main>
+
+<footer class="footer">
+ <div class="wrap">
+  <div class="footer-bottom">
+   <div>ExternalOS 2026 <span class="full-stop" aria-hidden="true"></span> Leeds, UK <span class="full-stop" aria-hidden="true"></span> <a href="mailto:hello@externalos.com">hello@externalos.com</a></div>
+   <div>Sole trader, not VAT registered <span class="full-stop" aria-hidden="true"></span> <a href="./terms.html">Terms</a> <span class="full-stop" aria-hidden="true"></span> <a href="./privacy.html">Privacy</a> <span class="full-stop" aria-hidden="true"></span> <a href="./refund-policy.html">Refunds</a></div>
+  </div>
+ </div>
+</footer>
+
+<script src="./skills-nav.js?v=135" defer></script>
+<script>
+ (function () {
+  var params = new URLSearchParams(window.location.search);
+  var prefill = params.get('email');
+  if (prefill) {
+   var input = document.getElementById('email');
+   if (input) { input.value = prefill.trim().toLowerCase(); }
+  }
+  if (params.get('confirmed') === '1') {
+   document.getElementById('confirmed').style.display = 'block';
+   var form = document.getElementById('unsub-form');
+   if (form) { form.style.display = 'none'; }
+  }
+ })();
+</script>
+
+</body>
+</html>
