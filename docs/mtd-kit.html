@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The MTD for ITSA Survival Kit, free | ExternalOS</title>
+<meta name="description" content="Free one-page plain-English guide to Making Tax Digital for Income Tax. For UK sole traders and landlords in the 2026-27 mandated cohort. Updated 23 April 2026, sourced to gov.uk." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://externalos.com/mtd-kit.html" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="The MTD for ITSA Survival Kit, free | ExternalOS" />
+<meta property="og:description" content="One page. Plain English. Your Q1 deadline, your software options, and the seven-step action list. Free PDF, sourced to gov.uk." />
+<meta property="og:url" content="https://externalos.com/mtd-kit.html" />
+<meta property="og:site_name" content="ExternalOS" />
+<meta property="og:locale" content="en_GB" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css?v=149" />
+
+<style>
+ .kit-wrap { max-width: 720px; margin: 0 auto; padding: 56px 24px 96px; }
+ .kit-eyebrow { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--purple-hero); margin-bottom: 14px; }
+ .kit-wrap h1 { font-family: 'Libre Baskerville', serif; font-size: clamp(30px, 4.4vw, 44px); line-height: 1.12; color: var(--ink); margin-bottom: 18px; }
+ .kit-lede { font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.7; color: var(--warm-dark); margin-bottom: 20px; }
+ .kit-whats-in { background: #F6F1EC; border: 1px solid var(--warm-cream); border-radius: 12px; padding: 24px 28px; margin: 28px 0 36px; font-family: 'Inter', sans-serif; }
+ .kit-whats-in h3 { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.10em; text-transform: uppercase; color: var(--ink); margin-bottom: 14px; }
+ .kit-whats-in ul { list-style: none; padding: 0; margin: 0; }
+ .kit-whats-in li { font-size: 15px; line-height: 1.6; color: var(--warm-dark); padding: 6px 0 6px 24px; position: relative; }
+ .kit-whats-in li::before { content: ""; position: absolute; left: 0; top: 14px; width: 10px; height: 10px; background: var(--purple-hero); transform: rotate(45deg); }
+
+ .kit-form { margin: 24px 0 16px; display: flex; flex-direction: column; gap: 12px; }
+ .kit-form label { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--warm-dark); }
+ .kit-form input[type="email"] { font-family: 'Inter', sans-serif; font-size: 16px; padding: 15px 16px; border: 1px solid var(--warm-cream); border-radius: 8px; background: #fff; color: var(--ink); }
+ .kit-form input[type="email"]:focus { outline: 2px solid var(--purple-hero); outline-offset: 2px; }
+ .kit-form button { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 0.04em; padding: 15px 20px; background: var(--purple-hero); color: #fff; border: none; border-radius: 8px; cursor: pointer; }
+ .kit-form button:hover { background: #4A1290; }
+ .kit-consent { display: flex; gap: 10px; align-items: flex-start; font-family: 'Inter', sans-serif; font-size: 13px; line-height: 1.55; color: var(--warm-mid); }
+ .kit-consent input[type="checkbox"] { margin-top: 3px; flex-shrink: 0; }
+ .kit-consent a { color: var(--purple-hero); }
+ .kit-privacy { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--warm-mid); margin-top: 8px; line-height: 1.6; }
+
+ .kit-confirmed { display: none; background: #F6F1EC; border: 1px solid var(--warm-cream); border-radius: 12px; padding: 28px; margin: 24px 0 16px; font-family: 'Inter', sans-serif; }
+ .kit-confirmed h2 { font-family: 'Libre Baskerville', serif; font-size: 24px; color: var(--ink); margin-bottom: 14px; line-height: 1.2; }
+ .kit-confirmed p { font-size: 15px; line-height: 1.7; color: var(--warm-dark); margin-bottom: 12px; }
+ .kit-download-btn { display: inline-block; font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 0.04em; padding: 14px 22px; background: var(--purple-hero); color: #fff; text-decoration: none; border-radius: 8px; margin-top: 8px; }
+ .kit-download-btn:hover { background: #4A1290; }
+
+ .kit-sources { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--warm-mid); margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--warm-cream); line-height: 1.7; }
+
+ .kit-upsell { margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--warm-cream); }
+ .kit-upsell-eyebrow { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--warm-mid); margin-bottom: 10px; }
+ .kit-upsell h2 { font-family: 'Libre Baskerville', serif; font-size: 26px; color: var(--ink); margin-bottom: 12px; line-height: 1.2; }
+ .kit-upsell p { font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.7; color: var(--warm-dark); margin-bottom: 20px; }
+
+ .tripwire-card { background: #fff; border: 2px solid var(--purple-hero); border-radius: 12px; padding: 28px; margin: 20px 0 28px; }
+ .tripwire-card .price-tag { display: inline-block; background: var(--purple-hero); color: #fff; font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; padding: 5px 10px; border-radius: 4px; margin-bottom: 12px; }
+ .tripwire-card h3 { font-family: 'Libre Baskerville', serif; font-size: 20px; color: var(--ink); margin-bottom: 10px; line-height: 1.25; }
+ .tripwire-card p { font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.65; color: var(--warm-dark); margin-bottom: 16px; }
+ .tripwire-card a.btn { display: inline-block; font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.04em; padding: 12px 20px; background: var(--purple-hero); color: #fff; text-decoration: none; border-radius: 8px; }
+ .tripwire-card a.btn:hover { background: #4A1290; }
+
+ .packs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+ .pack-card { background: #fff; border: 1px solid var(--warm-cream); border-radius: 10px; padding: 20px; text-decoration: none; color: inherit; display: block; }
+ .pack-card:hover { border-color: var(--purple-hero); }
+ .pack-card h4 { font-family: 'Libre Baskerville', serif; font-size: 16px; color: var(--ink); margin-bottom: 8px; line-height: 1.3; }
+ .pack-card .pack-price { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; color: var(--purple-hero); margin-bottom: 8px; letter-spacing: 0.04em; }
+ .pack-card p { font-family: 'Inter', sans-serif; font-size: 13px; line-height: 1.55; color: var(--warm-mid); margin: 0; }
+ @media (max-width: 560px) { .packs-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+ <div class="wrap">
+  <div class="masthead-inner">
+   <a class="masthead-brand" href="/" aria-label="ExternalOS home">
+    <span class="mark-wrap" aria-hidden="true">
+     <svg viewBox="0 0 40 40" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="20,4 34,18 20,32 6,18" fill="#DBC8F0"/>
+      <polygon points="20,8.6 31.7,20.3 20,32 8.3,20.3" fill="#BEA0E0"/>
+      <polygon points="20,13.2 29.4,22.6 20,32 10.6,22.6" fill="#9F72D0"/>
+      <polygon points="20,17.8 27.1,24.9 20,32 12.9,24.9" fill="#8248BF"/>
+      <polygon points="20,22.4 24.8,27.2 20,32 15.2,27.2" fill="#6525AB"/>
+      <polygon points="20,27 22.5,29.5 20,32 17.5,29.5" fill="#4A1290"/>
+      <circle cx="20" cy="36" r="2" fill="#4A1290"/>
+     </svg>
+    </span>
+    <span class="wordmark">External<span>OS</span></span>
+   </a>
+   <nav class="masthead-nav" aria-label="Main navigation">
+    <span data-skills-nav></span>
+    <a href="/#products">Bundles</a>
+    <a href="./ir35-checker.html">Free IR35 check</a>
+    <a class="btn-nav" href="/#products">Get the bundle &pound;79</a>
+   </nav>
+  </div>
+ </div>
+</div>
+
+<main class="kit-wrap">
+ <div class="kit-eyebrow">Free guide, updated 23 April 2026</div>
+ <h1>The MTD for ITSA Survival Kit</h1>
+ <p class="kit-lede">One A4 page. Plain English. Your Q1 deadline, your software options, and a seven-step action list for the £50k mandated cohort. Sourced to gov.uk.</p>
+
+ <div class="kit-whats-in">
+  <h3>What is inside</h3>
+  <ul>
+   <li>The three things MTD changes, in four lines</li>
+   <li>Your 2026-27 deadlines in a single table (first one is 7 August)</li>
+   <li>What the year-1 soft-landing actually covers (and what still bites)</li>
+   <li>The seven-step action list: today, this week, this quarter</li>
+   <li>Common year-1 mistakes, straight from the forums</li>
+   <li>When you genuinely need an accountant (and when you do not)</li>
+  </ul>
+ </div>
+
+ <form class="kit-form" id="kit-form" action="https://formspree.io/f/mwvaveor" method="POST">
+  <label for="email">Email, and the PDF is yours</label>
+  <input type="email" id="email" name="email" required placeholder="you@example.co.uk" autocomplete="email" />
+  <input type="hidden" name="_subject" value="MTD Kit download" />
+  <input type="hidden" name="request_type" value="mtd-kit-download" />
+  <input type="hidden" name="_next" value="https://externalos.com/mtd-kit.html?confirmed=1" />
+  <label class="kit-consent">
+   <input type="checkbox" id="consent" name="consent" required />
+   <span>Send me the Survival Kit PDF and the weekly newsletter from ExternalOS. I can unsubscribe in one click. See the <a href="./privacy.html">privacy policy</a>.</span>
+  </label>
+  <button type="submit">Send me the kit</button>
+  <p class="kit-privacy">We log the date and IP of your signup as proof of consent (UK GDPR). No spam, one-click unsubscribe.</p>
+ </form>
+
+ <div class="kit-confirmed" id="kit-confirmed">
+  <h2>Check your inbox.</h2>
+  <p>The PDF is on its way from <strong>hello@externalos.com</strong>. If it is not there in 2 minutes, check spam, or grab it directly below.</p>
+  <a class="kit-download-btn" href="/mtd-kit.pdf" download>Download the PDF now</a>
+  <p style="margin-top:18px">Welcome to The Brief, our weekly UK compliance newsletter. Next issue drops Friday.</p>
+ </div>
+
+ <div class="kit-sources">
+  Sources: gov.uk Making Tax Digital for Income Tax collection, HMRC Penalty Reform for Volunteers notice, HMRC Penalties for Late Payment and Interest Harmonisation. Updated 23 April 2026.
+  <br><br>
+  This kit is general information, not personalised tax advice. For complex situations consult a qualified accountant or tax adviser.
+ </div>
+
+ <!-- TRIPWIRE + UPSELL -->
+ <section class="kit-upsell">
+  <div class="kit-upsell-eyebrow">If the kit was useful</div>
+  <h2>Two small next steps</h2>
+  <p>The free kit tells you the rules. These take you from reading to filing without the 2am spreadsheet panic.</p>
+
+  <div class="tripwire-card">
+   <span class="price-tag">&pound;3 &nbsp;&middot;&nbsp; new</span>
+   <h3>MTD Quarterly Submission Checklist</h3>
+   <p>A printable fill-in-the-blanks walk-through. Income by category, allowable expenses, landlord traps (mortgage interest restriction, jointly-owned share rule), submit-and-confirm page. Four pages, printable A4. Works with any HMRC-approved MTD tool. 30-day refund, no questions.</p>
+   <a class="btn" href="https://externalos.gumroad.com/l/mtd-quarterly-checklist" target="_blank" rel="noopener">Get the checklist &pound;3 &rarr;</a>
+  </div>
+
+  <p style="font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.10em; text-transform: uppercase; color: var(--warm-mid); margin-top: 32px; margin-bottom: 10px;">Or go further</p>
+
+  <div class="packs-grid">
+   <a class="pack-card" href="https://externalos.gumroad.com/l/vrmevr" target="_blank" rel="noopener">
+    <div class="pack-price">&pound;79 &nbsp;&middot;&nbsp; saves &pound;76</div>
+    <h4>Full UK Business Suite</h4>
+    <p>Freelancer, Landlord (both packs), Employer, IR35, GDPR. 19 tools. The whole library.</p>
+   </a>
+   <a class="pack-card" href="https://externalos.gumroad.com/l/iuffuj" target="_blank" rel="noopener">
+    <div class="pack-price">&pound;29</div>
+    <h4>Landlord Legal Pack</h4>
+    <p>Section 8 notices, tenancy agreements, deposit prescribed information, rent-increase letters.</p>
+   </a>
+   <a class="pack-card" href="https://externalos.gumroad.com/l/aavttu" target="_blank" rel="noopener">
+    <div class="pack-price">&pound;29</div>
+    <h4>Freelancer Toolkit</h4>
+    <p>UK Freelancer Tax Calculator, proposals, client emails, HMRC SA103 expense categoriser.</p>
+   </a>
+   <a class="pack-card" href="https://externalos.gumroad.com/l/compliance-tracker" target="_blank" rel="noopener">
+    <div class="pack-price">&pound;79 / year &nbsp;&middot;&nbsp; live</div>
+    <h4>UK Compliance Tracker</h4>
+    <p>Live Google Sheet. MTD deadlines, RRA, employment law. Daily freshness, 14/7/1-day alerts.</p>
+   </a>
+  </div>
+ </section>
+</main>
+
+<footer class="footer">
+ <div class="wrap">
+  <div class="footer-bottom">
+   <div>ExternalOS 2026 <span class="full-stop" aria-hidden="true"></span> Leeds, UK <span class="full-stop" aria-hidden="true"></span> <a href="mailto:hello@externalos.com">hello@externalos.com</a></div>
+   <div>Sole trader, not VAT registered <span class="full-stop" aria-hidden="true"></span> <a href="./terms.html">Terms</a> <span class="full-stop" aria-hidden="true"></span> <a href="./privacy.html">Privacy</a> <span class="full-stop" aria-hidden="true"></span> <a href="./refund-policy.html">Refunds</a></div>
+  </div>
+ </div>
+</footer>
+
+<script src="./skills-nav.js?v=149" defer></script>
+<script>
+ (function () {
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('confirmed') === '1') {
+   var confirmed = document.getElementById('kit-confirmed');
+   var form = document.getElementById('kit-form');
+   if (confirmed) { confirmed.style.display = 'block'; }
+   if (form) { form.style.display = 'none'; }
+   var heading = document.querySelector('.kit-whats-in');
+   if (heading) { heading.style.display = 'none'; }
+  }
+ })();
+</script>
+
+</body>
+</html>
