@@ -462,6 +462,24 @@
  .skills-menu-badge { font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: #F4EAD5; color: #8A6A1F; padding: 2px 7px; border-radius: 100px; margin-left: auto; flex-shrink: 0; }
  .skills-menu-dot { width: 8px; height: 8px; border-radius: 50%; background: #d97706; margin-left: auto; flex-shrink: 0; box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.12); }
  @media (max-width: 880px) { .skills-menu { position: fixed; top: 68px; left: 16px; right: 16px; transform: none; min-width: 0; width: auto; grid-template-columns: 1fr; gap: 18px; padding: 20px; max-height: calc(100vh - 100px); overflow-y: auto; } .skills-dropdown.is-open .skills-menu { transform: none; } .skills-menu::before { display: none; } }
+
+ /* Free tools dropdown (mirrors skills-dropdown, single column with name + blurb) */
+ .free-tools-dropdown { position: relative; display: inline-flex; align-items: center; }
+ .free-tools-dropdown-trigger { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: var(--warm-mid); background: transparent; border: 0; cursor: pointer; padding: 0; display: inline-flex; align-items: center; gap: 6px; transition: color 0.15s ease; }
+ .free-tools-dropdown-trigger:hover, .free-tools-dropdown.is-open .free-tools-dropdown-trigger { color: var(--purple-hero); }
+ .free-tools-dropdown-trigger svg { transition: transform 0.15s ease; }
+ .free-tools-dropdown.is-open .free-tools-dropdown-trigger svg { transform: rotate(180deg); }
+ .free-tools-menu { position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(-6px); background: var(--warm-white); border: 1px solid var(--warm-cream); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: 18px 22px; min-width: 360px; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s; z-index: 200; }
+ .free-tools-dropdown.is-open .free-tools-menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+ .free-tools-menu::before { content: ''; position: absolute; top: -6px; left: 50%; transform: translateX(-50%) rotate(45deg); width: 10px; height: 10px; background: var(--warm-white); border-left: 1px solid var(--warm-cream); border-top: 1px solid var(--warm-cream); }
+ .free-tools-menu-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 2px; }
+ .free-tools-menu-item { font-family: 'Inter', sans-serif; text-decoration: none; color: var(--ink); padding: 12px 14px; margin: 0 -6px; border-radius: var(--radius-sm); display: flex; flex-direction: column; gap: 4px; line-height: 1.4; transition: background 0.12s ease, color 0.12s ease; }
+ .free-tools-menu-item:hover { background: var(--purple-tint); color: var(--purple-hero); }
+ .free-tools-menu-name { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; color: inherit; letter-spacing: -0.01em; }
+ .free-tools-menu-blurb { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 400; color: var(--warm-mid); }
+ .free-tools-menu-foot { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--purple-hero); margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--warm-cream); text-align: center; }
+ @media (max-width: 880px) { .free-tools-menu { position: fixed; top: 68px; left: 16px; right: 16px; transform: none; min-width: 0; width: auto; padding: 18px; } .free-tools-dropdown.is-open .free-tools-menu { transform: none; } .free-tools-menu::before { display: none; } }
+ @media (max-width: 640px) { .masthead-nav .free-tools-dropdown { display: none; } }
 </style>
 </head>
 <body>
@@ -486,8 +504,8 @@
    </a>
    <nav class="masthead-nav" aria-label="Main navigation">
     <span data-skills-nav></span>
+    <span data-free-tools-nav></span>
     <a href="#products">Bundles</a>
-    <a href="./ir35-checker.html">Free IR35 check</a>
     <a class="btn-nav" href="#products">Get the bundle &pound;79</a>
    </nav>
   </div>
@@ -1058,13 +1076,46 @@
 <!-- FREE TOOL - IR35 checker -->
 <section class="free-tool" id="free-tool" aria-labelledby="free-tool-title">
  <div class="wrap">
-  <div class="free-tool-gift tilt-card">
-   <span class="eyebrow">No signup required</span>
-   <h2 id="free-tool-title">The free IR35 checker.</h2>
-   <p>Check your IR35 status in 2 minutes. Seven questions, instant verdict, based on HMRC CEST criteria and real case law.</p>
-   <div class="gift-price">&pound;0</div>
-   <a class="btn btn-primary" href="./ir35-checker.html" target="_blank" rel="noopener">Open the checker <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+  <div style="text-align:center; max-width: 720px; margin: 0 auto 40px;">
+   <span class="eyebrow" style="display:inline-flex; justify-content:center; gap:0; color: var(--purple-mid); margin-bottom: 14px;">No signup required</span>
+   <h2 id="free-tool-title" style="font-family:'Libre Baskerville',serif; font-weight:700; letter-spacing:-0.02em; font-size: var(--type-h2); color: var(--ink); line-height: 1.1; margin-bottom: 14px;">Four free tools. <em style="font-style:italic; color: var(--purple-hero);">No email gate.</em></h2>
+   <p style="font-size:16px; line-height:1.7; color: var(--warm-dark); max-width: 580px; margin: 0 auto;">Plain-text, browser-based tools using the same case law, HMRC rates, and Companies House rules as the paid packs. Use them as much as you want. Buy if and when you want the rest.</p>
   </div>
+  <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1180px; margin: 0 auto;" class="free-tools-grid">
+   <article style="background: var(--warm-white); border: 1px solid var(--warm-cream); border-radius: var(--radius-xl); padding: 32px 28px 28px; position: relative; overflow: hidden; text-align: left; transition: border-color 0.2s ease, box-shadow 0.2s ease;" class="tilt-card free-tool-card">
+    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple-deep),var(--purple-mid),var(--eos-p3));"></div>
+    <div style="font-family:'Syne',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color: var(--purple-mid); margin-bottom: 12px; display:flex; align-items:center; gap:8px;"><span style="width:7px;height:7px;background:var(--eos-p6);transform:rotate(45deg);"></span>Free tool · Contractor</div>
+    <h3 style="font-family:'Libre Baskerville',serif; font-size: 22px; font-weight: 700; line-height: 1.15; color: var(--ink); margin-bottom: 12px;">IR35 Status Checker</h3>
+    <p style="font-size: 13px; line-height: 1.65; color: var(--warm-mid); margin-bottom: 24px;">Seven CEST-style questions, instant verdict. Substitution, control, mutuality of obligation, financial risk, equipment, integration, exclusivity. Modelled on Atholl House, PGMOL, and Pimlico Plumbers.</p>
+    <a class="btn btn-primary" href="./ir35-checker.html" style="font-size:13px; padding:11px 20px;">Open the checker <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+   </article>
+   <article style="background: var(--warm-white); border: 1px solid var(--warm-cream); border-radius: var(--radius-xl); padding: 32px 28px 28px; position: relative; overflow: hidden; text-align: left; transition: border-color 0.2s ease, box-shadow 0.2s ease;" class="tilt-card free-tool-card">
+    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple-deep),var(--purple-mid),var(--eos-p3));"></div>
+    <div style="font-family:'Syne',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color: var(--purple-mid); margin-bottom: 12px; display:flex; align-items:center; gap:8px;"><span style="width:7px;height:7px;background:var(--eos-p6);transform:rotate(45deg);"></span>Free tool · UK Ltd</div>
+    <h3 style="font-family:'Libre Baskerville',serif; font-size: 22px; font-weight: 700; line-height: 1.15; color: var(--ink); margin-bottom: 12px;">Compliance Calendar</h3>
+    <p style="font-size: 13px; line-height: 1.65; color: var(--warm-mid); margin-bottom: 24px;">Year-end in. Every Companies House and HMRC deadline for the next 12 months out. Accounts, Corp Tax, VAT quarters, PAYE, P11D, MTD ITSA. Exportable as <strong>.ics</strong>.</p>
+    <a class="btn btn-primary" href="./compliance-calendar.html" style="font-size:13px; padding:11px 20px;">Build my calendar <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+   </article>
+   <article style="background: var(--warm-white); border: 1px solid var(--warm-cream); border-radius: var(--radius-xl); padding: 32px 28px 28px; position: relative; overflow: hidden; text-align: left; transition: border-color 0.2s ease, box-shadow 0.2s ease;" class="tilt-card free-tool-card">
+    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple-deep),var(--purple-mid),var(--eos-p3));"></div>
+    <div style="font-family:'Syne',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color: var(--purple-mid); margin-bottom: 12px; display:flex; align-items:center; gap:8px;"><span style="width:7px;height:7px;background:var(--eos-p6);transform:rotate(45deg);"></span>Free tool · Employer</div>
+    <h3 style="font-family:'Libre Baskerville',serif; font-size: 22px; font-weight: 700; line-height: 1.15; color: var(--ink); margin-bottom: 12px;">Employer Costs Calculator</h3>
+    <p style="font-size: 13px; line-height: 1.65; color: var(--warm-mid); margin-bottom: 24px;">Salary in. Full annual cost out. Class 1 employer NI (15% above £5k), Employment Allowance £10,500, pension auto-enrol, holiday accrual, NLW/NMW compliance. April 2026 rates.</p>
+    <a class="btn btn-primary" href="./employer-costs.html" style="font-size:13px; padding:11px 20px;">Calculate the cost <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+   </article>
+   <article style="background: var(--warm-white); border: 1px solid var(--warm-cream); border-radius: var(--radius-xl); padding: 32px 28px 28px; position: relative; overflow: hidden; text-align: left; transition: border-color 0.2s ease, box-shadow 0.2s ease;" class="tilt-card free-tool-card">
+    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple-deep),var(--purple-mid),var(--eos-p3));"></div>
+    <div style="font-family:'Syne',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color: var(--purple-mid); margin-bottom: 12px; display:flex; align-items:center; gap:8px;"><span style="width:7px;height:7px;background:var(--eos-p6);transform:rotate(45deg);"></span>Free tool &middot; Landlord</div>
+    <h3 style="font-family:'Libre Baskerville',serif; font-size: 22px; font-weight: 700; line-height: 1.15; color: var(--ink); margin-bottom: 12px;">Landlord Compliance Check</h3>
+    <p style="font-size: 13px; line-height: 1.65; color: var(--warm-mid); margin-bottom: 24px;">12 yes/no questions covering the Renters' Rights Act 2026, the 31 May Information Sheet (&pound;7,000 fines), Section 13 rent rules, deposit protection, EPC, Right to Rent, HMO, MTD ITSA.</p>
+    <a class="btn btn-primary" href="./landlord-compliance-check.html" style="font-size:13px; padding:11px 20px;">Start the check <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+   </article>
+  </div>
+  <style>
+   .free-tool-card:hover { border-color: var(--purple-pale); box-shadow: var(--shadow-md); }
+   @media (max-width: 1080px) { .free-tools-grid { grid-template-columns: repeat(2, 1fr) !important; max-width: 720px !important; } }
+   @media (max-width: 600px) { .free-tools-grid { grid-template-columns: 1fr !important; } }
+  </style>
  </div>
 </section>
 
@@ -1190,6 +1241,9 @@
     <h5>Free Tools</h5>
     <ul>
      <li><a href="./ir35-checker.html">IR35 Checker</a></li>
+     <li><a href="./compliance-calendar.html">Compliance Calendar</a></li>
+     <li><a href="./employer-costs.html">Employer Costs Calculator</a></li>
+     <li><a href="./landlord-compliance-check.html">Landlord Compliance Check</a></li>
     </ul>
     <h5 style="margin-top: 22px;">Legal</h5>
     <ul>
@@ -1384,5 +1438,6 @@
 })();
 </script>
 <script src="./skills-nav.js?v=135" defer></script>
+<script src="./free-tools-nav.js?v=2" defer></script>
 </body>
 </html>

@@ -1529,3 +1529,70 @@ img { max-width: 100%; display: block; }
   .skills-dropdown.is-open .skills-menu { transform: none; }
   .skills-menu::before { display: none; }
 }
+
+/* =============================================================
+   Free tools dropdown (mirrors skills-dropdown pattern, single column).
+   Injected by free-tools-nav.js into [data-free-tools-nav] placeholder.
+   ============================================================= */
+.free-tools-dropdown { position: relative; display: inline-flex; align-items: center; }
+.free-tools-dropdown-trigger {
+  font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500;
+  color: var(--warm-mid); background: transparent; border: 0; cursor: pointer;
+  padding: 0; display: inline-flex; align-items: center; gap: 6px;
+  transition: color 0.15s ease;
+}
+.free-tools-dropdown-trigger:hover,
+.free-tools-dropdown.is-open .free-tools-dropdown-trigger { color: var(--purple-hero); }
+.free-tools-dropdown-trigger svg { transition: transform 0.15s ease; }
+.free-tools-dropdown.is-open .free-tools-dropdown-trigger svg { transform: rotate(180deg); }
+.free-tools-menu {
+  position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(-6px);
+  background: var(--warm-white); border: 1px solid var(--warm-cream); border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 18px 22px; min-width: 360px;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+  z-index: 200;
+}
+.free-tools-dropdown.is-open .free-tools-menu {
+  opacity: 1; visibility: visible; pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.free-tools-menu::before {
+  content: ''; position: absolute; top: -6px; left: 50%; transform: translateX(-50%) rotate(45deg);
+  width: 10px; height: 10px; background: var(--warm-white);
+  border-left: 1px solid var(--warm-cream); border-top: 1px solid var(--warm-cream);
+}
+.free-tools-menu-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 2px; }
+.free-tools-menu-item {
+  font-family: 'Inter', sans-serif; text-decoration: none; color: var(--ink);
+  padding: 12px 14px; margin: 0 -6px; border-radius: var(--radius-sm);
+  display: flex; flex-direction: column; gap: 4px; line-height: 1.4;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+.free-tools-menu-item:hover { background: var(--purple-tint); color: var(--purple-hero); }
+.free-tools-menu-name {
+  font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600;
+  color: inherit; letter-spacing: -0.01em;
+}
+.free-tools-menu-blurb {
+  font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 400;
+  color: var(--warm-mid);
+}
+.free-tools-menu-foot {
+  font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--purple-hero);
+  margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--warm-cream);
+  text-align: center;
+}
+@media (max-width: 880px) {
+  .free-tools-menu {
+    position: fixed; top: 68px; left: 16px; right: 16px; transform: none;
+    min-width: 0; width: auto; padding: 18px;
+  }
+  .free-tools-dropdown.is-open .free-tools-menu { transform: none; }
+  .free-tools-menu::before { display: none; }
+}
+@media (max-width: 640px) {
+  .masthead-nav .free-tools-dropdown { display: none; }
+}

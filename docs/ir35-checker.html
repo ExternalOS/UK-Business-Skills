@@ -966,6 +966,49 @@
  white-space: nowrap;
  border: 0;
  }
+
+ /* Canonical masthead-nav (matches landing) */
+ .masthead-nav { display: flex; align-items: center; gap: 28px; }
+ .masthead-nav a { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: var(--warm-mid); text-decoration: none; transition: color 0.15s ease; border: 0; }
+ .masthead-nav a:hover { color: var(--purple-hero); }
+ .masthead-nav .btn-nav { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 13px; padding: 9px 20px; border-radius: 100px; background: var(--purple-hero); color: #fff; text-decoration: none; transition: background 0.2s ease; border: 0; }
+ .masthead-nav .btn-nav:hover { background: var(--purple-deep); color: #fff; }
+ @media (max-width: 640px) { .masthead-nav > a:not(.btn-nav) { display: none; } .masthead-nav .skills-dropdown { display: none; } .masthead-nav .free-tools-dropdown { display: none; } .masthead-nav .btn-nav { font-size: 12px; padding: 8px 14px; white-space: nowrap; } }
+
+ /* Skills dropdown */
+ .skills-dropdown { position: relative; display: inline-flex; align-items: center; }
+ .skills-dropdown-trigger { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: var(--warm-mid); background: transparent; border: 0; cursor: pointer; padding: 0; display: inline-flex; align-items: center; gap: 6px; transition: color 0.15s ease; }
+ .skills-dropdown-trigger:hover, .skills-dropdown.is-open .skills-dropdown-trigger { color: var(--purple-hero); }
+ .skills-dropdown-trigger svg { transition: transform 0.15s ease; }
+ .skills-dropdown.is-open .skills-dropdown-trigger svg { transform: rotate(180deg); }
+ .skills-menu { position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(-6px); background: var(--warm-white); border: 1px solid var(--warm-cream); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: 24px 28px; min-width: 820px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s; z-index: 200; }
+ .skills-dropdown.is-open .skills-menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+ .skills-menu::before { content: ''; position: absolute; top: -6px; left: 50%; transform: translateX(-50%) rotate(45deg); width: 10px; height: 10px; background: var(--warm-white); border-left: 1px solid var(--warm-cream); border-top: 1px solid var(--warm-cream); }
+ .skills-menu-col { min-width: 0; }
+ .skills-menu-title { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--purple-hero); padding-bottom: 10px; margin-bottom: 8px; border-bottom: 1px solid var(--warm-cream); }
+ .skills-menu-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 2px; }
+ .skills-menu-list a { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--ink); text-decoration: none; padding: 7px 10px; margin: 0 -10px; border-radius: var(--radius-sm); display: flex; align-items: center; gap: 8px; line-height: 1.4; transition: background 0.12s ease, color 0.12s ease; }
+ .skills-menu-list a:hover { background: var(--purple-tint); color: var(--purple-hero); }
+ .skills-menu-badge { font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: #F4EAD5; color: #8A6A1F; padding: 2px 7px; border-radius: 100px; margin-left: auto; flex-shrink: 0; }
+ .skills-menu-dot { width: 8px; height: 8px; border-radius: 50%; background: #d97706; margin-left: auto; flex-shrink: 0; box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.12); }
+ @media (max-width: 880px) { .skills-menu { position: fixed; top: 68px; left: 16px; right: 16px; transform: none; min-width: 0; width: auto; grid-template-columns: 1fr; gap: 18px; padding: 20px; max-height: calc(100vh - 100px); overflow-y: auto; } .skills-dropdown.is-open .skills-menu { transform: none; } .skills-menu::before { display: none; } }
+
+ /* Free tools dropdown */
+ .free-tools-dropdown { position: relative; display: inline-flex; align-items: center; }
+ .free-tools-dropdown-trigger { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: var(--warm-mid); background: transparent; border: 0; cursor: pointer; padding: 0; display: inline-flex; align-items: center; gap: 6px; transition: color 0.15s ease; }
+ .free-tools-dropdown-trigger:hover, .free-tools-dropdown.is-open .free-tools-dropdown-trigger { color: var(--purple-hero); }
+ .free-tools-dropdown-trigger svg { transition: transform 0.15s ease; }
+ .free-tools-dropdown.is-open .free-tools-dropdown-trigger svg { transform: rotate(180deg); }
+ .free-tools-menu { position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(-6px); background: var(--warm-white); border: 1px solid var(--warm-cream); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: 18px 22px; min-width: 360px; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s; z-index: 200; }
+ .free-tools-dropdown.is-open .free-tools-menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+ .free-tools-menu::before { content: ''; position: absolute; top: -6px; left: 50%; transform: translateX(-50%) rotate(45deg); width: 10px; height: 10px; background: var(--warm-white); border-left: 1px solid var(--warm-cream); border-top: 1px solid var(--warm-cream); }
+ .free-tools-menu-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 2px; }
+ .free-tools-menu-item { font-family: 'Inter', sans-serif; text-decoration: none; color: var(--ink); padding: 12px 14px; margin: 0 -6px; border-radius: var(--radius-sm); display: flex; flex-direction: column; gap: 4px; line-height: 1.4; transition: background 0.12s ease, color 0.12s ease; }
+ .free-tools-menu-item:hover { background: var(--purple-tint); color: var(--purple-hero); }
+ .free-tools-menu-name { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; color: inherit; letter-spacing: -0.01em; }
+ .free-tools-menu-blurb { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 400; color: var(--warm-mid); }
+ .free-tools-menu-foot { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--purple-hero); margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--warm-cream); text-align: center; }
+ @media (max-width: 880px) { .free-tools-menu { position: fixed; top: 68px; left: 16px; right: 16px; transform: none; min-width: 0; width: auto; padding: 18px; } .free-tools-dropdown.is-open .free-tools-menu { transform: none; } .free-tools-menu::before { display: none; } }
 </style>
 </head>
 <body>
@@ -990,13 +1033,12 @@
  </span>
  <span class="wordmark">External<span>OS</span></span>
  </a>
- <div class="masthead-meta">
- <span class="masthead-meta-item">Free tool</span>
- <span class="masthead-meta-dot" aria-hidden="true">·</span>
- <span class="masthead-meta-item">2026 rules</span>
- <span class="masthead-meta-dot" aria-hidden="true">·</span>
- <span class="masthead-meta-item">No sign-up</span>
- </div>
+ <nav class="masthead-nav" aria-label="Main navigation">
+  <span data-skills-nav></span>
+  <span data-free-tools-nav></span>
+  <a href="./#products">Bundles</a>
+  <a class="btn-nav" href="https://externalos.gumroad.com/l/aavttu" target="_blank" rel="noopener">Get the Toolkit &pound;29</a>
+ </nav>
  </div>
  </div>
 </div>
@@ -1154,16 +1196,16 @@
 <!-- -----------------------------------------------
  EMAIL CAPTURE
 ----------------------------------------------- -->
-<section style="background: linear-gradient(160deg, var(--purple-deep, #3A0D72) 0%, #2A0860 100%); padding: 72px 24px;" aria-labelledby="brief-title">
+<section style="background: linear-gradient(160deg, var(--purple-deep, #3A0D72) 0%, #2A0860 100%); padding: 72px 24px;" aria-labelledby="external-title">
  <div style="max-width: 680px; margin: 0 auto; text-align: center;">
-  <div style="font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 14px;">The Brief, free weekly</div>
-  <h2 id="brief-title" style="font-family: 'Libre Baskerville', Georgia, serif; font-size: clamp(24px, 3.2vw, 34px); letter-spacing: -0.02em; color: #FFFFFF; margin: 0 0 14px; line-height: 1.15;">Want the next IR35 ruling before it hits you?</h2>
+  <div style="font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 14px;">The External, free weekly</div>
+  <h2 id="external-title" style="font-family: 'Libre Baskerville', Georgia, serif; font-size: clamp(24px, 3.2vw, 34px); letter-spacing: -0.02em; color: #FFFFFF; margin: 0 0 14px; line-height: 1.15;">Want the next IR35 ruling before it hits you?</h2>
   <p style="color: rgba(255,255,255,0.78); font-size: 16px; line-height: 1.6; margin: 0 auto 28px; max-width: 520px;">One email a week on UK compliance changes worth noticing. MTD deadlines, IR35 case law, ERA 2025, landlord rules under the RRA. Plain English. No filler.</p>
   <form action="https://formspree.io/f/mwvaveor" method="POST" style="display: flex; gap: 10px; max-width: 460px; margin: 0 auto; flex-wrap: wrap;">
    <input type="email" name="email" required placeholder="you@work.co.uk" style="flex: 1 1 240px; min-width: 0; padding: 14px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.08); color: #FFFFFF; font-size: 15px; font-family: inherit; outline: none;">
    <input type="hidden" name="source" value="ir35-checker">
-   <input type="hidden" name="_subject" value="New Brief signup from IR35 checker">
-   <button type="submit" style="background: #FFFFFF; color: var(--purple-deep, #3A0D72); padding: 14px 24px; border-radius: 10px; border: 0; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 15px; cursor: pointer;">Get The Brief</button>
+   <input type="hidden" name="_subject" value="New The External signup from IR35 checker">
+   <button type="submit" style="background: #FFFFFF; color: var(--purple-deep, #3A0D72); padding: 14px 24px; border-radius: 10px; border: 0; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 15px; cursor: pointer;">Get The External</button>
   </form>
   <p style="color: rgba(255,255,255,0.48); font-size: 12px; margin-top: 14px;">No spam. Unsubscribe in one click.</p>
  </div>
@@ -1216,6 +1258,9 @@
     <h5>Free Tools</h5>
     <ul>
      <li><a href="./ir35-checker.html">IR35 Checker</a></li>
+     <li><a href="./compliance-calendar.html">Compliance Calendar</a></li>
+     <li><a href="./employer-costs.html">Employer Costs Calculator</a></li>
+     <li><a href="./landlord-compliance-check.html">Landlord Compliance Check</a></li>
     </ul>
     <h5 style="margin-top: 22px;">Legal</h5>
     <ul>
@@ -1662,5 +1707,6 @@
 </script>
 
 <script src="./skills-nav.js?v=135" defer></script>
+<script src="./free-tools-nav.js?v=2" defer></script>
 </body>
 </html>

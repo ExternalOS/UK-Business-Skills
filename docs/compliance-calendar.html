@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Free UK Ltd Compliance Calendar 2026 | HMRC + Companies House Deadlines | ExternalOS</title>
+ <meta name="description" content="Free UK limited company compliance calendar. Enter your year-end and get every HMRC and Companies House deadline mapped: accounts, Corporation Tax, VAT, PAYE, P11D, Confirmation Statement, MTD ITSA. 2026 rules. No signup. Downloadable .ics calendar.">
+ <meta property="og:title" content="Free UK Ltd Compliance Calendar 2026 | ExternalOS">
+ <meta property="og:description" content="Year-end in. Every HMRC and Companies House deadline for the next 12 months out, dated to your company. No signup, .ics export.">
+ <meta property="og:type" content="website">
+ <meta property="og:url" content="https://externalos.com/compliance-calendar.html">
+ <meta property="og:image" content="https://externalos.com/og-image.png">
+ <meta name="robots" content="index, follow">
+ <meta name="twitter:card" content="summary">
+ <meta name="twitter:title" content="Free UK Ltd Compliance Calendar 2026 | ExternalOS">
+ <meta name="twitter:description" content="Every HMRC and Companies House deadline mapped from your year-end. Free, no signup, .ics export.">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="styles.css?v=135">
+ <link rel="canonical" href="https://externalos.com/compliance-calendar.html">
+
+ <script type="application/ld+json">
+ {
+   "@context": "https://schema.org",
+   "@type": "WebApplication",
+   "name": "UK Ltd Compliance Calendar",
+   "applicationCategory": "BusinessApplication",
+   "operatingSystem": "Any",
+   "description": "Free UK limited company compliance calendar. Enter your year-end and get every HMRC and Companies House deadline mapped for the next 12 months, with downloadable .ics export.",
+   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+   "provider": { "@type": "Organization", "name": "ExternalOS", "url": "https://externalos.com" },
+   "inLanguage": "en-GB"
+ }
+ </script>
+
+ <style>
+  :root {
+   --cat-companies-house: #4B1196;
+   --cat-corp-tax: #6B1A1A;
+   --cat-vat: #1F4D36;
+   --cat-paye: #7A4E12;
+   --cat-self-assessment: #4B1196;
+   --cat-pension: #1F4D36;
+   --cat-gdpr: #3D3830;
+  }
+
+  /* Free tools dropdown (mirrors skills-dropdown) - in case styles.css cache lags */
+  .free-tools-dropdown { position: relative; display: inline-flex; align-items: center; }
+  .free-tools-dropdown-trigger { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: var(--warm-mid); background: transparent; border: 0; cursor: pointer; padding: 0; display: inline-flex; align-items: center; gap: 6px; transition: color 0.15s ease; }
+  .free-tools-dropdown-trigger:hover, .free-tools-dropdown.is-open .free-tools-dropdown-trigger { color: var(--purple-hero); }
+  .free-tools-dropdown-trigger svg { transition: transform 0.15s ease; }
+  .free-tools-dropdown.is-open .free-tools-dropdown-trigger svg { transform: rotate(180deg); }
+  .free-tools-menu { position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(-6px); background: var(--warm-white); border: 1px solid var(--warm-cream); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: 18px 22px; min-width: 360px; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s; z-index: 200; }
+  .free-tools-dropdown.is-open .free-tools-menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+  .free-tools-menu::before { content: ''; position: absolute; top: -6px; left: 50%; transform: translateX(-50%) rotate(45deg); width: 10px; height: 10px; background: var(--warm-white); border-left: 1px solid var(--warm-cream); border-top: 1px solid var(--warm-cream); }
+  .free-tools-menu-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 2px; }
+  .free-tools-menu-item { font-family: 'Inter', sans-serif; text-decoration: none; color: var(--ink); padding: 12px 14px; margin: 0 -6px; border-radius: var(--radius-sm); display: flex; flex-direction: column; gap: 4px; line-height: 1.4; transition: background 0.12s ease, color 0.12s ease; }
+  .free-tools-menu-item:hover { background: var(--purple-tint); color: var(--purple-hero); }
+  .free-tools-menu-name { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; color: inherit; letter-spacing: -0.01em; }
+  .free-tools-menu-blurb { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 400; color: var(--warm-mid); }
+  .free-tools-menu-foot { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--purple-hero); margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--warm-cream); text-align: center; }
+  @media (max-width: 880px) { .free-tools-menu { position: fixed; top: 68px; left: 16px; right: 16px; transform: none; min-width: 0; width: auto; padding: 18px; } .free-tools-dropdown.is-open .free-tools-menu { transform: none; } .free-tools-menu::before { display: none; } }
+  @media (max-width: 640px) { .masthead-nav .free-tools-dropdown { display: none; } }
+
+  /* Tool-specific layout */
+  .tool-section { padding: 56px 0 24px; }
+  .tool-section-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; margin-bottom: 32px; flex-wrap: wrap; }
+  .tool-section-header .tool-section-number { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--purple-pale); display: block; margin-bottom: 8px; }
+  .tool-section-header h2 { font-family: 'Libre Baskerville', serif; font-size: clamp(26px, 3vw, 34px); font-weight: 700; color: var(--ink); letter-spacing: -0.02em; line-height: 1.2; margin: 0; }
+  .tool-section-header p.tool-sub { font-size: 13px; color: var(--warm-mid); max-width: 320px; text-align: right; line-height: 1.6; margin: 0; flex-shrink: 0; }
+  @media (max-width: 720px) { .tool-section-header p.tool-sub { text-align: left; max-width: 100%; } }
+
+  .pill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 24px; }
+  .pill { background: var(--warm-off); border: 1px solid var(--warm-cream); border-radius: var(--radius-md); padding: 18px 22px; box-shadow: var(--shadow-sm); }
+  .pill strong { display: block; font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 4px; letter-spacing: -0.01em; }
+  .pill span { font-size: 13px; color: var(--warm-mid); line-height: 1.5; }
+
+  /* Form */
+  .form-card { background: var(--warm-white); border: 1px solid var(--warm-cream); border-radius: var(--radius-xl); padding: 48px 56px 40px; max-width: 760px; box-shadow: var(--shadow-md); position: relative; overflow: hidden; }
+  .form-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--purple-deep), var(--purple-light)); }
+  .form-row { margin-bottom: 28px; }
+  .form-row:last-of-type { margin-bottom: 0; }
+  .form-label { display: block; font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 8px; letter-spacing: -0.01em; }
+  .form-hint { font-family: 'Inter', sans-serif; color: var(--warm-mid); font-size: 13px; margin-bottom: 14px; line-height: 1.65; font-weight: 400; }
+  .form-input, .form-select { width: 100%; max-width: 360px; background: var(--warm-off); border: 1.5px solid var(--warm-cream); border-radius: var(--radius-md); padding: 14px 18px; font-family: 'Inter', sans-serif; font-size: 15px; color: var(--ink); transition: border-color 180ms ease, background 180ms ease; }
+  .form-input:focus, .form-select:focus { outline: none; border-color: var(--purple-mid); background: var(--warm-white); box-shadow: 0 2px 12px rgba(107,40,194,0.12); }
+  .form-toggle-group { display: flex; gap: 10px; flex-wrap: wrap; }
+  .form-toggle { background: var(--warm-off); border: 1.5px solid var(--warm-cream); border-radius: var(--radius-md); padding: 12px 22px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; color: var(--warm-dark); cursor: pointer; transition: all 180ms ease; }
+  .form-toggle:hover { border-color: var(--purple-pale); background: var(--purple-tint); }
+  .form-toggle.selected { background: var(--purple-mid); border-color: var(--purple-mid); color: #FFFFFF; box-shadow: 0 2px 12px rgba(107,40,194,0.2); }
+  .form-toggle:focus-visible { outline: 3px solid var(--purple-ghost); outline-offset: 2px; }
+  .form-row-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 560px) { .form-row-grid { grid-template-columns: 1fr; } .form-card { padding: 32px 22px 28px; } }
+  .form-actions { margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--warm-cream); display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+
+  /* Result timeline */
+  .timeline { display: none; padding: 32px 0 24px; }
+  .timeline.visible { display: block; animation: fadeIn 520ms ease-out; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .summary-card { background: linear-gradient(160deg, var(--purple-rich) 0%, var(--purple-deep) 100%); color: #FFFFFF; border-radius: var(--radius-xl); padding: 48px 56px; box-shadow: var(--shadow-purple-lg); margin-bottom: 32px; max-width: 880px; position: relative; overflow: hidden; }
+  .summary-card::after { content: ''; position: absolute; left: 56px; bottom: 24px; width: 40px; height: 3px; border-radius: 2px; background: rgba(255,255,255,0.6); }
+  .summary-card .verdict-label { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.7); display: inline-block; margin-bottom: 14px; }
+  .summary-card h2 { font-family: 'Libre Baskerville', serif; color: #FFFFFF; font-size: clamp(28px, 4vw, 42px); margin: 0 0 18px; line-height: 1.1; letter-spacing: -0.025em; }
+  .summary-card p { font-size: 17px; max-width: 580px; line-height: 1.65; color: rgba(255,255,255,0.88); margin-bottom: 32px; }
+  .summary-stats { display: flex; gap: 40px; flex-wrap: wrap; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.18); }
+  .summary-stat strong { display: block; font-family: 'Libre Baskerville', serif; font-size: 28px; color: #FFFFFF; line-height: 1; margin-bottom: 6px; }
+  .summary-stat span { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+  @media (max-width: 560px) { .summary-card { padding: 32px 22px; } .summary-stats { gap: 24px; } }
+
+  .timeline-controls { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 32px; }
+  .legend { background: var(--warm-off); border-radius: var(--radius-md); padding: 16px 20px; margin-bottom: 32px; display: flex; flex-wrap: wrap; gap: 10px 22px; }
+  .legend-item { font-size: 12px; color: var(--warm-dark); display: inline-flex; align-items: center; gap: 8px; }
+  .legend-item .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+  .month-block { margin-bottom: 32px; }
+  .month-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--warm-cream); }
+  .month-header .month-name { font-family: 'Libre Baskerville', serif; font-size: 22px; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; }
+  .month-header .month-count { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--warm-mid); letter-spacing: 0.06em; text-transform: uppercase; }
+  .month-empty { font-family: 'Inter', sans-serif; color: var(--warm-mid); font-size: 13px; padding: 4px 0; }
+
+  .deadline-list { display: flex; flex-direction: column; gap: 12px; }
+  .deadline-card { background: var(--warm-white); border: 1px solid var(--warm-cream); border-radius: var(--radius-md); padding: 18px 22px; box-shadow: var(--shadow-sm); display: grid; grid-template-columns: 80px 1fr auto; gap: 24px; align-items: center; transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
+  .deadline-card:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); border-color: var(--purple-pale); }
+  .deadline-date { font-family: 'Libre Baskerville', serif; text-align: center; }
+  .deadline-date .day { display: block; font-size: 28px; font-weight: 700; color: var(--ink); line-height: 1; }
+  .deadline-date .month { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm-mid); margin-top: 6px; font-family: 'Inter', sans-serif; }
+  .deadline-body h4 { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 600; color: var(--ink); margin: 0 0 4px; letter-spacing: -0.01em; }
+  .deadline-body p { font-size: 13px; color: var(--warm-mid); line-height: 1.55; margin: 0; }
+  .deadline-tag { display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 100px; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; font-family: 'Syne', sans-serif; }
+  .deadline-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .tag-companies-house { background: var(--purple-ghost); color: var(--cat-companies-house); }
+  .tag-corp-tax { background: #F8E5E2; color: var(--cat-corp-tax); }
+  .tag-vat { background: #E1F0E8; color: var(--cat-vat); }
+  .tag-paye { background: #FAEFD9; color: var(--cat-paye); }
+  .tag-self-assessment { background: var(--purple-ghost); color: var(--cat-self-assessment); }
+  .tag-pension { background: #E1F0E8; color: var(--cat-pension); }
+  .tag-gdpr { background: var(--warm-off); color: var(--cat-gdpr); }
+  @media (max-width: 720px) {
+    .deadline-card { grid-template-columns: 60px 1fr; gap: 16px; padding: 14px 16px; }
+    .deadline-tag { grid-column: 1 / -1; justify-self: start; margin-top: 8px; }
+  }
+
+  .restart-row { padding-top: 24px; border-top: 1px solid var(--warm-cream); margin-top: 32px; }
+
+  @media print {
+    .masthead, .free-tools-menu, .form-card, .timeline-controls, .restart-row, .footer, header.hero { display: none !important; }
+    body { background: #fff; color: #000; }
+    .deadline-card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+  }
+ </style>
+</head>
+<body>
+
+<!-- MASTHEAD (canonical) -->
+<div class="masthead">
+ <div class="wrap">
+  <div class="masthead-inner">
+   <a class="masthead-brand" href="./" aria-label="ExternalOS home">
+    <span class="mark-wrap" aria-hidden="true">
+     <svg viewBox="0 0 40 40" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="20,4 34,18 20,32 6,18" fill="#DBC8F0"/>
+      <polygon points="20,8.6 31.7,20.3 20,32 8.3,20.3" fill="#BEA0E0"/>
+      <polygon points="20,13.2 29.4,22.6 20,32 10.6,22.6" fill="#9F72D0"/>
+      <polygon points="20,17.8 27.1,24.9 20,32 12.9,24.9" fill="#8248BF"/>
+      <polygon points="20,22.4 24.8,27.2 20,32 15.2,27.2" fill="#6525AB"/>
+      <polygon points="20,27 22.5,29.5 20,32 17.5,29.5" fill="#4A1290"/>
+      <circle cx="20" cy="36" r="2" fill="#4A1290"/>
+     </svg>
+    </span>
+    <span class="wordmark">External<span>OS</span></span>
+   </a>
+   <nav class="masthead-nav" aria-label="Main navigation">
+    <span data-skills-nav></span>
+    <span data-free-tools-nav></span>
+    <a href="./#products">Bundles</a>
+    <a class="btn-nav" href="https://externalos.gumroad.com/l/compliance-tracker" target="_blank" rel="noopener">Get the Tracker &pound;59</a>
+   </nav>
+  </div>
+ </div>
+</div>
+
+<!-- HERO -->
+<header class="hero" id="hero" role="banner">
+ <div class="mark-rail mark-rail-left" aria-hidden="true">
+  <svg viewBox="0 0 140 280" xmlns="http://www.w3.org/2000/svg">
+   <polygon points="0,0 140,140 0,280" fill="#DBC8F0"/>
+   <polygon points="0,46 117,163 0,280" fill="#BEA0E0"/>
+   <polygon points="0,92 94,186 0,280" fill="#9F72D0"/>
+   <polygon points="0,138 71,209 0,280" fill="#8248BF"/>
+   <polygon points="0,184 48,232 0,280" fill="#6525AB"/>
+   <polygon points="0,230 25,255 0,280" fill="#4A1290"/>
+  </svg>
+ </div>
+ <div class="mark-rail mark-rail-right" aria-hidden="true">
+  <svg viewBox="0 0 140 280" xmlns="http://www.w3.org/2000/svg">
+   <polygon points="140,0 0,140 140,280" fill="#DBC8F0"/>
+   <polygon points="140,46 23,163 140,280" fill="#BEA0E0"/>
+   <polygon points="140,92 46,186 140,280" fill="#9F72D0"/>
+   <polygon points="140,138 69,209 140,280" fill="#8248BF"/>
+   <polygon points="140,184 92,232 140,280" fill="#6525AB"/>
+   <polygon points="140,230 115,255 140,280" fill="#4A1290"/>
+  </svg>
+ </div>
+ <div class="wrap">
+  <div class="hero-inner">
+   <div class="hero-copy">
+    <div class="divider" aria-hidden="true"></div>
+    <span class="eyebrow">Free tool &middot; UK 2026 rules</span>
+    <h1>The UK Ltd <span class="accent">Compliance</span> Calendar.</h1>
+    <p class="lede">Enter your year-end. Get every HMRC and Companies House deadline for the next 12 months mapped, dated, and exportable as a <strong>.ics</strong> for your calendar app. <strong>No signup, no email gate.</strong></p>
+    <div class="cta-row">
+     <a class="btn btn-primary" href="#start">Build my calendar <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+     <a class="btn btn-secondary" href="#how">How it works</a>
+    </div>
+    <div class="proof-line">
+     <span class="proof-item"><span class="proof-dot"></span> 25+ deadlines mapped</span>
+     <span class="proof-item"><span class="proof-dot"></span> .ics export with reminders</span>
+     <span class="proof-item"><span class="proof-dot"></span> No data leaves your browser</span>
+    </div>
+   </div>
+  </div>
+ </div>
+</header>
+
+<!-- BODY -->
+<main>
+ <div class="wrap page-body">
+
+  <section class="tool-section" id="how">
+   <div class="tool-section-header">
+    <div>
+     <span class="tool-section-number">01 / How it works</span>
+     <h2>One input, every deadline.</h2>
+    </div>
+    <p class="tool-sub">Modelled on the actual rules HMRC and Companies House apply, not a generic small-business calendar.</p>
+   </div>
+   <p style="font-size: 16px; line-height: 1.75; color: var(--body); max-width: 720px; margin: 0 0 12px;">UK limited companies have to track at least seven separate cycles of deadlines: accounts, Corporation Tax, VAT, PAYE, P11D, Confirmation Statement, and (from April 2026) Making Tax Digital for Income Tax for property landlords above &pound;50k. Most owners keep this in three browser tabs and a calendar reminder.</p>
+   <p style="font-size: 16px; line-height: 1.75; color: var(--body); max-width: 720px; margin: 0;">Tell us your year-end and a couple of yes/no questions. We map every deadline that flows from those answers into one calendar, dated to your company, exportable as <strong>.ics</strong> so your calendar app handles the alerts.</p>
+   <div class="pill-grid">
+    <div class="pill"><strong>Accounts</strong><span>9 months after year-end, Companies House</span></div>
+    <div class="pill"><strong>Corporation Tax</strong><span>9 months and 1 day after year-end, HMRC</span></div>
+    <div class="pill"><strong>CT600 return</strong><span>12 months after year-end, HMRC</span></div>
+    <div class="pill"><strong>VAT returns</strong><span>Quarterly, 1 month and 7 days after period end</span></div>
+    <div class="pill"><strong>PAYE / RTI</strong><span>Monthly P32, 22nd if paying electronically</span></div>
+    <div class="pill"><strong>P11D</strong><span>6 July annually for benefits in kind</span></div>
+    <div class="pill"><strong>Confirmation Statement</strong><span>Annual, 14 days after review date</span></div>
+    <div class="pill"><strong>Self Assessment</strong><span>Directors with side income, 31 January</span></div>
+   </div>
+  </section>
+
+  <section class="tool-section" id="start">
+   <div class="tool-section-header">
+    <div>
+     <span class="tool-section-number">02 / Your details</span>
+     <h2>Tell us about your company.</h2>
+    </div>
+    <p class="tool-sub">Just enough to map the deadlines accurately. Nothing leaves your browser.</p>
+   </div>
+
+   <form class="form-card" id="calForm" novalidate>
+    <div class="form-row">
+     <label class="form-label" for="yearEndMonth">Year-end month</label>
+     <p class="form-hint">When does your accounting year end? Most UK Ltds default to 31 March or 31 December. Check your last set of accounts.</p>
+     <div class="form-row-grid">
+      <select class="form-select" id="yearEndMonth" required>
+       <option value="">Select month</option>
+       <option value="1">January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option>
+      </select>
+      <select class="form-select" id="yearEndDay">
+       <option value="last">Last day of month</option>
+       <option value="custom">Specific date</option>
+      </select>
+     </div>
+     <input class="form-input" id="yearEndCustomDay" type="number" min="1" max="31" placeholder="Day (1-31)" style="display:none; margin-top:10px; max-width:200px;" />
+    </div>
+
+    <div class="form-row">
+     <label class="form-label">Are you VAT registered?</label>
+     <p class="form-hint">If you turn over more than &pound;90,000 in any rolling 12 months, registration is mandatory. Voluntary registration below threshold is also common.</p>
+     <div class="form-toggle-group" role="radiogroup" aria-label="VAT registered">
+      <button type="button" class="form-toggle" data-field="vat" data-value="yes" role="radio" aria-checked="false">Yes, VAT registered</button>
+      <button type="button" class="form-toggle" data-field="vat" data-value="no" role="radio" aria-checked="false">No, below threshold</button>
+     </div>
+    </div>
+
+    <div class="form-row" id="vatStaggerRow" style="display:none;">
+     <label class="form-label">VAT stagger group</label>
+     <p class="form-hint">Look at your most recent VAT return. Which months are your quarters? "Stagger 1" (Mar/Jun/Sep/Dec quarter ends) is the most common default.</p>
+     <div class="form-toggle-group" role="radiogroup" aria-label="VAT stagger">
+      <button type="button" class="form-toggle" data-field="vatStagger" data-value="1" role="radio" aria-checked="false">Stagger 1 (Mar / Jun / Sep / Dec)</button>
+      <button type="button" class="form-toggle" data-field="vatStagger" data-value="2" role="radio" aria-checked="false">Stagger 2 (Apr / Jul / Oct / Jan)</button>
+      <button type="button" class="form-toggle" data-field="vatStagger" data-value="3" role="radio" aria-checked="false">Stagger 3 (May / Aug / Nov / Feb)</button>
+     </div>
+    </div>
+
+    <div class="form-row">
+     <label class="form-label">Do you have employees on PAYE?</label>
+     <p class="form-hint">Including yourself if you draw a salary as a director through the company payroll.</p>
+     <div class="form-toggle-group" role="radiogroup" aria-label="Employer">
+      <button type="button" class="form-toggle" data-field="employer" data-value="yes" role="radio" aria-checked="false">Yes</button>
+      <button type="button" class="form-toggle" data-field="employer" data-value="no" role="radio" aria-checked="false">No</button>
+     </div>
+    </div>
+
+    <div class="form-row" id="benefitsRow" style="display:none;">
+     <label class="form-label">Do you provide any taxable benefits?</label>
+     <p class="form-hint">Company car, private medical, employer pension contributions above 8%, gym membership, etc. If yes, you'll need to file a P11D each July.</p>
+     <div class="form-toggle-group" role="radiogroup" aria-label="Benefits">
+      <button type="button" class="form-toggle" data-field="benefits" data-value="yes" role="radio" aria-checked="false">Yes</button>
+      <button type="button" class="form-toggle" data-field="benefits" data-value="no" role="radio" aria-checked="false">No</button>
+     </div>
+    </div>
+
+    <div class="form-row">
+     <label class="form-label">Do you have property income above &pound;50k?</label>
+     <p class="form-hint">From April 2026, MTD for Income Tax applies to landlords (and sole traders) with combined gross income over &pound;50,000. Quarterly digital updates required.</p>
+     <div class="form-toggle-group" role="radiogroup" aria-label="MTD ITSA">
+      <button type="button" class="form-toggle" data-field="mtdItsa" data-value="yes" role="radio" aria-checked="false">Yes</button>
+      <button type="button" class="form-toggle" data-field="mtdItsa" data-value="no" role="radio" aria-checked="false">No</button>
+     </div>
+    </div>
+
+    <div class="form-row">
+     <label class="form-label" for="confirmationMonth">Confirmation Statement month <span style="color: var(--warm-mid); font-weight: 400;">(optional)</span></label>
+     <p class="form-hint">The month your CS is due each year, usually the anniversary of incorporation. Skip if unsure.</p>
+     <select class="form-select" id="confirmationMonth">
+      <option value="">Skip / unsure</option>
+      <option value="1">January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option>
+     </select>
+    </div>
+
+    <div class="form-actions">
+     <button type="submit" class="btn btn-primary" id="buildBtn" disabled>Build my calendar <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+     <button type="reset" class="btn btn-secondary" id="resetBtn">Reset</button>
+    </div>
+   </form>
+  </section>
+
+  <section class="timeline" id="timelineSection" aria-live="polite">
+   <div class="tool-section-header">
+    <div>
+     <span class="tool-section-number">03 / Your calendar</span>
+     <h2>The next 12 months.</h2>
+    </div>
+    <p class="tool-sub">Built from your year-end. Print, export, or copy a shareable link, all client-side.</p>
+   </div>
+
+   <div class="summary-card">
+    <span class="verdict-label">Calendar built</span>
+    <h2 id="summaryHeadline">Your compliance year, mapped.</h2>
+    <p id="summaryBody"></p>
+    <div class="summary-stats">
+     <div class="summary-stat"><strong id="statTotal">0</strong><span>Deadlines mapped</span></div>
+     <div class="summary-stat"><strong id="statNext">—</strong><span>Next due</span></div>
+     <div class="summary-stat"><strong id="statHardest">—</strong><span>Busiest month</span></div>
+    </div>
+   </div>
+
+   <div class="timeline-controls">
+    <button type="button" class="btn btn-primary" id="downloadIcs">Download .ics for your calendar</button>
+    <button type="button" class="btn btn-secondary" id="printBtn">Print</button>
+    <button type="button" class="btn btn-secondary" id="copyLinkBtn">Copy shareable link</button>
+   </div>
+
+   <div class="legend" aria-label="Category legend">
+    <div class="legend-item"><span class="dot" style="background: var(--cat-companies-house)"></span>Companies House</div>
+    <div class="legend-item"><span class="dot" style="background: var(--cat-corp-tax)"></span>Corporation Tax</div>
+    <div class="legend-item"><span class="dot" style="background: var(--cat-vat)"></span>VAT</div>
+    <div class="legend-item"><span class="dot" style="background: var(--cat-paye)"></span>PAYE / Payroll</div>
+    <div class="legend-item"><span class="dot" style="background: var(--cat-self-assessment)"></span>Self Assessment</div>
+    <div class="legend-item"><span class="dot" style="background: var(--cat-pension)"></span>Pension</div>
+    <div class="legend-item"><span class="dot" style="background: var(--cat-gdpr)"></span>GDPR / Annual review</div>
+   </div>
+
+   <div id="monthsContainer"></div>
+
+   <div class="restart-row">
+    <button type="button" class="btn btn-secondary" id="restartBtn">← Edit my details</button>
+   </div>
+  </section>
+
+ </div>
+
+ <!-- COMPLIANCE TRACKER UPSELL CARD -->
+ <section class="featured-product" aria-labelledby="featured-title">
+  <div class="wrap">
+   <div class="featured-card tilt-card">
+    <div class="glow"></div>
+    <div class="featured-copy">
+     <span class="product-label"><span class="product-label-dot"></span>Want this live, every month?</span>
+     <h3 id="featured-title">UK Compliance Tracker</h3>
+     <span class="product-type-badge">Live Google Sheet</span>
+     <p>Every UK compliance figure you need to track, in one live Sheet. Tax deadlines, thresholds, rate changes, IR35 case law, Renters' Rights Act milestones, all sourced to gov.uk and updated monthly. View access granted within minutes of purchase.</p>
+     <div class="featured-pricing">
+      <span class="price">&pound;59</span>
+      <span class="price-meta"><strong style="color:#fff;font-family:'Syne',sans-serif;letter-spacing:0.02em">Lifetime, monthly updates</strong><br>One payment, no renewal, no auto-charge.<br><span style="opacity:0.7">30-day refund, no questions.</span></span>
+     </div>
+     <div class="buy-links">
+      <a href="https://externalos.gumroad.com/l/compliance-tracker" target="_blank" rel="noopener">View the Compliance Tracker &pound;59 <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+     </div>
+    </div>
+    <div class="featured-visual">
+     <ul class="featured-skill-list">
+      <li>Dashboard: next 5 deadlines</li><li>Rolling 12-month calendar</li>
+      <li>Penalty if missed</li><li>Source link on every row</li>
+      <li>HMRC guidance log</li><li>Tribunal decisions</li>
+      <li>2025/26 thresholds</li><li>2024/25 comparison</li>
+      <li>Income tax bands (E/W/NI/Scotland)</li><li>Dividend rates</li>
+      <li>Corporation Tax + Marginal Relief</li><li>SDLT, CGT, SSP/SMP</li>
+      <li>NMW age bands</li><li>Renters' Rights commencement</li>
+      <li>IR35 CEST factor map</li><li>BAILII case links</li>
+     </ul>
+    </div>
+   </div>
+  </div>
+ </section>
+
+ <section class="wrap page-body">
+  <p class="notice">This calendar is built from the standard UK Ltd compliance rules as of April 2026. It assumes a standard 12-month accounting period, no late filing penalties applied, and standard VAT stagger groups. Confirmation Statement dates, P11D obligations, and Self Assessment dates depend on your exact circumstances. For a high-stakes filing, confirm with your accountant or check directly via gov.uk and Companies House. Educational tool, not tax advice.</p>
+ </section>
+</main>
+
+<footer class="footer" role="contentinfo">
+ <div class="wrap">
+  <div class="footer-inner">
+   <div class="footer-brand">
+    <div class="footer-brand-logo">
+     <span class="mark-wrap" aria-hidden="true">
+      <svg viewBox="0 0 40 40" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
+       <polygon points="20,4 34,18 20,32 6,18" fill="#DBC8F0"/>
+       <polygon points="20,8.6 31.7,20.3 20,32 8.3,20.3" fill="#BEA0E0"/>
+       <polygon points="20,13.2 29.4,22.6 20,32 10.6,22.6" fill="#9F72D0"/>
+       <polygon points="20,17.8 27.1,24.9 20,32 12.9,24.9" fill="#8248BF"/>
+       <polygon points="20,22.4 24.8,27.2 20,32 15.2,27.2" fill="#6525AB"/>
+       <polygon points="20,27 22.5,29.5 20,32 17.5,29.5" fill="#4A1290"/>
+       <circle cx="20" cy="36" r="2" fill="#4A1290"/>
+      </svg>
+     </span>
+     <span class="wordmark">ExternalOS</span>
+    </div>
+    <p>The work, already done. UK tax, IR35, MTD, employment law, tenancy. Built in Leeds. Files you keep.</p>
+    <p class="footer-refund">7-day refund, no questions asked.</p>
+   </div>
+   <div>
+    <h5>Products</h5>
+    <ul>
+     <li><a href="https://externalos.gumroad.com" target="_blank" rel="noopener">UK Freelancer OS</a></li>
+     <li><a href="https://externalos.gumroad.com/l/aavttu" target="_blank" rel="noopener">Freelancer Toolkit</a></li>
+     <li><a href="https://externalos.gumroad.com/l/fxlgeq" target="_blank" rel="noopener">Employer Compliance</a></li>
+     <li><a href="https://externalos.gumroad.com/l/landlord31may" target="_blank" rel="noopener">31 May Landlord Kit</a></li>
+     <li><a href="https://externalos.gumroad.com/l/iuffuj" target="_blank" rel="noopener">Landlord Legal Pack</a></li>
+     <li><a href="https://externalos.gumroad.com/l/compliance-tracker" target="_blank" rel="noopener">Compliance Tracker</a></li>
+     <li><a href="https://externalos.gumroad.com/l/vrmevr" target="_blank" rel="noopener">Full UK Suite</a></li>
+    </ul>
+   </div>
+   <div>
+    <h5>Free Tools</h5>
+    <ul>
+     <li><a href="./ir35-checker.html">IR35 Checker</a></li>
+     <li><a href="./compliance-calendar.html">Compliance Calendar</a></li>
+     <li><a href="./employer-costs.html">Employer Costs Calculator</a></li>
+     <li><a href="./landlord-compliance-check.html">Landlord Compliance Check</a></li>
+    </ul>
+    <h5 style="margin-top: 22px;">Legal</h5>
+    <ul>
+     <li><a href="/privacy.html">Privacy</a></li>
+     <li><a href="/refund-policy.html">Refund policy</a></li>
+    </ul>
+   </div>
+   <div>
+    <h5>Connect</h5>
+    <ul>
+     <li><a href="https://github.com/externalOS" target="_blank" rel="noopener">GitHub</a></li>
+     <li><a href="https://twitter.com/ExternalOS_" target="_blank" rel="noopener">X / Twitter</a></li>
+     <li><a href="https://instagram.com/externalos" target="_blank" rel="noopener">Instagram</a></li>
+     <li><a href="mailto:hello@externalos.com">Email</a></li>
+    </ul>
+   </div>
+  </div>
+  <div class="footer-bottom">
+   <div>ExternalOS 2026 <span class="full-stop" aria-hidden="true"></span> Leeds, UK <span class="full-stop" aria-hidden="true"></span> <a href="mailto:hello@externalos.com">hello@externalos.com</a></div>
+   <div>Sole trader, not VAT registered <span class="full-stop" aria-hidden="true"></span> Lifetime licence <span class="full-stop" aria-hidden="true"></span> Files you keep <span class="full-stop" aria-hidden="true"></span> <a href="./terms.html">Terms</a> <span class="full-stop" aria-hidden="true"></span> <a href="./privacy.html">Privacy</a> <span class="full-stop" aria-hidden="true"></span> <a href="./refund-policy.html">Refunds</a></div>
+  </div>
+  <div class="footer-strap" style="margin-top:14px;padding-top:14px;border-top:1px solid var(--warm-cream);font-size:11px;color:var(--warm-mid);text-align:center;letter-spacing:0;line-height:1.5;">Informational tool, not tax or legal advice. Consult a qualified adviser for decisions affecting your tax, legal, or compliance position.</div>
+ </div>
+</footer>
+
+<!-- Tool logic -->
+<script>
+(function () {
+  'use strict';
+  var state = { yearEndMonth: null, yearEndDay: 'last', yearEndCustomDay: null, vat: null, vatStagger: '1', employer: null, benefits: null, mtdItsa: null, confirmationMonth: '' };
+  var monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var monthShort = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  function lastDayOfMonth(year, month) { return new Date(year, month, 0).getDate(); }
+  function fmtDate(d) { return monthShort[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear(); }
+  function addMonths(d, m) {
+    var nd = new Date(d.getFullYear(), d.getMonth() + m, d.getDate());
+    if (nd.getDate() !== d.getDate()) nd = new Date(nd.getFullYear(), nd.getMonth(), 0);
+    return nd;
+  }
+  function addDays(d, days) { return new Date(d.getFullYear(), d.getMonth(), d.getDate() + days); }
+  function vatQuarterEnds(stagger) {
+    if (stagger === '1') return [3, 6, 9, 12];
+    if (stagger === '2') return [4, 7, 10, 1];
+    return [5, 8, 11, 2];
+  }
+
+  function generateDeadlines(s) {
+    var today = new Date();
+    var deadlines = [];
+    var yearEndMonth = parseInt(s.yearEndMonth, 10);
+    var yearEndDay;
+    if (s.yearEndDay === 'custom' && s.yearEndCustomDay) {
+      yearEndDay = Math.min(parseInt(s.yearEndCustomDay, 10), lastDayOfMonth(today.getFullYear(), yearEndMonth));
+    } else {
+      yearEndDay = lastDayOfMonth(today.getFullYear(), yearEndMonth);
+    }
+    var thisYearEnd = new Date(today.getFullYear(), yearEndMonth - 1, yearEndDay);
+    var yearEndYear = thisYearEnd <= today ? today.getFullYear() : today.getFullYear() - 1;
+    var lastYearEnd = new Date(yearEndYear, yearEndMonth - 1, yearEndDay);
+    var nextYearEnd = new Date(yearEndYear + 1, yearEndMonth - 1, lastDayOfMonth(yearEndYear + 1, yearEndMonth));
+
+    deadlines.push({ date: addMonths(lastYearEnd, 9), title: 'Annual accounts filed at Companies House', description: 'Statutory accounts for the year ending ' + fmtDate(lastYearEnd) + '. Late filing triggers automatic penalties (£150 to £1,500+).', category: 'companies-house', categoryLabel: 'Companies House' });
+    deadlines.push({ date: addDays(addMonths(lastYearEnd, 9), 1), title: 'Corporation Tax payment due', description: 'Pay Corporation Tax for the year ending ' + fmtDate(lastYearEnd) + '. Interest charges from this date if late.', category: 'corp-tax', categoryLabel: 'Corporation Tax' });
+    deadlines.push({ date: addMonths(lastYearEnd, 12), title: 'CT600 Corporation Tax return filed', description: 'Submit your CT600 with HMRC for the year ending ' + fmtDate(lastYearEnd) + '. Late filing penalty starts at £100.', category: 'corp-tax', categoryLabel: 'Corporation Tax' });
+    deadlines.push({ date: nextYearEnd, title: 'Next accounting year ends', description: 'Year-end for the current accounting period. Accounts and CT due 9 months and 12 months from this date respectively.', category: 'companies-house', categoryLabel: 'Companies House' });
+
+    if (s.vat === 'yes') {
+      var quarters = vatQuarterEnds(s.vatStagger);
+      for (var i = 0; i < quarters.length; i++) {
+        var qm = quarters[i];
+        var qy = (qm >= today.getMonth() + 1 && qm <= today.getMonth() + 12) ? today.getFullYear() : today.getFullYear() + 1;
+        var qDate = new Date(qy, qm - 1, lastDayOfMonth(qy, qm));
+        var dueDate = addDays(addMonths(qDate, 1), 7);
+        if (dueDate >= today && dueDate < addMonths(today, 12)) {
+          deadlines.push({ date: dueDate, title: 'VAT return Q' + (i + 1) + ' filed and paid', description: 'For the quarter ending ' + fmtDate(qDate) + '. Filed via MTD-compatible software. Payment same day if direct debit, otherwise 7 days earlier.', category: 'vat', categoryLabel: 'VAT' });
+        }
+      }
+    }
+
+    if (s.employer === 'yes') {
+      for (var m = 0; m < 12; m++) {
+        var payMonth = new Date(today.getFullYear(), today.getMonth() + m, 22);
+        if (payMonth >= today && payMonth < addMonths(today, 12)) {
+          deadlines.push({ date: payMonth, title: 'PAYE / NI payment to HMRC', description: 'Electronic payments due 22nd of the month following payday (postal: 19th). RTI Full Payment Submission on or before each payday.', category: 'paye', categoryLabel: 'PAYE' });
+        }
+      }
+      var p60Year = today.getMonth() >= 4 ? today.getFullYear() + 1 : today.getFullYear();
+      deadlines.push({ date: new Date(p60Year, 4, 31), title: 'Issue P60s to all employees', description: 'For the tax year ending 5 April. Each employee must have their P60 by 31 May.', category: 'paye', categoryLabel: 'PAYE' });
+      if (s.benefits === 'yes') {
+        var p11dYear = today.getMonth() >= 6 ? today.getFullYear() + 1 : today.getFullYear();
+        deadlines.push({ date: new Date(p11dYear, 6, 6), title: 'P11D and P11D(b) filed', description: 'Benefits in kind report for the previous tax year, plus Class 1A NI on benefits payable by 22 July.', category: 'paye', categoryLabel: 'PAYE' });
+        deadlines.push({ date: new Date(p11dYear, 6, 22), title: 'Class 1A NI on benefits paid', description: 'Electronic payment due 22 July for the previous tax year (postal: 19 July).', category: 'paye', categoryLabel: 'PAYE' });
+      }
+      var pensionYear = today.getMonth() >= 3 ? today.getFullYear() + 1 : today.getFullYear();
+      deadlines.push({ date: new Date(pensionYear, 3, 6), title: 'Pension auto-enrol annual review', description: 'Review eligibility of staff for auto-enrolment from start of new tax year. Re-declaration of compliance every 3 years from staging date.', category: 'pension', categoryLabel: 'Pension' });
+    }
+
+    var saYear = today.getMonth() >= 1 ? today.getFullYear() + 1 : today.getFullYear();
+    deadlines.push({ date: new Date(saYear, 0, 31), title: 'Self Assessment tax return + balancing payment', description: 'For directors with dividend, rental, or other untaxed income. Online filing deadline. Payment on account also due.', category: 'self-assessment', categoryLabel: 'Self Assessment' });
+    deadlines.push({ date: new Date(saYear, 6, 31), title: 'Self Assessment second payment on account', description: 'If your previous year tax bill was £1,000+ outside PAYE, second payment on account due.', category: 'self-assessment', categoryLabel: 'Self Assessment' });
+
+    if (s.mtdItsa === 'yes') {
+      var mtdQuarters = [
+        { due: [8, 7], label: 'Q1 (6 Apr to 5 Jul)' },
+        { due: [11, 7], label: 'Q2 (6 Jul to 5 Oct)' },
+        { due: [2, 7], label: 'Q3 (6 Oct to 5 Jan)' },
+        { due: [5, 7], label: 'Q4 (6 Jan to 5 Apr)' }
+      ];
+      for (var qi = 0; qi < mtdQuarters.length; qi++) {
+        var mq = mtdQuarters[qi];
+        var mqY = today.getFullYear();
+        if (mq.due[0] - 1 < today.getMonth()) mqY++;
+        var mqDate = new Date(mqY, mq.due[0] - 1, mq.due[1]);
+        if (mqDate >= today && mqDate < addMonths(today, 12)) {
+          deadlines.push({ date: mqDate, title: 'MTD for Income Tax quarterly update ' + mq.label, description: 'Quarterly digital update of property and self-employment income to HMRC via MTD-compatible software.', category: 'self-assessment', categoryLabel: 'MTD ITSA' });
+        }
+      }
+    }
+
+    if (s.confirmationMonth) {
+      var csM = parseInt(s.confirmationMonth, 10);
+      var csY = csM > today.getMonth() + 1 ? today.getFullYear() : today.getFullYear() + 1;
+      deadlines.push({ date: new Date(csY, csM - 1, 1), title: 'Confirmation Statement filed', description: 'Annual review filed at Companies House within 14 days of review date. Penalty: company can be struck off if missed.', category: 'companies-house', categoryLabel: 'Companies House' });
+    }
+
+    deadlines.push({ date: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 365), title: 'GDPR / Data Protection annual review', description: 'ICO best practice: review your records of processing, retention schedules, and DPIA log annually. Renew ICO data protection fee.', category: 'gdpr', categoryLabel: 'GDPR' });
+
+    var endBound = new Date(today.getFullYear(), today.getMonth() + 12, 1);
+    var inWindow = deadlines.filter(function (d) { return d.date >= today && d.date < endBound; });
+    inWindow.sort(function (a, b) { return a.date - b.date; });
+    return inWindow;
+  }
+
+  function groupByMonth(deadlines) {
+    var today = new Date();
+    var months = [];
+    for (var i = 0; i < 12; i++) {
+      var d = new Date(today.getFullYear(), today.getMonth() + i, 1);
+      months.push({ year: d.getFullYear(), month: d.getMonth(), name: monthNames[d.getMonth()] + ' ' + d.getFullYear(), items: [] });
+    }
+    deadlines.forEach(function (dl) {
+      var m = months.find(function (mo) { return mo.year === dl.date.getFullYear() && mo.month === dl.date.getMonth(); });
+      if (m) m.items.push(dl);
+    });
+    return months;
+  }
+
+  function renderTimeline(deadlines) {
+    var container = document.getElementById('monthsContainer');
+    container.innerHTML = '';
+    var months = groupByMonth(deadlines);
+    months.forEach(function (m) {
+      var block = document.createElement('div');
+      block.className = 'month-block';
+      var hdr = document.createElement('div');
+      hdr.className = 'month-header';
+      var name = document.createElement('span'); name.className = 'month-name'; name.textContent = m.name;
+      var count = document.createElement('span'); count.className = 'month-count';
+      count.textContent = m.items.length === 0 ? 'No deadlines' : m.items.length + (m.items.length === 1 ? ' deadline' : ' deadlines');
+      hdr.appendChild(name); hdr.appendChild(count); block.appendChild(hdr);
+      if (m.items.length === 0) {
+        var empty = document.createElement('p'); empty.className = 'month-empty';
+        empty.textContent = 'Nothing scheduled. Use the gap to catch up on bookkeeping.';
+        block.appendChild(empty);
+      } else {
+        var list = document.createElement('div'); list.className = 'deadline-list';
+        m.items.forEach(function (dl) {
+          var card = document.createElement('div'); card.className = 'deadline-card';
+          var dt = document.createElement('div'); dt.className = 'deadline-date';
+          dt.innerHTML = '<span class="day">' + dl.date.getDate() + '</span><span class="month">' + monthShort[dl.date.getMonth()] + '</span>';
+          var body = document.createElement('div'); body.className = 'deadline-body';
+          body.innerHTML = '<h4>' + dl.title + '</h4><p>' + dl.description + '</p>';
+          var tag = document.createElement('span'); tag.className = 'deadline-tag tag-' + dl.category; tag.textContent = dl.categoryLabel;
+          card.appendChild(dt); card.appendChild(body); card.appendChild(tag); list.appendChild(card);
+        });
+        block.appendChild(list);
+      }
+      container.appendChild(block);
+    });
+
+    document.getElementById('statTotal').textContent = deadlines.length;
+    if (deadlines.length > 0) {
+      document.getElementById('statNext').textContent = fmtDate(deadlines[0].date);
+      var counts = {};
+      deadlines.forEach(function (d) { var k = d.date.getFullYear() + '-' + d.date.getMonth(); counts[k] = (counts[k] || 0) + 1; });
+      var hardestKey = Object.keys(counts).reduce(function (a, b) { return counts[a] >= counts[b] ? a : b; });
+      var parts = hardestKey.split('-');
+      document.getElementById('statHardest').textContent = monthShort[parseInt(parts[1], 10)] + ' ' + parts[0] + ' (' + counts[hardestKey] + ')';
+    }
+    var s = state;
+    var summary = 'Year-end ' + monthNames[parseInt(s.yearEndMonth, 10) - 1] + (s.yearEndDay === 'last' ? ' (last day)' : (' day ' + (s.yearEndCustomDay || ''))) + '. ' +
+      (s.vat === 'yes' ? 'VAT registered (Stagger ' + s.vatStagger + '). ' : 'Not VAT registered. ') +
+      (s.employer === 'yes' ? 'PAYE employer' + (s.benefits === 'yes' ? ' with taxable benefits.' : '.') : 'No PAYE employer.');
+    document.getElementById('summaryBody').textContent = summary;
+  }
+
+  function buildIcs(deadlines) {
+    var lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//ExternalOS//Compliance Calendar//EN', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH'];
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+    function ymd(d) { return d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()); }
+    deadlines.forEach(function (dl, i) {
+      var nextDay = addDays(dl.date, 1);
+      lines.push('BEGIN:VEVENT');
+      lines.push('UID:externalos-' + i + '-' + ymd(dl.date) + '@externalos.com');
+      lines.push('DTSTAMP:' + ymd(new Date()) + 'T000000Z');
+      lines.push('DTSTART;VALUE=DATE:' + ymd(dl.date));
+      lines.push('DTEND;VALUE=DATE:' + ymd(nextDay));
+      lines.push('SUMMARY:[ExternalOS] ' + dl.title);
+      lines.push('DESCRIPTION:' + dl.description.replace(/[\r\n]+/g, ' ') + '\\n\\nGenerated by ExternalOS Compliance Calendar (free): https://externalos.com/compliance-calendar.html');
+      lines.push('CATEGORIES:' + dl.categoryLabel);
+      lines.push('BEGIN:VALARM'); lines.push('TRIGGER:-P7D'); lines.push('ACTION:DISPLAY'); lines.push('DESCRIPTION:Reminder: ' + dl.title); lines.push('END:VALARM');
+      lines.push('END:VEVENT');
+    });
+    lines.push('END:VCALENDAR');
+    return lines.join('\r\n');
+  }
+
+  function downloadFile(filename, content, type) {
+    var blob = new Blob([content], { type: type });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a'); a.href = url; a.download = filename; a.click();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 200);
+  }
+
+  function syncShareLink() {
+    var p = new URLSearchParams();
+    if (state.yearEndMonth) p.set('m', state.yearEndMonth);
+    if (state.yearEndDay) p.set('d', state.yearEndDay);
+    if (state.yearEndCustomDay) p.set('cd', state.yearEndCustomDay);
+    if (state.vat) p.set('v', state.vat);
+    if (state.vatStagger) p.set('vs', state.vatStagger);
+    if (state.employer) p.set('e', state.employer);
+    if (state.benefits) p.set('b', state.benefits);
+    if (state.mtdItsa) p.set('mt', state.mtdItsa);
+    if (state.confirmationMonth) p.set('cm', state.confirmationMonth);
+    return location.origin + location.pathname + '?' + p.toString();
+  }
+
+  function loadFromQuery() {
+    var p = new URLSearchParams(location.search);
+    if (p.get('m')) state.yearEndMonth = p.get('m');
+    if (p.get('d')) state.yearEndDay = p.get('d');
+    if (p.get('cd')) state.yearEndCustomDay = p.get('cd');
+    if (p.get('v')) state.vat = p.get('v');
+    if (p.get('vs')) state.vatStagger = p.get('vs');
+    if (p.get('e')) state.employer = p.get('e');
+    if (p.get('b')) state.benefits = p.get('b');
+    if (p.get('mt')) state.mtdItsa = p.get('mt');
+    if (p.get('cm')) state.confirmationMonth = p.get('cm');
+    return !!p.get('m');
+  }
+
+  function checkComplete() {
+    var btn = document.getElementById('buildBtn');
+    var ok = !!state.yearEndMonth && !!state.vat && !!state.employer && !!state.mtdItsa && (state.vat !== 'yes' || !!state.vatStagger) && (state.employer !== 'yes' || !!state.benefits);
+    btn.disabled = !ok;
+  }
+
+  function selectToggle(field, value) {
+    state[field] = value;
+    document.querySelectorAll('[data-field="' + field + '"]').forEach(function (b) {
+      var sel = b.dataset.value === value;
+      b.classList.toggle('selected', sel);
+      b.setAttribute('aria-checked', sel ? 'true' : 'false');
+    });
+    if (field === 'vat') {
+      document.getElementById('vatStaggerRow').style.display = value === 'yes' ? '' : 'none';
+      if (value !== 'yes') state.vatStagger = '1';
+    }
+    if (field === 'employer') {
+      document.getElementById('benefitsRow').style.display = value === 'yes' ? '' : 'none';
+      if (value !== 'yes') state.benefits = null;
+    }
+    checkComplete();
+  }
+
+  function applyStateToUI() {
+    if (state.yearEndMonth) document.getElementById('yearEndMonth').value = state.yearEndMonth;
+    if (state.yearEndDay) document.getElementById('yearEndDay').value = state.yearEndDay;
+    if (state.yearEndCustomDay) {
+      document.getElementById('yearEndCustomDay').value = state.yearEndCustomDay;
+      document.getElementById('yearEndCustomDay').style.display = state.yearEndDay === 'custom' ? '' : 'none';
+    }
+    ['vat','vatStagger','employer','benefits','mtdItsa'].forEach(function (f) { if (state[f]) selectToggle(f, state[f]); });
+    if (state.confirmationMonth) document.getElementById('confirmationMonth').value = state.confirmationMonth;
+    checkComplete();
+  }
+
+  document.querySelectorAll('.form-toggle').forEach(function (b) {
+    b.addEventListener('click', function () { selectToggle(b.dataset.field, b.dataset.value); });
+  });
+  document.getElementById('yearEndMonth').addEventListener('change', function (e) { state.yearEndMonth = e.target.value; checkComplete(); });
+  document.getElementById('yearEndDay').addEventListener('change', function (e) {
+    state.yearEndDay = e.target.value;
+    document.getElementById('yearEndCustomDay').style.display = e.target.value === 'custom' ? '' : 'none';
+    checkComplete();
+  });
+  document.getElementById('yearEndCustomDay').addEventListener('input', function (e) { state.yearEndCustomDay = e.target.value; checkComplete(); });
+  document.getElementById('confirmationMonth').addEventListener('change', function (e) { state.confirmationMonth = e.target.value; });
+
+  document.getElementById('calForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var deadlines = generateDeadlines(state);
+    window.__lastDeadlines = deadlines;
+    renderTimeline(deadlines);
+    document.getElementById('timelineSection').classList.add('visible');
+    document.getElementById('timelineSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    history.replaceState(null, '', syncShareLink());
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', function () {
+    state = { yearEndMonth: null, yearEndDay: 'last', yearEndCustomDay: null, vat: null, vatStagger: '1', employer: null, benefits: null, mtdItsa: null, confirmationMonth: '' };
+    document.querySelectorAll('.form-toggle').forEach(function (b) { b.classList.remove('selected'); b.setAttribute('aria-checked', 'false'); });
+    document.getElementById('vatStaggerRow').style.display = 'none';
+    document.getElementById('benefitsRow').style.display = 'none';
+    document.getElementById('timelineSection').classList.remove('visible');
+    history.replaceState(null, '', location.pathname);
+    checkComplete();
+  });
+
+  document.getElementById('downloadIcs').addEventListener('click', function () {
+    if (!window.__lastDeadlines) return;
+    var ics = buildIcs(window.__lastDeadlines);
+    downloadFile('externalos-compliance-calendar.ics', ics, 'text/calendar;charset=utf-8');
+  });
+  document.getElementById('printBtn').addEventListener('click', function () { window.print(); });
+  document.getElementById('copyLinkBtn').addEventListener('click', function () {
+    var url = syncShareLink();
+    navigator.clipboard.writeText(url).then(function () {
+      var b = document.getElementById('copyLinkBtn');
+      var t = b.textContent; b.textContent = 'Copied ✓';
+      setTimeout(function () { b.textContent = t; }, 1800);
+    });
+  });
+  document.getElementById('restartBtn').addEventListener('click', function () {
+    document.getElementById('timelineSection').classList.remove('visible');
+    document.getElementById('start').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  if (loadFromQuery()) {
+    applyStateToUI();
+    if (state.yearEndMonth && state.vat && state.employer && state.mtdItsa) {
+      setTimeout(function () { document.getElementById('calForm').dispatchEvent(new Event('submit')); }, 200);
+    }
+  }
+})();
+</script>
+
+<!-- Tilt + glow effect on .tilt-card elements (matches landing) -->
+<script>
+(function(){
+ var RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ if (RM) return;
+ document.querySelectorAll('.tilt-card').forEach(function(card){
+  var cur = {x:0, y:0}, tgt = {x:0, y:0}, running = false;
+  var maxDeg = (card.classList.contains('featured-card') || card.classList.contains('free-tool-gift')) ? 2 : 4;
+  function tick(){
+   cur.x += (tgt.x - cur.x) * 0.08;
+   cur.y += (tgt.y - cur.y) * 0.08;
+   card.style.transform = 'perspective(800px) rotateX(' + cur.x.toFixed(3) + 'deg) rotateY(' + cur.y.toFixed(3) + 'deg)';
+   if (Math.abs(cur.x - tgt.x) > 0.005 || Math.abs(cur.y - tgt.y) > 0.005) {
+    requestAnimationFrame(tick);
+   } else {
+    cur.x = tgt.x; cur.y = tgt.y;
+    card.style.transform = (tgt.x === 0 && tgt.y === 0) ? '' : 'perspective(800px) rotateX(' + tgt.x.toFixed(3) + 'deg) rotateY(' + tgt.y.toFixed(3) + 'deg)';
+    running = false;
+   }
+  }
+  function startLoop(){ if (!running) { running = true; requestAnimationFrame(tick); } }
+  card.addEventListener('mousemove', function(e){
+   var r = card.getBoundingClientRect();
+   tgt.x = ((e.clientY - r.top - r.height/2) / (r.height/2)) * -maxDeg;
+   tgt.y = ((e.clientX - r.left - r.width/2) / (r.width/2)) * maxDeg;
+   startLoop();
+   if (card.querySelector('.glow')) {
+    card.style.setProperty('--glow-x', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
+    card.style.setProperty('--glow-y', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
+   }
+  });
+  card.addEventListener('mouseleave', function(){ tgt.x = 0; tgt.y = 0; startLoop(); });
+ });
+})();
+</script>
+
+<script src="./skills-nav.js?v=135" defer></script>
+<script src="./free-tools-nav.js?v=2" defer></script>
+</body>
+</html>
