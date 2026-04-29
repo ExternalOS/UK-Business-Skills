@@ -72,12 +72,14 @@
   .tool-section-header p.tool-sub { font-size: 14px; color: var(--warm-mid); max-width: 560px; text-align: center; line-height: 1.65; margin: 0 auto; }
 
   .pill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 24px; }
-  .pill { background: var(--warm-off); border: 1px solid var(--warm-cream); border-radius: var(--radius-md); padding: 18px 22px; box-shadow: var(--shadow-sm); }
+  .wrap.page-body { max-width: 920px; }
+  .tool-section > p { margin-left: auto; margin-right: auto; text-align: center; }
+  .pill { background: var(--warm-off); border: 1px solid var(--warm-cream); border-radius: var(--radius-md); padding: 18px 22px; box-shadow: var(--shadow-sm); text-align: center; }
   .pill strong { display: block; font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 4px; letter-spacing: -0.01em; }
   .pill span { font-size: 13px; color: var(--warm-mid); line-height: 1.5; }
 
   /* Form */
-  .form-card { background: var(--warm-white); border: 1px solid var(--warm-cream); border-radius: var(--radius-xl); padding: 48px 56px 40px; max-width: 760px; box-shadow: var(--shadow-md); position: relative; overflow: hidden; }
+  .form-card { background: var(--warm-white); border: 1px solid var(--warm-cream); border-radius: var(--radius-xl); padding: 48px 56px 40px; max-width: 760px; margin-left: auto; margin-right: auto; box-shadow: var(--shadow-md); position: relative; overflow: hidden; }
   .form-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--purple-deep), var(--purple-light)); }
   .form-row { margin-bottom: 28px; }
   .form-row:last-of-type { margin-bottom: 0; }
@@ -235,8 +237,8 @@
     </div>
     <p class="tool-sub">Modelled on the actual rules HMRC and Companies House apply, not a generic small-business calendar.</p>
    </div>
-   <p style="font-size: 16px; line-height: 1.75; color: var(--body); max-width: 720px; margin: 0 0 12px;">UK limited companies have to track at least seven separate cycles of deadlines: accounts, Corporation Tax, VAT, PAYE, P11D, Confirmation Statement, and (from April 2026) Making Tax Digital for Income Tax for property landlords above &pound;50k. Most owners keep this in three browser tabs and a calendar reminder.</p>
-   <p style="font-size: 16px; line-height: 1.75; color: var(--body); max-width: 720px; margin: 0;">Tell us your year-end and a couple of yes/no questions. We map every deadline that flows from those answers into one calendar, dated to your company, exportable as <strong>.ics</strong> so your calendar app handles the alerts.</p>
+   <p style="font-size: 16px; line-height: 1.75; color: var(--body); max-width: 720px; margin: 0 auto 12px;">UK limited companies have to track at least seven separate cycles of deadlines: accounts, Corporation Tax, VAT, PAYE, P11D, Confirmation Statement, and (from April 2026) Making Tax Digital for Income Tax for property landlords above &pound;50k. Most owners keep this in three browser tabs and a calendar reminder.</p>
+   <p style="font-size: 16px; line-height: 1.75; color: var(--body); max-width: 720px; margin: 0 auto;">Tell us your year-end and a couple of yes/no questions. We map every deadline that flows from those answers into one calendar, dated to your company, exportable as <strong>.ics</strong> so your calendar app handles the alerts.</p>
    <div class="pill-grid">
     <div class="pill"><strong>Accounts</strong><span>9 months after year-end, Companies House</span></div>
     <div class="pill"><strong>Corporation Tax</strong><span>9 months and 1 day after year-end, HMRC</span></div>

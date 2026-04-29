@@ -70,8 +70,11 @@
   .deadline-banner-count span { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-top: 4px; display: block; }
   @media (max-width: 560px) { .deadline-banner { padding: 16px 20px; gap: 16px; } .deadline-banner-count { margin-left: 0; } .deadline-banner-count strong { font-size: 28px; } }
 
-  .pill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 24px; }
-  .pill { background: var(--warm-off); border: 1px solid var(--warm-cream); border-radius: var(--radius-md); padding: 18px 22px; box-shadow: var(--shadow-sm); }
+  .pill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 24px auto 0; max-width: 920px; }
+  .wrap.page-body { max-width: 920px; }
+  .tool-section > p { margin-left: auto; margin-right: auto; text-align: center; }
+  .tool-section > .deadline-banner { max-width: 920px; margin-left: auto; margin-right: auto; }
+  .pill { background: var(--warm-off); border: 1px solid var(--warm-cream); border-radius: var(--radius-md); padding: 18px 22px; box-shadow: var(--shadow-sm); text-align: center; }
   .pill strong { display: block; font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 4px; letter-spacing: -0.01em; }
   .pill span { font-size: 13px; color: var(--warm-mid); line-height: 1.5; }
 
@@ -229,8 +232,8 @@
      <div><strong id="daysLeft">—</strong><span>Days left</span></div>
     </div>
    </div>
-   <p style="font-size:16px; line-height:1.75; color:var(--body); max-width:720px; margin:0 0 12px;">The Renters' Rights Act 2026 is the biggest restructuring of the private rented sector in 30 years. Section 21 "no-fault" eviction is gone. Possession now runs through a grounds-based framework. Rent increases are capped to once per year via Section 13. Every named tenant must receive an Information Sheet by 31 May 2026 or you face a £7,000 fine per breach. On top of all of that, MTD for Income Tax kicks in for landlords with property income over &pound;50,000 from April 2026.</p>
-   <p style="font-size:16px; line-height:1.75; color:var(--body); max-width:720px; margin:0;">This check runs you through twelve yes/no questions covering every layer of the new framework plus the standard landlord obligations (deposit protection, EPC, Right to Rent, HMO licensing). Three minutes. Per-question gap report. No data leaves your browser.</p>
+   <p style="font-size:16px; line-height:1.75; color:var(--body); max-width:720px; margin: 0 auto 12px;">The Renters' Rights Act 2026 is the biggest restructuring of the private rented sector in 30 years. Section 21 "no-fault" eviction is gone. Possession now runs through a grounds-based framework. Rent increases are capped to once per year via Section 13. Every named tenant must receive an Information Sheet by 31 May 2026 or you face a £7,000 fine per breach. On top of all of that, MTD for Income Tax kicks in for landlords with property income over &pound;50,000 from April 2026.</p>
+   <p style="font-size:16px; line-height:1.75; color:var(--body); max-width:720px; margin: 0 auto;">This check runs you through twelve yes/no questions covering every layer of the new framework plus the standard landlord obligations (deposit protection, EPC, Right to Rent, HMO licensing). Three minutes. Per-question gap report. No data leaves your browser.</p>
    <div class="pill-grid">
     <div class="pill"><strong>Information Sheet</strong><span>Hard deadline 31 May 2026, £7,000 per breach</span></div>
     <div class="pill"><strong>Section 21 transition</strong><span>Replaced by grounds-based possession (Schedule 1)</span></div>
