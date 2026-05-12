@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your UK compliance toolkit | ExternalOS</title>
+<meta name="description" content="Your personalised toolkit recommendation from the 60-second quiz. The three to five tools that fit your situation, paid once.">
+<meta name="robots" content="noindex,follow">
+<link rel="icon" href="./favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --accent: #B8541F; --accent-deep: #8F3F12; --accent-pale: #FBEEDF; --accent-mid: #D17638;
+  --warm-white: #FBF7F0; --warm-off: #F4EDE0; --warm-cream: #ECE2CE;
+  --ink: #1A1A1A; --body: #4A463E; --muted: #6E665C;
+  --radius: 12px;
+}
+
+/* PER-PERSONA TOKEN OVERRIDES
+   Stacks with [data-theme="dark"]. Maps to the panel-rated palettes per
+   projects/site-quiz-personalisation-2026-05-12.md Tier-1 lock. */
+html[data-persona="sole-trader"] {
+  /* #10 Editorial anchor: cream + ink, accent stays warm. The default/broad. */
+  --accent: #B8541F; --accent-deep: #8F3F12; --accent-pale: #FBEEDF; --accent-mid: #D17638;
+}
+html[data-persona="landlord"] {
+  /* #5 Heritage British: parchment + brass. Tom 2nd, conservative trust. */
+  --accent: #8B6A2A; --accent-deep: #5C4519; --accent-pale: #F4EBD4; --accent-mid: #A88438;
+  --warm-white: #FAF4E5; --warm-off: #F1E7CE; --warm-cream: #E5D6B0;
+}
+html[data-persona="employer"] {
+  /* #8 HMRC institutional: white + GOV.UK red + green CTA. David + Tom + Dad 1st. */
+  --accent: #B10E1E; --accent-deep: #7C0610; --accent-pale: #FCEAEC; --accent-mid: #D8202E;
+  --warm-white: #FFFFFF; --warm-off: #F4F6F7; --warm-cream: #E2E5E8;
+  --ink: #0B0C0C; --body: #2E3033; --muted: #505A5F;
+}
+html[data-persona="creative"] {
+  /* #6 Tactile peach: peach + plum. Priya + Mum + Lev. */
+  --accent: #C2185B; --accent-deep: #8E0E40; --accent-pale: #FFE0EE; --accent-mid: #DD4080;
+  --warm-white: #FFF6F0; --warm-off: #FCE6D6; --warm-cream: #F4CFB5;
+}
+html[data-persona="medical"] {
+  /* #9 Tech luxury: charcoal + champagne + blue. Sarah 1st, high-earner trust. */
+  --accent: #0B5394; --accent-deep: #073566; --accent-pale: #E1ECF7; --accent-mid: #2F7AC9;
+  --warm-white: #FAFAF7; --warm-off: #ECEAE2; --warm-cream: #D8D4C5;
+  --ink: #1E1E1E; --body: #3D3D38; --muted: #6B6B62;
+}
+
+html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+body { font-family: 'Inter', system-ui, sans-serif; color: var(--ink); background: var(--warm-white); line-height: 1.6; }
+a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+a:hover { color: var(--accent-deep); }
+h1, h2 { font-family: 'Libre Baskerville', Georgia, serif; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); }
+h3, h4 { font-family: 'Syne', sans-serif; font-weight: 600; color: var(--ink); }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+.banner { background: var(--ink); color: var(--warm-white); padding: 9px 16px; text-align: center; font-size: 13px; border-bottom: 1px solid #3D3830; }
+.banner strong { color: var(--accent-pale); }
+.banner a { color: var(--accent-pale); }
+.nav { padding: 24px 0; display: flex; align-items: center; justify-content: space-between; }
+.brand { font-family: 'Libre Baskerville', serif; font-size: 22px; font-weight: 700; color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+.brand-os { color: var(--accent); }
+.nav-cta { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 13px; padding: 10px 22px; border-radius: 100px; background: var(--ink); color: var(--warm-white); text-decoration: none; }
+
+/* Persona ribbon */
+.persona-ribbon { background: var(--accent-pale); border-bottom: 1px solid var(--warm-cream); padding: 14px 24px; }
+.persona-ribbon-inner { max-width: 1180px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.persona-ribbon-label { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-deep); }
+.persona-ribbon-actions { display: flex; gap: 14px; align-items: center; }
+.ribbon-link { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 600; color: var(--accent-deep); text-decoration: underline; text-underline-offset: 3px; background: none; border: none; cursor: pointer; }
+.ribbon-link:hover { color: var(--ink); }
+
+/* Hero */
+.hero { padding: 60px 0 30px; max-width: 880px; margin: 0 auto; text-align: center; }
+.hero .eyebrow { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px; display: block; }
+.hero h1 { font-size: clamp(34px, 5.2vw, 56px); line-height: 1.04; margin-bottom: 22px; padding: 0 24px; }
+.hero h1 em { color: var(--accent); font-style: italic; }
+.hero .lede { font-size: 18px; max-width: 660px; margin: 0 auto 16px; color: var(--body); padding: 0 24px; }
+.hero .lede strong { color: var(--ink); }
+
+/* Summary chips */
+.chip-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 24px 0 0; padding: 0 24px; }
+.chip { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; padding: 6px 14px; border-radius: 100px; background: var(--warm-off); color: var(--ink); border: 1px solid var(--warm-cream); }
+.chip strong { color: var(--accent); }
+
+/* Tool cards (recommended) */
+.section-head { text-align: center; margin: 60px auto 28px; max-width: 760px; padding: 0 24px; }
+.section-head h2 { font-size: clamp(26px, 3.5vw, 38px); margin-bottom: 12px; }
+.section-head h2 em { color: var(--accent); font-style: italic; }
+.section-head p { font-size: 16px; color: var(--body); }
+
+.tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 22px; margin: 0 0 40px; }
+.tool { background: var(--warm-white); border: 1px solid var(--warm-cream); border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column; transition: transform 0.15s ease, box-shadow 0.15s ease; position: relative; }
+.tool:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(26,26,26,0.08); }
+.tool.lead { background: var(--ink); color: var(--warm-white); border-color: var(--ink); }
+.tool-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.tool-cat { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+.tool.lead .tool-cat { color: var(--accent-pale); }
+.tool-price { font-family: 'Libre Baskerville', serif; font-size: 28px; font-weight: 700; color: var(--ink); }
+.tool.lead .tool-price { color: var(--warm-white); }
+.tool-price small { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; }
+.tool.lead .tool-price small { color: rgba(251,247,240,0.65); }
+.tool h3 { font-family: 'Libre Baskerville', serif; font-size: 22px; font-weight: 700; margin-bottom: 8px; line-height: 1.25; color: inherit; }
+.tool.lead h3 { color: var(--warm-white); }
+.tool p { font-size: 14px; line-height: 1.55; color: var(--body); margin-bottom: 14px; flex: 1; }
+.tool.lead p { color: rgba(251,247,240,0.78); }
+.tool .why { font-size: 13px; font-style: italic; color: var(--accent-deep); margin-bottom: 18px; padding: 12px 14px; background: var(--accent-pale); border-left: 3px solid var(--accent); border-radius: 4px; }
+.tool.lead .why { color: var(--warm-white); background: rgba(184,84,31,0.18); border-left-color: var(--accent); }
+.tool-cta { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 13px; padding: 12px 22px; border-radius: 100px; background: var(--accent); color: var(--warm-white); text-decoration: none; text-align: center; transition: background 0.15s ease; }
+.tool-cta:hover { background: var(--accent-deep); color: var(--warm-white); }
+.tool.lead .tool-cta { background: var(--accent-pale); color: var(--ink); }
+.tool.lead .tool-cta:hover { background: var(--warm-white); }
+.tool-rank { position: absolute; top: -10px; left: 20px; font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 6px 12px; border-radius: 100px; background: var(--ink); color: var(--warm-white); }
+.tool.lead .tool-rank { background: var(--accent); }
+
+/* Bundle CTA */
+.bundle-cta { background: var(--warm-off); border: 1px solid var(--warm-cream); border-radius: var(--radius); padding: 36px clamp(24px, 4vw, 44px); margin: 30px 0 60px; display: grid; grid-template-columns: 2fr 1fr; gap: 30px; align-items: center; }
+.bundle-cta h3 { font-family: 'Libre Baskerville', serif; font-size: clamp(22px, 2.6vw, 28px); margin-bottom: 8px; color: var(--ink); }
+.bundle-cta h3 em { color: var(--accent); font-style: italic; }
+.bundle-cta p { color: var(--body); font-size: 15px; }
+.bundle-cta .ctas { display: flex; flex-direction: column; gap: 10px; }
+.btn-bundle { padding: 13px 22px; border-radius: 100px; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 13px; background: var(--accent); color: var(--warm-white); text-decoration: none; text-align: center; }
+.btn-bundle:hover { background: var(--accent-deep); color: var(--warm-white); }
+.btn-bundle.outline { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
+.btn-bundle.outline:hover { background: var(--ink); color: var(--warm-white); }
+
+/* Skipped block */
+.skipped { padding: 30px 0 60px; text-align: center; }
+.skipped h4 { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.skipped p { color: var(--muted); font-size: 14px; margin-bottom: 14px; }
+
+/* Trust footer */
+.trust { text-align: center; padding: 40px 24px; color: var(--muted); font-size: 14px; }
+.trust strong { color: var(--ink); }
+
+.footer { background: var(--warm-off); border-top: 1px solid var(--warm-cream); padding: 50px 0 30px; margin-top: 40px; }
+.footer p, .footer a { font-size: 14px; color: var(--muted); text-decoration: none; }
+.footer a:hover { color: var(--accent); }
+.footer-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 24px; }
+
+@media (max-width: 768px) {
+  .bundle-cta { grid-template-columns: 1fr; }
+  .hero { padding: 40px 0 16px; }
+}
+
+/* Toast for persona switch */
+.persona-toast { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--warm-white); padding: 14px 22px; border-radius: 100px; font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 500; box-shadow: 0 12px 40px rgba(0,0,0,0.25); z-index: 9999; display: flex; gap: 16px; align-items: center; max-width: 92vw; }
+.persona-toast a { color: var(--accent-pale); text-decoration: underline; text-underline-offset: 3px; font-weight: 600; }
+.persona-toast button { background: none; border: none; color: var(--warm-white); cursor: pointer; opacity: 0.7; font-size: 18px; padding: 0 4px; }
+.persona-toast button:hover { opacity: 1; }
+</style>
+<script src="./_theme.js" defer></script>
+<script src="./_persona.js" defer></script>
+</head>
+<body>
+
+<div class="banner">Most UK compliance software charges &pound;15-&pound;35 <strong>every month</strong>. Ours is <strong>paid once</strong>. <a href="./tools.html">See all tools &rarr;</a></div>
+
+<header class="wrap">
+  <nav class="nav">
+    <a href="./index.html" class="brand"><span class="brand-mark" aria-hidden="true" style="display:inline-flex;width:22px;height:22px;"><svg viewBox="6 4 28 28" width="22" height="22" xmlns="http://www.w3.org/2000/svg"><polygon points="20,4 34,18 20,32 6,18" fill="#FBEEDF"/><polygon points="20,8.6 31.7,20.3 20,32 8.3,20.3" fill="#F2C9A8"/><polygon points="20,13.2 29.4,22.6 20,32 10.6,22.6" fill="#E29A6B"/><polygon points="20,17.8 27.1,24.9 20,32 12.9,24.9" fill="#C25E1A"/><polygon points="20,22.4 24.8,27.2 20,32 15.2,27.2" fill="#8F3F12"/><polygon points="20,27 22.5,29.5 20,32 17.5,29.5" fill="#5C2A0C"/></svg></span>External<span class="brand-os">OS</span></a>
+    <a href="./tools.html" class="nav-cta">All tools</a>
+  </nav>
+</header>
+
+<div class="persona-ribbon">
+  <div class="persona-ribbon-inner">
+    <span class="persona-ribbon-label">Your view: <span id="personaLabel">loading...</span></span>
+    <div class="persona-ribbon-actions">
+      <button class="ribbon-link" id="retakeBtn" type="button">Retake quiz</button>
+      <button class="ribbon-link" id="switchBtn" type="button">Switch persona &darr;</button>
+    </div>
+  </div>
+</div>
+
+<section class="hero">
+  <span class="eyebrow" id="heroEyebrow">Your personalised toolkit</span>
+  <h1 id="heroHeadline">Building your toolkit...</h1>
+  <p class="lede" id="heroLede">We are matching your six answers to the catalogue. One moment.</p>
+  <div class="chip-row" id="chipRow"></div>
+</section>
+
+<div class="wrap">
+  <div class="section-head">
+    <h2>The toolkit we picked <em>for you</em></h2>
+    <p>Five files or fewer. The exact ones that fit your shape. Each one is paid once and yours forever.</p>
+  </div>
+
+  <div class="tools-grid" id="recommendedGrid"></div>
+
+  <div class="bundle-cta" id="bundleCta" style="display:none;">
+    <div>
+      <h3 id="bundleTitle">Bundle <em>and save</em>.</h3>
+      <p id="bundleDesc">Buying three or more of these toolkits together drops the total by up to 60% against the unbundled sum. One payment, every file in the kit.</p>
+    </div>
+    <div class="ctas">
+      <a class="btn-bundle" id="bundlePrimary" href="./index.html#products">See the bundle &rarr;</a>
+      <a class="btn-bundle outline" href="./tools.html">Or browse all 18 tools</a>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="section-head">
+    <h2>Also worth a look</h2>
+    <p>Tools that are not your primary fit but are worth knowing about. Quick scan, no obligation.</p>
+  </div>
+  <div class="tools-grid" id="alsoGrid"></div>
+</div>
+
+<div class="wrap skipped">
+  <h4>Hidden &middot; 10+ tools that did not match your situation</h4>
+  <p>We hid the irrelevant catalogue items so you can scan faster.</p>
+  <a href="./tools.html" class="btn-bundle outline" style="display:inline-block;">Show me everything anyway &rarr;</a>
+</div>
+
+<p class="trust">Quiz answers stay on your device. <strong>No email needed.</strong> No tracking pixels. <a href="./privacy.html">Privacy.</a></p>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <div>
+      <a class="brand" href="./index.html"><span class="brand-mark" aria-hidden="true" style="display:inline-flex;width:22px;height:22px;"><svg viewBox="6 4 28 28" width="22" height="22" xmlns="http://www.w3.org/2000/svg"><polygon points="20,4 34,18 20,32 6,18" fill="#FBEEDF"/><polygon points="20,8.6 31.7,20.3 20,32 8.3,20.3" fill="#F2C9A8"/><polygon points="20,13.2 29.4,22.6 20,32 10.6,22.6" fill="#E29A6B"/><polygon points="20,17.8 27.1,24.9 20,32 12.9,24.9" fill="#C25E1A"/><polygon points="20,22.4 24.8,27.2 20,32 15.2,27.2" fill="#8F3F12"/><polygon points="20,27 22.5,29.5 20,32 17.5,29.5" fill="#5C2A0C"/></svg></span>External<span class="brand-os">OS</span></a>
+      <p style="margin-top: 12px; max-width: 360px;">UK compliance, paid once. Built in Leeds. Files you keep.</p>
+    </div>
+    <div>
+      <p><a href="./index.html">Home</a> &middot; <a href="./tools.html">All tools</a> &middot; <a href="./mtd.html">MTD hub</a> &middot; <a href="./quiz.html">Retake quiz</a> &middot; <a href="./privacy.html">Privacy</a></p>
+      <p style="margin-top: 8px; font-size: 12px; opacity: 0.7;">&copy; ExternalOS 2026</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  var STORAGE_KEY = 'eos-persona';
+  var ANSWERS_KEY = 'eos-quiz-answers';
+
+  // Catalogue (source of truth: tools.html). Slugs match href targets.
+  var TOOLS = {
+    'mtd-spreadsheet':   { cat: 'MTD',          name: 'The MTD Spreadsheet',         price: 29, href: './mtd-spreadsheet.html', desc: 'HMRC-shape locked template, four cumulative quarters, bridging-software shortlist, iCal feed of every deadline.' },
+    'uk-tax-calculator': { cat: 'Tax',          name: 'UK Tax Calculator',           price: 9,  href: './uk-tax-calculator.html', desc: 'Google Sheet with 2025/26 rates baked in. Self Assessment, income tax, NI, dividend tax. Tax-saving checklist PDF.' },
+    'property-yield':    { cat: 'Property',     name: 'Property Rental Yield Tool',  price: 19, href: './property-rental-yield.html', desc: 'Yield, SDLT (2026 +5% surcharge), Section 24 cap, ROI projection. One spreadsheet.' },
+    'invoice-categoriser':{ cat: 'Bookkeeping', name: 'Invoice / Expense Categoriser', price: 19, href: './invoice-expense-categoriser.html', desc: 'Google Sheet with 10 HMRC SA103 categories baked in. Quarterly P&L auto-roll. VAT threshold tracker.' },
+    'client-comms':      { cat: 'Freelance',    name: 'Client Comms Templates',       price: 19, href: './client-comms-drafter.html', desc: '30 freelancer email templates. Chase payments, scope creep, refunds, onboarding. Tone-guide PDF.' },
+    'landlord-legal':    { cat: 'Landlord',     name: 'UK Landlord Legal Pack',       price: 29, href: './uk-landlord-compliance.html', desc: '100-page PDF, all 37 Section 8 grounds with notices, RRA 2026 timeline, deposit prescribed info, standard forms.' },
+    'landlord-may-kit':  { cat: 'Landlord',     name: 'Landlord 31 May Kit',          price: 29, href: './landlord-31-may-kit.html', desc: 'The 31 May 2026 Renters\' Rights information sheet ready, plus the rest of the May admin pack.' },
+    'employment-law':    { cat: 'Employment',   name: 'UK Employment Law Kit',        price: 29, href: './uk-employment-law.html', desc: 'Holiday, sick pay, notice, redundancy, maternity calculator + 11 letter templates + ERA 2025 guide.' },
+    'employer-handbook': { cat: 'Employment',   name: 'Employee Handbook Generator',  price: 39, href: './employee-handbook-generator.html', desc: '6 industry handbook templates (Word), 20-section structure guide, ERA 2025 mandatory-clause checklist.' },
+    'hse-risk':          { cat: 'Health & Safety', name: 'HSE Risk Assessment Pack', price: 29, href: './health-safety-risk-assessment.html', desc: '11 industry-preset templates + RIDDOR/HSE checklist. Construction, food, retail, healthcare, education, more.' },
+    'contract-review':   { cat: 'Contracts',    name: 'Contract Review Spotter',      price: 29, href: './contract-review.html', desc: '9 contract-type red-flag checklists, 14 red-flag explainers, 10 missing-clause warning guide.' },
+    'haccp':             { cat: 'Food Hygiene', name: 'HACCP / Food Hygiene Pack',    price: 29, href: './food-hygiene-haccp.html', desc: 'HACCP plan template, 14-allergen matrix, cleaning schedule, EHO inspection prep. Natasha\'s Law ready.' },
+    'construction-quote':{ cat: 'Construction', name: 'Construction Quote Builder',   price: 29, href: './construction-quote.html', desc: '16 job-type quote templates, UK trade day-rate reference, CIS guidance, materials cost reference.' },
+    'ir35-assessment':   { cat: 'IR35',         name: 'IR35 Assessment Kit',          price: 29, href: './ir35-assessment.html', desc: 'Status questionnaire PDF, 10 case-law citations, contract-clause checklist, verdict logic flowchart.' },
+    'proposal-generator':{ cat: 'Freelance',    name: 'Proposal Generator',           price: 29, href: './proposal-generator.html', desc: '6 proposal templates (Word/PDF) for common freelance scenarios. Bonsai-style without the £19/mo.' },
+    'creative-contracts':{ cat: 'Creative',     name: 'Creative Contracts Pack',      price: 29, href: './creative-contracts.html', desc: '9 contract templates (photography, video, music, illustration), model release pack, usage licences.' },
+    'teacher-plans':     { cat: 'Education',    name: 'Teacher Lesson Plans',         price: 29, href: './teacher-lesson-plans.html', desc: 'KS1-KS5 lesson plan templates aligned to 4 exam boards (AQA, Edexcel, OCR, WJEC), worksheets, mark-schemes.' },
+    'aml-kyc':           { cat: 'AML / KYC',    name: 'AML / KYC Document Pack',      price: 39, href: './aml-kyc-docs.html', desc: '15 AML/KYC templates across 8 regulated sectors. UK AML 2017 + 2024 amendments compliance checklist.' },
+    'gdpr':              { cat: 'GDPR',         name: 'GDPR Compliance Documents',    price: 39, href: './gdpr-compliance.html', desc: '14 GDPR templates, privacy policy, cookie policy, DPIA, ROPA, DSAR response, breach notification, consent.' },
+    'grant-writer':      { cat: 'Grants',       name: 'Grant Application Writer',     price: 49, href: './grant-application-writer.html', desc: '10 funder-preset templates (NLCF, Arts Council, BBC CiN), structure guide, theory of change framework.' },
+    'compliance-tracker':{ cat: 'Reference',    name: 'UK Compliance Tracker',        price: 59, href: './index.html#product-tracker', desc: 'Live Google Sheet of every UK threshold, deadline, rate, RRA citation. Updated monthly. Yours forever.' }
+  };
+
+  // Per-persona toolkit definitions
+  // primary: 3-5 tools we lead with (with a "why this one for you" note)
+  // also: 2-3 secondary picks
+  // bundle: which named bundle suits + label
+  var PERSONAS = {
+    'sole-trader': {
+      label: 'Sole trader / freelancer',
+      headline: 'Your toolkit, <em>built for solo work.</em>',
+      lede: 'HMRC, MTD, getting paid, staying organised. The five files a UK sole trader actually needs. <strong>Paid once. No subscription.</strong>',
+      chips: ['MTD ITSA from April 2026', 'Self Assessment ready', '£29 anchor pricing', 'No subscription'],
+      primary: [
+        { slug: 'mtd-spreadsheet', why: 'You sit inside MTD ITSA. This is the HMRC-shape spreadsheet that keeps you off the £21-per-month Sage treadmill.' },
+        { slug: 'uk-tax-calculator', why: 'Self Assessment maths in a sheet. £9 entry, instant answer for your tax band and dividends if applicable.' },
+        { slug: 'invoice-categoriser', why: 'Your bookkeeping spine. 10 HMRC categories baked in, quarterly P&L auto-rolls into the MTD spreadsheet.' },
+        { slug: 'client-comms', why: 'For the late-payment chase, scope-creep pushback, refund script. Saves a hard conversation.' },
+        { slug: 'proposal-generator', why: 'When the client asks for a written proposal, you have six template shapes ready.' }
+      ],
+      also: ['contract-review', 'compliance-tracker'],
+      bundle: { id: 'freelancer-toolkit', label: 'Freelancer Toolkit £49', href: './index.html#product-toolkit' }
+    },
+    'landlord': {
+      label: 'Landlord',
+      headline: 'Your landlord pack, <em>RRA 2026 ready.</em>',
+      lede: 'Renters\' Rights Act 2026 changed everything. Section 21 is gone, Section 8 grounds are the new normal, and the 31 May information sheet is mandatory. <strong>Three files, paid once.</strong>',
+      chips: ['RRA 2026 ready', 'Section 21 ban handled', '31 May info sheet', 'Section 24 included'],
+      primary: [
+        { slug: 'landlord-legal', why: 'Your core legal pack. All 37 Section 8 grounds with notices, RRA timeline, deposit prescribed info.' },
+        { slug: 'landlord-may-kit', why: 'The 31 May 2026 information sheet plus the rest of the May admin. Time-bound, ship-it-and-forget.' },
+        { slug: 'property-yield', why: 'Yield, SDLT with the 2026 +5% surcharge, Section 24 mortgage interest cap. One spreadsheet, all the maths.' }
+      ],
+      also: ['compliance-tracker', 'mtd-spreadsheet'],
+      bundle: { id: 'full-suite', label: 'Full UK Business Suite £179', href: './index.html#products' }
+    },
+    'employer': {
+      label: 'Small employer',
+      headline: 'Your employer pack, <em>ERA 2025 ready.</em>',
+      lede: 'You hire people. The Employment Rights Act 2025 reshaped contracts, dismissal, sick pay, redundancy. Your pack covers the four documents an employer is asked for in any dispute. <strong>Bundle and save 60%.</strong>',
+      chips: ['ERA 2025 included', '11 letter templates', '6 handbook templates', 'HSE risk assessment'],
+      primary: [
+        { slug: 'employment-law', why: 'The everyday calculator pack. Holiday, sick pay, notice, redundancy, maternity. Plus 11 letter templates for the awkward conversations.' },
+        { slug: 'employer-handbook', why: 'The £500 solicitor handbook draft, but you fill in your own blanks. 20-section structure, mandatory ERA 2025 clauses already in.' },
+        { slug: 'hse-risk', why: 'Your industry-preset risk assessment template. HSE inspector turns up, this is what they want to see.' },
+        { slug: 'contract-review', why: 'For the supplier and customer contracts you sign every week. Red flags in fifteen minutes.' }
+      ],
+      also: ['gdpr', 'compliance-tracker'],
+      bundle: { id: 'employer-pack', label: 'Employer Pack £89', href: './index.html#product-employer' }
+    },
+    'creative': {
+      label: 'Creative freelancer',
+      headline: 'Your creative pack, <em>contracts and copyright.</em>',
+      lede: 'You make work for clients. The pack covers your contract, your usage licences, your model release. Plus the freelance basics, paid once. <strong>£29 anchor pricing.</strong>',
+      chips: ['CDPA 1988 included', '9 contract templates', 'Model release pack', 'Usage licences'],
+      primary: [
+        { slug: 'creative-contracts', why: 'Photography, video, music, illustration contracts. Plus model release pack and usage licence templates. Your core artefact.' },
+        { slug: 'proposal-generator', why: 'When the brief lands and the client wants something written back, six template shapes ready.' },
+        { slug: 'client-comms', why: 'Chase the late invoice, push back on scope creep, write the refund script without the awkward edge.' },
+        { slug: 'contract-review', why: 'When THEIR contract lands instead of yours, the red-flag spotter saves a hard conversation later.' }
+      ],
+      also: ['uk-tax-calculator', 'compliance-tracker'],
+      bundle: { id: 'freelancer-toolkit', label: 'Freelancer Toolkit £49', href: './index.html#product-toolkit' }
+    },
+    'medical': {
+      label: 'GP / medical practice manager',
+      headline: 'Your practice pack, <em>CQC and GDPR.</em>',
+      lede: 'CQC inspection readiness, special-category patient data under GDPR, employment law for clinical and admin staff. The pack a UK practice manager reaches for first. <strong>Paid once.</strong>',
+      chips: ['CQC inspection ready', 'Special-category GDPR', 'ERA 2025 included', 'Risk assessment'],
+      primary: [
+        { slug: 'gdpr', why: 'Special-category patient data needs the full GDPR pack. Privacy policy, DPIA, ROPA, DSAR response, breach notification.' },
+        { slug: 'employment-law', why: 'Clinical and admin staff under ERA 2025. Holiday, sick pay, notice, redundancy, maternity. Plus 11 letter templates.' },
+        { slug: 'hse-risk', why: 'Healthcare-preset risk assessment template, RIDDOR and HSE checklist. CQC inspectors expect this.' },
+        { slug: 'employer-handbook', why: 'Practice handbook with mandatory ERA 2025 clauses. Replaces a £500+ solicitor draft.' }
+      ],
+      also: ['contract-review', 'compliance-tracker'],
+      bundle: { id: 'employer-pack', label: 'Employer Pack £89', href: './index.html#product-employer' }
+    }
+  };
+
+  // --- Helpers ---
+  function getParams() {
+    var p = new URLSearchParams(window.location.search);
+    var out = {};
+    p.forEach(function(v, k) { out[k] = v; });
+    return out;
+  }
+  function getStoredPersona() {
+    try { return localStorage.getItem(STORAGE_KEY); } catch (e) { return null; }
+  }
+  function setStoredPersona(p) {
+    try { localStorage.setItem(STORAGE_KEY, p); } catch (e) {}
+  }
+
+  function resolvePersona() {
+    var params = getParams();
+    var fromUrl = params.persona;
+    var fromStorage = getStoredPersona();
+    var p = fromUrl || fromStorage || 'sole-trader';
+    if (!PERSONAS[p]) p = 'sole-trader';
+    // sync URL persona into storage when arriving fresh from quiz
+    if (fromUrl && fromUrl !== fromStorage) setStoredPersona(fromUrl);
+    return p;
+  }
+
+  function renderToolCard(slug, why, isLead, rank) {
+    var t = TOOLS[slug];
+    if (!t) return '';
+    var card = document.createElement('article');
+    card.className = 'tool' + (isLead ? ' lead' : '');
+    var html = '';
+    if (rank) html += '<span class="tool-rank">' + rank + '</span>';
+    html += '<div class="tool-meta"><span class="tool-cat">' + t.cat + '</span><span class="tool-price">&pound;' + t.price + ' <small>once</small></span></div>';
+    html += '<h3>' + t.name + '</h3>';
+    html += '<p>' + t.desc + '</p>';
+    if (why) html += '<div class="why">' + why + '</div>';
+    html += '<a href="' + t.href + '" class="tool-cta">See what\'s inside &rarr;</a>';
+    card.innerHTML = html;
+    return card;
+  }
+
+  function applyPersona(p) {
+    var def = PERSONAS[p];
+    if (!def) return;
+
+    document.documentElement.setAttribute('data-persona', p);
+    document.getElementById('personaLabel').textContent = def.label;
+    document.getElementById('heroHeadline').innerHTML = def.headline;
+    document.getElementById('heroLede').innerHTML = def.lede;
+
+    var chipRow = document.getElementById('chipRow');
+    chipRow.innerHTML = '';
+    def.chips.forEach(function(c) {
+      var s = document.createElement('span');
+      s.className = 'chip';
+      s.innerHTML = c;
+      chipRow.appendChild(s);
+    });
+
+    var grid = document.getElementById('recommendedGrid');
+    grid.innerHTML = '';
+    def.primary.forEach(function(item, idx) {
+      var card = renderToolCard(item.slug, item.why, idx === 0, 'Pick ' + (idx + 1));
+      if (card) grid.appendChild(card);
+    });
+
+    var also = document.getElementById('alsoGrid');
+    also.innerHTML = '';
+    (def.also || []).forEach(function(slug) {
+      var card = renderToolCard(slug, null, false, null);
+      if (card) also.appendChild(card);
+    });
+
+    if (def.bundle) {
+      var cta = document.getElementById('bundleCta');
+      cta.style.display = 'grid';
+      document.getElementById('bundlePrimary').href = def.bundle.href;
+      document.getElementById('bundlePrimary').innerHTML = def.bundle.label + ' &rarr;';
+    }
+
+    // Update document title
+    document.title = 'Your toolkit: ' + def.label + ' | ExternalOS';
+  }
+
+  function buildSwitcher() {
+    var btn = document.getElementById('switchBtn');
+    btn.addEventListener('click', function() {
+      // Inline a tiny menu under the ribbon
+      var existing = document.getElementById('switcherMenu');
+      if (existing) { existing.remove(); return; }
+      var menu = document.createElement('div');
+      menu.id = 'switcherMenu';
+      menu.style.cssText = 'position:absolute; right:24px; top:100%; margin-top:6px; background:var(--warm-white); border:1px solid var(--warm-cream); border-radius:10px; box-shadow:0 12px 40px rgba(0,0,0,0.12); padding:6px; z-index:50; min-width:240px;';
+      Object.keys(PERSONAS).forEach(function(p) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.style.cssText = 'display:block; width:100%; text-align:left; padding:10px 14px; background:none; border:none; cursor:pointer; font-family:Inter,sans-serif; font-size:14px; color:var(--ink); border-radius:6px;';
+        b.textContent = PERSONAS[p].label;
+        b.addEventListener('mouseenter', function() { b.style.background = 'var(--accent-pale)'; });
+        b.addEventListener('mouseleave', function() { b.style.background = 'none'; });
+        b.addEventListener('click', function() {
+          setStoredPersona(p);
+          var params = new URLSearchParams(window.location.search);
+          params.set('persona', p);
+          window.location.search = params.toString();
+        });
+        menu.appendChild(b);
+      });
+      btn.parentNode.style.position = 'relative';
+      btn.parentNode.appendChild(menu);
+    });
+  }
+
+  function bindRetake() {
+    document.getElementById('retakeBtn').addEventListener('click', function() {
+      window.location.href = './quiz.html';
+    });
+  }
+
+  function showFirstVisitToast(p) {
+    var KEY = 'eos-persona-toast-seen';
+    try {
+      if (localStorage.getItem(KEY)) return;
+      localStorage.setItem(KEY, '1');
+    } catch (e) { return; }
+    var toast = document.createElement('div');
+    toast.className = 'persona-toast';
+    toast.innerHTML = '<span>We shaped this view to your quiz answers.</span> <a href="./quiz.html">Retake quiz</a> <button aria-label="Dismiss">&times;</button>';
+    document.body.appendChild(toast);
+    toast.querySelector('button').addEventListener('click', function() { toast.remove(); });
+    setTimeout(function() { if (toast.parentNode) toast.remove(); }, 9000);
+  }
+
+  // --- Boot ---
+  var persona = resolvePersona();
+  applyPersona(persona);
+  buildSwitcher();
+  bindRetake();
+  if (getParams().persona) showFirstVisitToast(persona);
+})();
+</script>
+
+<script src="./_dev-sidebar.js" defer></script>
+</body>
+</html>

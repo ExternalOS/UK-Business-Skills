@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find your UK compliance toolkit | 60-second quiz | ExternalOS</title>
+<meta name="description" content="Six questions, sixty seconds. We pick the three to five toolkits that fit your situation. Paid once, yours forever.">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="Find your UK compliance toolkit in 60 seconds">
+<meta property="og:description" content="Tell us your situation. We'll tell you which £29 toolkit fits. Paid once. Yours forever.">
+<link rel="icon" href="./favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --accent: #B8541F; --accent-deep: #8F3F12; --accent-pale: #FBEEDF; --accent-mid: #D17638;
+  --warm-white: #FBF7F0; --warm-off: #F4EDE0; --warm-cream: #ECE2CE;
+  --ink: #1A1A1A; --body: #4A463E; --muted: #6E665C;
+  --radius: 12px;
+}
+html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+body { font-family: 'Inter', system-ui, sans-serif; color: var(--ink); background: var(--warm-white); line-height: 1.6; min-height: 100vh; }
+a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+a:hover { color: var(--accent-deep); }
+h1, h2 { font-family: 'Libre Baskerville', Georgia, serif; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); }
+h3 { font-family: 'Syne', sans-serif; font-weight: 600; color: var(--ink); }
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+.banner { background: var(--ink); color: var(--warm-white); padding: 9px 16px; text-align: center; font-size: 13px; border-bottom: 1px solid #3D3830; }
+.banner strong { color: var(--accent-pale); }
+.banner a { color: var(--accent-pale); }
+.nav { padding: 24px 0; display: flex; align-items: center; justify-content: space-between; max-width: 1240px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+.brand { font-family: 'Libre Baskerville', serif; font-size: 22px; font-weight: 700; color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+.brand-os { color: var(--accent); }
+.skip-link { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+.skip-link:hover { color: var(--accent); }
+
+/* Hero */
+.quiz-hero { padding: 50px 0 30px; text-align: center; }
+.quiz-hero .eyebrow { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px; display: block; }
+.quiz-hero h1 { font-size: clamp(34px, 5vw, 50px); line-height: 1.06; margin-bottom: 18px; }
+.quiz-hero h1 em { color: var(--accent); font-style: italic; }
+.quiz-hero .lede { font-size: 17px; max-width: 560px; margin: 0 auto; color: var(--body); }
+
+/* Progress */
+.progress-shell { max-width: 560px; margin: 30px auto 14px; padding: 0 24px; }
+.progress-bar { height: 6px; background: var(--warm-cream); border-radius: 100px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--accent); border-radius: 100px; transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1); width: 0%; }
+.progress-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+/* Card */
+.quiz-card { background: var(--warm-off); border: 1px solid var(--warm-cream); border-radius: var(--radius); padding: clamp(28px, 4vw, 48px); margin: 14px auto 30px; max-width: 640px; box-shadow: 0 1px 3px rgba(26,26,26,0.04); }
+.q-step { display: none; }
+.q-step.active { display: block; animation: stepIn 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
+@keyframes stepIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.q-label { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; display: block; }
+.q-prompt { font-family: 'Libre Baskerville', serif; font-size: clamp(22px, 3vw, 28px); line-height: 1.25; margin-bottom: 6px; color: var(--ink); }
+.q-helper { font-size: 14px; color: var(--muted); margin-bottom: 24px; }
+.q-options { display: flex; flex-direction: column; gap: 10px; }
+.q-option { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px; background: var(--warm-white); border: 1.5px solid var(--warm-cream); border-radius: 10px; cursor: pointer; transition: all 0.15s ease; text-align: left; font-family: 'Inter', sans-serif; font-size: 15px; color: var(--ink); width: 100%; }
+.q-option:hover { border-color: var(--accent-mid); background: var(--accent-pale); }
+.q-option.selected { border-color: var(--accent); background: var(--accent-pale); }
+.q-option .opt-dot { width: 18px; height: 18px; border-radius: 100px; border: 2px solid var(--warm-cream); flex-shrink: 0; margin-top: 2px; transition: all 0.15s ease; position: relative; }
+.q-option.selected .opt-dot { border-color: var(--accent); background: var(--accent); }
+.q-option.selected .opt-dot::after { content: ""; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 6px; height: 6px; border-radius: 100px; background: var(--warm-white); }
+.q-option-label { font-weight: 500; }
+.q-option-sub { display: block; font-size: 13px; color: var(--muted); margin-top: 2px; font-weight: 400; }
+
+/* Nav buttons */
+.q-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; gap: 12px; }
+.q-back { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 13px; padding: 11px 22px; border-radius: 100px; background: transparent; color: var(--muted); border: 1px solid var(--warm-cream); cursor: pointer; transition: all 0.15s ease; }
+.q-back:hover:not(:disabled) { color: var(--ink); border-color: var(--ink); }
+.q-back:disabled { opacity: 0.35; cursor: not-allowed; }
+.q-next { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 13px; padding: 12px 26px; border-radius: 100px; background: var(--accent); color: var(--warm-white); border: none; cursor: pointer; transition: all 0.15s ease; }
+.q-next:hover:not(:disabled) { background: var(--accent-deep); }
+.q-next:disabled { opacity: 0.35; cursor: not-allowed; background: var(--muted); }
+.q-skip { font-family: 'Syne', sans-serif; font-weight: 500; font-size: 12px; color: var(--muted); background: none; border: none; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.q-skip:hover { color: var(--accent); }
+
+/* Result card (rendered when computing) */
+.result-card { text-align: center; padding: 20px 0; }
+.result-card .result-eyebrow { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+.result-card h2 { font-size: clamp(28px, 4vw, 36px); margin-bottom: 16px; line-height: 1.2; }
+.result-card h2 em { color: var(--accent); font-style: italic; }
+.result-card p { color: var(--body); max-width: 460px; margin: 0 auto 24px; }
+.result-spinner { width: 32px; height: 32px; border: 3px solid var(--warm-cream); border-top-color: var(--accent); border-radius: 100px; margin: 24px auto; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Trust line */
+.trust-line { text-align: center; font-size: 13px; color: var(--muted); margin: 0 auto 50px; max-width: 480px; padding: 0 24px; }
+.trust-line strong { color: var(--ink); }
+
+.footer { background: var(--warm-off); border-top: 1px solid var(--warm-cream); padding: 32px 0 26px; margin-top: 40px; }
+.footer p, .footer a { font-size: 13px; color: var(--muted); text-decoration: none; }
+.footer a:hover { color: var(--accent); }
+.footer-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px; max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+
+@media (max-width: 640px) {
+  .quiz-card { padding: 26px 22px; margin: 14px 16px 30px; }
+  .q-actions { flex-direction: column-reverse; align-items: stretch; }
+  .q-next, .q-back { width: 100%; }
+}
+</style>
+<script src="./_theme.js" defer></script>
+<script src="./_persona.js" defer></script>
+</head>
+<body>
+
+<div class="banner">Most UK compliance software charges &pound;15-&pound;35 <strong>every month</strong>. Ours is <strong>paid once</strong>. <a href="./tools.html">See all tools &rarr;</a></div>
+
+<header>
+  <nav class="nav">
+    <a href="./index.html" class="brand"><span class="brand-mark" aria-hidden="true" style="display:inline-flex;width:22px;height:22px;"><svg viewBox="6 4 28 28" width="22" height="22" xmlns="http://www.w3.org/2000/svg"><polygon points="20,4 34,18 20,32 6,18" fill="#FBEEDF"/><polygon points="20,8.6 31.7,20.3 20,32 8.3,20.3" fill="#F2C9A8"/><polygon points="20,13.2 29.4,22.6 20,32 10.6,22.6" fill="#E29A6B"/><polygon points="20,17.8 27.1,24.9 20,32 12.9,24.9" fill="#C25E1A"/><polygon points="20,22.4 24.8,27.2 20,32 15.2,27.2" fill="#8F3F12"/><polygon points="20,27 22.5,29.5 20,32 17.5,29.5" fill="#5C2A0C"/></svg></span>External<span class="brand-os">OS</span></a>
+    <a href="./tools.html" class="skip-link">Skip the quiz &rarr;</a>
+  </nav>
+</header>
+
+<section class="quiz-hero wrap">
+  <span class="eyebrow">60-second toolkit picker</span>
+  <h1>Tell us your situation. <em>We'll pick your toolkit.</em></h1>
+  <p class="lede">Six questions. Sixty seconds. You get the three to five files that fit your real compliance shape. Paid once. Yours forever.</p>
+</section>
+
+<div class="progress-shell">
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-meta">
+    <span id="stepLabel">Question 1 of 6</span>
+    <span id="timeLabel">~60 seconds</span>
+  </div>
+</div>
+
+<form class="quiz-card" id="quizForm" novalidate>
+
+  <!-- Q1: work situation -->
+  <fieldset class="q-step active" data-step="1" data-key="situation">
+    <span class="q-label">Question 1 of 6</span>
+    <legend class="q-prompt">What is your work situation?</legend>
+    <p class="q-helper">Pick the closest match. You can change this later.</p>
+    <div class="q-options">
+      <button type="button" class="q-option" data-value="sole-trader"><span class="opt-dot"></span><span><span class="q-option-label">Sole trader or freelancer</span><span class="q-option-sub">Self-employed, no limited company</span></span></button>
+      <button type="button" class="q-option" data-value="contractor"><span class="opt-dot"></span><span><span class="q-option-label">Contractor (Ltd company)</span><span class="q-option-sub">Inside or outside IR35, day-rate work</span></span></button>
+      <button type="button" class="q-option" data-value="landlord"><span class="opt-dot"></span><span><span class="q-option-label">Landlord</span><span class="q-option-sub">One or more rental properties</span></span></button>
+      <button type="button" class="q-option" data-value="employer"><span class="opt-dot"></span><span><span class="q-option-label">Small employer</span><span class="q-option-sub">1-50 staff, construction, retail, services</span></span></button>
+      <button type="button" class="q-option" data-value="creative"><span class="opt-dot"></span><span><span class="q-option-label">Creative or design freelance</span><span class="q-option-sub">Photographer, designer, videographer, illustrator</span></span></button>
+      <button type="button" class="q-option" data-value="medical"><span class="opt-dot"></span><span><span class="q-option-label">GP or medical practice manager</span><span class="q-option-sub">CQC-regulated practice, dental, allied health</span></span></button>
+      <button type="button" class="q-option" data-value="other"><span class="opt-dot"></span><span><span class="q-option-label">Something else</span><span class="q-option-sub">We'll show you the broad starter toolkit</span></span></button>
+    </div>
+  </fieldset>
+
+  <!-- Q2: biggest worry -->
+  <fieldset class="q-step" data-step="2" data-key="worry">
+    <span class="q-label">Question 2 of 6</span>
+    <legend class="q-prompt">What is your biggest UK compliance worry right now?</legend>
+    <p class="q-helper">The thing that wakes you at 3am.</p>
+    <div class="q-options">
+      <button type="button" class="q-option" data-value="hmrc"><span class="opt-dot"></span><span><span class="q-option-label">HMRC / tax</span><span class="q-option-sub">Self Assessment, MTD, VAT, dividends</span></span></button>
+      <button type="button" class="q-option" data-value="employment"><span class="opt-dot"></span><span><span class="q-option-label">Employment law</span><span class="q-option-sub">Contracts, dismissal, ERA 2025, handbooks</span></span></button>
+      <button type="button" class="q-option" data-value="tenants"><span class="opt-dot"></span><span><span class="q-option-label">Tenants / Renters' Rights</span><span class="q-option-sub">RRA 2026, Section 21 ban, deposit rules</span></span></button>
+      <button type="button" class="q-option" data-value="gdpr"><span class="opt-dot"></span><span><span class="q-option-label">GDPR / data protection</span><span class="q-option-sub">Privacy policy, DSAR, ICO breach reporting</span></span></button>
+      <button type="button" class="q-option" data-value="contracts"><span class="opt-dot"></span><span><span class="q-option-label">Contracts and getting paid</span><span class="q-option-sub">Client contracts, late payment, scope creep</span></span></button>
+      <button type="button" class="q-option" data-value="safety"><span class="opt-dot"></span><span><span class="q-option-label">Health, safety, hygiene</span><span class="q-option-sub">HSE, HACCP, RIDDOR, EHO inspections</span></span></button>
+      <button type="button" class="q-option" data-value="cqc"><span class="opt-dot"></span><span><span class="q-option-label">CQC inspection readiness</span><span class="q-option-sub">Medical / dental compliance documents</span></span></button>
+      <button type="button" class="q-option" data-value="other"><span class="opt-dot"></span><span><span class="q-option-label">Not sure / mixed</span><span class="q-option-sub">A few things on the pile</span></span></button>
+    </div>
+  </fieldset>
+
+  <!-- Q3: accounting setup -->
+  <fieldset class="q-step" data-step="3" data-key="accounting">
+    <span class="q-label">Question 3 of 6</span>
+    <legend class="q-prompt">What is your current accounting setup?</legend>
+    <p class="q-helper">Be honest. No judgement.</p>
+    <div class="q-options">
+      <button type="button" class="q-option" data-value="none"><span class="opt-dot"></span><span><span class="q-option-label">Nothing yet</span><span class="q-option-sub">Shoebox of receipts, mental arithmetic</span></span></button>
+      <button type="button" class="q-option" data-value="spreadsheet"><span class="opt-dot"></span><span><span class="q-option-label">A spreadsheet</span><span class="q-option-sub">Excel, Google Sheets, or similar</span></span></button>
+      <button type="button" class="q-option" data-value="saas"><span class="opt-dot"></span><span><span class="q-option-label">SaaS software</span><span class="q-option-sub">Sage, QuickBooks, Xero, FreeAgent, FreshBooks</span></span></button>
+      <button type="button" class="q-option" data-value="accountant"><span class="opt-dot"></span><span><span class="q-option-label">An accountant handles it</span><span class="q-option-sub">I just hand over the receipts</span></span></button>
+    </div>
+  </fieldset>
+
+  <!-- Q4: income range -->
+  <fieldset class="q-step" data-step="4" data-key="income">
+    <span class="q-label">Question 4 of 6</span>
+    <legend class="q-prompt">What is your annual gross income range?</legend>
+    <p class="q-helper">This shapes MTD thresholds and VAT relevance. Nobody sees this but you.</p>
+    <div class="q-options">
+      <button type="button" class="q-option" data-value="under-20k"><span class="opt-dot"></span><span><span class="q-option-label">Under &pound;20,000</span><span class="q-option-sub">Below the MTD threshold for now</span></span></button>
+      <button type="button" class="q-option" data-value="20k-50k"><span class="opt-dot"></span><span><span class="q-option-label">&pound;20,000 to &pound;50,000</span><span class="q-option-sub">MTD ITSA applies from April 2026 (then April 2027 for the lower band)</span></span></button>
+      <button type="button" class="q-option" data-value="50k-90k"><span class="opt-dot"></span><span><span class="q-option-label">&pound;50,000 to &pound;90,000</span><span class="q-option-sub">MTD live, VAT threshold near</span></span></button>
+      <button type="button" class="q-option" data-value="over-90k"><span class="opt-dot"></span><span><span class="q-option-label">Over &pound;90,000</span><span class="q-option-sub">VAT-registered territory, higher-rate tax</span></span></button>
+      <button type="button" class="q-option" data-value="prefer-not"><span class="opt-dot"></span><span><span class="q-option-label">Rather not say</span><span class="q-option-sub">No problem, we'll skip the band logic</span></span></button>
+    </div>
+  </fieldset>
+
+  <!-- Q5: deadline -->
+  <fieldset class="q-step" data-step="5" data-key="deadline">
+    <span class="q-label">Question 5 of 6</span>
+    <legend class="q-prompt">Which deadline is closest to you?</legend>
+    <p class="q-helper">Optional. Helps us flag time-sensitive tools first.</p>
+    <div class="q-options">
+      <button type="button" class="q-option" data-value="self-assessment"><span class="opt-dot"></span><span><span class="q-option-label">Self Assessment (31 Jan)</span><span class="q-option-sub">Annual tax return</span></span></button>
+      <button type="button" class="q-option" data-value="mtd-quarterly"><span class="opt-dot"></span><span><span class="q-option-label">MTD ITSA quarterly</span><span class="q-option-sub">Every three months from April 2026</span></span></button>
+      <button type="button" class="q-option" data-value="companies-house"><span class="opt-dot"></span><span><span class="q-option-label">Companies House CS01 / accounts</span><span class="q-option-sub">Annual filings</span></span></button>
+      <button type="button" class="q-option" data-value="rra-31-may"><span class="opt-dot"></span><span><span class="q-option-label">RRA 31 May landlord info sheet</span><span class="q-option-sub">Renters' Rights Act 2026 prep</span></span></button>
+      <button type="button" class="q-option" data-value="cqc-inspection"><span class="opt-dot"></span><span><span class="q-option-label">CQC inspection window</span><span class="q-option-sub">Quality regulator visit</span></span></button>
+      <button type="button" class="q-option" data-value="not-sure"><span class="opt-dot"></span><span><span class="q-option-label">Not sure / nothing urgent</span><span class="q-option-sub">Planning ahead</span></span></button>
+    </div>
+  </fieldset>
+
+  <!-- Q6: priority/scope -->
+  <fieldset class="q-step" data-step="6" data-key="priority">
+    <span class="q-label">Question 6 of 6 &middot; last one</span>
+    <legend class="q-prompt">When you spend money on tools, what matters most?</legend>
+    <p class="q-helper">This shapes which tier we lead with.</p>
+    <div class="q-options">
+      <button type="button" class="q-option" data-value="cheapest"><span class="opt-dot"></span><span><span class="q-option-label">The cheapest thing that works</span><span class="q-option-sub">&pound;9 entry point, single calculators</span></span></button>
+      <button type="button" class="q-option" data-value="complete"><span class="opt-dot"></span><span><span class="q-option-label">Buy the whole kit once, be done</span><span class="q-option-sub">&pound;29-&pound;49 toolkits with everything in one pack</span></span></button>
+      <button type="button" class="q-option" data-value="bundle"><span class="opt-dot"></span><span><span class="q-option-label">Big bundle saving</span><span class="q-option-sub">All-in suite, 60% off the unbundled total</span></span></button>
+      <button type="button" class="q-option" data-value="updates"><span class="opt-dot"></span><span><span class="q-option-label">Stays current as laws change</span><span class="q-option-sub">Lifetime updates, live reference sheet</span></span></button>
+    </div>
+  </fieldset>
+
+  <!-- Computing -->
+  <fieldset class="q-step" data-step="7" data-key="result">
+    <div class="result-card">
+      <span class="result-eyebrow">Shaping your toolkit</span>
+      <h2>Picking the <em>three to five tools</em> that fit.</h2>
+      <p>Reading your six answers against the catalogue. Five seconds.</p>
+      <div class="result-spinner" aria-hidden="true"></div>
+    </div>
+  </fieldset>
+
+  <div class="q-actions" id="quizActions">
+    <button type="button" class="q-back" id="btnBack" disabled>&larr; Back</button>
+    <div style="display:flex; gap: 16px; align-items: center;">
+      <button type="button" class="q-skip" id="btnSkip" style="display:none;">Skip this one</button>
+      <button type="button" class="q-next" id="btnNext" disabled>Next &rarr;</button>
+    </div>
+  </div>
+
+</form>
+
+<p class="trust-line">No email signup needed to take the quiz. <strong>We don't track you across sites.</strong> Your answers stay on your device. <a href="./privacy.html">Privacy.</a></p>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <p>&copy; ExternalOS 2026 &middot; UK compliance, paid once.</p>
+    <p><a href="./index.html">Home</a> &middot; <a href="./tools.html">All tools</a> &middot; <a href="./mtd.html">MTD hub</a> &middot; <a href="./privacy.html">Privacy</a></p>
+  </div>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  var TOTAL_STEPS = 6;
+  var STORAGE_KEY = 'eos-persona';
+  var ANSWERS_KEY = 'eos-quiz-answers';
+
+  var state = {
+    step: 1,
+    answers: {}
+  };
+
+  var form = document.getElementById('quizForm');
+  var btnNext = document.getElementById('btnNext');
+  var btnBack = document.getElementById('btnBack');
+  var btnSkip = document.getElementById('btnSkip');
+  var progressFill = document.getElementById('progressFill');
+  var stepLabel = document.getElementById('stepLabel');
+  var timeLabel = document.getElementById('timeLabel');
+
+  // OPTIONAL steps: 5 and 6 (deadline + priority both optional)
+  var OPTIONAL_STEPS = [5, 6];
+
+  function isOptional(step) { return OPTIONAL_STEPS.indexOf(step) !== -1; }
+
+  function currentFieldset() {
+    return form.querySelector('.q-step[data-step="' + state.step + '"]');
+  }
+
+  function render() {
+    Array.prototype.forEach.call(form.querySelectorAll('.q-step'), function(fs) {
+      fs.classList.toggle('active', parseInt(fs.dataset.step, 10) === state.step);
+    });
+    var pct = state.step <= TOTAL_STEPS ? ((state.step - 1) / TOTAL_STEPS) * 100 : 100;
+    progressFill.style.width = pct + '%';
+
+    if (state.step <= TOTAL_STEPS) {
+      stepLabel.textContent = 'Question ' + state.step + ' of ' + TOTAL_STEPS;
+      var remainingSecs = Math.max(10, (TOTAL_STEPS - state.step + 1) * 10);
+      timeLabel.textContent = '~' + remainingSecs + ' seconds';
+    } else {
+      stepLabel.textContent = 'Building your toolkit';
+      timeLabel.textContent = 'Almost there';
+    }
+
+    btnBack.disabled = state.step === 1 || state.step > TOTAL_STEPS;
+    btnSkip.style.display = isOptional(state.step) && state.step <= TOTAL_STEPS ? 'inline-block' : 'none';
+
+    var fs = currentFieldset();
+    var key = fs && fs.dataset.key;
+    var hasAnswer = key && !!state.answers[key];
+    btnNext.disabled = !hasAnswer && !isOptional(state.step);
+    btnNext.textContent = state.step === TOTAL_STEPS ? 'Get my toolkit →' : 'Next →';
+
+    if (state.step > TOTAL_STEPS) {
+      document.getElementById('quizActions').style.display = 'none';
+    }
+  }
+
+  function selectOption(btn) {
+    var fs = btn.closest('.q-step');
+    var key = fs.dataset.key;
+    Array.prototype.forEach.call(fs.querySelectorAll('.q-option'), function(o) {
+      o.classList.remove('selected');
+    });
+    btn.classList.add('selected');
+    state.answers[key] = btn.dataset.value;
+    btnNext.disabled = false;
+  }
+
+  // Option click delegation
+  Array.prototype.forEach.call(form.querySelectorAll('.q-option'), function(opt) {
+    opt.addEventListener('click', function(e) {
+      e.preventDefault();
+      selectOption(opt);
+    });
+  });
+
+  btnNext.addEventListener('click', function() {
+    if (state.step < TOTAL_STEPS) {
+      state.step += 1;
+      render();
+      window.scrollTo({ top: document.querySelector('.progress-shell').offsetTop - 20, behavior: 'smooth' });
+    } else {
+      finish();
+    }
+  });
+
+  btnBack.addEventListener('click', function() {
+    if (state.step > 1) {
+      state.step -= 1;
+      render();
+      // restore selected state visually
+      var fs = currentFieldset();
+      var key = fs.dataset.key;
+      var val = state.answers[key];
+      if (val) {
+        var sel = fs.querySelector('.q-option[data-value="' + val + '"]');
+        if (sel) sel.classList.add('selected');
+      }
+    }
+  });
+
+  btnSkip.addEventListener('click', function() {
+    var fs = currentFieldset();
+    var key = fs.dataset.key;
+    state.answers[key] = 'skipped';
+    if (state.step < TOTAL_STEPS) {
+      state.step += 1;
+      render();
+    } else {
+      finish();
+    }
+  });
+
+  // Persona scoring
+  function scorePersona(answers) {
+    var scores = {
+      'sole-trader': 0,
+      'landlord': 0,
+      'employer': 0,
+      'creative': 0,
+      'medical': 0
+    };
+
+    // Q1 situation: heavy weight (5 points)
+    var sit = answers.situation;
+    if (sit === 'sole-trader' || sit === 'contractor') scores['sole-trader'] += 5;
+    else if (sit === 'landlord') scores['landlord'] += 5;
+    else if (sit === 'employer') scores['employer'] += 5;
+    else if (sit === 'creative') scores['creative'] += 5;
+    else if (sit === 'medical') scores['medical'] += 5;
+    // 'other' adds nothing - falls through to default sole-trader
+
+    // Q2 worry: medium weight (3 points)
+    var worry = answers.worry;
+    if (worry === 'hmrc') scores['sole-trader'] += 3;
+    else if (worry === 'employment') scores['employer'] += 3;
+    else if (worry === 'tenants') scores['landlord'] += 3;
+    else if (worry === 'contracts') { scores['creative'] += 2; scores['sole-trader'] += 1; }
+    else if (worry === 'safety') scores['employer'] += 3;
+    else if (worry === 'cqc') scores['medical'] += 3;
+    // gdpr is flat across personas, no boost
+
+    // Q5 deadline: light (2 points)
+    var dl = answers.deadline;
+    if (dl === 'self-assessment' || dl === 'mtd-quarterly') scores['sole-trader'] += 2;
+    else if (dl === 'rra-31-may') scores['landlord'] += 2;
+    else if (dl === 'companies-house') scores['employer'] += 1;
+    else if (dl === 'cqc-inspection') scores['medical'] += 2;
+
+    // Pick winner; if tie or all zero, default to sole-trader
+    var max = -1;
+    var winner = 'sole-trader';
+    Object.keys(scores).forEach(function(k) {
+      if (scores[k] > max) { max = scores[k]; winner = k; }
+    });
+    if (max === 0) winner = 'sole-trader';
+    return { persona: winner, scores: scores };
+  }
+
+  function finish() {
+    state.step = 7;
+    render();
+    var verdict = scorePersona(state.answers);
+    try {
+      localStorage.setItem(STORAGE_KEY, verdict.persona);
+      localStorage.setItem(ANSWERS_KEY, JSON.stringify(state.answers));
+    } catch (e) {}
+    // small delay so the user perceives the "computing" step
+    setTimeout(function() {
+      var params = new URLSearchParams();
+      params.set('persona', verdict.persona);
+      Object.keys(state.answers).forEach(function(k) {
+        if (state.answers[k] && state.answers[k] !== 'skipped') params.set(k, state.answers[k]);
+      });
+      window.location.href = './your-toolkit.html?' + params.toString();
+    }, 1400);
+  }
+
+  // Keyboard support
+  document.addEventListener('keydown', function(e) {
+    if (state.step > TOTAL_STEPS) return;
+    if (e.key === 'Enter' && !btnNext.disabled) {
+      e.preventDefault();
+      btnNext.click();
+    }
+    var fs = currentFieldset();
+    if (!fs) return;
+    var opts = fs.querySelectorAll('.q-option');
+    if (/^[1-9]$/.test(e.key)) {
+      var idx = parseInt(e.key, 10) - 1;
+      if (opts[idx]) {
+        e.preventDefault();
+        selectOption(opts[idx]);
+      }
+    }
+  });
+
+  render();
+})();
+</script>
+
+<script src="./_dev-sidebar.js" defer></script>
+</body>
+</html>
