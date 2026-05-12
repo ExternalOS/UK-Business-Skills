@@ -32,7 +32,6 @@
       items: [
         { name: 'UK Employment Law', href: './uk-employment-law.html' },
         { name: 'Employee Handbook Generator', href: './employee-handbook-generator.html' },
-        { name: 'Meeting Notes & Actions', href: './meeting-notes-actions.html' }
       ]
     },
     {
