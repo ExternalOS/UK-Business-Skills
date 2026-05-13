@@ -22,8 +22,9 @@
   /* Default page accent. Per-page override sets a different value. */
   --accent: var(--accent-hmrc);
 
-  /* Q4 type families */
-  --font-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  /* Type families (IBM Plex family, locked S209 v5) */
+  --font-serif: 'IBM Plex Serif', Georgia, 'Times New Roman', serif;
+  --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', 'SF Mono', Menlo, monospace;
 
   /* Q4 type scale */
