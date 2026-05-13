@@ -1022,53 +1022,52 @@ html[data-theme="dark"] .eos-header__theme .icon-moon { display: inline-block; }
   .eos-hero__inner > * { opacity: 1; transform: none; animation: none; }
 }
 
-/* ---------- STAIR TABS (three diamond-roof shapes, back tabs rise on hover) ---------- */
-/* Three pyramid shapes stacked back-to-front. At rest, they sit nested.
-   On card hover, the back two slide up like stair steps to reveal
-   their full silhouettes. Visual rhyme with the layered-diamond logo
-   without re-using the full mark. */
+/* ---------- STAIR TABS (rise from behind the card's top edge on hover) ---------- */
+/* Anchored to the card's top edge. SVG sits above the card with its
+   bottom edge flush to the card's top. At rest, all three pyramid tabs
+   are translated down out of view so nothing is visible. On hover,
+   each tab rises into its equidistant stair-step position in sequence:
+   smallest (front) first, medium second, largest (back) last. */
 
 .eos-card-mark {
   position: absolute;
-  top: 0;
-  right: var(--s-3);
-  width: 44px;
-  height: 28px;
+  bottom: 100%;
+  right: var(--s-4);
+  width: 60px;
+  height: 36px;
   pointer-events: none;
+  overflow: hidden;
   z-index: 1;
-  overflow: visible;
 }
 .eos-card-mark__tab {
   fill: var(--accent);
-  transform: translateY(0);
+  transform: translateY(40px);
   transition: transform 450ms var(--ease-out);
-  transform-origin: center bottom;
 }
-.eos-card-mark__tab:nth-child(1) { opacity: 0.45; }   /* back */
-.eos-card-mark__tab:nth-child(2) { opacity: 0.7; }    /* middle */
-.eos-card-mark__tab:nth-child(3) { opacity: 1; }      /* front */
-
-.eos-bundle-card .eos-card-mark { right: 0; }
-.eos-tool-card .eos-card-mark { right: 0; }
-
-.eos-bundle-card:hover .eos-card-mark__tab:nth-child(1),
-.eos-tool-card:hover .eos-card-mark__tab:nth-child(1),
-.eos-specimen:hover .eos-card-mark__tab:nth-child(1) {
-  transform: translateY(-10px);
+/* SVG order: largest (back) drawn first, smallest (front) drawn last
+   so the smallest sits on top in z-stack. Animation order is the
+   inverse: smallest rises first. */
+.eos-bundle-card:hover .eos-card-mark__tab:nth-child(3),
+.eos-tool-card:hover .eos-card-mark__tab:nth-child(3),
+.eos-specimen:hover .eos-card-mark__tab:nth-child(3) {
+  transform: translateY(0);
   transition-delay: 0ms;
 }
 .eos-bundle-card:hover .eos-card-mark__tab:nth-child(2),
 .eos-tool-card:hover .eos-card-mark__tab:nth-child(2),
 .eos-specimen:hover .eos-card-mark__tab:nth-child(2) {
-  transform: translateY(-5px);
-  transition-delay: 80ms;
+  transform: translateY(0);
+  transition-delay: 160ms;
+}
+.eos-bundle-card:hover .eos-card-mark__tab:nth-child(1),
+.eos-tool-card:hover .eos-card-mark__tab:nth-child(1),
+.eos-specimen:hover .eos-card-mark__tab:nth-child(1) {
+  transform: translateY(0);
+  transition-delay: 320ms;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .eos-card-mark__tab { transition: none; }
-  .eos-bundle-card:hover .eos-card-mark__tab,
-  .eos-tool-card:hover .eos-card-mark__tab,
-  .eos-specimen:hover .eos-card-mark__tab { transform: none; }
+  .eos-card-mark__tab { transition: none; transform: translateY(0); }
 }
 
 /* ---------- SECTIONS ---------- */
