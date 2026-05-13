@@ -1,0 +1,103 @@
+/* ============================================================
+   ExternalOS design tokens
+   Locked at second-meaning-workshop-2026-05-13 (Q3 colour,
+   Q4 type, Q5 spacing, Q9 motion). No additions, no improv.
+   ============================================================ */
+
+:root {
+  /* Q3 light theme */
+  --surface-base: #F6F1E8;
+  --surface-raised: #FFFCF6;
+  --ink-primary: #1C1A17;
+  --ink-soft: #3A342C;
+  --ink-muted: #6C6354;
+  --rule: #C9BEA6;
+
+  /* Q3 accent palette (light surface) */
+  --accent-butter: #E6B547;
+  --accent-hmrc: #1F4D38;
+  --accent-heritage: #B26339;
+  --accent-penalty: #9B2E2E;
+
+  /* Default page accent. Per-page override sets a different value. */
+  --accent: var(--accent-hmrc);
+
+  /* Q4 type families */
+  --font-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-mono: 'IBM Plex Mono', 'SF Mono', Menlo, monospace;
+
+  /* Q4 type scale */
+  --type-display: clamp(48px, 6vw, 64px);
+  --type-h1: clamp(40px, 5.5vw, 56px);
+  --type-h2: clamp(28px, 3.6vw, 36px);
+  --type-h3: 22px;
+  --type-body: 17px;
+  --type-caption: 13px;
+  --type-button: 15px;
+
+  --leading-display: 1.0;
+  --leading-h1: 1.05;
+  --leading-h2: 1.1;
+  --leading-h3: 1.25;
+  --leading-body: 1.55;
+
+  --track-display: -0.02em;
+  --track-h1: -0.015em;
+  --track-h2: -0.01em;
+  --track-h3: 0;
+  --track-body: 0.015em;
+  --track-caption: 0.05em;
+  --track-button: 0.08em;
+  --track-eyebrow: 0.18em;
+
+  /* Q5 spacing scale (8px base) */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 16px;
+  --s-4: 24px;
+  --s-5: 32px;
+  --s-6: 48px;
+  --s-7: 64px;
+  --s-8: 96px;
+  --s-9: 128px;
+
+  /* Q5 container widths */
+  --container-reading: 640px;
+  --container-standard: 960px;
+  --container-wide: 1180px;
+
+  /* Header geometry */
+  --header-height: 64px;
+  --header-height-mobile: 56px;
+
+  /* Q9 motion */
+  --ease-hover: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-fast: 150ms;
+  --motion-base: 200ms;
+  --motion-drawer: 250ms;
+}
+
+html[data-theme="dark"] {
+  --surface-base: #1C1A17;
+  --surface-raised: #232020;
+  --ink-primary: #F6F1E8;
+  --ink-soft: #D8CCB7;
+  --ink-muted: #968B7A;
+  --rule: #3A342C;
+
+  --accent-butter: #F7C95B;
+  --accent-hmrc: #6FAE8F;
+  --accent-heritage: #D58A65;
+  --accent-penalty: #D26464;
+
+  --accent: var(--accent-hmrc);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0ms;
+    --motion-base: 0ms;
+    --motion-drawer: 0ms;
+  }
+}
