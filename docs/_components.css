@@ -539,6 +539,37 @@ html[data-theme="dark"] .eos-header__theme .icon-moon { display: inline-block; }
 .eos-drawer__footer { padding-top: var(--s-4); border-top: 1px solid var(--rule); }
 .eos-drawer__footer .eos-button { width: 100%; }
 
+/* ---------- BOOT (S221: 6-layer mark assembly, once per session) ----
+   The brand literally boots: 6 diamonds arrive outer->inner, green
+   deepening as each lands, then the overlay clears to the masthead.
+   transform/opacity only. Reduced-motion + repeat-visit = skipped. */
+.eos-boot {
+  position: fixed; inset: 0; z-index: 9999;
+  display: grid; place-items: center;
+  background: var(--surface-base);
+  animation: eos-boot-out 440ms var(--ease-out) 980ms forwards;
+}
+.eos-boot__mark { width: 76px; height: 76px; }
+.eos-boot__mark polygon {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+  transform: scale(0.55) translateY(10px);
+  animation: eos-boot-layer 380ms var(--ease-out) forwards;
+}
+.eos-boot__mark polygon:nth-child(1) { fill: var(--step-1); animation-delay: 0ms; }
+.eos-boot__mark polygon:nth-child(2) { fill: var(--step-2); animation-delay: 60ms; }
+.eos-boot__mark polygon:nth-child(3) { fill: var(--step-3); animation-delay: 120ms; }
+.eos-boot__mark polygon:nth-child(4) { fill: var(--step-4); animation-delay: 180ms; }
+.eos-boot__mark polygon:nth-child(5) { fill: var(--step-5); animation-delay: 240ms; }
+.eos-boot__mark polygon:nth-child(6) { fill: var(--step-6); animation-delay: 300ms; }
+@keyframes eos-boot-layer { to { opacity: 1; transform: none; } }
+@keyframes eos-boot-out {
+  to { opacity: 0; visibility: hidden; pointer-events: none; }
+}
+html.eos-boot--skip .eos-boot { display: none; }
+@media (prefers-reduced-motion: reduce) { .eos-boot { display: none; } }
+
 /* ---------- HERO ---------- */
 
 /* Ledger hero (S221): asymmetric broadsheet + live specimen.
