@@ -498,61 +498,257 @@ html[data-theme="dark"] .eos-header__theme .icon-moon { display: inline-block; }
 
 /* ---------- HERO ---------- */
 
+/* Ledger hero (S221): asymmetric broadsheet + live specimen.
+   No centering, no mark-rails, no fade-up. The page reads like
+   issue 01 of a financial paper. */
 .eos-hero {
-  padding: var(--s-8) 0 var(--s-7);
-  text-align: center;
+  padding: var(--s-7) 0 var(--s-7);
   position: relative;
 }
-.eos-hero__inner {
-  max-width: var(--container-reading);
+.eos-hero__kicker,
+.eos-hero__grid {
+  max-width: var(--container-wide);
   margin: 0 auto;
-  padding: 0 var(--s-4);
+  padding: 0 var(--s-5);
 }
-.eos-hero__eyebrow { display: block; margin-bottom: var(--s-3); }
+/* Full-width mono masthead line */
+.eos-hero__kicker {
+  display: flex; align-items: center; gap: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  padding-top: var(--s-3); padding-bottom: var(--s-5);
+}
+.eos-hero__kicker-dot { color: var(--accent); }
+.eos-hero__kicker-rule {
+  flex: 1; height: 1px; background: var(--rule);
+}
+/* Asymmetric 2/3 + 1/3 split */
+.eos-hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  gap: var(--s-7);
+  align-items: start;
+}
+.eos-hero__lead { max-width: 640px; }
 .eos-hero h1 {
+  font-family: var(--font-serif);
   font-size: var(--type-display);
   line-height: var(--leading-display);
   letter-spacing: var(--track-display);
   color: var(--ink-primary);
-  margin-bottom: var(--s-4);
+  margin: 0;
 }
-.eos-hero h1 em, .eos-hero h1 .accent {
+.eos-hero h1 em {
   font-style: italic; font-weight: 500; color: var(--accent);
+}
+/* The signature: a ledger rule that draws itself under the headline */
+.eos-hero__sigrule {
+  display: block;
+  height: 2px;
+  width: clamp(180px, 38%, 320px);
+  background: var(--accent);
+  margin: var(--s-4) 0 var(--s-5);
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: eos-rule-draw 420ms var(--ease-out) 320ms forwards;
 }
 .eos-hero__lede {
   font-size: 19px;
   line-height: 1.55;
   letter-spacing: var(--track-body);
   color: var(--ink-soft);
-  margin: 0 auto var(--s-3);
-  max-width: 580px;
+  margin: 0 0 var(--s-3);
+  max-width: 540px;
 }
+.eos-hero__lede--sub { font-size: 16px; color: var(--ink-muted); }
 .eos-hero__lede strong { color: var(--ink-primary); font-weight: 500; }
 .eos-hero__cta-row {
-  display: flex; flex-wrap: wrap; gap: var(--s-3);
-  align-items: center; justify-content: center;
-  margin-top: var(--s-5);
+  display: flex; flex-wrap: wrap; gap: var(--s-5);
+  align-items: baseline; margin-top: var(--s-5);
 }
+/* Text-link CTA with a drawn underline, not a pill */
+.eos-hero__cta {
+  font-family: var(--font-sans);
+  font-size: 16px; font-weight: 600;
+  color: var(--ink-primary);
+  text-decoration: none;
+  position: relative;
+  display: inline-flex; align-items: baseline; gap: var(--s-2);
+  padding-bottom: 3px;
+}
+.eos-hero__cta::after {
+  content: ""; position: absolute; left: 0; bottom: 0;
+  width: 100%; height: 2px; background: var(--accent);
+  transform: scaleX(1); transform-origin: left center;
+  transition: transform var(--motion-base) var(--ease-hover);
+}
+.eos-hero__cta--quiet { color: var(--ink-muted); font-weight: 500; }
+.eos-hero__cta--quiet::after { background: var(--rule); }
+.eos-hero__cta:hover::after { transform: scaleX(0); transform-origin: right center; }
+.eos-hero__cta-arrow { transition: transform var(--motion-fast) var(--ease-hover); }
+.eos-hero__cta:hover .eos-hero__cta-arrow { transform: translateX(3px); }
 .eos-hero__trust {
-  max-width: 560px;
-  margin: var(--s-5) auto 0;
+  margin: var(--s-6) 0 0;
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--rule);
   display: flex; flex-direction: column; gap: var(--s-2);
-  text-align: center;
+  max-width: 540px;
 }
 .eos-hero__trust-item {
-  font-size: 13px;
-  line-height: 1.6;
-  letter-spacing: 0.01em;
+  font-size: 13px; line-height: 1.6; letter-spacing: 0.01em;
   color: var(--ink-muted);
 }
 .eos-hero__trust-item strong { color: var(--ink-soft); font-weight: 600; }
 .eos-hero__trust-item a { color: var(--ink-soft); text-decoration-color: var(--rule); }
 .eos-hero__trust-item a:hover { color: var(--accent); text-decoration-color: var(--accent); }
 
+@keyframes eos-rule-draw { to { transform: scaleX(1); } }
+
+@media (max-width: 920px) {
+  .eos-hero__grid { grid-template-columns: 1fr; gap: var(--s-6); }
+  .eos-spec { order: 2; }
+}
 @media (max-width: 640px) {
-  .eos-hero { padding: var(--s-6) 0 var(--s-5); }
-  .eos-hero h1 { font-size: 40px; }
+  .eos-hero { padding: var(--s-5) 0; }
+  .eos-hero h1 { font-size: 38px; }
   .eos-hero__lede { font-size: 17px; }
+  .eos-hero__kicker { font-size: 11px; gap: var(--s-2); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .eos-hero__sigrule { animation: none; transform: scaleX(1); }
+}
+
+/* ---------- SPEC WORKBENCH (live specimen, CSS-only tabs) ---------- */
+.eos-spec {
+  font-family: var(--font-mono);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-card);
+  background: var(--surface-raised);
+  margin-right: calc(-1 * var(--s-5));
+}
+.eos-spec__tabs { display: flex; flex-wrap: wrap; }
+.eos-spec__radio { position: absolute; opacity: 0; pointer-events: none; }
+.eos-spec__tab {
+  flex: 1; min-width: 0;
+  font-size: 11px; letter-spacing: 0.02em;
+  color: var(--ink-muted);
+  padding: var(--s-3) var(--s-2);
+  text-align: center; cursor: pointer;
+  border-bottom: 2px solid transparent;
+  border-right: 1px solid var(--rule);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  transition: color var(--motion-fast) var(--ease-hover),
+              border-color var(--motion-fast) var(--ease-hover);
+}
+.eos-spec__tab:last-of-type { border-right: 0; }
+.eos-spec__tab:hover { color: var(--ink-soft); }
+.eos-spec__radio:checked + .eos-spec__tab {
+  color: var(--ink-primary);
+  border-bottom-color: var(--accent);
+  background: var(--surface-base);
+}
+.eos-spec__live-dot {
+  display: inline-block; width: 6px; height: 6px;
+  border-radius: 50%; background: var(--accent-hmrc);
+  margin-left: 6px; vertical-align: middle;
+  animation: eos-live-breathe 2.4s ease-in-out infinite;
+}
+.eos-spec__pane { display: none; padding: var(--s-4); }
+#spec-xlsx:checked ~ [data-pane="xlsx"],
+#spec-docx:checked ~ [data-pane="docx"],
+#spec-live:checked ~ [data-pane="live"] {
+  display: block;
+  animation: eos-spec-fade var(--motion-base) var(--ease-out);
+}
+.eos-spec__formula {
+  display: flex; align-items: center; gap: var(--s-2);
+  border: 1px solid var(--rule);
+  padding: var(--s-2) var(--s-2);
+  font-size: 12px; color: var(--ink-soft);
+  margin-bottom: var(--s-3);
+}
+.eos-spec__fx { color: var(--ink-muted); font-style: italic; }
+.eos-spec__cellref {
+  color: var(--ink-primary); border: 1px solid var(--rule);
+  padding: 0 var(--s-2); border-radius: 2px;
+}
+.eos-spec__formula-body { color: var(--accent); }
+.eos-spec__sheet { width: 100%; border-collapse: collapse; }
+.eos-spec__sheet th, .eos-spec__sheet td {
+  text-align: left; padding: var(--s-2) var(--s-2);
+  border-bottom: 1px solid var(--rule);
+  font-size: 13px; font-weight: 400;
+}
+.eos-spec__sheet th { color: var(--ink-soft); font-family: var(--font-sans); }
+.eos-spec__rownum {
+  width: 22px; color: var(--ink-muted); font-size: 11px;
+  text-align: right; opacity: 0.55;
+}
+.eos-spec__num { text-align: right; color: var(--ink-primary); white-space: nowrap; }
+.eos-spec__total th, .eos-spec__total td {
+  border-bottom: 0; border-top: 2px solid var(--ink-primary);
+  font-weight: 600; color: var(--ink-primary);
+}
+.eos-spec__cell-active {
+  outline: 2px solid var(--accent); outline-offset: -2px;
+}
+.eos-spec__margin {
+  font-family: var(--font-serif); font-style: italic;
+  font-size: 13px; line-height: 1.5; color: var(--ink-muted);
+  border-left: 2px solid var(--accent);
+  padding-left: var(--s-3); margin: var(--s-4) 0 0;
+}
+.eos-spec__docmeta {
+  display: flex; justify-content: space-between;
+  font-size: 11px; color: var(--ink-muted);
+  text-transform: uppercase; letter-spacing: var(--track-caption);
+  padding-bottom: var(--s-3); border-bottom: 1px solid var(--rule);
+}
+.eos-spec__doc { padding: var(--s-3) 0; }
+.eos-spec__doc h4 {
+  font-family: var(--font-serif); font-size: 16px;
+  color: var(--ink-primary); margin: 0 0 var(--s-3);
+}
+.eos-spec__doc dl {
+  display: grid; grid-template-columns: auto 1fr;
+  gap: var(--s-2) var(--s-3); margin: 0; font-size: 13px;
+}
+.eos-spec__doc dt { color: var(--ink-muted); }
+.eos-spec__doc dd { margin: 0; color: var(--ink-soft); }
+.eos-spec__doc dd strong { color: var(--accent-hmrc); }
+.eos-spec__authority {
+  font-family: var(--font-serif); font-size: 12px;
+  color: var(--ink-muted); margin-top: var(--s-3);
+  border-left: 2px solid var(--accent); padding-left: var(--s-3);
+}
+.eos-spec__tiles { display: flex; gap: var(--s-2); margin-bottom: var(--s-3); }
+.eos-spec__tile {
+  flex: 1; border: 1px solid var(--rule); border-radius: 2px;
+  padding: var(--s-3) var(--s-2); text-align: center;
+}
+.eos-spec__tile-num { display: block; font-size: 24px; color: var(--ink-primary); }
+.eos-spec__tile-lab {
+  display: block; font-size: 11px; color: var(--ink-muted);
+  text-transform: uppercase; letter-spacing: var(--track-caption);
+}
+.eos-spec__ledger th { font-size: 12px; }
+.eos-spec__pill {
+  font-family: var(--font-sans); font-size: 11px;
+  border: 1px solid var(--rule); color: var(--ink-muted);
+  padding: 1px var(--s-2); border-radius: 2px; white-space: nowrap;
+}
+.eos-spec__pill--soon { border-color: var(--accent-butter); color: var(--accent-butter); }
+
+@keyframes eos-live-breathe { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+@keyframes eos-spec-fade { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .eos-spec__live-dot { animation: none; }
+  #spec-xlsx:checked ~ [data-pane="xlsx"],
+  #spec-docx:checked ~ [data-pane="docx"],
+  #spec-live:checked ~ [data-pane="live"] { animation: none; }
 }
 
 /* ---------- LIVE TICKER (hero base, "what just changed") ---------- */
@@ -976,50 +1172,30 @@ html[data-theme="dark"] .eos-header__theme .icon-moon { display: inline-block; }
 /* Children of a revealing parent stagger in like the brand mark
    assembling itself: six beats, 60ms apart, 500ms each. */
 
-.eos-reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
-}
-.eos-reveal[data-visible="true"] {
+/* S221: the universal fade-up reveal is RETIRED. It was the single
+   loudest AI-generated tell. Content is present on arrival, like a
+   printed page. The only editorial scroll motion is the section-head
+   rule that draws once (see .eos-section__head below). The .eos-reveal
+   and [data-eos-stagger] hooks stay inert so existing markup/JS does
+   not break. */
+.eos-reveal,
+.eos-reveal[data-visible="true"],
+[data-eos-stagger] > .eos-reveal {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
+  transition: none;
 }
 
-/* Six-beat stagger for direct children of a [data-eos-stagger] container */
-[data-eos-stagger] > .eos-reveal { transition: opacity 750ms var(--ease-out), transform 750ms var(--ease-out); transition-delay: 0ms; }
-[data-eos-stagger] > .eos-reveal:nth-child(2) { transition-delay: 130ms; }
-[data-eos-stagger] > .eos-reveal:nth-child(3) { transition-delay: 260ms; }
-[data-eos-stagger] > .eos-reveal:nth-child(4) { transition-delay: 390ms; }
-[data-eos-stagger] > .eos-reveal:nth-child(5) { transition-delay: 520ms; }
-[data-eos-stagger] > .eos-reveal:nth-child(n+6) { transition-delay: 650ms; }
-
-@media (prefers-reduced-motion: reduce) {
-  .eos-reveal { opacity: 1; transform: none; transition: none; }
-  [data-eos-stagger] > .eos-reveal { transition-delay: 0ms; }
-}
-
-/* ---------- HERO STAGGER (6-beat page-load build-up) ---------- */
-/* On first paint, hero children appear in tiered beats: rule, h1,
-   ledes, CTA row, trust band. Mimics the diamond drawing itself in. */
-
-.eos-hero__inner > * {
-  opacity: 0;
-  transform: translateY(18px);
-  animation: eos-hero-in 950ms var(--ease-out) forwards;
-}
-.eos-hero__inner > *:nth-child(1) { animation-delay: 100ms; }
-.eos-hero__inner > *:nth-child(2) { animation-delay: 250ms; }
-.eos-hero__inner > *:nth-child(3) { animation-delay: 400ms; }
-.eos-hero__inner > *:nth-child(4) { animation-delay: 550ms; }
-.eos-hero__inner > *:nth-child(5) { animation-delay: 700ms; }
-.eos-hero__inner > *:nth-child(n+6) { animation-delay: 850ms; }
-
-@keyframes eos-hero-in {
-  to { opacity: 1; transform: translateY(0); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .eos-hero__inner > * { opacity: 1; transform: none; animation: none; }
+/* Section-head signature rule: a short HMRC-green ledger line under
+   every section heading. The recurring "ExternalOS draws a line under
+   things" gesture, tying each section to the hero. Static + zero-JS so
+   it cannot break the shared markup; the moving version is the hero
+   headline rule only. */
+.eos-section__head { position: relative; }
+.eos-section__head::after {
+  content: ""; display: block;
+  width: 64px; height: 2px; margin-top: var(--s-3);
+  background: var(--accent);
 }
 
 /* ---------- STAIR TABS (rise from below the title, peaks point up at it) ---------- */

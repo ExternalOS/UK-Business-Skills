@@ -112,44 +112,87 @@
  </div>
 </div>
 
-<!-- Hero -->
-<section class="eos-hero eos-mark-rails" id="hero" data-section-type="statement">
- <div class="eos-mark-rail eos-mark-rail--left" aria-hidden="true">
-  <svg viewBox="0 0 140 280" preserveAspectRatio="xMinYMid meet">
-   <polygon points="0,0 140,140 0,280"/>
-   <polygon points="0,46 117,163 0,280"/>
-   <polygon points="0,92 94,186 0,280"/>
-   <polygon points="0,138 71,209 0,280"/>
-   <polygon points="0,184 48,232 0,280"/>
-   <polygon points="0,230 25,255 0,280"/>
-  </svg>
+<!-- Hero (Ledger system, S221) -->
+<section class="eos-hero" id="hero" data-section-type="statement">
+ <div class="eos-hero__kicker" aria-hidden="true">
+  <span>UK Financial Compliance</span>
+  <span class="eos-hero__kicker-dot">&middot;</span>
+  <span>Updated for 2026/27</span>
+  <span class="eos-hero__kicker-rule"></span>
+  <span>Issue 01</span>
  </div>
- <div class="eos-mark-rail eos-mark-rail--right" aria-hidden="true">
-  <svg viewBox="0 0 140 280" preserveAspectRatio="xMaxYMid meet">
-   <polygon points="140,0 0,140 140,280"/>
-   <polygon points="140,46 23,163 140,280"/>
-   <polygon points="140,92 46,186 140,280"/>
-   <polygon points="140,138 69,209 140,280"/>
-   <polygon points="140,184 92,232 140,280"/>
-   <polygon points="140,230 115,255 140,280"/>
-  </svg>
- </div>
- <div class="eos-hero__inner">
-  <hr class="eos-rule" aria-hidden="true">
-  <h1>We do the boring admin. <em>You do the work.</em></h1>
-  <p class="eos-hero__lede">A catalogue of UK admin tools you buy once and keep forever. <strong>No monthly bill, no account to log in to, no SaaS treadmill.</strong></p>
-  <p class="eos-hero__lede">Built on current HMRC rates and named UK case law. Run the work yourself, end to end.</p>
-  <div class="eos-hero__cta-row">
-   <a class="eos-button eos-button--primary eos-button--large" href="./quiz.html" data-magnetic>Find my toolkit &nbsp;&rarr;</a>
-   <a class="eos-button eos-button--secondary eos-button--large" href="./tools.html">Browse all 18 tools</a>
-  </div>
-  <div class="eos-hero__trust">
-   <span class="eos-hero__trust-item"><strong>Built for HMRC, not the IRS.</strong> UK law, UK rates, UK case law, 2025/26 bands baked in.</span>
-   <span class="eos-hero__trust-item">Five free tools live now. <a href="#free-tools">Use them before you buy.</a></span>
-   <span class="eos-hero__trust-item"><strong>14-day refund, no questions.</strong> Files yours forever. Updates included when HMRC rates change.</span>
+ <div class="eos-hero__grid">
+  <div class="eos-hero__lead">
+   <h1>We do the boring admin.<br><em>You do the work.</em></h1>
+   <span class="eos-hero__sigrule" aria-hidden="true"></span>
+   <p class="eos-hero__lede">A catalogue of UK admin tools you buy once and keep forever. <strong>No monthly bill, no account to log in to, no SaaS treadmill.</strong></p>
+   <p class="eos-hero__lede eos-hero__lede--sub">Built on current HMRC rates and named UK case law. You run the work yourself, end to end.</p>
+   <div class="eos-hero__cta-row">
+    <a class="eos-hero__cta" href="./quiz.html">Find my toolkit<span class="eos-hero__cta-arrow">&rarr;</span></a>
+    <a class="eos-hero__cta eos-hero__cta--quiet" href="./tools.html">Browse all 18 tools</a>
+   </div>
+   <div class="eos-hero__trust">
+    <span class="eos-hero__trust-item"><strong>Built for HMRC, not the IRS.</strong> UK law, UK rates, UK case law, 2025/26 bands baked in.</span>
+    <span class="eos-hero__trust-item">Five free tools live now. <a href="#free-tools">Use them before you buy.</a></span>
+    <span class="eos-hero__trust-item"><strong>14-day refund, no questions.</strong> Files yours forever, updates included when HMRC rates change.</span>
+   </div>
   </div>
 
-  <div class="eos-ticker" data-eos-ticker aria-live="polite" aria-label="Recent updates">
+  <aside class="eos-spec" aria-label="A specimen from the catalogue">
+   <div class="eos-spec__tabs" role="tablist">
+    <input class="eos-spec__radio" type="radio" name="eos-spec" id="spec-xlsx" checked>
+    <label class="eos-spec__tab" for="spec-xlsx">uk-tax-calculator.xlsx</label>
+    <input class="eos-spec__radio" type="radio" name="eos-spec" id="spec-docx">
+    <label class="eos-spec__tab" for="spec-docx">IR35-SDS.docx</label>
+    <input class="eos-spec__radio" type="radio" name="eos-spec" id="spec-live">
+    <label class="eos-spec__tab" for="spec-live">compliance-tracker<span class="eos-spec__live-dot" aria-hidden="true"></span></label>
+
+    <div class="eos-spec__pane" data-pane="xlsx">
+     <div class="eos-spec__formula"><span class="eos-spec__fx">fx</span><span class="eos-spec__cellref">B14</span><span class="eos-spec__formula-body">=SUM(B6:B12)*0.20 + NIC(B6:B12)</span></div>
+     <table class="eos-spec__sheet">
+      <tr><td class="eos-spec__rownum">5</td><th>Gross self-employed income</th><td class="eos-spec__num">&pound;48,200</td></tr>
+      <tr><td class="eos-spec__rownum">6</td><th>Allowable expenses</th><td class="eos-spec__num">&pound;4,650</td></tr>
+      <tr><td class="eos-spec__rownum">7</td><th>Personal allowance</th><td class="eos-spec__num">&pound;12,570</td></tr>
+      <tr><td class="eos-spec__rownum">8</td><th>Income tax due</th><td class="eos-spec__num">&pound;6,196</td></tr>
+      <tr><td class="eos-spec__rownum">9</td><th>Class 2 + 4 NIC</td><td class="eos-spec__num">&pound;2,704</td></tr>
+      <tr class="eos-spec__total"><td class="eos-spec__rownum">14</td><th>Total HMRC bill</th><td class="eos-spec__num eos-spec__cell-active">&pound;8,900</td></tr>
+     </table>
+     <p class="eos-spec__margin">The 2025/26 bands are hard-coded in column B. When the Budget moves them, you get the updated file.</p>
+    </div>
+
+    <div class="eos-spec__pane" data-pane="docx">
+     <div class="eos-spec__docmeta"><span>IR35-SDS.docx</span><span>Page 1 of 4</span></div>
+     <div class="eos-spec__doc">
+      <h4>Status Determination Statement</h4>
+      <dl>
+       <dt>Worker</dt><dd>J. Reeve, Reeve Tech Ltd</dd>
+       <dt>Engagement</dt><dd>Q3 2025/26, 12-week migration</dd>
+       <dt>Substitution</dt><dd>Genuine right, exercised once</dd>
+       <dt>Status</dt><dd><strong>OUTSIDE IR35</strong></dd>
+      </dl>
+      <div class="eos-spec__authority">Cited: <em>Atholl House Productions Ltd v HMRC</em> [2022] EWCA Civ 501; <em>HMRC v PGMOL</em> [2024] UKSC 29.</div>
+     </div>
+     <p class="eos-spec__margin">Named, current case law. Not a generic template, the determination that survives a status challenge.</p>
+    </div>
+
+    <div class="eos-spec__pane" data-pane="live">
+     <div class="eos-spec__tiles">
+      <div class="eos-spec__tile"><span class="eos-spec__tile-num">7</span><span class="eos-spec__tile-lab">upcoming</span></div>
+      <div class="eos-spec__tile"><span class="eos-spec__tile-num">2</span><span class="eos-spec__tile-lab">due soon</span></div>
+      <div class="eos-spec__tile"><span class="eos-spec__tile-num">0</span><span class="eos-spec__tile-lab">overdue</span></div>
+     </div>
+     <table class="eos-spec__sheet eos-spec__ledger">
+      <tr><td class="eos-spec__num">07 Jun 2026</td><th>VAT Return Q1</th><td><span class="eos-spec__pill eos-spec__pill--soon">Due soon</span></td></tr>
+      <tr><td class="eos-spec__num">31 Jul 2026</td><th>2nd SA payment on account</th><td><span class="eos-spec__pill">Upcoming</span></td></tr>
+      <tr><td class="eos-spec__num">31 Jan 2027</td><th>Self Assessment filing</th><td><span class="eos-spec__pill">Upcoming</span></td></tr>
+     </table>
+     <p class="eos-spec__margin">Last synced 18 May 2026, 06:33. Eight tabs, every figure sourced to gov.uk or BAILII.</p>
+    </div>
+   </div>
+  </aside>
+ </div>
+
+ <div class="eos-ticker" data-eos-ticker aria-live="polite" aria-label="Recent updates">
    <span class="eos-ticker__label">Live</span>
    <div class="eos-ticker__feed">
     <div class="eos-ticker__item">
@@ -174,7 +217,6 @@
     </div>
    </div>
   </div>
- </div>
 </section>
 
 <!-- Stat strip -->
