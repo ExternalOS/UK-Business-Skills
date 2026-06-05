@@ -5632,3 +5632,35 @@ html:has(body[data-page-cohort="crimson"]) { background: #7A1F2C; }
 @media (max-width: 768px) {
   .eos-header__cart { display: none !important; }
 }
+
+/* ---------- S250 MOBILE SPECIMEN ANIMATIONS ----------
+   The 3D perspective rotations on the specimens read poorly on a phone
+   (the AE-style rotateY turn and the rotateX rise look like distortion at
+   portrait width). Replace them on small screens with a clean vertical
+   rise plus fade. Keep the same transitions, just zero the rotation
+   components. Applies to both the home-page eos-reveal covers and the
+   product-page eos-rise stage. */
+@media (max-width: 768px) {
+  .eos-specimen.eos-reveal {
+    transform: translateY(28px);
+  }
+  .eos-specimen.eos-reveal[data-visible="true"] {
+    transform: translateY(0);
+  }
+  .eos-specimen.eos-rise {
+    transform: translateY(40px);
+  }
+  .eos-specimen.eos-rise[data-visible="true"] {
+    transform: translateY(0);
+  }
+  /* Kill the AE 72deg turn keyframe on mobile by overriding its target */
+  .eos-packspec .eos-specimen__turn,
+  .eos-specimen__turn {
+    transform: none !important;
+    animation: none !important;
+  }
+  /* No hover tilt on touch (mobile does not hover, but defensively zero it) */
+  .eos-specimen:hover {
+    transform: none;
+  }
+}
