@@ -428,30 +428,56 @@ html[data-theme="dark"] .eos-header__theme .icon-moon { display: inline-block; }
   .eos-header__cart { display: none; }
   .eos-header__hamburger { display: inline-flex; }
 
-  /* drawer cart row (S250): icon + label on the left, count badge on the right */
+  /* Drawer cart card (S250): sits at the TOP of the drawer nav so it is
+     the first thing a tap on the hamburger surfaces. Styled as a card
+     rather than a list row: subtle surface fill, soft border, icon + serif
+     "Cart" label on the left, count pill on the right. The pill hides at
+     count zero. */
   .eos-drawer__cart {
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: space-between;
-    padding: 14px 0 4px;
-    margin-top: 4px;
-    border-top: 1px solid var(--rule);
+    padding: 16px 18px;
+    margin-bottom: 10px;
+    background: var(--surface-raised);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: border-color 160ms ease, background 160ms ease;
   }
-  .eos-drawer__cart-label { display: inline-flex; align-items: center; gap: 12px; }
-  .eos-drawer__cart-label svg { width: 22px; height: 22px; }
+  .eos-drawer__cart:hover,
+  .eos-drawer__cart:active {
+    border-color: var(--ink-primary);
+    background: var(--surface-base);
+  }
+  .eos-drawer__cart-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--ink-primary);
+  }
+  .eos-drawer__cart-label svg { width: 24px; height: 24px; flex: 0 0 24px; }
+  .eos-drawer__cart-name {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    line-height: 1;
+  }
   .eos-drawer__cart-count {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 22px;
-    height: 22px;
-    padding: 0 7px;
-    border-radius: 11px;
+    min-width: 26px;
+    height: 26px;
+    padding: 0 9px;
+    border-radius: 13px;
     background: var(--accent, var(--ink-primary));
-    color: var(--paper, #fff);
+    color: var(--surface-base, #fff);
     font-family: var(--font-sans);
     font-size: 13px;
     font-weight: 600;
+    line-height: 1;
   }
   .eos-drawer__cart[data-count="0"] .eos-drawer__cart-count { display: none; }
 }
