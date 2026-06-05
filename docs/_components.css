@@ -180,7 +180,7 @@
    var(--accent) is ink (black in light, white in dark) on normal pages; the
    cohort pack pages override it to their colour just below (the band on those
    pages is the cohort colour too, set via body[data-page-cohort]). */
-html { font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; background: var(--accent); }
+html { font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; background: var(--surface-base); }
 html:has(body[data-page-cohort="amber"])   { background: #8A4B14; }
 html:has(body[data-page-cohort="plum"])    { background: #5B2A4A; }
 html:has(body[data-page-cohort="steel"])   { background: #2E4A6B; }
