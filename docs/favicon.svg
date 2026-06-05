@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
   <style>
-    .l1 { fill: #0F0F0F; }
-    .l2 { fill: #2E2E2E; }
-    .l3 { fill: #555555; }
-    .l4 { fill: #777777; }
-    .l5 { fill: #999999; }
-    .l6 { fill: #BFBFBF; }
+    .l1 { fill: #BFBFBF; }
+    .l2 { fill: #999999; }
+    .l3 { fill: #777777; }
+    .l4 { fill: #555555; }
+    .l5 { fill: #2E2E2E; }
+    .l6 { fill: #0F0F0F; }
   </style>
   <polygon class="l1" points="20,4 34,18 20,32 6,18"/>
   <polygon class="l2" points="20,8.6 31.7,20.3 20,32 8.3,20.3"/>
