@@ -1,26 +1,17 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Free UK Ltd Compliance Calendar 2026 | HMRC + Companies House Deadlines | ExternalOS</title>
- <meta name="description" content="Free UK limited company compliance calendar. Enter your year-end and get every HMRC and Companies House deadline mapped: accounts, Corporation Tax, VAT, PAYE, P11D, Confirmation Statement, MTD ITSA. 2026 rules. No signup. Downloadable .ics calendar.">
- <meta property="og:title" content="Free UK Ltd Compliance Calendar 2026 | ExternalOS">
- <meta property="og:description" content="Year-end in. Every HMRC and Companies House deadline for the next 12 months out, dated to your company. No signup, .ics export.">
- <meta property="og:type" content="website">
- <meta property="og:url" content="https://externalos.com/compliance-calendar.html">
- <meta property="og:image" content="https://externalos.com/og-image.png">
- <meta name="robots" content="index, follow">
- <meta name="twitter:card" content="summary">
- <meta name="twitter:title" content="Free UK Ltd Compliance Calendar 2026 | ExternalOS">
- <meta name="twitter:description" content="Every HMRC and Companies House deadline mapped from your year-end. Free, no signup, .ics export.">
- <link rel="preconnect" href="https://fonts.googleapis.com">
- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
- <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
- <link rel="stylesheet" href="styles.css?v=135">
- <link rel="canonical" href="https://externalos.com/compliance-calendar.html">
-
- <script type="application/ld+json">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Free UK Ltd Compliance Calendar 2026 | HMRC + Companies House Deadlines | ExternalOS</title>
+<meta name="description" content="Free UK limited company compliance calendar. Enter your year-end and get every HMRC and Companies House deadline mapped: accounts, Corporation Tax, VAT, PAYE, P11D, Confirmation Statement, MTD ITSA. 2026 rules. No signup. Downloadable .ics calendar." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://externalos.com/compliance-calendar.html" />
+<link rel="preload" href="./assets/fonts/plexserif-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="./assets/fonts/plexsans-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="./_design-tokens.css?v=249g" />
+<link rel="stylesheet" href="./_components.css?v=249g" />
+<script type="application/ld+json">
  {
    "@context": "https://schema.org",
    "@type": "WebApplication",
@@ -33,460 +24,404 @@
    "inLanguage": "en-GB"
  }
  </script>
+<style>
+  /* Compliance Calendar: chronological deadline-tracker layout (S249 rebuild).
+     Brand greyscale + IBM Plex via design tokens. The result is a month-grouped
+     timeline (Notion/Airtable timeline pattern): each month is a header band,
+     each deadline a dated row with a left date-rail and a neutral category tag.
+     Category accents come from _legacy-tool-vars.css (--cat-* are muted, no
+     green). No cohort colour on this utility surface. Every JS hook is
+     preserved: .form-toggle/.selected, #ids, .timeline/.visible, .month-block/
+     .month-header/.deadline-card/.deadline-date/.deadline-tag.tag-*, .legend. */
 
- <style>
-  :root {
-   --cat-companies-house: #4B1196;
-   --cat-corp-tax: #6B1A1A;
-   --cat-vat: #1F4D36;
-   --cat-paye: #7A4E12;
-   --cat-self-assessment: #4B1196;
-   --cat-pension: #1F4D36;
-   --cat-gdpr: #3D3830;
-  }
+  .wrap.page-body { max-width: 920px; margin: 0 auto; padding: 0 var(--s-4); }
 
-  /* Free tools dropdown (mirrors skills-dropdown) - in case styles.css cache lags */
-  .free-tools-dropdown { position: relative; display: inline-flex; align-items: center; }
-  .free-tools-dropdown-trigger { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: var(--warm-mid); background: transparent; border: 0; cursor: pointer; padding: 0; display: inline-flex; align-items: center; gap: 6px; transition: color 0.15s ease; }
-  .free-tools-dropdown-trigger:hover, .free-tools-dropdown.is-open .free-tools-dropdown-trigger { color: var(--purple-hero); }
-  .free-tools-dropdown-trigger svg { transition: transform 0.15s ease; }
-  .free-tools-dropdown.is-open .free-tools-dropdown-trigger svg { transform: rotate(180deg); }
-  .free-tools-menu { position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(-6px); background: var(--warm-white); border: 1px solid var(--warm-cream); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: 18px 22px; min-width: 360px; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s; z-index: 200; }
-  .free-tools-dropdown.is-open .free-tools-menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
-  .free-tools-menu::before { content: ''; position: absolute; top: -6px; left: 50%; transform: translateX(-50%) rotate(45deg); width: 10px; height: 10px; background: var(--warm-white); border-left: 1px solid var(--warm-cream); border-top: 1px solid var(--warm-cream); }
-  .free-tools-menu-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 2px; }
-  .free-tools-menu-item { font-family: 'Inter', sans-serif; text-decoration: none; color: var(--ink); padding: 12px 14px; margin: 0 -6px; border-radius: var(--radius-sm); display: flex; flex-direction: column; gap: 4px; line-height: 1.4; transition: background 0.12s ease, color 0.12s ease; }
-  .free-tools-menu-item:hover { background: var(--purple-tint); color: var(--purple-hero); }
-  .free-tools-menu-name { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; color: inherit; letter-spacing: -0.01em; }
-  .free-tools-menu-blurb { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 400; color: var(--warm-mid); }
-  .free-tools-menu-foot { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--purple-hero); margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--warm-cream); text-align: center; }
-  @media (max-width: 880px) { .free-tools-menu { position: fixed; top: 68px; left: 16px; right: 16px; transform: none; min-width: 0; width: auto; padding: 18px; } .free-tools-dropdown.is-open .free-tools-menu { transform: none; } .free-tools-menu::before { display: none; } }
-  @media (max-width: 640px) { .masthead-nav .free-tools-dropdown { display: none; } }
-
-  /* Tool-specific layout */
-  .tool-section { padding: 56px 0 24px; }
-  .tool-section-header { display: block; text-align: center; max-width: 720px; margin: 0 auto 32px; }
+  /* Lede + section headers */
+  .tool-section { padding: var(--s-7) 0 var(--s-4); }
+  .tool-section-header { display: block; text-align: center; max-width: 680px; margin: 0 auto var(--s-6); }
   .tool-section-header > div { display: block; }
-  .tool-section-header .tool-section-number { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--purple-pale); display: block; margin-bottom: 8px; }
-  .tool-section-header h2 { font-family: 'Libre Baskerville', serif; font-size: clamp(26px, 3vw, 34px); font-weight: 700; color: var(--ink); letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 14px; }
-  .tool-section-header p.tool-sub { font-size: 14px; color: var(--warm-mid); max-width: 560px; text-align: center; line-height: 1.65; margin: 0 auto; }
+  .tool-section-header .tool-section-number { font-family: var(--font-mono); font-size: var(--type-caption); font-weight: 400; letter-spacing: var(--track-caption); text-transform: uppercase; color: var(--ink-muted); display: block; margin-bottom: var(--s-2); }
+  .tool-section-header h2 { font-family: var(--font-display); font-size: var(--type-h2); font-weight: 580; color: var(--ink-primary); line-height: var(--leading-h2); margin: 0 0 var(--s-3); }
+  .tool-section-header p.tool-sub { font-family: var(--font-serif); font-size: 16px; color: var(--ink-soft); max-width: 560px; text-align: center; line-height: var(--leading-body); margin: 0 auto; }
+  .tool-section > p { margin-left: auto; margin-right: auto; text-align: center; font-family: var(--font-serif); }
+  .tool-copy { font-family: var(--font-serif); font-size: 16px; line-height: var(--leading-body); color: var(--ink-soft); max-width: 720px; margin: 0 auto var(--s-3); }
+  .tool-copy:last-of-type { margin-bottom: 0; }
 
-  .pill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 24px; }
-  .wrap.page-body { max-width: 920px; }
-  .tool-section > p { margin-left: auto; margin-right: auto; text-align: center; }
-  .pill { background: var(--warm-off); border: 1px solid var(--warm-cream); border-radius: var(--radius-md); padding: 18px 22px; box-shadow: var(--shadow-sm); text-align: center; }
-  .pill strong { display: block; font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 4px; letter-spacing: -0.01em; }
-  .pill span { font-size: 13px; color: var(--warm-mid); line-height: 1.5; }
+  /* The seven cycles, as a compact reference grid */
+  .pill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: var(--s-3); margin-top: var(--s-6); }
+  .pill { background: var(--surface-raised); border: 1px solid var(--rule); border-radius: var(--radius-card); padding: var(--s-4); text-align: left; }
+  .pill strong { display: block; font-family: var(--font-sans); font-size: 14px; font-weight: 600; color: var(--ink-primary); margin-bottom: var(--s-1); }
+  .pill span { font-family: var(--font-sans); font-size: 13px; color: var(--ink-muted); line-height: 1.5; }
 
-  /* Form */
-  .form-card { background: var(--warm-white); border: 1px solid var(--warm-cream); border-radius: var(--radius-xl); padding: 48px 56px 40px; max-width: 760px; margin-left: auto; margin-right: auto; box-shadow: var(--shadow-md); position: relative; overflow: hidden; }
-  .form-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--purple-deep), var(--purple-light)); }
-  .form-row { margin-bottom: 28px; }
+  /* Form console */
+  .form-card { background: var(--surface-raised); border: 1px solid var(--rule); border-radius: var(--radius-card); padding: var(--s-6); max-width: 760px; margin-left: auto; margin-right: auto; }
+  .form-row { margin-bottom: var(--s-5); }
   .form-row:last-of-type { margin-bottom: 0; }
-  .form-label { display: block; font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 8px; letter-spacing: -0.01em; }
-  .form-hint { font-family: 'Inter', sans-serif; color: var(--warm-mid); font-size: 13px; margin-bottom: 14px; line-height: 1.65; font-weight: 400; }
-  .form-input, .form-select { width: 100%; max-width: 360px; background: var(--warm-off); border: 1.5px solid var(--warm-cream); border-radius: var(--radius-md); padding: 14px 18px; font-family: 'Inter', sans-serif; font-size: 15px; color: var(--ink); transition: border-color 180ms ease, background 180ms ease; }
-  .form-input:focus, .form-select:focus { outline: none; border-color: var(--purple-mid); background: var(--warm-white); box-shadow: 0 2px 12px rgba(107,40,194,0.12); }
-  .form-toggle-group { display: flex; gap: 10px; flex-wrap: wrap; }
-  .form-toggle { background: var(--warm-off); border: 1.5px solid var(--warm-cream); border-radius: var(--radius-md); padding: 12px 22px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; color: var(--warm-dark); cursor: pointer; transition: all 180ms ease; }
-  .form-toggle:hover { border-color: var(--purple-pale); background: var(--purple-tint); }
-  .form-toggle.selected { background: var(--purple-mid); border-color: var(--purple-mid); color: #FFFFFF; box-shadow: 0 2px 12px rgba(107,40,194,0.2); }
-  .form-toggle:focus-visible { outline: 3px solid var(--purple-ghost); outline-offset: 2px; }
-  .form-row-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  @media (max-width: 560px) { .form-row-grid { grid-template-columns: 1fr; } .form-card { padding: 32px 22px 28px; } }
-  .form-actions { margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--warm-cream); display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .form-label { display: block; font-family: var(--font-sans); font-size: 14px; font-weight: 600; color: var(--ink-primary); margin-bottom: var(--s-1); letter-spacing: -0.01em; }
+  .form-hint { font-family: var(--font-sans); color: var(--ink-muted); font-size: 13px; margin-bottom: var(--s-3); line-height: 1.55; }
+  .form-input, .form-select { width: 100%; max-width: 360px; background: var(--surface-base); border: 1.5px solid var(--rule); border-radius: var(--radius-button); padding: 13px 16px; font-family: var(--font-sans); font-size: 15px; color: var(--ink-primary); transition: border-color var(--motion-base) var(--ease-hover); }
+  .form-input:focus, .form-select:focus { outline: none; border-color: var(--ink-primary); }
+  .form-toggle-group { display: flex; gap: var(--s-2); flex-wrap: wrap; }
+  .form-toggle { background: var(--surface-base); border: 1.5px solid var(--rule); border-radius: var(--radius-button); padding: 11px 18px; font-family: var(--font-sans); font-size: 14px; font-weight: 500; color: var(--ink-soft); cursor: pointer; transition: border-color var(--motion-fast) var(--ease-hover), background var(--motion-fast) var(--ease-hover), color var(--motion-fast) var(--ease-hover); }
+  .form-toggle:hover { border-color: var(--ink-muted); }
+  .form-toggle.selected { background: var(--ink-primary); border-color: var(--ink-primary); color: var(--surface-raised); }
+  .form-toggle:focus-visible { outline: 2px solid var(--ink-primary); outline-offset: 2px; }
+  .form-row-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); }
+  @media (max-width: 560px) { .form-row-grid { grid-template-columns: 1fr; } .form-card { padding: var(--s-5) var(--s-4); } }
+  .form-actions { margin-top: var(--s-6); padding-top: var(--s-5); border-top: 1px solid var(--rule); display: flex; gap: var(--s-3); flex-wrap: wrap; align-items: center; }
+  .btn { font-family: var(--font-sans); font-size: var(--type-button); font-weight: 600; letter-spacing: var(--track-button); border-radius: var(--radius-button); padding: 13px 24px; cursor: pointer; border: 1px solid transparent; display: inline-flex; align-items: center; gap: var(--s-2); transition: opacity var(--motion-fast) var(--ease-hover); }
+  .btn svg { width: 15px; height: 15px; }
+  .btn-primary { background: var(--ink-primary); color: var(--surface-raised); }
+  .btn-primary:disabled { opacity: 0.35; cursor: not-allowed; }
+  .btn-secondary { background: transparent; color: var(--ink-soft); border-color: var(--rule); }
+  .btn:hover:not(:disabled) { opacity: 0.85; }
 
   /* Result timeline */
-  .timeline { display: none; padding: 32px 0 24px; }
-  .timeline.visible { display: block; animation: fadeIn 520ms ease-out; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-  .summary-card { background: linear-gradient(160deg, var(--purple-rich) 0%, var(--purple-deep) 100%); color: #FFFFFF; border-radius: var(--radius-xl); padding: 48px 56px; box-shadow: var(--shadow-purple-lg); margin-bottom: 32px; max-width: 880px; position: relative; overflow: hidden; }
-  .summary-card::after { content: ''; position: absolute; left: 56px; bottom: 24px; width: 40px; height: 3px; border-radius: 2px; background: rgba(255,255,255,0.6); }
-  .summary-card .verdict-label { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.7); display: inline-block; margin-bottom: 14px; }
-  .summary-card h2 { font-family: 'Libre Baskerville', serif; color: #FFFFFF; font-size: clamp(28px, 4vw, 42px); margin: 0 0 18px; line-height: 1.1; letter-spacing: -0.025em; }
-  .summary-card p { font-size: 17px; max-width: 580px; line-height: 1.65; color: rgba(255,255,255,0.88); margin-bottom: 32px; }
-  .summary-stats { display: flex; gap: 40px; flex-wrap: wrap; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.18); }
-  .summary-stat strong { display: block; font-family: 'Libre Baskerville', serif; font-size: 28px; color: #FFFFFF; line-height: 1; margin-bottom: 6px; }
-  .summary-stat span { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
-  @media (max-width: 560px) { .summary-card { padding: 32px 22px; } .summary-stats { gap: 24px; } }
+  .timeline { display: none; padding: var(--s-6) 0 var(--s-4); }
+  .timeline.visible { display: block; animation: fadeIn var(--motion-drawer) var(--ease-out); }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .timeline.visible { animation: none; } }
 
-  .timeline-controls { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 32px; }
-  .legend { background: var(--warm-off); border-radius: var(--radius-md); padding: 16px 20px; margin-bottom: 32px; display: flex; flex-wrap: wrap; gap: 10px 22px; }
-  .legend-item { font-size: 12px; color: var(--warm-dark); display: inline-flex; align-items: center; gap: 8px; }
+  /* Summary banner: inverted ink panel (matches the result card on other tools) */
+  .summary-card { background: var(--ink-primary); color: var(--surface-raised); border-radius: var(--radius-card); padding: var(--s-6); margin-bottom: var(--s-5); }
+  .summary-card .verdict-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: var(--track-caption); text-transform: uppercase; opacity: 0.65; display: inline-block; margin-bottom: var(--s-3); }
+  .summary-card h2 { font-family: var(--font-display); color: var(--surface-raised); font-size: var(--type-h2); margin: 0 0 var(--s-3); line-height: var(--leading-h2); }
+  .summary-card p { font-family: var(--font-serif); font-size: 15px; max-width: 580px; line-height: 1.55; opacity: 0.85; margin-bottom: var(--s-5); }
+  .summary-stats { display: flex; gap: var(--s-6); flex-wrap: wrap; padding-top: var(--s-4); border-top: 1px solid rgba(242,242,242,0.18); }
+  .summary-stat strong { display: block; font-family: var(--font-display); font-size: 22px; line-height: 1; margin-bottom: var(--s-1); }
+  .summary-stat span { font-family: var(--font-sans); font-size: 11px; letter-spacing: var(--track-caption); text-transform: uppercase; opacity: 0.65; }
+  @media (max-width: 560px) { .summary-card { padding: var(--s-5) var(--s-4); } .summary-stats { gap: var(--s-4); } }
+
+  .timeline-controls { display: flex; gap: var(--s-3); flex-wrap: wrap; align-items: center; margin-bottom: var(--s-5); }
+
+  /* Category legend */
+  .legend { background: var(--surface-raised); border: 1px solid var(--rule); border-radius: var(--radius-card); padding: var(--s-3) var(--s-4); margin-bottom: var(--s-5); display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); }
+  .legend-item { font-family: var(--font-sans); font-size: 12px; color: var(--ink-soft); display: inline-flex; align-items: center; gap: var(--s-2); }
   .legend-item .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 
-  .month-block { margin-bottom: 32px; }
-  .month-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--warm-cream); }
-  .month-header .month-name { font-family: 'Libre Baskerville', serif; font-size: 22px; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; }
-  .month-header .month-count { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--warm-mid); letter-spacing: 0.06em; text-transform: uppercase; }
-  .month-empty { font-family: 'Inter', sans-serif; color: var(--warm-mid); font-size: 13px; padding: 4px 0; }
+  /* Month blocks: each month is a header band, deadlines stacked under it */
+  .month-block { margin-bottom: var(--s-6); }
+  .month-header { display: flex; align-items: baseline; gap: var(--s-3); margin-bottom: var(--s-3); padding-bottom: var(--s-2); border-bottom: 1px solid var(--rule); }
+  .month-header .month-name { font-family: var(--font-display); font-size: 22px; font-weight: 580; color: var(--ink-primary); letter-spacing: -0.01em; }
+  .month-header .month-count { font-family: var(--font-mono); font-size: 11px; color: var(--ink-muted); letter-spacing: var(--track-caption); text-transform: uppercase; }
+  .month-empty { font-family: var(--font-serif); font-style: italic; color: var(--ink-muted); font-size: 14px; padding: var(--s-2) 0; }
 
-  .deadline-list { display: flex; flex-direction: column; gap: 12px; }
-  .deadline-card { background: var(--warm-white); border: 1px solid var(--warm-cream); border-radius: var(--radius-md); padding: 18px 22px; box-shadow: var(--shadow-sm); display: grid; grid-template-columns: 80px 1fr auto; gap: 24px; align-items: center; transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
-  .deadline-card:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); border-color: var(--purple-pale); }
-  .deadline-date { font-family: 'Libre Baskerville', serif; text-align: center; }
-  .deadline-date .day { display: block; font-size: 28px; font-weight: 700; color: var(--ink); line-height: 1; }
-  .deadline-date .month { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm-mid); margin-top: 6px; font-family: 'Inter', sans-serif; }
-  .deadline-body h4 { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 600; color: var(--ink); margin: 0 0 4px; letter-spacing: -0.01em; }
-  .deadline-body p { font-size: 13px; color: var(--warm-mid); line-height: 1.55; margin: 0; }
-  .deadline-tag { display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 100px; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; font-family: 'Syne', sans-serif; }
-  .deadline-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
-  .tag-companies-house { background: var(--purple-ghost); color: var(--cat-companies-house); }
-  .tag-corp-tax { background: #F8E5E2; color: var(--cat-corp-tax); }
-  .tag-vat { background: #E1F0E8; color: var(--cat-vat); }
-  .tag-paye { background: #FAEFD9; color: var(--cat-paye); }
-  .tag-self-assessment { background: var(--purple-ghost); color: var(--cat-self-assessment); }
-  .tag-pension { background: #E1F0E8; color: var(--cat-pension); }
-  .tag-gdpr { background: var(--warm-off); color: var(--cat-gdpr); }
+  /* Deadline rows: left date-rail, body, category tag */
+  .deadline-list { display: flex; flex-direction: column; gap: var(--s-2); }
+  .deadline-card { background: var(--surface-raised); border: 1px solid var(--rule); border-radius: var(--radius-card); border-left: 3px solid var(--ink-muted); padding: var(--s-4); display: grid; grid-template-columns: 72px 1fr auto; gap: var(--s-4); align-items: center; transition: border-color var(--motion-base) var(--ease-hover); }
+  .deadline-card:hover { border-color: var(--ink-soft); border-left-color: var(--ink-primary); }
+  /* The left rule carries each row's category colour, the only colour event */
+  .deadline-card.cat-companies-house { border-left-color: var(--cat-companies-house); }
+  .deadline-card.cat-corp-tax { border-left-color: var(--cat-corp-tax); }
+  .deadline-card.cat-vat { border-left-color: var(--cat-vat); }
+  .deadline-card.cat-paye { border-left-color: var(--cat-paye); }
+  .deadline-card.cat-self-assessment { border-left-color: var(--cat-self-assessment); }
+  .deadline-card.cat-pension { border-left-color: var(--cat-pension); }
+  .deadline-card.cat-gdpr { border-left-color: var(--cat-gdpr); }
+  .deadline-date { font-family: var(--font-display); text-align: center; }
+  .deadline-date .day { display: block; font-size: 28px; font-weight: 580; color: var(--ink-primary); line-height: 1; font-variant-numeric: tabular-nums; }
+  .deadline-date .month { display: block; font-family: var(--font-mono); font-size: 11px; font-weight: 400; letter-spacing: var(--track-caption); text-transform: uppercase; color: var(--ink-muted); margin-top: 6px; }
+  .deadline-body h4 { font-family: var(--font-sans); font-size: 15px; font-weight: 600; color: var(--ink-primary); margin: 0 0 var(--s-1); letter-spacing: -0.005em; }
+  .deadline-body p { font-family: var(--font-sans); font-size: 13px; color: var(--ink-muted); line-height: 1.55; margin: 0; }
+  .deadline-tag { display: inline-flex; align-items: center; gap: var(--s-2); padding: 5px 11px; border: 1px solid var(--rule); border-radius: var(--radius-button); font-family: var(--font-sans); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; background: var(--surface-base); }
+  .deadline-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+  .tag-companies-house { color: var(--cat-companies-house); }
+  .tag-corp-tax { color: var(--cat-corp-tax); }
+  .tag-vat { color: var(--cat-vat); }
+  .tag-paye { color: var(--cat-paye); }
+  .tag-self-assessment { color: var(--cat-self-assessment); }
+  .tag-pension { color: var(--cat-pension); }
+  .tag-gdpr { color: var(--cat-gdpr); }
   @media (max-width: 720px) {
-    .deadline-card { grid-template-columns: 60px 1fr; gap: 16px; padding: 14px 16px; }
-    .deadline-tag { grid-column: 1 / -1; justify-self: start; margin-top: 8px; }
+    .deadline-card { grid-template-columns: 56px 1fr; gap: var(--s-3); padding: var(--s-3); }
+    .deadline-date .day { font-size: 24px; }
+    .deadline-tag { grid-column: 1 / -1; justify-self: start; margin-top: var(--s-2); }
   }
 
-  .restart-row { padding-top: 24px; border-top: 1px solid var(--warm-cream); margin-top: 32px; }
+  .restart-row { padding-top: var(--s-4); border-top: 1px solid var(--rule); margin-top: var(--s-5); }
+
+  .notice { font-family: var(--font-sans); font-size: 12.5px; line-height: 1.6; color: var(--ink-muted); text-align: center; max-width: 760px; margin: 0 auto; }
 
   @media print {
-    .masthead, .free-tools-menu, .form-card, .timeline-controls, .restart-row, .footer, header.hero { display: none !important; }
+    .eos-header, .eos-drawer, .eos-hero2, .form-card, .timeline-controls, .restart-row, .eos-footer, .eos-section { display: none !important; }
     body { background: #fff; color: #000; }
-    .deadline-card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+    .deadline-card { break-inside: avoid; border: 1px solid #ddd; }
   }
  </style>
+<script>try{if(sessionStorage.getItem('eosBooted')){document.documentElement.classList.add('eos-boot--skip');}else{sessionStorage.setItem('eosBooted','1');}}catch(e){}</script>
+<link rel="stylesheet" href="./_legacy-tool-vars.css?v=249g" />
 </head>
 <body>
-
-<!-- MASTHEAD (canonical) -->
-<div class="masthead">
- <div class="wrap">
-  <div class="masthead-inner">
-   <a class="masthead-brand" href="./" aria-label="ExternalOS home">
-    <span class="mark-wrap" aria-hidden="true">
-     <svg viewBox="6 4 28 28" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="20,4 34,18 20,32 6,18" fill="#DBC8F0"/>
-      <polygon points="20,8.6 31.7,20.3 20,32 8.3,20.3" fill="#BEA0E0"/>
-      <polygon points="20,13.2 29.4,22.6 20,32 10.6,22.6" fill="#9F72D0"/>
-      <polygon points="20,17.8 27.1,24.9 20,32 12.9,24.9" fill="#8248BF"/>
-      <polygon points="20,22.4 24.8,27.2 20,32 15.2,27.2" fill="#6525AB"/>
-      <polygon points="20,27 22.5,29.5 20,32 17.5,29.5" fill="#4A1290"/>
-     </svg>
-    </span>
-    <span class="wordmark">External<span>OS</span></span>
+<header class="eos-header" data-eos-header role="banner">
+ <div class="eos-header__inner">
+  <a class="eos-header__brand" href="./index.html" aria-label="ExternalOS home">
+   <svg class="eos-header__brand-mark eos-logo-mark" viewBox="0 0 40 40" aria-hidden="true">
+    <polygon points="20,4 34,18 20,32 6,18"/><polygon points="20,8.6 31.7,20.3 20,32 8.3,20.3"/><polygon points="20,13.2 29.4,22.6 20,32 10.6,22.6"/><polygon points="20,17.8 27.1,24.9 20,32 12.9,24.9"/><polygon points="20,22.4 24.8,27.2 20,32 15.2,27.2"/><polygon points="20,27 22.5,29.5 20,32 17.5,29.5"/>
+   </svg>
+   <span class="eos-header__brand-wordmark">ExternalOS</span>
+  </a>
+  <nav class="eos-header__nav" aria-label="Main navigation">
+   <div class="eos-nav-item" data-eos-dropdown>
+    <button class="eos-nav-trigger" type="button" aria-expanded="false" aria-haspopup="true">Packs
+     <svg class="eos-nav-trigger__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="eos-nav-menu" role="menu">
+     <a class="eos-nav-menu__link" role="menuitem" href="./uk-tax-calculator.html"><span class="eos-nav-menu__name">Sole Trader Tax Workspace</span><span class="eos-nav-menu__meta">&pound;19</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./creative-contracts.html"><span class="eos-nav-menu__name">Creative Contracts Pack</span><span class="eos-nav-menu__meta">&pound;39</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./uk-employment-law.html"><span class="eos-nav-menu__name">UK Employment Law Kit</span><span class="eos-nav-menu__meta">&pound;49</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./uk-landlord-compliance.html"><span class="eos-nav-menu__name">UK Landlord Legal Pack</span><span class="eos-nav-menu__meta">&pound;39</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./aml-kyc-docs.html"><span class="eos-nav-menu__name">AML and KYC Document Pack</span><span class="eos-nav-menu__meta">&pound;59</span></a>
+     <a class="eos-nav-menu__link eos-nav-menu__link--all" role="menuitem" href="./tools.html"><span class="eos-nav-menu__name">See all five packs</span></a>
+    </div>
+   </div>
+   <div class="eos-nav-item" data-eos-dropdown>
+    <button class="eos-nav-trigger" type="button" aria-expanded="false" aria-haspopup="true">Free tools
+     <svg class="eos-nav-trigger__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="eos-nav-menu" role="menu">
+     <a class="eos-nav-menu__link" role="menuitem" href="./ir35-checker.html"><span class="eos-nav-menu__name">IR35 Status Checker</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./mtd-clock.html"><span class="eos-nav-menu__name">MTD Penalty Clock</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./employer-costs.html"><span class="eos-nav-menu__name">Employer Costs Calculator</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./landlord-compliance-check.html"><span class="eos-nav-menu__name">Landlord Compliance Check</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./compliance-calendar.html"><span class="eos-nav-menu__name">Compliance Calendar</span></a>
+     <a class="eos-nav-menu__link eos-nav-menu__link--all" role="menuitem" href="./tools.html#free-tools"><span class="eos-nav-menu__name">All free tools</span></a>
+    </div>
+   </div>
+   <div class="eos-nav-item" data-eos-dropdown>
+    <button class="eos-nav-trigger" type="button" aria-expanded="false" aria-haspopup="true">MTD
+     <svg class="eos-nav-trigger__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="eos-nav-menu" role="menu">
+     <a class="eos-nav-menu__link" role="menuitem" href="./mtd.html"><span class="eos-nav-menu__name">Making Tax Digital, explained</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./mtd-spreadsheet.html"><span class="eos-nav-menu__name">The MTD Spreadsheet</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./mtd-kit.html"><span class="eos-nav-menu__name">MTD for ITSA Survival Kit</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./mtd-jargon.html"><span class="eos-nav-menu__name">MTD Jargon Decoder</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./mtd-clock.html"><span class="eos-nav-menu__name">MTD Penalty Clock</span></a>
+    </div>
+   </div>
+  </nav>
+  <div class="eos-header__util">
+   <button class="eos-header__theme" data-eos-theme-toggle type="button" aria-label="Toggle theme">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+   </button>
+   <a class="eos-header__cart" href="./cart.html" data-eos-cart data-count="0" aria-label="View cart">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.6 12.3a2 2 0 0 0 2 1.7h8.8a2 2 0 0 0 2-1.7L22 7H6"/><circle cx="10" cy="21" r="1.3"/><circle cx="18" cy="21" r="1.3"/></svg>
+    <span class="eos-header__cart-count">0</span>
    </a>
-   <nav class="masthead-nav" aria-label="Main navigation">
-    <span data-skills-nav></span>
-    <span data-free-tools-nav></span>
-    <a href="./#products">Bundles</a>
-    <a class="btn-nav" href="https://externalos.gumroad.com/l/compliance-tracker" target="_blank" rel="noopener">Get the Tracker &pound;59</a>
-   </nav>
+   <a class="eos-button eos-button--primary eos-button--small" href="./tools.html" data-magnetic>Browse packs</a>
+  </div>
+  <button class="eos-header__hamburger" data-eos-drawer-open type="button" aria-label="Open menu" aria-controls="eos-drawer" aria-expanded="false">
+   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+ </div>
+</header>
+<div class="eos-drawer" id="eos-drawer" data-eos-drawer role="dialog" aria-modal="true" aria-label="Site navigation">
+ <div class="eos-drawer__backdrop" data-eos-drawer-close></div>
+ <div class="eos-drawer__panel">
+  <button class="eos-drawer__close" data-eos-drawer-close type="button" aria-label="Close menu">
+   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <nav class="eos-drawer__nav" aria-label="Mobile navigation">
+   <span class="eos-drawer__group">The five packs</span>
+   <a href="./uk-tax-calculator.html">Sole Trader Tax Workspace</a>
+   <a href="./creative-contracts.html">Creative Contracts Pack</a>
+   <a href="./uk-employment-law.html">UK Employment Law Kit</a>
+   <a href="./uk-landlord-compliance.html">UK Landlord Legal Pack</a>
+   <a href="./aml-kyc-docs.html">AML and KYC Document Pack</a>
+   <span class="eos-drawer__group">Free tools</span>
+   <a href="./ir35-checker.html">IR35 Status Checker</a>
+   <a href="./mtd-clock.html">MTD Penalty Clock</a>
+   <a href="./employer-costs.html">Employer Costs Calculator</a>
+   <a href="./landlord-compliance-check.html">Landlord Compliance Check</a>
+   <a href="./compliance-calendar.html">Compliance Calendar</a>
+   <span class="eos-drawer__group">More</span>
+   <a href="./tools.html">Full catalogue</a>
+   <a href="./mtd.html">Making Tax Digital</a>
+   <a href="./quiz.html">Find my pack</a>
+   <a href="./cart.html">Cart</a>
+  </nav>
+  <div class="eos-drawer__footer">
+   <a class="eos-button eos-button--primary" href="./tools.html">Browse the packs</a>
   </div>
  </div>
 </div>
 
-<!-- HERO -->
-<header class="hero" id="hero" role="banner">
- <div class="mark-rail mark-rail-left" aria-hidden="true">
-  <svg viewBox="0 0 140 280" xmlns="http://www.w3.org/2000/svg">
-   <polygon points="0,0 140,140 0,280" fill="#DBC8F0"/>
-   <polygon points="0,46 117,163 0,280" fill="#BEA0E0"/>
-   <polygon points="0,92 94,186 0,280" fill="#9F72D0"/>
-   <polygon points="0,138 71,209 0,280" fill="#8248BF"/>
-   <polygon points="0,184 48,232 0,280" fill="#6525AB"/>
-   <polygon points="0,230 25,255 0,280" fill="#4A1290"/>
-  </svg>
- </div>
- <div class="mark-rail mark-rail-right" aria-hidden="true">
-  <svg viewBox="0 0 140 280" xmlns="http://www.w3.org/2000/svg">
-   <polygon points="140,0 0,140 140,280" fill="#DBC8F0"/>
-   <polygon points="140,46 23,163 140,280" fill="#BEA0E0"/>
-   <polygon points="140,92 46,186 140,280" fill="#9F72D0"/>
-   <polygon points="140,138 69,209 140,280" fill="#8248BF"/>
-   <polygon points="140,184 92,232 140,280" fill="#6525AB"/>
-   <polygon points="140,230 115,255 140,280" fill="#4A1290"/>
-  </svg>
- </div>
- <div class="wrap">
-  <div class="hero-inner">
-   <div class="hero-copy">
-    <div class="divider" aria-hidden="true"></div>
-    <span class="eyebrow">Free tool &middot; UK 2026 rules</span>
-    <h1>The UK Ltd <span class="accent">Compliance</span> Calendar.</h1>
-    <p class="lede">Enter your year-end. Get every HMRC and Companies House deadline for the next 12 months mapped, dated, and exportable as a <strong>.ics</strong> for your calendar app. <strong>No signup, no email gate.</strong></p>
-    <div class="cta-row">
-     <a class="btn btn-primary" href="#start">Build my calendar <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-     <a class="btn btn-secondary" href="#how">How it works</a>
-    </div>
-    <div class="proof-line">
-     <span class="proof-item"><span class="proof-dot"></span> 25+ deadlines mapped</span>
-     <span class="proof-item"><span class="proof-dot"></span> .ics export with reminders</span>
-     <span class="proof-item"><span class="proof-dot"></span> No data leaves your browser</span>
-    </div>
-   </div>
-  </div>
- </div>
-</header>
 
-<!-- BODY -->
+
+
+
+<section class="eos-hero2 eos-hero2--compact" data-eos-hero="" data-section-type="statement">
+<div aria-hidden="true" class="eos-hero2__rail eos-hero2__rail--left"><svg preserveaspectratio="xMidYMid meet" viewbox="0 0 40 40"><polygon points="20,6 34,20 20,34 6,20"></polygon><polygon points="20,10.6 31.7,22.3 20,34 8.3,22.3"></polygon><polygon points="20,15.2 29.4,24.6 20,34 10.6,24.6"></polygon><polygon points="20,19.8 27.1,26.9 20,34 12.9,26.9"></polygon><polygon points="20,24.4 24.8,29.2 20,34 15.2,29.2"></polygon><polygon points="20,29 22.5,31.5 20,34 17.5,31.5"></polygon></svg></div>
+<div aria-hidden="true" class="eos-hero2__rail eos-hero2__rail--right"><svg preserveaspectratio="xMidYMid meet" viewbox="0 0 40 40"><polygon points="20,6 34,20 20,34 6,20"></polygon><polygon points="20,10.6 31.7,22.3 20,34 8.3,22.3"></polygon><polygon points="20,15.2 29.4,24.6 20,34 10.6,24.6"></polygon><polygon points="20,19.8 27.1,26.9 20,34 12.9,26.9"></polygon><polygon points="20,24.4 24.8,29.2 20,34 15.2,29.2"></polygon><polygon points="20,29 22.5,31.5 20,34 17.5,31.5"></polygon></svg></div>
+<div class="eos-hero2__inner">
+<p class="eos-hero2__dateline"><span class="eos-hero2__dateline-rule"></span><span>Free tool</span><span class="eos-hero2__dateline-dot">·</span><span>ExternalOS</span><span class="eos-hero2__dateline-dot">·</span><span>2026/27</span><span class="eos-hero2__dateline-rule"></span></p>
+<h1 class="eos-hero2__statement" data-eos-hero-statement="">The UK Ltd Compliance Calendar.</h1>
+<div class="eos-hero2__creed"><p class="eos-hero2__creed-line">Enter your year-end. Get every HMRC and Companies House deadline for the next 12 months mapped, dated, and exportable as a .ics for your calendar app. No signup, no email gate.</p></div>
+<div class="eos-actions eos-actions--hero"><a class="eos-action eos-action--primary" href="#start">Build my calendar <span aria-hidden="true" class="eos-action__arrow">→</span></a></div>
+</div>
+</section>
+
+
 <main>
- <div class="wrap page-body">
+<div class="wrap page-body">
+<section class="tool-section" id="how">
+<div class="tool-section-header">
+<div>
+<span class="tool-section-number">01 / How it works</span>
+<h2>One input, every deadline.</h2>
+</div>
+<p class="tool-sub">Modelled on the actual rules HMRC and Companies House apply, not a generic small-business calendar.</p>
+</div>
+<p class="tool-copy">UK limited companies have to track at least seven separate cycles of deadlines: accounts, Corporation Tax, VAT, PAYE, P11D, Confirmation Statement, and (from April 2026) Making Tax Digital for Income Tax for property landlords above £50k. Most owners keep this in three browser tabs and a calendar reminder.</p>
+<p class="tool-copy">Tell us your year-end and a couple of yes/no questions. We map every deadline that flows from those answers into one calendar, dated to your company, exportable as <strong>.ics</strong> so your calendar app handles the alerts.</p>
+<div class="pill-grid">
+<div class="pill"><strong>Accounts</strong><span>9 months after year-end, Companies House</span></div>
+<div class="pill"><strong>Corporation Tax</strong><span>9 months and 1 day after year-end, HMRC</span></div>
+<div class="pill"><strong>CT600 return</strong><span>12 months after year-end, HMRC</span></div>
+<div class="pill"><strong>VAT returns</strong><span>Quarterly, 1 month and 7 days after period end</span></div>
+<div class="pill"><strong>PAYE / RTI</strong><span>Monthly P32, 22nd if paying electronically</span></div>
+<div class="pill"><strong>P11D</strong><span>6 July annually for benefits in kind</span></div>
+<div class="pill"><strong>Confirmation Statement</strong><span>Annual, 14 days after review date</span></div>
+<div class="pill"><strong>Self Assessment</strong><span>Directors with side income, 31 January</span></div>
+</div>
+</section>
+<section class="tool-section" id="start">
+<div class="tool-section-header">
+<div>
+<span class="tool-section-number">02 / Your details</span>
+<h2>Tell us about your company.</h2>
+</div>
+<p class="tool-sub">Just enough to map the deadlines accurately. Nothing leaves your browser.</p>
+</div>
+<form class="form-card" id="calForm" novalidate="">
+<div class="form-row">
+<label class="form-label" for="yearEndMonth">Year-end month</label>
+<p class="form-hint">When does your accounting year end? Most UK Ltds default to 31 March or 31 December. Check your last set of accounts.</p>
+<div class="form-row-grid">
+<select class="form-select" id="yearEndMonth" required="">
+<option value="">Select month</option>
+<option value="1">January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option>
+</select>
+<select class="form-select" id="yearEndDay">
+<option value="last">Last day of month</option>
+<option value="custom">Specific date</option>
+</select>
+</div>
+<input class="form-input" id="yearEndCustomDay" max="31" min="1" placeholder="Day (1-31)" style="display:none; margin-top:10px; max-width:200px;" type="number"/>
+</div>
+<div class="form-row">
+<label class="form-label">Are you VAT registered?</label>
+<p class="form-hint">If you turn over more than £90,000 in any rolling 12 months, registration is mandatory. Voluntary registration below threshold is also common.</p>
+<div aria-label="VAT registered" class="form-toggle-group" role="radiogroup">
+<button aria-checked="false" class="form-toggle" data-field="vat" data-value="yes" role="radio" type="button">Yes, VAT registered</button>
+<button aria-checked="false" class="form-toggle" data-field="vat" data-value="no" role="radio" type="button">No, below threshold</button>
+</div>
+</div>
+<div class="form-row" id="vatStaggerRow" style="display:none;">
+<label class="form-label">VAT stagger group</label>
+<p class="form-hint">Look at your most recent VAT return. Which months are your quarters? "Stagger 1" (Mar/Jun/Sep/Dec quarter ends) is the most common default.</p>
+<div aria-label="VAT stagger" class="form-toggle-group" role="radiogroup">
+<button aria-checked="false" class="form-toggle" data-field="vatStagger" data-value="1" role="radio" type="button">Stagger 1 (Mar / Jun / Sep / Dec)</button>
+<button aria-checked="false" class="form-toggle" data-field="vatStagger" data-value="2" role="radio" type="button">Stagger 2 (Apr / Jul / Oct / Jan)</button>
+<button aria-checked="false" class="form-toggle" data-field="vatStagger" data-value="3" role="radio" type="button">Stagger 3 (May / Aug / Nov / Feb)</button>
+</div>
+</div>
+<div class="form-row">
+<label class="form-label">Do you have employees on PAYE?</label>
+<p class="form-hint">Including yourself if you draw a salary as a director through the company payroll.</p>
+<div aria-label="Employer" class="form-toggle-group" role="radiogroup">
+<button aria-checked="false" class="form-toggle" data-field="employer" data-value="yes" role="radio" type="button">Yes</button>
+<button aria-checked="false" class="form-toggle" data-field="employer" data-value="no" role="radio" type="button">No</button>
+</div>
+</div>
+<div class="form-row" id="benefitsRow" style="display:none;">
+<label class="form-label">Do you provide any taxable benefits?</label>
+<p class="form-hint">Company car, private medical, employer pension contributions above 8%, gym membership, etc. If yes, you'll need to file a P11D each July.</p>
+<div aria-label="Benefits" class="form-toggle-group" role="radiogroup">
+<button aria-checked="false" class="form-toggle" data-field="benefits" data-value="yes" role="radio" type="button">Yes</button>
+<button aria-checked="false" class="form-toggle" data-field="benefits" data-value="no" role="radio" type="button">No</button>
+</div>
+</div>
+<div class="form-row">
+<label class="form-label">Do you have property income above £50k?</label>
+<p class="form-hint">From April 2026, MTD for Income Tax applies to landlords (and sole traders) with combined gross income over £50,000. Quarterly digital updates required.</p>
+<div aria-label="MTD ITSA" class="form-toggle-group" role="radiogroup">
+<button aria-checked="false" class="form-toggle" data-field="mtdItsa" data-value="yes" role="radio" type="button">Yes</button>
+<button aria-checked="false" class="form-toggle" data-field="mtdItsa" data-value="no" role="radio" type="button">No</button>
+</div>
+</div>
+<div class="form-row">
+<label class="form-label" for="confirmationMonth">Confirmation Statement month <span style="color: var(--ink-muted); font-weight: 400;">(optional)</span></label>
+<p class="form-hint">The month your CS is due each year, usually the anniversary of incorporation. Skip if unsure.</p>
+<select class="form-select" id="confirmationMonth">
+<option value="">Skip / unsure</option>
+<option value="1">January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option>
+</select>
+</div>
+<div class="form-actions">
+<button class="btn btn-primary" disabled="" id="buildBtn" type="submit">Build my calendar <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"></path></svg></button>
+<button class="btn btn-secondary" id="resetBtn" type="reset">Reset</button>
+</div>
+</form>
+</section>
+<section aria-live="polite" class="timeline" id="timelineSection">
+<div class="tool-section-header">
+<div>
+<span class="tool-section-number">03 / Your calendar</span>
+<h2>The next 12 months.</h2>
+</div>
+<p class="tool-sub">Built from your year-end. Print, export, or copy a shareable link, all client-side.</p>
+</div>
+<div class="summary-card">
+<span class="verdict-label">Calendar built</span>
+<h2 id="summaryHeadline">Your compliance year, mapped.</h2>
+<p id="summaryBody"></p>
+<div class="summary-stats">
+<div class="summary-stat"><strong id="statTotal">0</strong><span>Deadlines mapped</span></div>
+<div class="summary-stat"><strong id="statNext">-</strong><span>Next due</span></div>
+<div class="summary-stat"><strong id="statHardest">-</strong><span>Busiest month</span></div>
+</div>
+</div>
+<div class="timeline-controls">
+<button class="btn btn-primary" id="downloadIcs" type="button">Download .ics for your calendar</button>
+<button class="btn btn-secondary" id="printBtn" type="button">Print</button>
+<button class="btn btn-secondary" id="copyLinkBtn" type="button">Copy shareable link</button>
+</div>
+<div aria-label="Category legend" class="legend">
+<div class="legend-item"><span class="dot" style="background: var(--cat-companies-house)"></span>Companies House</div>
+<div class="legend-item"><span class="dot" style="background: var(--cat-corp-tax)"></span>Corporation Tax</div>
+<div class="legend-item"><span class="dot" style="background: var(--cat-vat)"></span>VAT</div>
+<div class="legend-item"><span class="dot" style="background: var(--cat-paye)"></span>PAYE / Payroll</div>
+<div class="legend-item"><span class="dot" style="background: var(--cat-self-assessment)"></span>Self Assessment</div>
+<div class="legend-item"><span class="dot" style="background: var(--cat-pension)"></span>Pension</div>
+<div class="legend-item"><span class="dot" style="background: var(--cat-gdpr)"></span>GDPR / Annual review</div>
+</div>
+<div id="monthsContainer"></div>
+<div class="restart-row">
+<button class="btn btn-secondary" id="restartBtn" type="button">← Edit my details</button>
+</div>
+</section>
+</div>
 
-  <section class="tool-section" id="how">
-   <div class="tool-section-header">
-    <div>
-     <span class="tool-section-number">01 / How it works</span>
-     <h2>One input, every deadline.</h2>
-    </div>
-    <p class="tool-sub">Modelled on the actual rules HMRC and Companies House apply, not a generic small-business calendar.</p>
-   </div>
-   <p style="font-size: 16px; line-height: 1.75; color: var(--body); max-width: 720px; margin: 0 auto 12px;">UK limited companies have to track at least seven separate cycles of deadlines: accounts, Corporation Tax, VAT, PAYE, P11D, Confirmation Statement, and (from April 2026) Making Tax Digital for Income Tax for property landlords above &pound;50k. Most owners keep this in three browser tabs and a calendar reminder.</p>
-   <p style="font-size: 16px; line-height: 1.75; color: var(--body); max-width: 720px; margin: 0 auto;">Tell us your year-end and a couple of yes/no questions. We map every deadline that flows from those answers into one calendar, dated to your company, exportable as <strong>.ics</strong> so your calendar app handles the alerts.</p>
-   <div class="pill-grid">
-    <div class="pill"><strong>Accounts</strong><span>9 months after year-end, Companies House</span></div>
-    <div class="pill"><strong>Corporation Tax</strong><span>9 months and 1 day after year-end, HMRC</span></div>
-    <div class="pill"><strong>CT600 return</strong><span>12 months after year-end, HMRC</span></div>
-    <div class="pill"><strong>VAT returns</strong><span>Quarterly, 1 month and 7 days after period end</span></div>
-    <div class="pill"><strong>PAYE / RTI</strong><span>Monthly P32, 22nd if paying electronically</span></div>
-    <div class="pill"><strong>P11D</strong><span>6 July annually for benefits in kind</span></div>
-    <div class="pill"><strong>Confirmation Statement</strong><span>Annual, 14 days after review date</span></div>
-    <div class="pill"><strong>Self Assessment</strong><span>Directors with side income, 31 January</span></div>
-   </div>
-  </section>
+<section class="eos-section" data-accent="crimson" data-section-type="default">
+<div class="eos-section__head">
+<span class="eos-eyebrow">Pairs with the AML and KYC Document Pack</span>
+<h2>Under HMRC supervision?</h2>
+<p>The free calendar keeps the deadlines in view. The AML and KYC Document Pack gives you the policy, risk assessment and procedures every supervised agent is legally required to hold. Paid once, yours to keep.</p>
+</div>
+<div class="eos-actions" style="justify-content:center;display:flex;gap:14px;flex-wrap:wrap">
+<a class="eos-action eos-action--primary" href="./aml-kyc-docs.html">See the AML and KYC Document Pack, £59 <span aria-hidden="true" class="eos-action__arrow">→</span></a>
+<a class="eos-action eos-action--quiet" href="./tools.html">All five packs</a>
+</div>
+</section>
 
-  <section class="tool-section" id="start">
-   <div class="tool-section-header">
-    <div>
-     <span class="tool-section-number">02 / Your details</span>
-     <h2>Tell us about your company.</h2>
-    </div>
-    <p class="tool-sub">Just enough to map the deadlines accurately. Nothing leaves your browser.</p>
-   </div>
-
-   <form class="form-card" id="calForm" novalidate>
-    <div class="form-row">
-     <label class="form-label" for="yearEndMonth">Year-end month</label>
-     <p class="form-hint">When does your accounting year end? Most UK Ltds default to 31 March or 31 December. Check your last set of accounts.</p>
-     <div class="form-row-grid">
-      <select class="form-select" id="yearEndMonth" required>
-       <option value="">Select month</option>
-       <option value="1">January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option>
-      </select>
-      <select class="form-select" id="yearEndDay">
-       <option value="last">Last day of month</option>
-       <option value="custom">Specific date</option>
-      </select>
-     </div>
-     <input class="form-input" id="yearEndCustomDay" type="number" min="1" max="31" placeholder="Day (1-31)" style="display:none; margin-top:10px; max-width:200px;" />
-    </div>
-
-    <div class="form-row">
-     <label class="form-label">Are you VAT registered?</label>
-     <p class="form-hint">If you turn over more than &pound;90,000 in any rolling 12 months, registration is mandatory. Voluntary registration below threshold is also common.</p>
-     <div class="form-toggle-group" role="radiogroup" aria-label="VAT registered">
-      <button type="button" class="form-toggle" data-field="vat" data-value="yes" role="radio" aria-checked="false">Yes, VAT registered</button>
-      <button type="button" class="form-toggle" data-field="vat" data-value="no" role="radio" aria-checked="false">No, below threshold</button>
-     </div>
-    </div>
-
-    <div class="form-row" id="vatStaggerRow" style="display:none;">
-     <label class="form-label">VAT stagger group</label>
-     <p class="form-hint">Look at your most recent VAT return. Which months are your quarters? "Stagger 1" (Mar/Jun/Sep/Dec quarter ends) is the most common default.</p>
-     <div class="form-toggle-group" role="radiogroup" aria-label="VAT stagger">
-      <button type="button" class="form-toggle" data-field="vatStagger" data-value="1" role="radio" aria-checked="false">Stagger 1 (Mar / Jun / Sep / Dec)</button>
-      <button type="button" class="form-toggle" data-field="vatStagger" data-value="2" role="radio" aria-checked="false">Stagger 2 (Apr / Jul / Oct / Jan)</button>
-      <button type="button" class="form-toggle" data-field="vatStagger" data-value="3" role="radio" aria-checked="false">Stagger 3 (May / Aug / Nov / Feb)</button>
-     </div>
-    </div>
-
-    <div class="form-row">
-     <label class="form-label">Do you have employees on PAYE?</label>
-     <p class="form-hint">Including yourself if you draw a salary as a director through the company payroll.</p>
-     <div class="form-toggle-group" role="radiogroup" aria-label="Employer">
-      <button type="button" class="form-toggle" data-field="employer" data-value="yes" role="radio" aria-checked="false">Yes</button>
-      <button type="button" class="form-toggle" data-field="employer" data-value="no" role="radio" aria-checked="false">No</button>
-     </div>
-    </div>
-
-    <div class="form-row" id="benefitsRow" style="display:none;">
-     <label class="form-label">Do you provide any taxable benefits?</label>
-     <p class="form-hint">Company car, private medical, employer pension contributions above 8%, gym membership, etc. If yes, you'll need to file a P11D each July.</p>
-     <div class="form-toggle-group" role="radiogroup" aria-label="Benefits">
-      <button type="button" class="form-toggle" data-field="benefits" data-value="yes" role="radio" aria-checked="false">Yes</button>
-      <button type="button" class="form-toggle" data-field="benefits" data-value="no" role="radio" aria-checked="false">No</button>
-     </div>
-    </div>
-
-    <div class="form-row">
-     <label class="form-label">Do you have property income above &pound;50k?</label>
-     <p class="form-hint">From April 2026, MTD for Income Tax applies to landlords (and sole traders) with combined gross income over &pound;50,000. Quarterly digital updates required.</p>
-     <div class="form-toggle-group" role="radiogroup" aria-label="MTD ITSA">
-      <button type="button" class="form-toggle" data-field="mtdItsa" data-value="yes" role="radio" aria-checked="false">Yes</button>
-      <button type="button" class="form-toggle" data-field="mtdItsa" data-value="no" role="radio" aria-checked="false">No</button>
-     </div>
-    </div>
-
-    <div class="form-row">
-     <label class="form-label" for="confirmationMonth">Confirmation Statement month <span style="color: var(--warm-mid); font-weight: 400;">(optional)</span></label>
-     <p class="form-hint">The month your CS is due each year, usually the anniversary of incorporation. Skip if unsure.</p>
-     <select class="form-select" id="confirmationMonth">
-      <option value="">Skip / unsure</option>
-      <option value="1">January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option>
-     </select>
-    </div>
-
-    <div class="form-actions">
-     <button type="submit" class="btn btn-primary" id="buildBtn" disabled>Build my calendar <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
-     <button type="reset" class="btn btn-secondary" id="resetBtn">Reset</button>
-    </div>
-   </form>
-  </section>
-
-  <section class="timeline" id="timelineSection" aria-live="polite">
-   <div class="tool-section-header">
-    <div>
-     <span class="tool-section-number">03 / Your calendar</span>
-     <h2>The next 12 months.</h2>
-    </div>
-    <p class="tool-sub">Built from your year-end. Print, export, or copy a shareable link, all client-side.</p>
-   </div>
-
-   <div class="summary-card">
-    <span class="verdict-label">Calendar built</span>
-    <h2 id="summaryHeadline">Your compliance year, mapped.</h2>
-    <p id="summaryBody"></p>
-    <div class="summary-stats">
-     <div class="summary-stat"><strong id="statTotal">0</strong><span>Deadlines mapped</span></div>
-     <div class="summary-stat"><strong id="statNext">-</strong><span>Next due</span></div>
-     <div class="summary-stat"><strong id="statHardest">-</strong><span>Busiest month</span></div>
-    </div>
-   </div>
-
-   <div class="timeline-controls">
-    <button type="button" class="btn btn-primary" id="downloadIcs">Download .ics for your calendar</button>
-    <button type="button" class="btn btn-secondary" id="printBtn">Print</button>
-    <button type="button" class="btn btn-secondary" id="copyLinkBtn">Copy shareable link</button>
-   </div>
-
-   <div class="legend" aria-label="Category legend">
-    <div class="legend-item"><span class="dot" style="background: var(--cat-companies-house)"></span>Companies House</div>
-    <div class="legend-item"><span class="dot" style="background: var(--cat-corp-tax)"></span>Corporation Tax</div>
-    <div class="legend-item"><span class="dot" style="background: var(--cat-vat)"></span>VAT</div>
-    <div class="legend-item"><span class="dot" style="background: var(--cat-paye)"></span>PAYE / Payroll</div>
-    <div class="legend-item"><span class="dot" style="background: var(--cat-self-assessment)"></span>Self Assessment</div>
-    <div class="legend-item"><span class="dot" style="background: var(--cat-pension)"></span>Pension</div>
-    <div class="legend-item"><span class="dot" style="background: var(--cat-gdpr)"></span>GDPR / Annual review</div>
-   </div>
-
-   <div id="monthsContainer"></div>
-
-   <div class="restart-row">
-    <button type="button" class="btn btn-secondary" id="restartBtn">← Edit my details</button>
-   </div>
-  </section>
-
- </div>
-
- <!-- COMPLIANCE TRACKER UPSELL CARD -->
- <section class="featured-product" aria-labelledby="featured-title">
-  <div class="wrap">
-   <div class="featured-card tilt-card">
-    <div class="glow"></div>
-    <div class="featured-copy">
-     <span class="product-label"><span class="product-label-dot"></span>Want this live, every month?</span>
-     <h3 id="featured-title">UK Compliance Tracker</h3>
-     <span class="product-type-badge">Live Google Sheet</span>
-     <p>Every UK compliance figure you need to track, in one live Sheet. Tax deadlines, thresholds, rate changes, IR35 case law, Renters' Rights Act milestones, all sourced to gov.uk and updated monthly. View access granted within minutes of purchase.</p>
-     <div class="featured-pricing">
-      <span class="price">&pound;59</span>
-      <span class="price-meta"><strong style="color:#fff;font-family:'Syne',sans-serif;letter-spacing:0.02em">Lifetime, monthly updates</strong><br>One payment, no renewal, no auto-charge.<br><span style="opacity:0.7">30-day refund, no questions.</span></span>
-     </div>
-     <div class="buy-links">
-      <a href="https://externalos.gumroad.com/l/compliance-tracker" target="_blank" rel="noopener">View the Compliance Tracker &pound;59 <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-     </div>
-    </div>
-    <div class="featured-visual">
-     <ul class="featured-skill-list">
-      <li>Dashboard: next 5 deadlines</li><li>Rolling 12-month calendar</li>
-      <li>Penalty if missed</li><li>Source link on every row</li>
-      <li>HMRC guidance log</li><li>Tribunal decisions</li>
-      <li>2025/26 thresholds</li><li>2024/25 comparison</li>
-      <li>Income tax bands (E/W/NI/Scotland)</li><li>Dividend rates</li>
-      <li>Corporation Tax + Marginal Relief</li><li>SDLT, CGT, SSP/SMP</li>
-      <li>NMW age bands</li><li>Renters' Rights commencement</li>
-      <li>IR35 CEST factor map</li><li>BAILII case links</li>
-     </ul>
-    </div>
-   </div>
-  </div>
- </section>
-
- <section class="wrap page-body">
-  <p class="notice">This calendar is built from the standard UK Ltd compliance rules as of April 2026. It assumes a standard 12-month accounting period, no late filing penalties applied, and standard VAT stagger groups. Confirmation Statement dates, P11D obligations, and Self Assessment dates depend on your exact circumstances. For a high-stakes filing, confirm with your accountant or check directly via gov.uk and Companies House. Educational tool, not tax advice.</p>
- </section>
+<section class="wrap page-body">
+<p class="notice">This calendar is built from the standard UK Ltd compliance rules as of April 2026. It assumes a standard 12-month accounting period, no late filing penalties applied, and standard VAT stagger groups. Confirmation Statement dates, P11D obligations, and Self Assessment dates depend on your exact circumstances. For a high-stakes filing, confirm with your accountant or check directly via gov.uk and Companies House. Educational tool, not tax advice.</p>
+</section>
 </main>
 
-<footer class="footer" role="contentinfo">
- <div class="wrap">
-  <div class="footer-inner">
-   <div class="footer-brand">
-    <div class="footer-brand-logo">
-     <span class="mark-wrap" aria-hidden="true">
-      <svg viewBox="6 4 28 28" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
-       <polygon points="20,4 34,18 20,32 6,18" fill="#DBC8F0"/>
-       <polygon points="20,8.6 31.7,20.3 20,32 8.3,20.3" fill="#BEA0E0"/>
-       <polygon points="20,13.2 29.4,22.6 20,32 10.6,22.6" fill="#9F72D0"/>
-       <polygon points="20,17.8 27.1,24.9 20,32 12.9,24.9" fill="#8248BF"/>
-       <polygon points="20,22.4 24.8,27.2 20,32 15.2,27.2" fill="#6525AB"/>
-       <polygon points="20,27 22.5,29.5 20,32 17.5,29.5" fill="#4A1290"/>
-      </svg>
-     </span>
-     <span class="wordmark">ExternalOS</span>
-    </div>
-    <p>The work, already done. UK tax, IR35, MTD, employment law, tenancy. Built in Leeds. Files you keep.</p>
-    <p class="footer-refund">14-day refund, no questions asked.</p>
-   </div>
-   <div>
-    <h5>Products</h5>
-    <ul>
-     <li><a href="https://externalos.gumroad.com" target="_blank" rel="noopener">UK Freelancer OS</a></li>
-     <li><a href="https://externalos.gumroad.com/l/aavttu" target="_blank" rel="noopener">Freelancer Toolkit</a></li>
-     <li><a href="https://externalos.gumroad.com/l/fxlgeq" target="_blank" rel="noopener">Employer Compliance</a></li>
-     <li><a href="https://externalos.gumroad.com/l/landlord31may" target="_blank" rel="noopener">31 May Landlord Kit</a></li>
-     <li><a href="https://externalos.gumroad.com/l/iuffuj" target="_blank" rel="noopener">Landlord Legal Pack</a></li>
-     <li><a href="https://externalos.gumroad.com/l/compliance-tracker" target="_blank" rel="noopener">Compliance Tracker</a></li>
-     <li><a href="https://externalos.gumroad.com/l/vrmevr" target="_blank" rel="noopener">Full UK Suite</a></li>
-    </ul>
-   </div>
-   <div>
-    <h5>Free Tools</h5>
-    <ul>
-     <li><a href="./ir35-checker.html">IR35 Checker</a></li>
-     <li><a href="./compliance-calendar.html">Compliance Calendar</a></li>
-     <li><a href="./employer-costs.html">Employer Costs Calculator</a></li>
-     <li><a href="./landlord-compliance-check.html">Landlord Compliance Check</a></li>
-    </ul>
-    <h5 style="margin-top: 22px;">Legal</h5>
-    <ul>
-     <li><a href="/privacy.html">Privacy</a></li>
-     <li><a href="/refund-policy.html">Refund policy</a></li>
-    </ul>
-   </div>
-   <div>
-    <h5>Connect</h5>
-    <ul>
-     <li><a href="https://github.com/externalOS" target="_blank" rel="noopener">GitHub</a></li>
-     <li><a href="https://twitter.com/ExternalOS_" target="_blank" rel="noopener">X / Twitter</a></li>
-     <li><a href="https://instagram.com/externalos" target="_blank" rel="noopener">Instagram</a></li>
-     <li><a href="mailto:hello@externalos.com">Email</a></li>
-    </ul>
-   </div>
-  </div>
-  <div class="footer-bottom">
-   <div>ExternalOS 2026 <span class="full-stop" aria-hidden="true"></span> Leeds, UK <span class="full-stop" aria-hidden="true"></span> <a href="mailto:hello@externalos.com">hello@externalos.com</a></div>
-   <div>Sole trader, not VAT registered <span class="full-stop" aria-hidden="true"></span> Lifetime licence <span class="full-stop" aria-hidden="true"></span> Files you keep <span class="full-stop" aria-hidden="true"></span> <a href="./terms.html">Terms</a> <span class="full-stop" aria-hidden="true"></span> <a href="./privacy.html">Privacy</a> <span class="full-stop" aria-hidden="true"></span> <a href="./refund-policy.html">Refunds</a></div>
-  </div>
-  <div class="footer-strap" style="margin-top:14px;padding-top:14px;border-top:1px solid var(--warm-cream);font-size:11px;color:var(--warm-mid);text-align:center;letter-spacing:0;line-height:1.5;">Informational tool, not tax or legal advice. Consult a qualified adviser for decisions affecting your tax, legal, or compliance position.</div>
- </div>
-</footer>
 
-<!-- Tool logic -->
 <script>
 (function () {
   'use strict';
@@ -629,7 +564,7 @@
       } else {
         var list = document.createElement('div'); list.className = 'deadline-list';
         m.items.forEach(function (dl) {
-          var card = document.createElement('div'); card.className = 'deadline-card';
+          var card = document.createElement('div'); card.className = 'deadline-card cat-' + dl.category;
           var dt = document.createElement('div'); dt.className = 'deadline-date';
           dt.innerHTML = '<span class="day">' + dl.date.getDate() + '</span><span class="month">' + monthShort[dl.date.getMonth()] + '</span>';
           var body = document.createElement('div'); body.className = 'deadline-body';
@@ -810,43 +745,67 @@
 })();
 </script>
 
-<!-- Tilt + glow effect on .tilt-card elements (matches landing) -->
-<script>
-(function(){
- var RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
- if (RM) return;
- document.querySelectorAll('.tilt-card').forEach(function(card){
-  var cur = {x:0, y:0}, tgt = {x:0, y:0}, running = false;
-  var maxDeg = (card.classList.contains('featured-card') || card.classList.contains('free-tool-gift')) ? 2 : 4;
-  function tick(){
-   cur.x += (tgt.x - cur.x) * 0.08;
-   cur.y += (tgt.y - cur.y) * 0.08;
-   card.style.transform = 'perspective(800px) rotateX(' + cur.x.toFixed(3) + 'deg) rotateY(' + cur.y.toFixed(3) + 'deg)';
-   if (Math.abs(cur.x - tgt.x) > 0.005 || Math.abs(cur.y - tgt.y) > 0.005) {
-    requestAnimationFrame(tick);
-   } else {
-    cur.x = tgt.x; cur.y = tgt.y;
-    card.style.transform = (tgt.x === 0 && tgt.y === 0) ? '' : 'perspective(800px) rotateX(' + tgt.x.toFixed(3) + 'deg) rotateY(' + tgt.y.toFixed(3) + 'deg)';
-    running = false;
-   }
-  }
-  function startLoop(){ if (!running) { running = true; requestAnimationFrame(tick); } }
-  card.addEventListener('mousemove', function(e){
-   var r = card.getBoundingClientRect();
-   tgt.x = ((e.clientY - r.top - r.height/2) / (r.height/2)) * -maxDeg;
-   tgt.y = ((e.clientX - r.left - r.width/2) / (r.width/2)) * maxDeg;
-   startLoop();
-   if (card.querySelector('.glow')) {
-    card.style.setProperty('--glow-x', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
-    card.style.setProperty('--glow-y', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
-   }
-  });
-  card.addEventListener('mouseleave', function(){ tgt.x = 0; tgt.y = 0; startLoop(); });
- });
-})();
-</script>
-
-<script src="./skills-nav.js?v=136" defer></script>
-<script src="./free-tools-nav.js?v=3" defer></script>
+<footer class="eos-footer" role="contentinfo">
+ <div class="eos-footer__inner">
+  <div class="eos-footer__sitemap">
+   <div class="eos-footer__col">
+    <h5>The packs</h5>
+    <ul>
+     <li><a href="./uk-tax-calculator.html">Sole Trader Tax Workspace</a></li>
+     <li><a href="./creative-contracts.html">Creative Contracts Pack</a></li>
+     <li><a href="./uk-employment-law.html">UK Employment Law Kit</a></li>
+     <li><a href="./uk-landlord-compliance.html">UK Landlord Legal Pack</a></li>
+     <li><a href="./aml-kyc-docs.html">AML and KYC Document Pack</a></li>
+    </ul>
+   </div>
+   <div class="eos-footer__col">
+    <h5>Free tools</h5>
+    <ul>
+     <li><a href="./ir35-checker.html">IR35 status checker</a></li>
+     <li><a href="./compliance-calendar.html">Compliance calendar</a></li>
+     <li><a href="./employer-costs.html">Employer costs</a></li>
+     <li><a href="./landlord-compliance-check.html">Landlord compliance check</a></li>
+     <li><a href="./mtd-clock.html">MTD penalty clock</a></li>
+    </ul>
+   </div>
+   <div class="eos-footer__col">
+    <h5>More</h5>
+    <ul>
+     <li><a href="./tools.html">Full catalogue</a></li>
+     <li><a href="./mtd.html">Making Tax Digital</a></li>
+     <li><a href="./quiz.html">Find my pack</a></li>
+     <li><a href="mailto:hello@externalos.com">Contact</a></li>
+    </ul>
+   </div>
+   <div class="eos-footer__col">
+    <h5>Company</h5>
+    <ul>
+     <li><a href="./cart.html">Cart</a></li>
+     <li><a href="./terms.html">Terms</a></li>
+     <li><a href="./privacy.html">Privacy</a></li>
+     <li><a href="./refund-policy.html">Refund policy</a></li>
+     <li><a href="./unsubscribe.html">Unsubscribe</a></li>
+    </ul>
+   </div>
+  </div>
+  <div class="eos-footer__colophon">
+   <p>Set in Fraunces, Newsreader and IBM Plex. Built in 2026. Informational tools, not tax or legal advice.</p>
+  </div>
+ </div>
+ <div class="eos-footer__legalbar" aria-label="Legal and compliance">
+  <span class="eos-footer__legalbar-brand">ExternalOS &middot; 2026</span>
+  <span class="eos-footer__legalbar-sep" aria-hidden="true">&middot;</span>
+  <a href="./privacy.html">Privacy policy</a>
+  <span class="eos-footer__legalbar-sep" aria-hidden="true">&middot;</span>
+  <a href="./terms.html">Terms</a>
+  <span class="eos-footer__legalbar-sep" aria-hidden="true">&middot;</span>
+  <a href="./refund-policy.html">Refund policy</a>
+  <span class="eos-footer__legalbar-sep" aria-hidden="true">&middot;</span>
+  <a href="./privacy.html#cookies">Cookies</a>
+  <span class="eos-footer__legalbar-sep" aria-hidden="true">&middot;</span>
+  <span class="eos-footer__legalbar-status">All systems running</span>
+ </div>
+</footer>
+<script src="./_eos-ui.js?v=249g" defer></script>
 </body>
 </html>

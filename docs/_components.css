@@ -1,0 +1,5555 @@
+/* ============================================================
+   ExternalOS components
+   Locked at second-meaning-workshop-2026-05-13. Native design
+   system: every page renders entirely from these classes. No
+   override layer, no !important, no legacy cohabitation.
+
+   Depends on _design-tokens.css.
+   ============================================================ */
+
+/* ---------- FONTS (self-hosted IBM Plex family, locked S209 v5) ---------- */
+
+/* Fraunces variable (S221): DISPLAY/headline face only. Plex Sans stays
+   body, Plex Mono stays data/specimen (untouched, load-bearing for
+   ledger credibility). Fraunces carries the editorial character that
+   makes the site read modern + crafted, not boring. opsz axis lets
+   headlines use the high-contrast optical-display cut. */
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('./assets/fonts/fraunces-var.woff2') format('woff2-variations');
+}
+@font-face {
+  font-family: 'Fraunces';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('./assets/fonts/fraunces-var-italic.woff2') format('woff2-variations');
+}
+
+/* Newsreader italic (S221): the "answer voice" in the hero title only.
+   WSJ News./Opinion. logic - statement in Fraunces, reply in a second
+   editorial italic at equal size. Italic only, two weights. */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./assets/fonts/newsreader-500-italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Newsreader';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url('./assets/fonts/newsreader-600-italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Newsreader';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./assets/fonts/newsreader-700-italic.woff2') format('woff2');
+}
+
+/* Plex Serif: body + headlines + editorial italics */
+@font-face {
+  font-family: 'IBM Plex Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/fonts/plexserif-400-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/fonts/plexserif-400-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'IBM Plex Serif';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./assets/fonts/plexserif-500-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Serif';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./assets/fonts/plexserif-500-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'IBM Plex Serif';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('./assets/fonts/plexserif-600-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Serif';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('./assets/fonts/plexserif-600-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'IBM Plex Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/fonts/plexserif-italic-400-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/fonts/plexserif-italic-400-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* Plex Sans: UI, buttons, nav, badges. Single weight, browser synthesises 500/600 if requested. */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('./assets/fonts/plexsans-400-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('./assets/fonts/plexsans-400-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/fonts/plexmono-400-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/fonts/plexmono-400-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./assets/fonts/plexmono-500-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./assets/fonts/plexmono-500-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* ---------- RESET ---------- */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* The html background is what the rubber-band overscroll reveals above the page.
+   It MUST equal the thin top band (body::before, background: var(--accent)) so the
+   band simply extends into the overscroll instead of revealing a white seam.
+   var(--accent) is ink (black in light, white in dark) on normal pages; the
+   cohort pack pages override it to their colour just below (the band on those
+   pages is the cohort colour too, set via body[data-page-cohort]). */
+html { font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; background: var(--accent); }
+html:has(body[data-page-cohort="amber"])   { background: #8A4B14; }
+html:has(body[data-page-cohort="plum"])    { background: #5B2A4A; }
+html:has(body[data-page-cohort="steel"])   { background: #2E4A6B; }
+html:has(body[data-page-cohort="indigo"])  { background: #33336B; }
+html:has(body[data-page-cohort="crimson"]) { background: #7A1F2C; }
+html[data-theme="dark"]:has(body[data-page-cohort="amber"])   { background: #D4A269; }
+html[data-theme="dark"]:has(body[data-page-cohort="plum"])    { background: #B58DA3; }
+html[data-theme="dark"]:has(body[data-page-cohort="steel"])   { background: #8AA3C2; }
+html[data-theme="dark"]:has(body[data-page-cohort="indigo"])  { background: #9A9ADE; }
+html[data-theme="dark"]:has(body[data-page-cohort="crimson"]) { background: #E08792; }
+
+body {
+  font-family: var(--font-serif);
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
+  letter-spacing: var(--track-body);
+  font-weight: 400;
+  color: var(--ink-primary);
+  background: var(--surface-base);
+  overflow-x: hidden;
+}
+
+/* Top accent bar gives the header breathing room and signals brand colour */
+body::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: var(--accent);
+}
+
+img, svg { display: block; max-width: 100%; }
+
+/* ---------- TYPE PRIMITIVES (Q4) ---------- */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: inherit;
+  /* Fraunces opsz axis: large headings auto-take the high-contrast
+     display cut, small ones stay readable. This is the system-wide
+     display-face swap (S221). Plex Sans body + Plex Mono data unchanged. */
+  font-optical-sizing: auto;
+  font-variation-settings: 'SOFT' 0, 'WONK' 1;
+}
+
+h1 { font-size: var(--type-h1); line-height: var(--leading-h1); letter-spacing: var(--track-h1); }
+h2 { font-size: var(--type-h2); line-height: var(--leading-h2); letter-spacing: var(--track-h2); }
+h3 { font-size: var(--type-h3); line-height: var(--leading-h3); letter-spacing: var(--track-h3); }
+h4 { font-size: 18px; line-height: 1.3; }
+h5 { font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; }
+h6 { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
+
+p { margin: 0; }
+
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--rule);
+  text-underline-offset: 3px;
+  transition: color var(--motion-fast) var(--ease-hover),
+              text-decoration-color var(--motion-fast) var(--ease-hover);
+}
+a:hover {
+  color: var(--ink-primary);
+  text-decoration-color: var(--accent);
+}
+
+em, .italic { font-style: italic; font-weight: 500; color: var(--accent); }
+
+strong { font-weight: 600; }
+
+small { font-size: var(--type-caption); line-height: 1.4; letter-spacing: var(--track-caption); color: var(--ink-muted); }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ---------- LAYOUT PRIMITIVES (Q5) ---------- */
+
+.eos-container { max-width: var(--container-standard); margin: 0 auto; padding: 0 var(--s-4); }
+.eos-container--wide { max-width: var(--container-wide); margin: 0 auto; padding: 0 var(--s-4); }
+.eos-container--reading { max-width: var(--container-reading); margin: 0 auto; padding: 0 var(--s-4); }
+
+.eos-rule { width: 80px; height: 2px; background: var(--accent); border: 0; margin: 0 auto var(--s-4); }
+
+.eos-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: var(--track-eyebrow);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: var(--s-4);
+}
+/* Stacked-diamond mark before each eyebrow.
+   Six concentric square diamonds via SVG mask, sized 16x16, centred on
+   the text baseline via vertical-align so the diamond's centre cusp
+   sits on the visual middle of the type, not below it. */
+.eos-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  /* margin instead of flex gap: several pages override .eos-eyebrow to
+     display:block (so the eyebrow sits on its own line), and flex gap silently
+     stops applying there, gluing the diamond to the text. A margin works in
+     every display mode. */
+  margin-right: var(--s-2);
+  vertical-align: -2px;
+  background-color: var(--accent);
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><polygon points='20,4 36,20 20,36 4,20'/><polygon points='20,8 32,20 20,32 8,20' fill='white'/><polygon points='20,11 29,20 20,29 11,20'/><polygon points='20,14 26,20 20,26 14,20' fill='white'/><polygon points='20,17 23,20 20,23 17,20'/></svg>") center/contain no-repeat;
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><polygon points='20,4 36,20 20,36 4,20'/><polygon points='20,8 32,20 20,32 8,20' fill='white'/><polygon points='20,11 29,20 20,29 11,20'/><polygon points='20,14 26,20 20,26 14,20' fill='white'/><polygon points='20,17 23,20 20,23 17,20'/></svg>") center/contain no-repeat;
+  transform: none;
+}
+
+/* S240 greyscale pivot: all section-type accents resolve to ink so
+   the page furniture stays monochrome. Per-product cohort colours
+   are still applied via data-accent attributes scoped to product
+   components, so each pack remains the only colour event. */
+[data-section-type="statement"] { --accent: var(--ink-primary); }
+[data-section-type="catalogue"] { --accent: var(--ink-primary); }
+[data-section-type="editorial"] { --accent: var(--ink-primary); }
+[data-section-type="specimen"]  { --accent: var(--ink-primary); }
+[data-section-type="manifesto"] { --accent: var(--ink-primary); }
+[data-section-type="free"]      { --accent: var(--ink-primary); }
+[data-section-type="urgent"]    { --accent: var(--ink-primary); }
+
+.eos-display {
+  font-size: var(--type-display);
+  line-height: var(--leading-display);
+  letter-spacing: var(--track-display);
+}
+
+/* ---------- HEADER (Q6) ---------- */
+
+.eos-header {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: var(--surface-base);
+  height: var(--header-height);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--motion-fast) var(--ease-hover),
+              background var(--motion-base) var(--ease-hover);
+}
+.eos-header[data-scrolled="true"] { border-bottom-color: var(--rule); }
+
+.eos-header__inner {
+  height: 100%;
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: 0 var(--s-4);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--s-4);
+}
+
+.eos-header__brand {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  text-decoration: none; color: var(--ink-primary);
+  justify-self: start;
+}
+.eos-header__brand:hover { color: var(--ink-primary); text-decoration: none; }
+.eos-header__brand-mark { width: 24px; height: 24px; color: var(--ink-primary); }
+.eos-header__brand-wordmark {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+
+.eos-header__nav {
+  display: flex; align-items: center; gap: var(--s-5);
+  justify-self: center;
+}
+.eos-header__nav-link {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--ink-soft);
+  text-decoration: none;
+  padding: var(--s-2) 0;
+  position: relative;
+  transition: color var(--motion-fast) var(--ease-hover);
+}
+.eos-header__nav-link::after {
+  content: '';
+  position: absolute; left: 0; right: 0; bottom: -2px; height: 2px;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity var(--motion-fast) var(--ease-hover);
+}
+.eos-header__nav-link:hover { color: var(--ink-primary); text-decoration: none; }
+.eos-header__nav-link:hover::after,
+.eos-header__nav-link[aria-current="page"]::after { opacity: 1; }
+.eos-header__nav-link[data-accent="hmrc"] { --accent: var(--accent-hmrc); }
+.eos-header__nav-link[data-accent="butter"] { --accent: var(--accent-butter); }
+.eos-header__nav-link[data-accent="heritage"] { --accent: var(--accent-heritage); }
+.eos-header__nav-link[data-accent="penalty"] { --accent: var(--accent-penalty); }
+
+.eos-header__util { display: flex; align-items: center; gap: var(--s-3); justify-self: end; }
+
+.eos-header__theme {
+  width: 40px; height: 40px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: border-color var(--motion-fast), color var(--motion-fast), transform var(--motion-base) var(--ease-hover);
+}
+.eos-header__theme:hover { border-color: var(--ink-primary); color: var(--ink-primary); transform: rotate(-15deg); }
+.eos-header__theme svg { width: 16px; height: 16px; }
+.eos-header__theme .icon-moon { display: none; }
+html[data-theme="dark"] .eos-header__theme .icon-sun { display: none; }
+html[data-theme="dark"] .eos-header__theme .icon-moon { display: inline-block; }
+
+.eos-header__hamburger {
+  display: none;
+  width: 40px; height: 40px;
+  align-items: center; justify-content: center;
+  background: transparent; border: 1px solid var(--rule); border-radius: 0;
+  color: var(--ink-primary); cursor: pointer;
+}
+.eos-header__hamburger svg { width: 18px; height: 18px; }
+
+@media (max-width: 768px) {
+  .eos-header { height: var(--header-height-mobile); }
+  /* Flex so the brand sits left and the theme toggle, cart and hamburger group
+     on the right. (Was a 2-col grid that hid the util entirely.) */
+  .eos-header__inner { display: flex; align-items: center; gap: var(--s-3); padding: 0 var(--s-3); }
+  .eos-header__brand { margin-right: auto; }
+  .eos-header__nav { display: none; }
+  /* Keep the theme toggle and cart on mobile; drop only the Browse-packs button.
+     Roomier gap so the theme, cart and hamburger are not easy to misclick. */
+  .eos-header__util { display: flex; gap: var(--s-3); }
+  .eos-header__util .eos-button { display: none; }
+  .eos-header__hamburger { display: inline-flex; }
+}
+
+/* ---------- BUTTONS (Q4, tightened, slight 3px rounding) ---------- */
+
+.eos-button {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--s-2);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-decoration: none;
+  padding: 11px 20px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-button);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--motion-base) var(--ease-hover),
+              color var(--motion-base) var(--ease-hover),
+              border-color var(--motion-base) var(--ease-hover),
+              transform var(--motion-fast) var(--ease-hover);
+}
+.eos-button:hover { text-decoration: none; }
+.eos-button--primary { background: var(--ink-primary); color: var(--surface-base); }
+.eos-button--primary:hover { background: var(--ink-soft); color: var(--surface-base); transform: scale(1.05); }
+.eos-button--secondary { background: transparent; color: var(--ink-primary); border-color: var(--ink-primary); }
+.eos-button--secondary:hover { background: var(--ink-primary); color: var(--surface-base); }
+.eos-button--ghost { background: transparent; color: var(--ink-soft); border-color: var(--rule); }
+.eos-button--ghost:hover { color: var(--ink-primary); border-color: var(--ink-primary); }
+.eos-button--small { padding: 8px 14px; font-size: 13px; }
+.eos-button--large { padding: 14px 26px; font-size: 15px; }
+.eos-button[data-magnetic] { transform: translate(var(--mx, 0), var(--my, 0)); }
+.eos-button svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+/* ---------- LOGO MARK (canonical stepped diamond + ball, 6-step HMRC ramp) ---------- */
+/* Each polygon gets its own gradient step. The 6 steps live in _design-tokens.css
+   and theme-swap automatically. Same ramp drives the hero mark-rails for visual
+   consistency. */
+
+.eos-logo-mark polygon:nth-child(1) { fill: var(--step-1); }
+.eos-logo-mark polygon:nth-child(2) { fill: var(--step-2); }
+.eos-logo-mark polygon:nth-child(3) { fill: var(--step-3); }
+.eos-logo-mark polygon:nth-child(4) { fill: var(--step-4); }
+.eos-logo-mark polygon:nth-child(5) { fill: var(--step-5); }
+.eos-logo-mark polygon:nth-child(6) { fill: var(--step-6); }
+
+/* ---------- MARK RAILS (hero side decoration, same 6-step ramp) ---------- */
+
+.eos-mark-rails { position: relative; }
+.eos-mark-rail {
+  position: absolute;
+  top: 0; bottom: 35%;
+  width: clamp(56px, 7vw, 116px);
+  pointer-events: none;
+  overflow: hidden;
+  display: flex; align-items: center;
+}
+.eos-mark-rail svg { width: 100%; height: auto; }
+.eos-mark-rail polygon:nth-child(1) { fill: var(--step-1); }
+.eos-mark-rail polygon:nth-child(2) { fill: var(--step-2); }
+.eos-mark-rail polygon:nth-child(3) { fill: var(--step-3); }
+.eos-mark-rail polygon:nth-child(4) { fill: var(--step-4); }
+.eos-mark-rail polygon:nth-child(5) { fill: var(--step-5); }
+.eos-mark-rail polygon:nth-child(6) { fill: var(--step-6); }
+.eos-mark-rail--left { left: 0; }
+.eos-mark-rail--right { right: 0; }
+.eos-mark-rail--left {
+  -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.55) 60%, transparent 100%);
+  mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.55) 60%, transparent 100%);
+}
+.eos-mark-rail--right {
+  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.55) 60%, transparent 100%);
+  mask-image: linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.55) 60%, transparent 100%);
+}
+@media (max-width: 900px) {
+  .eos-mark-rail { display: none; }
+}
+
+/* ---------- CART ---------- */
+
+.eos-header__cart {
+  position: relative;
+  width: 40px; height: 40px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 0;
+  color: var(--ink-soft);
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color var(--motion-fast), color var(--motion-fast);
+}
+.eos-header__cart:hover { border-color: var(--ink-primary); color: var(--ink-primary); text-decoration: none; }
+.eos-header__cart svg { width: 16px; height: 16px; }
+.eos-header__cart-count {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--ink-primary);
+}
+/* When the cart has items, show the count centred in place of the cart icon.
+   The old top-right badge clashed with the page top bar and ate space. */
+.eos-header__cart:not([data-count="0"]) svg { display: none; }
+.eos-header__cart[data-count="0"] .eos-header__cart-count { display: none; }
+
+/* ---------- DRAWER (Q8) ---------- */
+
+.eos-drawer { position: fixed; inset: 0; z-index: 300; visibility: hidden; pointer-events: none; }
+.eos-drawer[data-open="true"] { visibility: visible; pointer-events: auto; }
+.eos-drawer__backdrop {
+  position: absolute; inset: 0;
+  background: rgba(28, 26, 23, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: opacity var(--motion-drawer) var(--ease-out);
+}
+.eos-drawer[data-open="true"] .eos-drawer__backdrop { opacity: 1; }
+.eos-drawer__panel {
+  position: absolute; top: 0; right: 0; bottom: 0;
+  width: 85vw; max-width: 480px;
+  background: var(--surface-base); color: var(--ink-primary);
+  padding: var(--s-5) var(--s-4) var(--s-4);
+  display: flex; flex-direction: column;
+  transform: translateX(100%);
+  transition: transform var(--motion-drawer) var(--ease-out);
+  font-family: var(--font-sans);
+}
+.eos-drawer[data-open="true"] .eos-drawer__panel { transform: translateX(0); }
+.eos-drawer__close {
+  align-self: flex-end;
+  width: 40px; height: 40px;
+  background: transparent; border: 1px solid var(--rule);
+  color: var(--ink-primary); cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  margin-bottom: var(--s-4);
+}
+.eos-drawer__close svg { width: 16px; height: 16px; }
+.eos-drawer__nav { display: flex; flex-direction: column; gap: var(--s-4); flex: 1; }
+.eos-drawer__nav a {
+  font-size: 22px; font-weight: 500; line-height: 1.5; letter-spacing: 0.01em;
+  color: var(--ink-primary); text-decoration: none;
+}
+.eos-drawer__nav a:hover { color: var(--accent); text-decoration: none; }
+.eos-drawer__footer { padding-top: var(--s-4); border-top: 1px solid var(--rule); }
+.eos-drawer__footer .eos-button { width: 100%; }
+
+/* ---------- BOOT (S221: 6-layer mark assembly, once per session) ----
+   The brand literally boots: 6 diamonds arrive outer->inner, green
+   deepening as each lands, then the overlay clears to the masthead.
+   transform/opacity only. Reduced-motion + repeat-visit = skipped. */
+.eos-boot {
+  position: fixed; inset: 0; z-index: 9999;
+  display: grid; place-items: center;
+  background: var(--surface-base);
+  /* starts blank, holds, layers come in one by one, then clears */
+  animation: eos-boot-out 560ms var(--ease-out) 2350ms forwards;
+}
+.eos-boot__mark { width: 150px; height: 150px; }
+.eos-boot__mark polygon {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+  transform: scale(0.5) translateY(14px);
+  animation: eos-boot-layer 540ms var(--ease-out) forwards;
+}
+.eos-boot__mark polygon:nth-child(1) { fill: var(--step-1); animation-delay: 280ms; }
+.eos-boot__mark polygon:nth-child(2) { fill: var(--step-2); animation-delay: 470ms; }
+.eos-boot__mark polygon:nth-child(3) { fill: var(--step-3); animation-delay: 660ms; }
+.eos-boot__mark polygon:nth-child(4) { fill: var(--step-4); animation-delay: 850ms; }
+.eos-boot__mark polygon:nth-child(5) { fill: var(--step-5); animation-delay: 1040ms; }
+.eos-boot__mark polygon:nth-child(6) { fill: var(--step-6); animation-delay: 1230ms; }
+@keyframes eos-boot-layer { to { opacity: 1; transform: none; } }
+@keyframes eos-boot-out {
+  to { opacity: 0; visibility: hidden; pointer-events: none; }
+}
+html.eos-boot--skip .eos-boot { display: none; }
+@media (prefers-reduced-motion: reduce) { .eos-boot { display: none; } }
+
+/* ---------- HERO ---------- */
+
+/* Ledger hero (S221): asymmetric broadsheet + live specimen.
+   No centering, no mark-rails, no fade-up. The page reads like
+   issue 01 of a financial paper. */
+.eos-hero {
+  padding: var(--s-7) 0 var(--s-5);
+  position: relative;
+  min-height: calc(100vh - 64px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.eos-hero__kicker,
+.eos-hero__head,
+.eos-hero__grid {
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: 0 var(--s-5);
+}
+/* Headline is full-width, OUT of the 2-col grid, so each sentence
+   sits on its own single line and never wraps - that wrapping was
+   the entire source of the descender collisions. */
+/* Centred masthead block. The asymmetry lives in the body below
+   (lede left + specimen right), so a centred headline reads as a
+   newspaper masthead, not a generic centred hero. */
+.eos-hero__head { margin-bottom: var(--s-6); text-align: center; }
+/* Full-width mono masthead line */
+.eos-hero__kicker {
+  display: flex; align-items: center; gap: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  padding-top: var(--s-2); padding-bottom: var(--s-3);
+}
+.eos-hero__kicker-dot { color: var(--accent); }
+.eos-hero__kicker-rule {
+  flex: 1; height: 1px; background: var(--rule);
+}
+/* S235 spec workbench removed, lede now sits centred under the
+   headline, single column. Every child centred so the strip below the
+   green rule reads as one unified centred block. */
+.eos-hero__grid { display: block; position: relative; }
+.eos-hero__lead {
+  max-width: 880px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+/* Button wrap: button centred horizontally, two side rules attached to
+   its left and right edges, easing outward on load. Total visual span
+   matches the legacy single-sigrule width (720px). */
+.eos-hero__buttonwrap {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 720px;
+}
+.eos-hero__primary {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+}
+.eos-hero__primarybtn {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 26px 56px;
+  background: var(--ink-primary);
+  color: var(--surface-base);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  border-radius: var(--radius-button);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color 320ms var(--ease-hover);
+}
+/* S240 hover intrigue: a pure-white sweep fills the button from left
+   to right behind the text, inverting it to ink on white. Arrow
+   travels further than the text shift. */
+.eos-hero__primarybtn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--surface-base);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 420ms var(--ease-out);
+  z-index: -1;
+}
+.eos-hero__primarybtn:hover {
+  color: var(--ink-primary);
+  text-decoration: none;
+}
+.eos-hero__primarybtn:hover::before { transform: scaleX(1); }
+.eos-hero__primarybtn-arrow {
+  display: inline-block;
+  transition: transform 360ms var(--ease-out);
+}
+.eos-hero__primarybtn:hover .eos-hero__primarybtn-arrow { transform: translateX(12px); }
+.eos-hero__lede {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.eos-hero__cta-row { justify-content: center; }
+.eos-hero__trust {
+  max-width: 720px;
+  margin: var(--s-5) auto 0;
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--rule);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--s-3) var(--s-5);
+  text-align: center;
+  align-items: flex-start;
+  justify-content: center;
+}
+.eos-hero__trust-item { flex: 1 1 200px; max-width: 220px; }
+@media (max-width: 720px) {
+  .eos-hero__trust { flex-direction: column; align-items: center; }
+  .eos-hero__trust-item { max-width: 60ch; }
+}
+
+/* Cornermark (S235 rebuild, James reference: the historic ExternalOS
+   site had ONE large stepped layered-diamond per corner, bleeding off
+   the page edge, taking most of the hero height). One big SVG per
+   side, concentric polygons stepping from light outer to dark inner.
+   Half the mark sits off-screen so what remains is an inward-pointing
+   layered chevron bordering the masthead like architecture. */
+.eos-hero__cornermark {
+  position: absolute;
+  top: 50%;
+  /* S240 revert to S235 lock: half-diamond bleeding off each page
+     edge. The inward-pointing chevron is the load-bearing shape;
+     showing the whole diamond turns it into a logo, not a rail. */
+  width: clamp(320px, 38vw, 640px);
+  height: clamp(440px, 70vh, 820px);
+  pointer-events: none;
+  z-index: 0;
+  overflow: visible;
+}
+.eos-hero__cornermark--left {
+  left: 0;
+  top: 50%;
+  transform: translate(-52%, -50%);
+}
+.eos-hero__cornermark--right {
+  right: 0;
+  top: 50%;
+  transform: translate(52%, -50%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .eos-hero__cornermark--left { transform: translate(-52%, -50%); animation: none; }
+  .eos-hero__cornermark--right { transform: translate(52%, -50%); animation: none; }
+}
+.eos-hero__cornermark polygon:nth-child(1) { fill: var(--step-1); }
+.eos-hero__cornermark polygon:nth-child(2) { fill: var(--step-2); }
+.eos-hero__cornermark polygon:nth-child(3) { fill: var(--step-3); }
+.eos-hero__cornermark polygon:nth-child(4) { fill: var(--step-4); }
+.eos-hero__cornermark polygon:nth-child(5) { fill: var(--step-5); }
+.eos-hero__cornermark polygon:nth-child(6) { fill: var(--step-6); }
+@media (max-width: 960px) {
+  .eos-hero__cornermark { display: none; }
+}
+.eos-hero h1 {
+  font-family: var(--font-display);
+  /* Sized so the longest line ("We do the boring admin.") fits one
+     line within the full container at any width; scales down with the
+     viewport so it never wraps and never overflows. */
+  font-size: clamp(26px, 5.4vw, 78px);
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+  color: var(--ink-primary);
+  margin: 0;
+  font-weight: 580;
+  font-optical-sizing: auto;
+  font-variation-settings: 'SOFT' 0, 'WONK' 0;
+}
+.eos-hero__line,
+.eos-hero h1 em {
+  display: block;
+  white-space: nowrap;
+}
+/* Very small phones: allow a wrap rather than clip. No spec column
+   fights it there, so a 2-line wrap is fine and cannot collide. */
+@media (max-width: 480px) {
+  .eos-hero__line, .eos-hero h1 em { white-space: normal; }
+}
+/* The answer voice: Newsreader italic, EQUAL size to the statement,
+   green. Contrast by typeface + style, never by shrinking - the reply
+   is the payoff, it carries equal mass. (WSJ News./Opinion. logic.) */
+.eos-hero h1 em {
+  font-family: 'Newsreader', 'IBM Plex Serif', Georgia, serif;
+  font-style: italic;
+  /* 700 on the light (default) surface: dark-green-on-cream optically
+     constricts, so it needs more weight to match the dark-mode read.
+     Dark mode drops back to 600. */
+  font-weight: 700;
+  color: var(--accent);
+  font-variation-settings: normal;
+  letter-spacing: -0.005em;
+  /* Block so the gap lives ONLY between the two sentences, not on every
+     line. Tight leading above keeps each sentence compact. */
+  display: block;
+  margin-top: 0.08em;
+}
+html[data-theme="dark"] .eos-hero h1 em { font-weight: 600; }
+/* The signature: a ledger rule that draws itself under the headline */
+/* Signature: the green rule draws, then the layered diamond settles
+   into register at its end. The logo becomes the punctuation of the
+   tagline. One moment, on load, once. */
+/* S240 greyscale pivot: sigrule retired from the hero. The hero
+   stack is now kicker + headline + button + lede with no horizontal
+   rule, and the rails do the visual pull on their own. */
+.eos-hero__sigrule,
+.eos-hero__sigrule-line { display: none !important; }
+.eos-hero__sigmark {
+  width: 26px; height: 26px;
+  overflow: visible;
+}
+.eos-hero__sigmark polygon {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: translateY(6px) scale(0.7);
+  animation: eos-sigmark-settle 360ms var(--ease-out) forwards;
+}
+.eos-hero__sigmark polygon:nth-child(1) { fill: var(--step-1); animation-delay: 780ms; }
+.eos-hero__sigmark polygon:nth-child(2) { fill: var(--step-2); animation-delay: 840ms; }
+.eos-hero__sigmark polygon:nth-child(3) { fill: var(--step-3); animation-delay: 900ms; }
+.eos-hero__sigmark polygon:nth-child(4) { fill: var(--step-4); animation-delay: 960ms; }
+.eos-hero__sigmark polygon:nth-child(5) { fill: var(--step-5); animation-delay: 1020ms; }
+.eos-hero__sigmark polygon:nth-child(6) { fill: var(--step-6); animation-delay: 1080ms; }
+@keyframes eos-sigmark-settle {
+  to { opacity: 1; transform: none; }
+}
+.eos-hero__lede {
+  font-size: 19px;
+  line-height: 1.55;
+  letter-spacing: var(--track-body);
+  color: var(--ink-soft);
+  margin: var(--s-6) auto 0;
+  max-width: clamp(280px, 38vw, 540px);
+  text-align: center;
+}
+.eos-hero__lede--sub { font-size: 16px; color: var(--ink-muted); }
+.eos-hero__lede strong { color: var(--ink-primary); font-weight: 500; }
+.eos-hero__cta-row {
+  display: flex; flex-wrap: wrap; gap: var(--s-5);
+  align-items: baseline; margin-top: var(--s-5);
+}
+/* Text-link CTA with a drawn underline, not a pill */
+.eos-hero__cta {
+  font-family: var(--font-sans);
+  font-size: 16px; font-weight: 600;
+  color: var(--ink-primary);
+  text-decoration: none;
+  position: relative;
+  display: inline-flex; align-items: baseline; gap: var(--s-2);
+  padding-bottom: 3px;
+}
+.eos-hero__cta::after {
+  content: ""; position: absolute; left: 0; bottom: 0;
+  width: 100%; height: 2px; background: var(--accent);
+  transform: scaleX(1); transform-origin: left center;
+  transition: transform var(--motion-base) var(--ease-hover);
+}
+.eos-hero__cta--quiet { color: var(--ink-muted); font-weight: 500; }
+.eos-hero__cta--quiet::after { background: var(--rule); }
+.eos-hero__cta:hover::after { transform: scaleX(0); transform-origin: right center; }
+.eos-hero__cta-arrow { transition: transform var(--motion-fast) var(--ease-hover); }
+.eos-hero__cta:hover .eos-hero__cta-arrow { transform: translateX(3px); }
+.eos-hero__trust {
+  margin: var(--s-5) auto 0;
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--rule);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--s-3) var(--s-5);
+  max-width: 720px;
+  text-align: center;
+  justify-content: center;
+  align-items: flex-start;
+}
+.eos-hero__trust-item {
+  font-size: 13px; line-height: 1.6; letter-spacing: 0.01em;
+  color: var(--ink-muted);
+}
+.eos-hero__trust-item strong { color: var(--ink-soft); font-weight: 600; }
+.eos-hero__trust-item a { color: var(--ink-soft); text-decoration-color: var(--rule); }
+.eos-hero__trust-item a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
+@keyframes eos-rule-draw { to { transform: scaleX(1); } }
+
+@media (max-width: 920px) {
+  .eos-hero__grid { grid-template-columns: 1fr; gap: var(--s-6); }
+  .eos-spec { order: 2; }
+}
+@media (max-width: 640px) {
+  .eos-hero { padding: var(--s-5) 0; }
+  .eos-hero h1 { font-size: 38px; }
+  .eos-hero__lede { font-size: 17px; }
+  .eos-hero__kicker { font-size: 11px; gap: var(--s-2); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .eos-hero__sigrule-line { animation: none; transform: scaleX(1); }
+  .eos-hero__sigmark polygon { animation: none; opacity: 1; transform: none; }
+}
+
+/* ---------- SPEC WORKBENCH (live specimen, CSS-only tabs) ---------- */
+.eos-spec {
+  font-family: var(--font-mono);
+  border: 1px solid var(--rule);
+  border-bottom: 2px solid var(--ink-primary);
+  border-radius: var(--radius-card);
+  background: var(--surface-raised);
+  margin-right: calc(-1 * var(--s-5));
+  margin-bottom: 0;
+  position: relative;
+  min-height: 440px;
+  display: flex;
+  flex-direction: column;
+}
+.eos-spec__tabs { align-items: stretch; }
+.eos-spec__pane { flex: 1; }
+/* Workbench bottom hairline shares the line with the stat strip top.
+   Hero padding-bottom is reduced; the panel's heavier bottom border
+   becomes the visual separator between hero and stat bar. */
+/* Letterhead mark: the layered diamond as a quiet watermark on the
+   document, like a real letterhead. Brand + credibility in one. */
+.eos-spec__letterhead {
+  position: absolute;
+  bottom: var(--s-3); right: var(--s-3);
+  width: 18px; height: 18px;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
+}
+.eos-spec__letterhead polygon:nth-child(1) { fill: var(--step-2); }
+.eos-spec__letterhead polygon:nth-child(2) { fill: var(--step-3); }
+.eos-spec__letterhead polygon:nth-child(3) { fill: var(--step-4); }
+.eos-spec__letterhead polygon:nth-child(4) { fill: var(--step-5); }
+.eos-spec__letterhead polygon:nth-child(5) { fill: var(--step-6); }
+.eos-spec__letterhead polygon:nth-child(6) { fill: var(--accent); }
+.eos-spec__tabs { display: flex; flex-wrap: wrap; }
+.eos-spec__radio { position: absolute; opacity: 0; pointer-events: none; }
+.eos-spec__tab {
+  flex: 1; min-width: 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  color: var(--ink-muted);
+  padding: var(--s-3) var(--s-3);
+  text-align: center; cursor: pointer;
+  border-bottom: 3px solid transparent;
+  border-right: 1px solid var(--rule);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  transition: color var(--motion-fast) var(--ease-hover),
+              border-color var(--motion-fast) var(--ease-hover),
+              background var(--motion-fast) var(--ease-hover);
+}
+.eos-spec__tab:last-of-type { border-right: 0; }
+.eos-spec__tab:hover { color: var(--ink-soft); }
+.eos-spec__radio:checked + .eos-spec__tab {
+  color: var(--ink-primary);
+  border-bottom-color: var(--accent-hmrc);
+  background: var(--surface-base);
+  font-weight: 500;
+}
+.eos-spec__pane { display: none; padding: var(--s-4) var(--s-4) var(--s-5); }
+#spec-xlsx:checked ~ [data-pane="xlsx"],
+#spec-docx:checked ~ [data-pane="docx"] {
+  display: block;
+  animation: eos-spec-fade var(--motion-base) var(--ease-out);
+}
+.eos-spec__formula {
+  display: flex; align-items: center; gap: var(--s-2);
+  border: 1px solid var(--rule);
+  padding: var(--s-2) var(--s-2);
+  font-size: 12px; color: var(--ink-soft);
+  margin-bottom: var(--s-3);
+}
+.eos-spec__fx { color: var(--ink-muted); font-style: italic; }
+.eos-spec__cellref {
+  color: var(--ink-primary); border: 1px solid var(--rule);
+  padding: 0 var(--s-2); border-radius: 2px;
+}
+.eos-spec__formula-body { color: var(--accent); }
+.eos-spec__sheet { width: 100%; border-collapse: collapse; }
+.eos-spec__sheet th, .eos-spec__sheet td {
+  text-align: left; padding: var(--s-2) var(--s-2);
+  border-bottom: 1px solid var(--rule);
+  font-size: 13px; font-weight: 400;
+}
+.eos-spec__sheet th { color: var(--ink-soft); font-family: var(--font-sans); }
+.eos-spec__rownum {
+  width: 22px; color: var(--ink-muted); font-size: 11px;
+  text-align: right; opacity: 0.55;
+}
+.eos-spec__num { text-align: right; color: var(--ink-primary); white-space: nowrap; }
+.eos-spec__total th, .eos-spec__total td {
+  border-bottom: 0; border-top: 2px solid var(--ink-primary);
+  font-weight: 600; color: var(--ink-primary);
+}
+.eos-spec__cell-active {
+  outline: 2px solid var(--accent); outline-offset: -2px;
+}
+.eos-spec__margin {
+  font-family: var(--font-serif); font-style: italic;
+  font-size: 13px; line-height: 1.5; color: var(--ink-muted);
+  border-left: 2px solid var(--accent);
+  padding-left: var(--s-3); margin: var(--s-4) 0 0;
+}
+.eos-spec__docmeta {
+  display: flex; justify-content: space-between;
+  font-size: 11px; color: var(--ink-muted);
+  text-transform: uppercase; letter-spacing: var(--track-caption);
+  padding-bottom: var(--s-3); border-bottom: 1px solid var(--rule);
+}
+.eos-spec__doc { padding: var(--s-3) 0; }
+.eos-spec__doc h4 {
+  font-family: var(--font-serif); font-size: 16px;
+  color: var(--ink-primary); margin: 0 0 var(--s-3);
+}
+.eos-spec__doc dl {
+  display: grid; grid-template-columns: auto 1fr;
+  gap: var(--s-2) var(--s-3); margin: 0; font-size: 13px;
+}
+.eos-spec__doc dt { color: var(--ink-muted); }
+.eos-spec__doc dd { margin: 0; color: var(--ink-soft); }
+.eos-spec__doc dd strong { color: var(--accent-hmrc); }
+.eos-spec__authority {
+  font-family: var(--font-serif); font-size: 12px;
+  color: var(--ink-muted); margin-top: var(--s-3);
+  border-left: 2px solid var(--accent); padding-left: var(--s-3);
+}
+.eos-spec__tiles { display: flex; gap: var(--s-2); margin-bottom: var(--s-3); }
+.eos-spec__tile {
+  flex: 1; border: 1px solid var(--rule); border-radius: 2px;
+  padding: var(--s-3) var(--s-2); text-align: center;
+}
+.eos-spec__tile-num { display: block; font-size: 24px; color: var(--ink-primary); }
+.eos-spec__tile-lab {
+  display: block; font-size: 11px; color: var(--ink-muted);
+  text-transform: uppercase; letter-spacing: var(--track-caption);
+}
+.eos-spec__ledger th { font-size: 12px; }
+.eos-spec__pill {
+  font-family: var(--font-sans); font-size: 11px;
+  border: 1px solid var(--rule); color: var(--ink-muted);
+  padding: 1px var(--s-2); border-radius: 2px; white-space: nowrap;
+}
+.eos-spec__pill--soon { border-color: var(--accent-butter); color: var(--accent-butter); }
+
+@keyframes eos-live-breathe { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+@keyframes eos-spec-fade { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .eos-spec__live-dot { animation: none; }
+  #spec-xlsx:checked ~ [data-pane="xlsx"],
+  #spec-docx:checked ~ [data-pane="docx"],
+  #spec-live:checked ~ [data-pane="live"] { animation: none; }
+}
+
+/* ---------- LIVE TICKER (hero base, "what just changed") ---------- */
+
+.eos-ticker {
+  max-width: var(--container-standard);
+  margin: var(--s-6) auto 0;
+  padding: var(--s-3) var(--s-4);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--s-3);
+  align-items: center;
+  color: var(--ink-soft);
+}
+.eos-ticker__label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: inline-flex; align-items: center; gap: var(--s-2);
+}
+.eos-ticker__label::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: eos-pulse 2s infinite ease-in-out;
+}
+.eos-ticker__feed {
+  position: relative;
+  height: 1.8em;
+  overflow: hidden;
+  min-width: 0;
+}
+.eos-ticker__item {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 400ms var(--ease-out), transform 400ms var(--ease-out);
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+}
+.eos-ticker__item[data-active="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+.eos-ticker__date {
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-muted);
+  letter-spacing: 0;
+}
+.eos-ticker__text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ink-soft);
+}
+.eos-ticker__source {
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-left: auto;
+}
+@media (max-width: 720px) {
+  .eos-ticker { grid-template-columns: 1fr; }
+  .eos-ticker__feed { height: auto; min-height: 1.8em; }
+  .eos-ticker__item { position: relative; opacity: 1; transform: none; }
+  .eos-ticker__item[data-active="false"] { display: none; }
+  .eos-ticker__source { display: none; }
+}
+
+@keyframes eos-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .eos-ticker__label::before { animation: none; }
+  .eos-ticker__item { transition: opacity 0s, transform 0s; }
+}
+
+/* ---------- STAT STRIP (counter band between hero + how-it-works) ---------- */
+
+.eos-stat-strip {
+  max-width: var(--container-standard);
+  margin: 0 auto;
+  padding: var(--s-3) var(--s-5);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s-4);
+  text-align: center;
+  border-top: none;
+  border-bottom: 1px solid var(--rule);
+}
+.eos-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+}
+.eos-stat + .eos-stat::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--s-5) * -0.5);
+  top: 18%;
+  bottom: 18%;
+  width: 1px;
+  background: var(--rule);
+}
+.eos-stat__value {
+  font-family: var(--font-display);
+  font-weight: 580;
+  font-size: clamp(24px, 2.6vw, 32px);
+  line-height: 1;
+  color: var(--ink-primary);
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.eos-stat__value em {
+  font-style: italic;
+  font-weight: 580;
+  color: var(--accent-hmrc);
+  font-family: 'Newsreader', 'IBM Plex Serif', Georgia, serif;
+}
+.eos-stat__label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-top: 6px;
+}
+@media (max-width: 720px) {
+  .eos-stat-strip { grid-template-columns: repeat(2, 1fr); gap: var(--s-4); padding: var(--s-3) var(--s-4); }
+  .eos-stat__value { font-size: 30px; }
+  .eos-stat + .eos-stat::before { display: none; }
+  .eos-stat:nth-child(odd) + .eos-stat::before { display: none; }
+}
+
+/* ---------- CUTS (editorial subscription-replacement entries) ---------- */
+/* Replaces the v7 comparison table. Each entry is a "this becomes this"
+   row with the competitor's monthly bill on the left, our paid-once
+   equivalent on the right, and a one-line gloss underneath. Reads like
+   an editor's column of subscription replacements, not a pricing grid. */
+
+.eos-cuts {
+  max-width: var(--container-standard);
+  margin: 0 auto;
+  padding: 0 var(--s-4);
+  display: flex; flex-direction: column;
+}
+.eos-cuts__entry {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: var(--s-4);
+  padding: var(--s-5) 0;
+  border-top: 1px solid var(--rule);
+  position: relative;
+}
+.eos-cuts__entry:first-of-type { border-top: 0; }
+.eos-cuts__num {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+  padding-top: 6px;
+}
+.eos-cuts__body { display: flex; flex-direction: column; gap: var(--s-2); }
+.eos-cuts__swap {
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  gap: var(--s-3);
+  font-family: var(--font-serif);
+  font-size: 22px;
+  line-height: 1.3;
+  color: var(--ink-primary);
+  font-weight: 500;
+}
+.eos-cuts__swap-from {
+  display: inline-flex; align-items: baseline; gap: var(--s-2);
+}
+.eos-cuts__swap-name { font-weight: 600; }
+.eos-cuts__swap-price {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--ink-muted);
+  white-space: nowrap;
+}
+.eos-cuts__swap-arrow {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--accent);
+  white-space: nowrap;
+  font-weight: 500;
+  display: inline-flex; align-items: center; gap: var(--s-2);
+}
+.eos-cuts__swap-arrow::before {
+  content: ''; width: 18px; height: 1px; background: var(--accent);
+}
+.eos-cuts__swap-to {
+  display: inline-flex; align-items: baseline; gap: var(--s-2);
+  color: var(--accent);
+}
+.eos-cuts__swap-to-price {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.eos-cuts__gloss {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 64ch;
+}
+.eos-cuts__total {
+  margin-top: var(--s-5);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--rule);
+  text-align: center;
+  font-family: var(--font-serif);
+  font-size: 18px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+.eos-cuts__total strong { color: var(--accent); font-weight: 600; }
+@media (max-width: 640px) {
+  .eos-cuts__entry { grid-template-columns: 1fr; gap: var(--s-2); }
+  .eos-cuts__num { padding-top: 0; }
+  .eos-cuts__swap { font-size: 19px; }
+}
+
+/* ---------- SPECIMENS (mock product previews, three on the landing) ---------- */
+
+.eos-specimen-grid {
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: 0 var(--s-4);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-4);
+  align-items: start;
+}
+@media (max-width: 960px) {
+  .eos-specimen-grid { grid-template-columns: 1fr; max-width: 560px; gap: var(--s-5); }
+}
+
+.eos-specimen {
+  background: var(--surface-raised);
+  border: 1px solid var(--rule);
+  border-top: 4px solid var(--accent);
+  display: flex; flex-direction: column;
+  position: relative;
+  transform: perspective(1200px) rotateX(0) rotateY(0);
+  transition: transform 400ms var(--ease-out),
+              border-color var(--motion-base) var(--ease-hover);
+}
+.eos-specimen[data-accent="hmrc"] { --accent: var(--accent-hmrc); }
+.eos-specimen[data-accent="butter"] { --accent: var(--accent-butter); }
+.eos-specimen[data-accent="heritage"] { --accent: var(--accent-heritage); }
+.eos-specimen[data-accent="penalty"] { --accent: var(--accent-penalty); }
+.eos-specimen:hover {
+  transform: perspective(1200px) rotateX(2deg) rotateY(-2deg) translateY(-3px);
+  border-color: var(--ink-soft);
+}
+
+.eos-specimen__chrome {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--s-2) var(--s-3);
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-muted);
+  letter-spacing: 0;
+  background: var(--surface-base);
+}
+.eos-specimen__filename {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  font-family: var(--font-mono);
+}
+.eos-specimen__filename::before {
+  content: '';
+  width: 7px; height: 7px;
+  background: var(--accent);
+  transform: rotate(45deg);
+}
+
+.eos-specimen__body {
+  padding: var(--s-4);
+  flex: 1;
+  display: flex; flex-direction: column; gap: var(--s-3);
+}
+.eos-specimen__caption {
+  padding: var(--s-3) var(--s-4);
+  border-top: 1px solid var(--rule);
+  background: var(--surface-base);
+}
+.eos-specimen__caption-tag {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: var(--s-1);
+  display: block;
+}
+.eos-specimen__caption-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--ink-primary);
+  line-height: 1.2;
+  margin-bottom: var(--s-1);
+}
+.eos-specimen__caption-meta {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--ink-muted);
+}
+
+/* Specimen sub-styles: spreadsheet rows */
+.eos-specimen__sheet {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-soft);
+  border: 1px solid var(--rule);
+}
+.eos-specimen__sheet > * {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--rule);
+}
+.eos-specimen__sheet > *:nth-last-child(-n+2) { border-bottom: 0; }
+.eos-specimen__sheet > .eos-specimen__cell-label {
+  background: var(--surface-base);
+  font-family: var(--font-sans);
+  font-weight: 500;
+}
+.eos-specimen__sheet > .eos-specimen__cell-value {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-primary);
+}
+.eos-specimen__sheet > .eos-specimen__cell-total {
+  background: var(--surface-base);
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* Specimen sub-styles: document layout */
+.eos-specimen__doc h4 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--ink-primary);
+  margin-bottom: var(--s-2);
+  padding-bottom: var(--s-1);
+  border-bottom: 1px solid var(--rule);
+}
+.eos-specimen__doc dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px var(--s-3);
+  font-size: 12px;
+  margin-bottom: var(--s-2);
+}
+.eos-specimen__doc dt {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 10px;
+  color: var(--ink-muted);
+  padding-top: 2px;
+}
+.eos-specimen__doc dd {
+  font-family: var(--font-serif);
+  color: var(--ink-soft);
+}
+.eos-specimen__doc dd strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+.eos-specimen__doc-citation {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-muted);
+  padding: var(--s-2) 0;
+  border-top: 1px solid var(--rule);
+  margin-top: var(--s-1);
+}
+
+/* Specimen sub-styles: tracker rows */
+.eos-specimen__tracker {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 6px var(--s-2);
+  font-size: 11px;
+  font-family: var(--font-mono);
+}
+.eos-specimen__tracker > * { padding: 6px 0; border-bottom: 1px dashed var(--rule); }
+.eos-specimen__tracker > *:nth-last-child(-n+3) { border-bottom: 0; }
+.eos-specimen__tracker-date { color: var(--ink-muted); white-space: nowrap; }
+.eos-specimen__tracker-label { color: var(--ink-soft); font-family: var(--font-sans); }
+.eos-specimen__tracker-status {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+/* ---------- REVEAL ON SCROLL (diamond-layer build-up) ---------- */
+/* Children of a revealing parent stagger in like the brand mark
+   assembling itself: six beats, 60ms apart, 500ms each. */
+
+/* S221: the universal fade-up reveal is RETIRED. It was the single
+   loudest AI-generated tell. Content is present on arrival, like a
+   printed page. The only editorial scroll motion is the section-head
+   rule that draws once (see .eos-section__head below). The .eos-reveal
+   and [data-eos-stagger] hooks stay inert so existing markup/JS does
+   not break. */
+.eos-reveal,
+.eos-reveal[data-visible="true"],
+[data-eos-stagger] > .eos-reveal {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+/* Section-head signature rule: a short HMRC-green ledger line under
+   every section heading. The recurring "ExternalOS draws a line under
+   things" gesture, tying each section to the hero. Static + zero-JS so
+   it cannot break the shared markup; the moving version is the hero
+   headline rule only. */
+.eos-section__head { position: relative; }
+/* S242: the stray short rule under each section sub-paragraph is
+   removed (James point 7). The asymmetric line is retired. */
+.eos-section__head::after { content: none; }
+
+/* ---------- STAIR TABS (rise from below the title, peaks point up at it) ---------- */
+/* Anchored beneath the card title, peaks of each pyramid point UP at
+   the title above. At rest, all three pyramid tabs are translated
+   below the SVG bottom so nothing is visible. On hover, each tab
+   rises into its equidistant stair-step position in sequence: smallest
+   (front) first, medium second, largest (back) last. Each tab carries
+   a different opacity for depth, matching the layered-diamond logo. */
+
+.eos-card-mark {
+  display: block;
+  width: 60px;
+  height: 36px;
+  margin-top: var(--s-2);
+  pointer-events: none;
+  overflow: hidden;
+}
+/* Layer settle (S221): replaces the clunky stair-tab rise. At rest the
+   layers sit slightly exploded + light; on card hover they snap into
+   concentric register and the green deepens one step - the brand
+   metaphor: scattered admin consolidating into order. */
+.eos-card-mark__tab {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform var(--motion-base) var(--ease-out),
+              fill var(--motion-base) var(--ease-out),
+              opacity var(--motion-base) var(--ease-out);
+}
+.eos-card-mark__tab:nth-child(1) { /* back / largest */
+  fill: var(--step-3); opacity: 0.55;
+  transform: translateY(5px) scale(0.92);
+}
+.eos-card-mark__tab:nth-child(2) { /* middle */
+  fill: var(--step-4); opacity: 0.75;
+  transform: translateY(3px) scale(0.95);
+}
+.eos-card-mark__tab:nth-child(3) { /* front / smallest */
+  fill: var(--step-5); opacity: 0.9;
+  transform: translateY(2px) scale(0.97);
+}
+/* Settle into register, outer layer first, ~70ms apart, gradient deepens */
+.eos-bundle-card:hover .eos-card-mark__tab:nth-child(1),
+.eos-tool-card:hover .eos-card-mark__tab:nth-child(1),
+.eos-specimen:hover .eos-card-mark__tab:nth-child(1) {
+  transform: translateY(0) scale(1); fill: var(--step-4); opacity: 0.6;
+  transition-delay: 0ms;
+}
+.eos-bundle-card:hover .eos-card-mark__tab:nth-child(2),
+.eos-tool-card:hover .eos-card-mark__tab:nth-child(2),
+.eos-specimen:hover .eos-card-mark__tab:nth-child(2) {
+  transform: translateY(0) scale(1); fill: var(--step-5); opacity: 0.8;
+  transition-delay: 70ms;
+}
+.eos-bundle-card:hover .eos-card-mark__tab:nth-child(3),
+.eos-tool-card:hover .eos-card-mark__tab:nth-child(3),
+.eos-specimen:hover .eos-card-mark__tab:nth-child(3) {
+  transform: translateY(0) scale(1); fill: var(--accent); opacity: 1;
+  transition-delay: 140ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eos-card-mark__tab,
+  .eos-bundle-card:hover .eos-card-mark__tab,
+  .eos-tool-card:hover .eos-card-mark__tab,
+  .eos-specimen:hover .eos-card-mark__tab {
+    transition: none; transform: none; opacity: 1; transition-delay: 0ms;
+  }
+}
+
+/* ---------- SECTIONS ---------- */
+
+.eos-section {
+  padding: var(--s-8) 0;
+  border-top: 1px solid var(--rule);
+}
+.eos-section--alt { background: var(--surface-raised); }
+.eos-section--flush { border-top: 0; }
+.eos-section__head {
+  max-width: var(--container-reading);
+  margin: 0 auto var(--s-6);
+  padding: 0 var(--s-4);
+  text-align: center;
+}
+.eos-section__head h2 {
+  font-family: var(--font-display);
+  font-size: var(--type-h2);
+  line-height: var(--leading-h2);
+  letter-spacing: var(--track-h2);
+  font-weight: 580;
+  margin: 0 0 var(--s-3);
+  color: var(--ink-primary);
+}
+.eos-section__head p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: var(--font-serif);
+}
+/* S242 (James point 9): subheadings are ONE font and ONE colour, never
+   split into a roman half and a Newsreader-italic half. Any em inside a
+   section head inherits the heading face and ink colour. */
+.eos-section__head em {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: inherit;
+  color: inherit;
+}
+
+/* ---------- STEP CARDS (How it works) ---------- */
+
+.eos-step-row {
+  max-width: var(--container-standard);
+  margin: 0 auto;
+  padding: 0 var(--s-4);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-4);
+}
+.eos-step-card {
+  background: var(--surface-base);
+  border: 1px solid var(--rule);
+  padding: var(--s-5) var(--s-4);
+  text-align: left;
+  display: flex; flex-direction: column; gap: var(--s-3);
+}
+.eos-section--alt .eos-step-card { background: var(--surface-base); }
+.eos-step-card__num {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 44px;
+  line-height: 1;
+  color: var(--accent);
+}
+.eos-step-card__title {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-primary);
+}
+.eos-step-card__body {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+@media (max-width: 720px) {
+  .eos-step-row { grid-template-columns: 1fr; max-width: 480px; gap: var(--s-3); }
+}
+
+/* ---------- FILE PREVIEW (Sample skill file) ---------- */
+
+.eos-file-preview {
+  max-width: var(--container-reading);
+  margin: 0 auto;
+  padding: 0 var(--s-4);
+}
+.eos-file-preview__frame {
+  background: var(--surface-raised);
+  border: 1px solid var(--rule);
+  font-family: var(--font-mono);
+}
+.eos-file-preview__head {
+  padding: var(--s-3) var(--s-4);
+  border-bottom: 1px solid var(--rule);
+  font-size: 13px;
+  color: var(--ink-muted);
+  display: flex; gap: var(--s-3); flex-wrap: wrap;
+  letter-spacing: 0;
+}
+.eos-file-preview__body {
+  padding: var(--s-4);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  letter-spacing: 0;
+}
+.eos-file-preview__body h3,
+.eos-file-preview__body h4 {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 15px;
+  margin: var(--s-3) 0 var(--s-2);
+  letter-spacing: 0;
+  color: var(--ink-primary);
+}
+.eos-file-preview__body h3:first-child,
+.eos-file-preview__body h4:first-child { margin-top: 0; }
+.eos-file-preview__body ul { padding-left: var(--s-4); margin: var(--s-2) 0; }
+.eos-file-preview__body li { margin-bottom: var(--s-1); font-family: var(--font-mono); font-size: 14px; }
+.eos-file-preview__body p { margin: var(--s-2) 0; font-family: var(--font-mono); font-size: 14px; }
+
+/* ---------- COMPARISON (Why not ChatGPT) ---------- */
+
+.eos-comparison {
+  max-width: var(--container-standard);
+  margin: 0 auto;
+  padding: 0 var(--s-4);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-4);
+}
+.eos-comparison__col {
+  background: var(--surface-base);
+  border: 1px solid var(--rule);
+  padding: var(--s-5) var(--s-4);
+}
+.eos-comparison__col--featured {
+  background: var(--ink-primary);
+  color: var(--surface-base);
+  border-color: var(--ink-primary);
+}
+.eos-comparison__col h3 {
+  font-size: 20px;
+  margin-bottom: var(--s-4);
+  padding-bottom: var(--s-3);
+  border-bottom: 1px solid var(--rule);
+}
+.eos-comparison__col--featured h3 { color: var(--surface-base); border-bottom-color: rgba(246, 241, 232, 0.2); }
+.eos-comparison__list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--s-3); }
+.eos-comparison__list li { font-size: 15px; line-height: 1.55; color: var(--ink-soft); }
+.eos-comparison__col--featured .eos-comparison__list li { color: rgba(246, 241, 232, 0.85); }
+.eos-comparison__count {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--accent);
+  margin-right: var(--s-1);
+}
+.eos-comparison__col--featured .eos-comparison__count { color: var(--accent-butter); }
+.eos-comparison__footnote {
+  margin-top: var(--s-4);
+  padding-top: var(--s-3);
+  border-top: 1px solid rgba(246, 241, 232, 0.2);
+  font-size: 12px;
+  color: rgba(246, 241, 232, 0.65);
+  line-height: 1.5;
+}
+.eos-comparison__col:not(.eos-comparison__col--featured) .eos-comparison__footnote {
+  border-top-color: var(--rule);
+  color: var(--ink-muted);
+}
+@media (max-width: 720px) {
+  .eos-comparison { grid-template-columns: 1fr; }
+}
+
+/* ---------- TABLE (3-year cost comparison) ---------- */
+
+.eos-table-wrap {
+  max-width: var(--container-standard);
+  margin: 0 auto;
+  padding: 0 var(--s-4);
+  overflow-x: auto;
+}
+.eos-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-serif);
+  background: var(--surface-raised);
+  border: 1px solid var(--rule);
+}
+.eos-table thead th {
+  padding: var(--s-3) var(--s-4);
+  text-align: left;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-primary);
+  background: var(--surface-base);
+  border-bottom: 1px solid var(--rule);
+}
+.eos-table tbody td {
+  padding: var(--s-3) var(--s-4);
+  font-size: 15px;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--rule);
+}
+.eos-table tbody tr:last-child td { border-bottom: 0; }
+.eos-table__row--featured td {
+  background: var(--surface-base);
+  font-weight: 500;
+  color: var(--ink-primary);
+}
+.eos-table__row--featured td:nth-child(3) {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* ---------- BUNDLE LIST (editorial catalogue, one bundle per row) ---------- */
+
+.eos-bundle-grid {
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: 0 var(--s-4);
+  display: flex; flex-direction: column;
+}
+.eos-bundle-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 56px 240px 1fr 220px;
+  gap: var(--s-5);
+  align-items: start;
+  padding: var(--s-6) 0;
+  border-top: 1px solid var(--rule);
+  transition: padding-left var(--motion-base) var(--ease-hover);
+}
+.eos-bundle-card:first-of-type { border-top: 0; }
+.eos-bundle-card:last-of-type { border-bottom: 1px solid var(--rule); }
+.eos-bundle-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: var(--s-6);
+  width: 0;
+  height: 3px;
+  background: var(--accent);
+  transition: width var(--motion-base) var(--ease-hover);
+}
+.eos-bundle-card:hover { padding-left: var(--s-4); }
+.eos-bundle-card:hover::before { width: var(--s-3); }
+
+@media (max-width: 960px) {
+  .eos-bundle-card { grid-template-columns: 1fr; gap: var(--s-3); padding: var(--s-5) 0; }
+  .eos-bundle-card::before { top: var(--s-5); }
+}
+.eos-bundle-card[data-accent="hmrc"] { --accent: var(--accent-hmrc); }
+.eos-bundle-card[data-accent="butter"] { --accent: var(--accent-butter); }
+.eos-bundle-card[data-accent="heritage"] { --accent: var(--accent-heritage); }
+.eos-bundle-card[data-accent="penalty"] { --accent: var(--accent-penalty); }
+
+.eos-bundle-card__num {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+}
+.eos-bundle-card__headstack {
+  display: flex; flex-direction: column; gap: var(--s-2);
+}
+.eos-bundle-card__tag {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: inline-flex; align-items: center; gap: var(--s-2);
+}
+.eos-bundle-card__tag::before {
+  content: ''; width: 6px; height: 6px;
+  background: var(--accent);
+  transform: rotate(45deg);
+}
+.eos-bundle-card__title {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink-primary);
+  margin: 0;
+}
+.eos-bundle-card__count {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.eos-bundle-card__body {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0;
+}
+.eos-bundle-card__pricecol {
+  display: flex; flex-direction: column; gap: var(--s-3);
+  align-items: flex-end;
+  text-align: right;
+}
+.eos-bundle-card__price {
+  font-family: var(--font-serif);
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--ink-primary);
+  letter-spacing: -0.02em;
+}
+.eos-bundle-card__price small {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-top: var(--s-1);
+}
+.eos-bundle-card__save {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  display: inline-flex; align-items: center; gap: var(--s-2);
+}
+.eos-bundle-card__save::before {
+  content: ''; width: 14px; height: 1px; background: var(--accent);
+}
+.eos-bundle-card__actions {
+  display: flex; gap: var(--s-2); align-items: center; flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-top: var(--s-1);
+}
+.eos-bundle-card__details {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+.eos-bundle-card__details:hover { color: var(--ink-primary); text-decoration-color: var(--accent); }
+@media (max-width: 960px) {
+  .eos-bundle-card__pricecol { align-items: flex-start; text-align: left; }
+  .eos-bundle-card__actions { justify-content: flex-start; }
+}
+
+@media (max-width: 720px) {
+  .eos-bundle-grid { grid-template-columns: 1fr; }
+}
+
+/* ---------- TOOL / TIER CARDS (calculators on /tools) ---------- */
+
+/* ---------- FREE TOOL LIST (editorial row layout) ---------- */
+/* Five horizontal rows, generous breathing room, each carries its
+   own accent on the leading rule + price chip. */
+
+.eos-tool-grid {
+  max-width: var(--container-standard);
+  margin: 0 auto;
+  padding: 0 var(--s-4);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.eos-tool-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 180px 1fr auto;
+  gap: var(--s-5);
+  align-items: center;
+  padding: var(--s-5) 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: padding-left var(--motion-base) var(--ease-hover);
+}
+.eos-tool-card:first-child { border-top: 0; }
+.eos-tool-card:last-child { border-bottom: 1px solid var(--rule); }
+.eos-tool-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 3px;
+  background: var(--accent);
+  transition: width var(--motion-base) var(--ease-hover);
+}
+.eos-tool-card:hover {
+  padding-left: var(--s-4);
+  text-decoration: none;
+  color: inherit;
+}
+.eos-tool-card:hover::before {
+  width: var(--s-3);
+}
+.eos-tool-card[data-accent="hmrc"] { --accent: var(--accent-hmrc); }
+.eos-tool-card[data-accent="butter"] { --accent: var(--accent-butter); }
+.eos-tool-card[data-accent="heritage"] { --accent: var(--accent-heritage); }
+.eos-tool-card[data-accent="penalty"] { --accent: var(--accent-penalty); }
+.eos-tool-card__head {
+  display: flex; flex-direction: column; gap: var(--s-2);
+}
+.eos-tool-card__category {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: inline-flex; align-items: center; gap: var(--s-2);
+}
+.eos-tool-card__category::before {
+  content: ''; width: 6px; height: 6px;
+  background: var(--accent);
+  transform: rotate(45deg);
+}
+.eos-tool-card__price {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.eos-tool-card__title {
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 600;
+  color: var(--ink-primary);
+  margin-bottom: var(--s-2);
+}
+.eos-tool-card__body {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 56ch;
+}
+.eos-tool-card__cta {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-primary);
+  white-space: nowrap;
+  transition: gap var(--motion-base) var(--ease-hover), color var(--motion-base) var(--ease-hover);
+}
+.eos-tool-card:hover .eos-tool-card__cta { color: var(--accent); gap: var(--s-3); }
+
+@media (max-width: 820px) {
+  .eos-tool-card {
+    grid-template-columns: 1fr;
+    gap: var(--s-3);
+    padding: var(--s-4) 0;
+  }
+  .eos-tool-card__cta { justify-self: start; }
+}
+
+/* ---------- BADGE PILLS (free tools live, paid tools, refund etc) ---------- */
+
+.eos-badge-row {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: var(--s-2);
+  margin: 0 auto var(--s-6);
+  max-width: var(--container-standard);
+  padding: 0 var(--s-4);
+}
+.eos-badge {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  background: var(--surface-base);
+  border: 1px solid var(--rule);
+  padding: 6px 14px;
+}
+.eos-badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--accent);
+  transform: rotate(45deg);
+}
+
+/* ---------- FOOTER (Q7) ---------- */
+
+.eos-footer {
+  background: var(--surface-base);
+  color: var(--ink-soft);
+  font-family: var(--font-serif);
+  border-top: 1px solid var(--rule);
+  padding: var(--s-7) 0 var(--s-5);
+  margin-top: var(--s-7);
+}
+.eos-footer__inner {
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: 0 var(--s-4);
+}
+.eos-footer__sitemap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s-6);
+  margin-bottom: var(--s-6);
+}
+.eos-footer__col h5 {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-primary);
+  margin-bottom: var(--s-3);
+}
+.eos-footer__col ul {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: var(--s-2);
+}
+.eos-footer__col a {
+  font-size: 15px;
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color var(--motion-fast) var(--ease-hover);
+}
+.eos-footer__col a:hover { color: var(--ink-primary); text-decoration: underline; text-decoration-color: var(--accent); }
+
+.eos-footer__newsletter {
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: var(--s-5) 0;
+  margin-bottom: var(--s-5);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--s-5);
+  align-items: center;
+}
+.eos-footer__newsletter-copy h4 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--ink-primary);
+  margin: 0 0 var(--s-1);
+  letter-spacing: -0.01em;
+}
+.eos-footer__newsletter-copy p {
+  font-size: 14px;
+  color: var(--ink-muted);
+  margin: 0;
+  line-height: 1.5;
+  max-width: 56ch;
+}
+.eos-footer__newsletter-form { display: flex; gap: var(--s-2); }
+.eos-footer__newsletter-input {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  padding: 12px 14px;
+  background: var(--surface-raised);
+  border: 1px solid var(--rule);
+  color: var(--ink-primary);
+  min-width: 240px;
+  border-radius: 0;
+}
+.eos-footer__newsletter-input:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.eos-footer__colophon {
+  font-size: 13px;
+  color: var(--ink-muted);
+  line-height: 1.6;
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+.eos-footer__colophon p { margin: 0 0 var(--s-1); }
+.eos-footer__colophon a {
+  color: var(--ink-muted);
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+}
+.eos-footer__colophon a:hover { color: var(--ink-primary); }
+
+@media (max-width: 760px) {
+  .eos-footer__sitemap { grid-template-columns: 1fr 1fr; gap: var(--s-5); }
+  .eos-footer__newsletter { grid-template-columns: 1fr; gap: var(--s-3); }
+  .eos-footer__newsletter-input { min-width: 0; flex: 1; }
+}
+@media (max-width: 480px) {
+  .eos-footer__sitemap { grid-template-columns: 1fr; gap: var(--s-4); }
+}
+
+/* ============================================================
+   S235 home redesign additions
+   Five new components: stat caption, register, swaptable, faq,
+   manifesto, end-band, plus legal-bar in the footer.
+   Cohort accents (amber/plum/steel/indigo/crimson) are local
+   custom property overrides on the register rows; tokens stay
+   locked.
+   ============================================================ */
+
+/* ---------- Stat caption (Instrument pattern, serif italic under label) ---------- */
+.eos-stat__caption {
+  display: block;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--ink-muted);
+  margin-top: 6px;
+  max-width: 26ch;
+  text-align: center;
+}
+@media (max-width: 720px) {
+  .eos-stat__caption { font-size: 11px; max-width: 20ch; }
+}
+
+/* ---------- Trust band (moved out of hero so the stat bar sits above the fold) ---------- */
+.eos-trustband {
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: var(--s-3) var(--s-5) var(--s-4);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3) var(--s-5);
+  justify-content: center;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--rule);
+}
+.eos-trustband__item {
+  flex: 1 1 220px;
+  max-width: 280px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+  color: var(--ink-muted);
+  text-align: center;
+}
+.eos-trustband__item strong {
+  color: var(--ink-soft);
+  font-weight: 600;
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+.eos-trustband__item a {
+  color: var(--ink-soft);
+  text-decoration-color: var(--rule);
+}
+.eos-trustband__item a:hover {
+  color: var(--accent-hmrc);
+  text-decoration-color: var(--accent-hmrc);
+}
+@media (max-width: 720px) {
+  .eos-trustband { flex-direction: column; align-items: center; }
+  .eos-trustband__item { max-width: 60ch; }
+}
+
+/* ---------- The catalogue register (Acquired WORDMARK -- claim, shelf bands) ---------- */
+.eos-register-section { padding-top: var(--s-7); }
+.eos-register {
+  list-style: none;
+  margin: var(--s-5) 0 0;
+  padding: 0;
+  border-top: 1px solid var(--rule);
+}
+.eos-register__row {
+  --row-accent: var(--accent-hmrc);
+  border-bottom: 1px solid var(--rule);
+  transition: background var(--motion-base) var(--ease-hover);
+}
+/* Cohort palettes locked S226: Employment Law is steel blue #2E4A6B.
+   The S235 teal experiment is dead (no green anywhere). teal kept only
+   as a legacy alias mapped to the steel-blue hue so no green can render. */
+.eos-register__row[data-accent="amber"]   { --row-accent: #8A4B14; }
+.eos-register__row[data-accent="plum"]    { --row-accent: #5B2A4A; }
+.eos-register__row[data-accent="steel"]   { --row-accent: #2E4A6B; }
+.eos-register__row[data-accent="teal"]    { --row-accent: #2E4A6B; } /* legacy alias, no green */
+.eos-register__row[data-accent="indigo"]  { --row-accent: #33336B; }
+.eos-register__row[data-accent="crimson"] { --row-accent: #7A1F2C; }
+html[data-theme="dark"] .eos-register__row[data-accent="amber"]   { --row-accent: #D4A269; }
+html[data-theme="dark"] .eos-register__row[data-accent="plum"]    { --row-accent: #B58DA3; }
+html[data-theme="dark"] .eos-register__row[data-accent="steel"]   { --row-accent: #8AA3C2; }
+html[data-theme="dark"] .eos-register__row[data-accent="teal"]    { --row-accent: #8AA3C2; }
+html[data-theme="dark"] .eos-register__row[data-accent="indigo"]  { --row-accent: #9A9ADE; }
+html[data-theme="dark"] .eos-register__row[data-accent="crimson"] { --row-accent: #E08792; }
+
+.eos-register__link {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr) auto auto auto;
+  gap: var(--s-5);
+  align-items: center;
+  padding: var(--s-5) 0;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding-left: var(--s-5);
+  padding-right: var(--s-5);
+}
+.eos-register__link::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 12%; bottom: 12%;
+  width: 3px;
+  background: var(--row-accent);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform var(--motion-base) var(--ease-out);
+}
+.eos-register__row:hover .eos-register__link::before { transform: scaleY(1); }
+.eos-register__num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  align-self: start;
+  padding-top: 8px;
+}
+.eos-register__head { min-width: 0; }
+.eos-register__name {
+  font-family: var(--font-display);
+  font-size: 26px;
+  line-height: 1.15;
+  font-weight: 580;
+  color: var(--ink-primary);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+.eos-register__claim {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--ink-soft);
+  line-height: 1.45;
+  margin-top: 6px;
+  letter-spacing: 0;
+}
+.eos-register__filemeta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  display: flex;
+  gap: var(--s-3);
+  margin-top: var(--s-3);
+}
+.eos-register__filemeta span {
+  position: relative;
+  padding-right: var(--s-3);
+}
+.eos-register__filemeta span + span::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--s-3) * -1);
+  top: 50%;
+  width: 3px; height: 3px;
+  background: var(--row-accent);
+  transform: translateY(-50%);
+}
+.eos-register__pricecol {
+  text-align: right;
+  white-space: nowrap;
+}
+.eos-register__price {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 30px;
+  line-height: 1;
+  color: var(--ink-primary);
+  font-feature-settings: "tnum" 1;
+}
+.eos-register__pricecap {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-top: 6px;
+}
+.eos-register__cta {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 3px;
+  transition: color var(--motion-base) var(--ease-hover),
+              border-color var(--motion-base) var(--ease-hover);
+  white-space: nowrap;
+}
+.eos-register__arrow {
+  transition: transform var(--motion-fast) var(--ease-hover);
+  display: inline-block;
+}
+.eos-register__row:hover .eos-register__cta {
+  color: var(--row-accent);
+  border-bottom-color: var(--row-accent);
+}
+.eos-register__row:hover .eos-register__arrow { transform: translateX(4px); }
+.eos-register__row:hover .eos-register__name { color: var(--ink-primary); }
+.eos-register__row:hover { background: var(--surface-raised); }
+
+/* Inverse-attention dimming (Apple spec strip pattern, Mobbin 3rd pass).
+   When the register is hovered, ALL rows dim except the one actually
+   hovered. Spotlight effect without lift/shadow/scale. */
+.eos-register:hover .eos-register__row {
+  opacity: 0.45;
+  transition: opacity 220ms var(--ease-hover);
+}
+.eos-register:hover .eos-register__row:hover {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .eos-register:hover .eos-register__row { opacity: 1; }
+}
+
+/* Larger, more visible accent stripe on the active row. */
+.eos-register__link::before {
+  width: 5px !important;
+  transition: transform 280ms var(--ease-out);
+}
+.eos-register__row:hover .eos-register__price { color: var(--row-accent); }
+.eos-register__row:hover .eos-register__num { color: var(--row-accent); }
+
+/* Brand-mark-as-hover-indicator (Dovetail pattern adapted for the
+   layered diamond). Each row carries a miniature 6-layer diamond on the
+   right edge; on row hover the inner layers reveal staggered. */
+.eos-register__mark {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  align-self: center;
+  margin-left: var(--s-3);
+  overflow: visible;
+}
+.eos-register__mark polygon {
+  transition: fill 240ms var(--ease-hover), transform 240ms var(--ease-out);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.eos-register__mark polygon:nth-child(1) { fill: var(--rule); }
+.eos-register__mark polygon:nth-child(2) { fill: var(--rule); }
+.eos-register__mark polygon:nth-child(3) { fill: var(--rule); }
+.eos-register__mark polygon:nth-child(4) { fill: var(--rule); }
+.eos-register__mark polygon:nth-child(5) { fill: var(--rule); }
+.eos-register__mark polygon:nth-child(6) { fill: var(--rule); }
+.eos-register__row:hover .eos-register__mark polygon:nth-child(1) { fill: var(--row-accent); opacity: 0.18; }
+.eos-register__row:hover .eos-register__mark polygon:nth-child(2) { fill: var(--row-accent); opacity: 0.32; transition-delay: 30ms; }
+.eos-register__row:hover .eos-register__mark polygon:nth-child(3) { fill: var(--row-accent); opacity: 0.50; transition-delay: 60ms; }
+.eos-register__row:hover .eos-register__mark polygon:nth-child(4) { fill: var(--row-accent); opacity: 0.70; transition-delay: 90ms; }
+.eos-register__row:hover .eos-register__mark polygon:nth-child(5) { fill: var(--row-accent); opacity: 0.88; transition-delay: 120ms; }
+.eos-register__row:hover .eos-register__mark polygon:nth-child(6) { fill: var(--row-accent); opacity: 1; transition-delay: 150ms; }
+
+.eos-register__footnote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-muted);
+  margin: var(--s-4) auto 0;
+  max-width: var(--container-wide);
+  padding: 0 var(--s-5);
+}
+
+@media (max-width: 760px) {
+  .eos-register__link { grid-template-columns: 64px 1fr; row-gap: var(--s-3); }
+  .eos-register__pricecol { grid-column: 1 / -1; text-align: left; }
+  .eos-register__price { font-size: 26px; }
+  .eos-register__cta { grid-column: 1 / -1; }
+  .eos-register__name { font-size: 22px; }
+}
+
+/* ---------- Specimen footnote ---------- */
+.eos-specimen__footnote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-muted);
+  margin: var(--s-5) auto 0;
+  max-width: var(--container-wide);
+  padding: 0 var(--s-5);
+  text-align: center;
+}
+.eos-specimen__doc-lede {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: var(--s-2) 0 var(--s-3);
+  font-style: italic;
+}
+.eos-specimen[data-accent="amber"]   { --accent: #8A4B14; }
+.eos-specimen[data-accent="plum"]    { --accent: #5B2A4A; }
+.eos-specimen[data-accent="steel"]   { --accent: #2E4A6B; }
+.eos-specimen[data-accent="indigo"]  { --accent: #33336B; }
+.eos-specimen[data-accent="crimson"] { --accent: #7A1F2C; }
+html[data-theme="dark"] .eos-specimen[data-accent="amber"]   { --accent: #D4A269; }
+html[data-theme="dark"] .eos-specimen[data-accent="plum"]    { --accent: #B58DA3; }
+html[data-theme="dark"] .eos-specimen[data-accent="steel"]   { --accent: #8AA3C2; }
+html[data-theme="dark"] .eos-specimen[data-accent="indigo"]  { --accent: #9A9ADE; }
+html[data-theme="dark"] .eos-specimen[data-accent="crimson"] { --accent: #E08792; }
+
+/* ---------- Ledger (Mobbin 3rd pass: stacked spec sheets like Claude
+   pricing, replaces the v1 swap-table grid). Five entries side by side,
+   each a real spec sheet with mixed-content cells (mono numbers + serif
+   phrases). ExternalOS first with green tint on the tier name only.
+   Below all five: a totalbar in Fraunces small-display flush-right that
+   reads as an invoice total. */
+.eos-ledger {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
+  gap: 0;
+  max-width: var(--container-wide);
+  margin: var(--s-6) auto 0;
+  padding: 0 var(--s-5);
+  border-top: 2px solid var(--ink-primary);
+}
+.eos-ledger__entry {
+  display: flex;
+  flex-direction: column;
+  padding: var(--s-4) var(--s-4) var(--s-5);
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  background: transparent;
+}
+.eos-ledger__entry:last-child { border-right: none; }
+.eos-ledger__entry--us {
+  background: rgba(15, 15, 15, 0.05); /* S242: green tint retired to ink */
+}
+html[data-theme="dark"] .eos-ledger__entry--us {
+  background: rgba(242, 242, 242, 0.08); /* S242: green tint retired to ink */
+}
+
+.eos-ledger__head {
+  margin-bottom: var(--s-4);
+  padding-bottom: var(--s-3);
+  border-bottom: 1px solid var(--rule);
+  min-height: 70px;
+}
+.eos-ledger__name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 580;
+  line-height: 1.1;
+  color: var(--ink-primary);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+.eos-ledger__entry--us .eos-ledger__name { color: var(--accent-hmrc); }
+.eos-ledger__name em {
+  font-family: 'Newsreader', 'IBM Plex Serif', Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+.eos-ledger__entry--us .eos-ledger__name em { color: var(--accent-hmrc); }
+.eos-ledger__tagline {
+  font-family: 'Newsreader', 'IBM Plex Serif', Georgia, serif;
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ink-muted);
+  margin: 6px 0 0;
+}
+.eos-ledger__tagline em {
+  font-style: italic;
+  color: var(--accent-hmrc);
+}
+
+.eos-ledger__specs {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 0;
+  flex: 1;
+}
+.eos-ledger__specs dt {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  padding-top: var(--s-3);
+}
+.eos-ledger__specs dd {
+  margin: 4px 0 0;
+  padding-bottom: var(--s-3);
+  border-bottom: 1px dotted var(--rule);
+}
+.eos-ledger__specs dd:last-of-type { border-bottom: none; }
+.eos-ledger__num {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-primary);
+}
+.eos-ledger__entry--us .eos-ledger__num { color: var(--accent-hmrc); font-weight: 500; }
+.eos-ledger__phrase {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+.eos-ledger__entry--us .eos-ledger__phrase { color: var(--ink-primary); }
+
+/* Totalbar (invoice total) */
+.eos-ledger__totalbar {
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: 0 var(--s-5);
+}
+.eos-ledger__totalbar-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  padding: var(--s-4) 0 var(--s-2);
+  border-bottom: 1px solid var(--rule);
+}
+.eos-ledger__totalbar-row {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
+  border-bottom: 2px solid var(--ink-primary);
+}
+.eos-ledger__totalbar-cell {
+  padding: var(--s-3) var(--s-4);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  border-right: 1px solid var(--rule);
+  gap: 4px;
+}
+.eos-ledger__totalbar-cell:last-child { border-right: none; }
+.eos-ledger__totalbar-cell--us {
+  background: rgba(15, 15, 15, 0.05); /* S242: green tint retired to ink */
+}
+html[data-theme="dark"] .eos-ledger__totalbar-cell--us {
+  background: rgba(242, 242, 242, 0.08); /* S242: green tint retired to ink */
+}
+.eos-ledger__totalbar-brand {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  align-self: flex-start;
+}
+.eos-ledger__totalbar-cell--us .eos-ledger__totalbar-brand { color: var(--accent-hmrc); }
+.eos-ledger__totalbar-value {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.6vw, 38px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink-primary);
+  font-weight: 580;
+  font-variant-numeric: tabular-nums;
+}
+.eos-ledger__totalbar-cell--us .eos-ledger__totalbar-value { color: var(--accent-hmrc); }
+
+.eos-ledger__cite {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--ink-muted);
+  max-width: var(--container-wide);
+  margin: var(--s-4) auto 0;
+  padding: 0 var(--s-5);
+}
+
+@media (max-width: 960px) {
+  .eos-ledger { grid-template-columns: 1fr 1fr; border-top: 1px solid var(--ink-primary); }
+  .eos-ledger__entry { border-right: 1px solid var(--rule); }
+  .eos-ledger__entry:nth-child(2n) { border-right: none; }
+  .eos-ledger__entry--us { grid-column: 1 / -1; border-right: none; }
+  .eos-ledger__totalbar-row { grid-template-columns: repeat(3, 1fr); }
+  .eos-ledger__totalbar-cell--us { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  .eos-ledger { grid-template-columns: 1fr; }
+  .eos-ledger__entry { border-right: none; }
+  .eos-ledger__totalbar-row { grid-template-columns: 1fr 1fr; }
+  .eos-ledger__totalbar-cell { border-right: 1px solid var(--rule); }
+  .eos-ledger__totalbar-cell:nth-child(2n) { border-right: none; }
+}
+
+/* ---------- FAQ accordion (Acctual single-column) ---------- */
+.eos-faq {
+  list-style: none;
+  margin: var(--s-5) auto 0;
+  padding: 0;
+  max-width: var(--container-standard);
+  padding-left: var(--s-5);
+  padding-right: var(--s-5);
+  border-top: 1px solid var(--rule);
+}
+.eos-faq__row {
+  border-bottom: 1px solid var(--rule);
+}
+.eos-faq__row details { overflow: hidden; }
+.eos-faq__row summary {
+  display: grid;
+  grid-template-columns: 56px 1fr 32px;
+  gap: var(--s-3);
+  align-items: baseline;
+  padding: var(--s-5) var(--s-4);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+.eos-faq__row summary::-webkit-details-marker { display: none; }
+.eos-faq__num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  padding-top: 6px;
+}
+.eos-faq__q {
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1.3;
+  font-weight: 580;
+  color: var(--ink-primary);
+  letter-spacing: -0.005em;
+}
+.eos-faq__glyph {
+  position: relative;
+  width: 14px; height: 14px;
+  align-self: center;
+  justify-self: end;
+}
+.eos-faq__glyph::before,
+.eos-faq__glyph::after {
+  content: "";
+  position: absolute;
+  left: 0; top: 50%;
+  width: 14px; height: 1px;
+  background: var(--ink-soft);
+  transition: transform var(--motion-base) var(--ease-hover);
+}
+.eos-faq__glyph::after { transform: rotate(90deg); }
+.eos-faq__row details[open] .eos-faq__glyph::after { transform: rotate(0); }
+.eos-faq__row summary:hover .eos-faq__glyph::before,
+.eos-faq__row summary:hover .eos-faq__glyph::after { background: var(--accent-hmrc); }
+.eos-faq__a {
+  padding: 0 var(--s-4) var(--s-5) calc(var(--s-4) + 56px + var(--s-3));
+  font-family: var(--font-serif);
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+.eos-faq__a p { margin: 0; max-width: 64ch; }
+.eos-faq__row:hover { background: var(--surface-raised); }
+
+/* Smooth open/close for the FAQ. Native <details> toggles instantly; this eases
+   the answer height. interpolate-size lets height animate to and from auto, and
+   ::details-content is the wrapper the browser puts around everything after the
+   <summary>. Degrades to an instant open on browsers without support. */
+:root { interpolate-size: allow-keywords; }
+.eos-faq__row details::details-content {
+  block-size: 0;
+  overflow: hidden;
+  transition: block-size 450ms var(--ease-out),
+              content-visibility 450ms allow-discrete;
+}
+.eos-faq__row details[open]::details-content { block-size: auto; }
+@media (prefers-reduced-motion: reduce) {
+  .eos-faq__row details::details-content { transition: none; }
+}
+
+@media (max-width: 640px) {
+  .eos-faq__row summary { grid-template-columns: 40px 1fr 28px; }
+  .eos-faq__q { font-size: 18px; }
+  .eos-faq__a { padding-left: calc(40px + var(--s-3)); font-size: 16px; }
+}
+
+/* ---------- Manifesto (mono kicker bookend, numbered principles, sign-off) ---------- */
+.eos-manifesto__kicker {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: 0 var(--s-5) var(--s-5);
+  justify-content: center;
+}
+.eos-manifesto__kicker-rule {
+  flex: 1;
+  height: 1px;
+  max-width: 220px;
+  background: var(--rule);
+}
+.eos-manifesto__kicker-dot { color: var(--accent-hmrc); }
+
+.eos-manifesto {
+  max-width: var(--container-standard);
+  margin: 0 auto;
+  padding: 0 var(--s-5);
+  text-align: center;
+}
+.eos-manifesto__head {
+  font-family: var(--font-display);
+  font-size: var(--type-h2);
+  line-height: var(--leading-h2);
+  letter-spacing: var(--track-h2);
+  color: var(--ink-primary);
+  font-weight: 580;
+  margin: 0 0 var(--s-5);
+  text-align: center;
+}
+.eos-manifesto__head em {
+  font-family: 'Newsreader', 'IBM Plex Serif', Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--accent-hmrc);
+}
+html[data-theme="dark"] .eos-manifesto__head em { font-weight: 600; }
+
+.eos-manifesto__lede {
+  max-width: 62ch;
+  margin: 0 auto var(--s-6);
+  font-family: var(--font-serif);
+  font-size: 19px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.eos-manifesto__lede p { margin: 0 0 var(--s-3); }
+.eos-manifesto__lede p:last-child { margin-bottom: 0; }
+
+/* Manifesto long-form prose (replaces the numbered principles after
+   S235 James pushback: "preachy and stupid"). Single editorial column,
+   drop cap, pull-out paragraph, sign-off. James can edit in place. */
+.eos-manifesto__prose {
+  max-width: 62ch;
+  margin: 0 auto var(--s-5);
+  font-family: var(--font-serif);
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+.eos-manifesto__prose p {
+  margin: 0 0 var(--s-3);
+}
+.eos-manifesto__prose p:last-of-type {
+  margin-bottom: 0;
+}
+.eos-manifesto__dropcap::first-letter {
+  font-family: var(--font-display);
+  font-size: 3.2em;
+  line-height: 0.9;
+  float: left;
+  margin: 0.06em 0.08em 0 -0.04em;
+  color: var(--accent-hmrc);
+  font-weight: 600;
+}
+.eos-manifesto__pull {
+  font-family: 'Newsreader', 'IBM Plex Serif', Georgia, serif;
+  font-style: italic;
+  font-size: 24px;
+  line-height: 1.4;
+  color: var(--ink-primary);
+  border-left: 2px solid var(--accent-hmrc);
+  padding-left: var(--s-4);
+  margin: var(--s-5) 0 !important;
+}
+@media (max-width: 640px) {
+  .eos-manifesto__prose { font-size: 17px; }
+  .eos-manifesto__pull { font-size: 20px; padding-left: var(--s-3); }
+  .eos-manifesto__dropcap::first-letter { font-size: 2.6em; }
+}
+
+/* Old numbered principles (kept but unused after S235 strip) */
+.eos-manifesto__principles {
+  list-style: none;
+  margin: 0 auto var(--s-6);
+  padding: var(--s-5) 0;
+  max-width: 62ch;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  counter-reset: principle;
+}
+.eos-manifesto__principle {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: var(--s-4);
+  padding: var(--s-3) 0;
+  align-items: baseline;
+}
+.eos-manifesto__principle + .eos-manifesto__principle {
+  border-top: 1px solid var(--rule);
+}
+.eos-manifesto__principle-num {
+  width: 32px; height: 32px;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.eos-manifesto__principle-claim {
+  margin: 0;
+  font-family: 'Newsreader', 'IBM Plex Serif', Georgia, serif;
+  font-size: 21px;
+  line-height: 1.35;
+  color: var(--ink-primary);
+  font-style: italic;
+  font-weight: 600;
+}
+.eos-manifesto__principle-claim em {
+  font-style: italic;
+  color: var(--accent-hmrc);
+  font-weight: 700;
+}
+html[data-theme="dark"] .eos-manifesto__principle-claim em { font-weight: 600; }
+.eos-manifesto__principle-gloss {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-muted);
+  margin: var(--s-2) 0 0;
+}
+
+.eos-manifesto__sign {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--ink-primary);
+  text-align: center;
+  margin: 0 0 var(--s-2);
+}
+.eos-manifesto__sign-meta {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-top: 4px;
+}
+.eos-manifesto__byline {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ink-primary);
+  text-align: center;
+  margin: var(--s-5) 0 var(--s-2);
+}
+.eos-manifesto__contact {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--ink-muted);
+  text-align: center;
+  margin: 0;
+}
+.eos-manifesto__contact a {
+  color: var(--ink-soft);
+  text-decoration-color: var(--rule);
+}
+.eos-manifesto__contact a:hover {
+  color: var(--accent-hmrc);
+  text-decoration-color: var(--accent-hmrc);
+}
+
+@media (max-width: 640px) {
+  .eos-manifesto__principle { grid-template-columns: 36px 1fr; gap: var(--s-3); }
+  .eos-manifesto__principle-num { width: 28px; height: 28px; font-size: 12px; }
+  .eos-manifesto__principle-claim { font-size: 18px; }
+  .eos-manifesto__lede { font-size: 17px; }
+}
+
+/* ---------- Type-as-illustration interrupter (Dovetail + Until pattern) ---------- */
+.eos-interrupt {
+  padding: var(--s-8) 0;
+  text-align: left;
+}
+.eos-interrupt__inner {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 var(--s-5);
+}
+.eos-interrupt__line {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4.6vw, 56px);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  color: var(--ink-primary);
+  font-weight: 580;
+  margin: 0 0 var(--s-3);
+  max-width: 18ch;
+}
+.eos-interrupt__line:last-child {
+  margin-bottom: 0;
+  margin-left: clamp(0px, 8vw, 120px);
+  max-width: 22ch;
+}
+.eos-interrupt__line:nth-child(2) {
+  margin-left: clamp(0px, 4vw, 60px);
+}
+.eos-interrupt__line em {
+  font-family: 'Newsreader', 'IBM Plex Serif', Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--accent-hmrc);
+}
+html[data-theme="dark"] .eos-interrupt__line em { font-weight: 600; }
+@media (max-width: 560px) {
+  .eos-interrupt { padding: var(--s-6) 0; }
+  .eos-interrupt__line:nth-child(2),
+  .eos-interrupt__line:last-child { margin-left: 0; }
+}
+
+/* ---------- End band (hero in miniature) ---------- */
+.eos-end {
+  padding: var(--s-8) 0 var(--s-7);
+  border-top: 1px solid var(--rule);
+  text-align: center;
+}
+.eos-end__inner {
+  max-width: var(--container-standard);
+  margin: 0 auto;
+  padding: 0 var(--s-5);
+}
+.eos-end__head {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4.4vw, 54px);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  font-weight: 580;
+  color: var(--ink-primary);
+  margin: 0;
+}
+.eos-end__line { display: block; }
+.eos-end__head em {
+  font-family: 'Newsreader', 'IBM Plex Serif', Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--accent-hmrc);
+  display: block;
+  margin-top: 0.08em;
+}
+html[data-theme="dark"] .eos-end__head em { font-weight: 600; }
+
+.eos-end__sigrule {
+  display: flex;
+  justify-content: center;
+  margin: var(--s-4) 0 var(--s-5);
+}
+.eos-end__sigrule-line {
+  height: 2px;
+  width: clamp(120px, 24%, 220px);
+  background: var(--accent-hmrc);
+}
+
+.eos-end__cta-row {
+  display: flex;
+  justify-content: center;
+  gap: var(--s-5);
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+.eos-end__cta {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink-primary);
+  text-decoration: none;
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--s-2);
+  padding-bottom: 3px;
+}
+.eos-end__cta::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%; height: 2px;
+  background: var(--accent-hmrc);
+  transform: scaleX(1);
+  transform-origin: left center;
+  transition: transform var(--motion-base) var(--ease-hover);
+}
+.eos-end__cta--quiet {
+  color: var(--ink-muted);
+  font-weight: 500;
+}
+.eos-end__cta--quiet::after { background: var(--rule); }
+.eos-end__cta:hover::after {
+  transform: scaleX(0);
+  transform-origin: right center;
+}
+.eos-end__cta-arrow {
+  transition: transform var(--motion-fast) var(--ease-hover);
+  display: inline-block;
+}
+.eos-end__cta:hover .eos-end__cta-arrow { transform: translateX(3px); }
+
+/* ---------- Footer legal bar (Maze compliance row) ---------- */
+.eos-footer__legalbar {
+  margin-top: var(--s-5);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--rule);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2);
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  max-width: var(--container-wide);
+  margin-left: auto;
+  margin-right: auto;
+}
+.eos-footer__legalbar a {
+  color: var(--ink-muted);
+  text-decoration: none;
+  letter-spacing: var(--track-caption);
+}
+.eos-footer__legalbar a:hover {
+  color: var(--accent-hmrc);
+}
+.eos-footer__legalbar-brand {
+  color: var(--ink-soft);
+}
+.eos-footer__legalbar-status::before {
+  content: "";
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent-hmrc);
+  margin-right: 6px;
+  vertical-align: middle;
+  animation: eos-live-breathe 2.4s ease-in-out infinite;
+}
+.eos-footer__legalbar-sep { color: var(--rule); }
+
+@media (max-width: 640px) {
+  .eos-footer__legalbar { font-size: 9px; gap: 6px; }
+}
+
+/* ---------- Section heading hairline ----------
+   S242 (James point 7): the short rule under section headings is
+   removed. Headings stand on their own with no decorative line. */
+.eos-section__head h2 {
+  position: relative;
+  padding-bottom: 0;
+}
+.eos-section__head h2::after { content: none; }
+
+/* ---------- Quicktools (free tools, distinct from register, paired by cohort) ---------- */
+.eos-quicktools {
+  max-width: var(--container-wide);
+  margin: var(--s-5) auto 0;
+  padding: 0 var(--s-5);
+  /* Centred flex row so the five tiles centre at every width with no
+     left-pinned orphan, matching the pack card grid above. */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--s-3);
+}
+.eos-quicktool {
+  --tool-accent: var(--accent-hmrc);
+  /* Grow to fill, don't sit pinned at 210px. On the five-tool free-tools row the
+     basis keeps five across (they share the row and settle near 210 each); on a
+     pack page that pairs only one or two tools the card grows to its max-width so
+     it fills the space instead of looking comedically small. */
+  flex: 1 1 190px;
+  max-width: 520px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  padding: var(--s-4) var(--s-4) var(--s-5);
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  transition: background 520ms var(--ease-out);
+}
+.eos-quicktool[data-accent="amber"]   { --tool-accent: #8A4B14; }
+.eos-quicktool[data-accent="plum"]    { --tool-accent: #5B2A4A; }
+.eos-quicktool[data-accent="steel"]   { --tool-accent: #2E4A6B; }
+.eos-quicktool[data-accent="indigo"]  { --tool-accent: #33336B; }
+.eos-quicktool[data-accent="crimson"] { --tool-accent: #7A1F2C; }
+html[data-theme="dark"] .eos-quicktool[data-accent="amber"]   { --tool-accent: #D4A269; }
+html[data-theme="dark"] .eos-quicktool[data-accent="plum"]    { --tool-accent: #B58DA3; }
+html[data-theme="dark"] .eos-quicktool[data-accent="steel"]   { --tool-accent: #8AA3C2; }
+html[data-theme="dark"] .eos-quicktool[data-accent="indigo"]  { --tool-accent: #9A9ADE; }
+html[data-theme="dark"] .eos-quicktool[data-accent="crimson"] { --tool-accent: #E08792; }
+.eos-quicktool::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--tool-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  /* Point 8: hover bar wipe slowed down, was too fast. */
+  transition: transform 620ms var(--ease-out);
+}
+.eos-quicktool:hover::before { transform: scaleX(1); }
+.eos-quicktool__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-2);
+  margin-bottom: var(--s-2);
+}
+.eos-quicktool__num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.eos-quicktool__pair {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 11px;
+  color: var(--tool-accent);
+  text-align: right;
+  line-height: 1.3;
+}
+.eos-quicktool__title {
+  font-family: var(--font-display);
+  font-size: 19px;
+  line-height: 1.2;
+  font-weight: 580;
+  color: var(--ink-primary);
+  margin: 0;
+  letter-spacing: -0.005em;
+}
+.eos-quicktool__body {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 0;
+  flex: 1;
+}
+.eos-quicktool__cta {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--tool-accent);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin-top: var(--s-2);
+}
+.eos-quicktool__arrow {
+  display: inline-block;
+  /* Point 8: arrow nudge slowed to match the calmer card hover. */
+  transition: transform 420ms var(--ease-out);
+}
+.eos-quicktool:hover .eos-quicktool__arrow { transform: translateX(4px); }
+
+@media (max-width: 560px) {
+  .eos-quicktool { flex-basis: 100%; }
+}
+
+/* Section dividers (1px hairline between bands, density-alternating padding) */
+.eos-section { border-top: 1px solid var(--rule); }
+.eos-section:first-of-type { border-top: none; }
+/* Register section: no top divider, sits clean against the hero below the fold */
+.eos-register-section { border-top: none !important; padding-top: var(--s-8); }
+.eos-section--alt { background: var(--surface-raised); }
+
+/* ============================================================
+   S243 EDITORIAL HOME REBUILD (publication / catalogue direction)
+   New blocks: persistent side rails, restrained masthead, the five
+   packs as issue cover cards, specimen rise-and-turn on scroll.
+   Greyscale base, cohort colour scoped per cover only. No dashes in
+   any copy this file controls. Reuses existing tokens throughout.
+   ============================================================ */
+
+/* ---------- PERSISTENT SIDE RAILS ----------
+   The logo-mark cornermark rails (preserved from the hero) now run
+   down BOTH page edges for the whole scroll, fixed to the viewport,
+   bleeding off-screen left and right. They sit behind all content. */
+.eos-railset { display: contents; }
+/* Each rail is a fixed, viewport-anchored wrapper div; the SVG fills it.
+   Fixing a wrapper (not the bare inline SVG) avoids the zero-box quirk an
+   SVG hits when it is itself position:fixed. */
+.eos-railset__mark {
+  position: fixed;
+  top: 50%;
+  width: clamp(280px, 30vw, 520px);
+  height: clamp(420px, 80vh, 900px);
+  pointer-events: none;
+  overflow: visible;
+  /* Faint so the rail frames the page without fighting the catalogue. */
+  opacity: 0.5;
+}
+.eos-railset__mark svg { width: 100%; height: 100%; overflow: visible; display: block; }
+.eos-railset__mark--left  { left: 0;  transform: translate(-56%, -50%); }
+.eos-railset__mark--right { right: 0; transform: translate(56%, -50%); }
+.eos-railset__mark polygon:nth-child(1) { fill: var(--step-1); }
+.eos-railset__mark polygon:nth-child(2) { fill: var(--step-2); }
+.eos-railset__mark polygon:nth-child(3) { fill: var(--step-3); }
+.eos-railset__mark polygon:nth-child(4) { fill: var(--step-4); }
+.eos-railset__mark polygon:nth-child(5) { fill: var(--step-5); }
+.eos-railset__mark polygon:nth-child(6) { fill: var(--step-6); }
+/* Below the wide breakpoint the rails would crowd the content, so they
+   retreat off-screen the same way the hero cornermarks always did. */
+@media (max-width: 1100px) {
+  .eos-railset { display: none; }
+}
+/* Page content sits above the rails. The header is excluded: it keeps its
+   own sticky z-index:200 (see .eos-header above) so its dropdown menus paint
+   over the hero. Including it here forced it to z-index:1, which collided
+   with the hero text and let the hero bleed through the open menus. */
+.eos-masthead,
+.eos-section,
+.eos-end,
+.eos-footer { position: relative; z-index: 1; }
+
+/* ---------- MASTHEAD (restrained, replaces the marketing hero) ----------
+   No big sentence. The wordmark, a mono dateline, then straight into
+   the catalogue. The side rails carry the visual weight. */
+.eos-masthead {
+  padding: var(--s-8) 0 var(--s-6);
+  text-align: center;
+  border-bottom: 1px solid var(--rule);
+}
+.eos-masthead__inner {
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: 0 var(--s-5);
+}
+.eos-masthead__wordmark {
+  font-family: var(--font-display);
+  font-weight: 580;
+  font-size: clamp(40px, 8vw, 96px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink-primary);
+  margin: 0;
+}
+.eos-masthead__rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-top: var(--s-4);
+}
+.eos-masthead__rule-line {
+  flex: 0 0 auto;
+  width: clamp(28px, 8vw, 90px);
+  height: 1px;
+  background: var(--rule);
+}
+.eos-masthead__rule-dot { color: var(--ink-primary); }
+.eos-masthead__strap {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 520px;
+  margin: var(--s-4) auto 0;
+}
+@media (max-width: 640px) {
+  .eos-masthead { padding: var(--s-6) 0 var(--s-5); }
+}
+
+/* ---------- THE FIVE ISSUE COVERS (catalogue as a publication) ----------
+   Five cover cards, magazine page / type-foundry catalogue feel. Each
+   cover: mono pack number eyebrow, Fraunces display name, audience line,
+   file count, the price on the cover, and an Open pack action. Greyscale
+   until hover, when that cover's own cohort colour washes in. */
+.eos-covers-section { border-top: none !important; padding-top: var(--s-6); }
+.eos-covers__head {
+  max-width: var(--container-wide);
+  margin: 0 auto var(--s-5);
+  padding: 0 var(--s-5);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-4);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: var(--s-4);
+}
+.eos-covers__head-title {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.eos-covers__head-meta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.eos-covers {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0 var(--s-5);
+  max-width: var(--container-wide);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-4);
+}
+/* The fifth cover spans the leftover columns so the grid never leaves an
+   orphan tile looking unfinished. */
+@media (min-width: 961px) {
+  .eos-cover:nth-child(4) { grid-column: 1 / 2; }
+  .eos-cover:nth-child(5) { grid-column: 2 / 4; }
+}
+@media (max-width: 960px) {
+  .eos-covers { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .eos-covers { grid-template-columns: 1fr; }
+}
+
+/* Cohort colour, scoped to the cover only (the one colour event). */
+.eos-cover[data-accent="amber"]   { --cover-accent: #8A4B14; }
+.eos-cover[data-accent="plum"]    { --cover-accent: #5B2A4A; }
+.eos-cover[data-accent="steel"]   { --cover-accent: #2E4A6B; }
+.eos-cover[data-accent="indigo"]  { --cover-accent: #33336B; }
+.eos-cover[data-accent="crimson"] { --cover-accent: #7A1F2C; }
+html[data-theme="dark"] .eos-cover[data-accent="amber"]   { --cover-accent: #D4A269; }
+html[data-theme="dark"] .eos-cover[data-accent="plum"]    { --cover-accent: #B58DA3; }
+html[data-theme="dark"] .eos-cover[data-accent="steel"]   { --cover-accent: #8AA3C2; }
+html[data-theme="dark"] .eos-cover[data-accent="indigo"]  { --cover-accent: #9A9ADE; }
+html[data-theme="dark"] .eos-cover[data-accent="crimson"] { --cover-accent: #E08792; }
+
+.eos-cover {
+  --cover-accent: var(--ink-primary);
+  display: flex;
+}
+.eos-cover__link {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 360px;
+  padding: var(--s-5);
+  text-decoration: none;
+  color: inherit;
+  background: var(--surface-raised);
+  /* The hairline binding. Thickens to 2px in the cohort colour on hover. */
+  border: 1px solid var(--rule);
+  overflow: hidden;
+  transition: border-color var(--motion-base) var(--ease-hover),
+              border-width var(--motion-base) var(--ease-hover);
+}
+/* Cohort wash, subtle, revealed on hover only. */
+.eos-cover__link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--cover-accent);
+  opacity: 0;
+  transition: opacity var(--motion-base) var(--ease-hover);
+  z-index: 0;
+  pointer-events: none;
+}
+.eos-cover__link:hover {
+  border-color: var(--cover-accent);
+  border-width: 2px;
+  padding: calc(var(--s-5) - 1px);
+}
+.eos-cover__link:hover::before { opacity: 0.06; }
+.eos-cover__link > * { position: relative; z-index: 1; }
+
+/* Top line of the cover: pack number eyebrow + the diamond cornermark. */
+.eos-cover__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-3);
+}
+.eos-cover__num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.eos-cover__link:hover .eos-cover__num { color: var(--cover-accent); }
+/* The small diamond cornermark on the card rotates 45deg on hover. */
+.eos-cover__mark {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  overflow: visible;
+  transition: transform var(--motion-base) var(--ease-out);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.eos-cover__link:hover .eos-cover__mark { transform: rotate(45deg); }
+.eos-cover__mark polygon { transition: fill 240ms var(--ease-hover); }
+.eos-cover__mark polygon:nth-child(1) { fill: var(--step-1); }
+.eos-cover__mark polygon:nth-child(2) { fill: var(--step-2); }
+.eos-cover__mark polygon:nth-child(3) { fill: var(--step-3); }
+.eos-cover__mark polygon:nth-child(4) { fill: var(--step-4); }
+.eos-cover__mark polygon:nth-child(5) { fill: var(--step-5); }
+.eos-cover__mark polygon:nth-child(6) { fill: var(--step-6); }
+.eos-cover__link:hover .eos-cover__mark polygon { fill: var(--cover-accent); }
+
+.eos-cover__name {
+  font-family: var(--font-display);
+  font-size: 30px;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  font-weight: 580;
+  color: var(--ink-primary);
+  margin: var(--s-5) 0 0;
+}
+.eos-cover__audience {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  margin: var(--s-3) 0 0;
+}
+/* Push the price + file count + action to the foot of the cover. */
+.eos-cover__foot { margin-top: auto; padding-top: var(--s-5); }
+.eos-cover__priceline {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-3);
+  border-top: 1px solid var(--rule);
+  padding-top: var(--s-4);
+}
+.eos-cover__price {
+  font-family: var(--font-mono);
+  font-size: 34px;
+  line-height: 1;
+  color: var(--ink-primary);
+  font-feature-settings: "tnum" 1;
+}
+.eos-cover__link:hover .eos-cover__price { color: var(--cover-accent); }
+.eos-cover__priceap {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.eos-cover__files {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  text-align: right;
+}
+.eos-cover__cta {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin-top: var(--s-4);
+  transition: color var(--motion-base) var(--ease-hover);
+}
+.eos-cover__cta-arrow {
+  display: inline-block;
+  transition: transform var(--motion-fast) var(--ease-hover);
+}
+.eos-cover__link:hover .eos-cover__cta { color: var(--cover-accent); }
+.eos-cover__link:hover .eos-cover__cta-arrow { transform: translateX(4px); }
+
+.eos-covers__footnote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-muted);
+  margin: var(--s-4) auto 0;
+  max-width: var(--container-wide);
+  padding: 0 var(--s-5);
+}
+
+/* ---------- SPECIMEN RISE AND TURN (scroll-in reveal) ----------
+   Each specimen starts lowered and rotated slightly on the Y axis, then
+   rises and turns to flat when it scrolls into view. Hooked to the
+   existing .eos-reveal -> [data-visible] IntersectionObserver in
+   _eos-ui.js, so no new JS is needed. The data-lottie hook on each card
+   is where a Lottie reveal animation will later be dropped in. */
+.eos-specimen.eos-reveal {
+  opacity: 0;
+  transform: perspective(1200px) translateY(40px) rotateY(7deg);
+  transition: opacity 620ms var(--ease-out), transform 620ms var(--ease-out);
+}
+.eos-specimen.eos-reveal[data-visible="true"] {
+  opacity: 1;
+  transform: perspective(1200px) translateY(0) rotateY(0);
+}
+/* Stagger the three covers so they rise in sequence, not in lockstep. */
+.eos-specimen.eos-reveal:nth-child(2) { transition-delay: 90ms; }
+.eos-specimen.eos-reveal:nth-child(3) { transition-delay: 180ms; }
+@media (prefers-reduced-motion: reduce) {
+  .eos-specimen.eos-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---------- FOUNDER SIGNOFF (bottom slogan, moved from the opener) ---------- */
+.eos-signoff {
+  text-align: center;
+  padding: var(--s-7) var(--s-5) var(--s-8);
+  border-top: 1px solid var(--rule);
+}
+.eos-signoff__line {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 4.4vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  font-weight: 580;
+  color: var(--ink-primary);
+  margin: 0;
+}
+.eos-signoff__line em {
+  font-family: 'Newsreader', 'IBM Plex Serif', Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--ink-primary);
+  display: block;
+}
+html[data-theme="dark"] .eos-signoff__line em { font-weight: 600; }
+
+/* ============================================================
+   S242 HOME REVISION (James, round 1). Execute-every-point pass.
+   New + reworked blocks: full-site dropdown nav, the text hero with
+   STATIC oversized rails and a scroll-into-catalogue transition, the
+   filing-cabinet catalogue (smooth transform/opacity hover, no
+   reflow), the by-pack maths cuts in cohort colour, the specimen
+   rise-from-behind-the-divider, the "why this exists" note, and the
+   final close. Greyscale base; cohort hexes are the only accents; no
+   HMRC green; no dashes in any copy this file controls.
+   ============================================================ */
+
+/* ---------- HEADER DROPDOWN NAVIGATION (point 3) ----------
+   Every part of the site is reachable from the header: the five packs,
+   the free tools, the broader catalogue, and MTD. Each trigger opens a
+   menu on hover and on focus/click (keyboard accessible via the JS). */
+.eos-nav-item { position: relative; display: inline-flex; }
+.eos-nav-trigger {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--ink-soft);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: var(--s-2) 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  transition: color var(--motion-fast) var(--ease-hover);
+}
+.eos-nav-trigger::after {
+  content: '';
+  position: absolute; left: 0; right: 18px; bottom: -2px; height: 2px;
+  background: var(--ink-primary);
+  opacity: 0;
+  transition: opacity var(--motion-fast) var(--ease-hover);
+}
+.eos-nav-item:hover .eos-nav-trigger,
+.eos-nav-trigger[aria-expanded="true"] { color: var(--ink-primary); }
+/* Underline only when the menu is actually open (click-to-open, point 1).
+   Hover gives the colour cue but does NOT open the menu. */
+.eos-nav-trigger[aria-expanded="true"]::after { opacity: 1; }
+.eos-nav-trigger__chev {
+  width: 12px; height: 12px;
+  transition: transform var(--motion-base) var(--ease-hover);
+}
+.eos-nav-trigger[aria-expanded="true"] .eos-nav-trigger__chev { transform: rotate(180deg); }
+
+.eos-nav-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  min-width: 280px;
+  background: var(--surface-base);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-card);
+  box-shadow: 0 18px 50px -24px rgba(0,0,0,0.35);
+  padding: var(--s-2);
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translate(-50%, 6px);
+  pointer-events: none;
+  transition: opacity var(--motion-base) var(--ease-hover),
+              transform var(--motion-base) var(--ease-hover);
+  z-index: 210;
+}
+.eos-nav-menu--wide {
+  min-width: 560px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 var(--s-2);
+}
+/* CLICK to open only (point 1). The menu opens on data-open, set by JS
+   on trigger click; hover no longer opens it, so two menus can never be
+   open from a mouse drifting across the bar. */
+.eos-nav-item[data-open="true"] .eos-nav-menu {
+  opacity: 1;
+  transform: translate(-50%, 0);
+  pointer-events: auto;
+}
+.eos-nav-menu__link {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding: 10px 12px;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: background var(--motion-fast) var(--ease-hover);
+}
+.eos-nav-menu__link:hover { background: var(--surface-raised); text-decoration: none; }
+.eos-nav-menu__name {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  color: var(--ink-primary);
+}
+.eos-nav-menu__meta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-muted);
+}
+.eos-nav-menu__link--all {
+  margin-top: var(--s-1);
+  border-top: 1px solid var(--rule);
+  border-radius: 0;
+}
+.eos-nav-menu--wide .eos-nav-menu__link--all { grid-column: 1 / -1; }
+.eos-nav-menu__link--all .eos-nav-menu__name {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+@media (max-width: 900px) {
+  .eos-nav-item { display: none; }
+}
+
+/* Mobile drawer group labels */
+.eos-drawer__group {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-top: var(--s-3);
+}
+.eos-drawer__group:first-child { margin-top: 0; }
+.eos-drawer__nav a { font-size: 17px; }
+
+/* Drawer accordions (built by _eos-ui.js from the flat group/link markup).
+   Each group is a click-to-expand section so the mobile menu stays short. */
+.eos-drawer__nav[data-accordion] { gap: 0; }
+.eos-drawer__acc { border-bottom: 1px solid var(--rule); }
+.eos-drawer__acc-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  background: none;
+  border: 0;
+  /* Roomier vertical tap target so the sections are not cramped together. */
+  padding: var(--s-5) 0;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink-primary);
+  cursor: pointer;
+  text-align: left;
+}
+.eos-drawer__acc-chev {
+  width: 20px; height: 20px;
+  flex: 0 0 auto;
+  color: var(--ink-muted);
+  transition: transform var(--motion-base) var(--ease-hover);
+}
+.eos-drawer__acc.is-open .eos-drawer__acc-chev { transform: rotate(180deg); }
+.eos-drawer__acc-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height var(--motion-base) var(--ease-out), opacity var(--motion-base) var(--ease-out), padding var(--motion-base) var(--ease-out);
+}
+.eos-drawer__acc.is-open .eos-drawer__acc-panel { max-height: 600px; opacity: 1; padding: var(--s-2) 0 var(--s-5); }
+/* A little vertical padding gives each link a bigger tap target. */
+.eos-drawer__nav[data-accordion] a { font-size: 16px; color: var(--ink-soft); padding: var(--s-1) 0; }
+.eos-drawer__nav[data-accordion] a:hover { color: var(--accent); }
+
+/* ---------- TEXT HERO with STATIC oversized rails (points 1 + 4) ----------
+   The rails are STATIC: they sit in the hero's own box (not fixed, do
+   not move on scroll) and only appear here. They are much bigger than
+   the old set and bleed off both page edges behind the statement. The
+   hero is a TEXT statement, not the wordmark. On scroll the statement
+   eases up and fades as the catalogue rises in beneath it. */
+.eos-hero2 {
+  position: relative;
+  overflow: hidden;
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--s-8) 0;
+  border-bottom: 1px solid var(--rule);
+}
+/* Compact hero for legal and utility pages: keep the mark rails and the
+   dateline and title, drop the full-viewport stretch so the content sits up. */
+.eos-hero2--compact {
+  min-height: 0;
+  padding-bottom: var(--s-6);
+}
+/* Point 3: rails are BIGGER, sit HIGHER, stand out more (raised opacity),
+   and show EXACTLY half the mark on each edge. The container centre is
+   pinned to the page edge (translateX -50% / +50%) so precisely half the
+   diamond bleeds off and half stays on the page. Sat higher with a top
+   above 50%. preserveAspectRatio keeps the inner edge flush to the page
+   edge while the rest hangs off. */
+.eos-hero2__rail {
+  position: absolute;
+  top: 42%;
+  width: clamp(440px, 52vw, 920px);
+  height: clamp(620px, 104vh, 1300px);
+  /* The container passes the pointer through; only the solid polygon
+     shapes catch hover (piano behaviour, point 1), so the rail never
+     blocks the hero text behind it. */
+  pointer-events: none;
+  overflow: visible;
+  z-index: 0;
+  opacity: 0.72;
+  transition: opacity var(--motion-base) var(--ease-hover);
+}
+.eos-hero2__rail svg { width: 100%; height: 100%; overflow: visible; display: block; pointer-events: none; }
+/* Exactly half on each side: the rail's own centre sits on the page edge. */
+.eos-hero2__rail--left  { left: 0;  transform: translate(-50%, -50%); }
+.eos-hero2__rail--right { right: 0; transform: translate(50%, -50%); }
+.eos-hero2__rail polygon { transition: fill var(--motion-base) var(--ease-hover); }
+.eos-hero2__rail polygon:nth-child(1) { fill: var(--step-1); }
+.eos-hero2__rail polygon:nth-child(2) { fill: var(--step-2); }
+.eos-hero2__rail polygon:nth-child(3) { fill: var(--step-3); }
+.eos-hero2__rail polygon:nth-child(4) { fill: var(--step-4); }
+.eos-hero2__rail polygon:nth-child(5) { fill: var(--step-5); }
+.eos-hero2__rail polygon:nth-child(6) { fill: var(--step-6); }
+/* Point 1, piano behaviour: hovering an individual diamond layer lights
+   ONLY that layer in its cohort colour, like a piano key. The bottom
+   (outermost, nth-child(1)) layer stays unchanged. Layers 2 to 6 map to
+   the five cohort hues, each responding to its own pointer hover. The
+   polygons sit back to front, so pointer-events on each polygon picks
+   out the band the cursor is actually over. */
+.eos-hero2__rail polygon { pointer-events: auto; }
+/* The smallest (innermost) layer stays uncoloured; the outer layers light up.
+   .is-lit is toggled by JS on both rails at once so the sides mirror. */
+.eos-hero2__rail polygon:nth-child(6) { pointer-events: none; }
+.eos-hero2__rail polygon:nth-child(1).is-lit { fill: #8A4B14; } /* amber   */
+.eos-hero2__rail polygon:nth-child(2).is-lit { fill: #5B2A4A; } /* plum    */
+.eos-hero2__rail polygon:nth-child(3).is-lit { fill: #2E4A6B; } /* steel   */
+.eos-hero2__rail polygon:nth-child(4).is-lit { fill: #33336B; } /* indigo  */
+.eos-hero2__rail polygon:nth-child(5).is-lit { fill: #7A1F2C; } /* crimson */
+html[data-theme="dark"] .eos-hero2__rail polygon:nth-child(1).is-lit { fill: #D4A269; }
+html[data-theme="dark"] .eos-hero2__rail polygon:nth-child(2).is-lit { fill: #B58DA3; }
+html[data-theme="dark"] .eos-hero2__rail polygon:nth-child(3).is-lit { fill: #8AA3C2; }
+html[data-theme="dark"] .eos-hero2__rail polygon:nth-child(4).is-lit { fill: #9A9ADE; }
+html[data-theme="dark"] .eos-hero2__rail polygon:nth-child(5).is-lit { fill: #E08792; }
+
+/* Cohort-themed pages (the five pack pages set body[data-page-cohort]): the page
+   accent becomes the pack cohort (so every var(--accent) highlight is that
+   colour) and the hero rails render in that cohort instead of the greyscale
+   picker. Free tools stay greyscale (no data-page-cohort). */
+body[data-page-cohort="amber"]   { --accent: #8A4B14; --page-hue: #8A4B14; }
+body[data-page-cohort="plum"]    { --accent: #5B2A4A; --page-hue: #5B2A4A; }
+body[data-page-cohort="steel"]   { --accent: #2E4A6B; --page-hue: #2E4A6B; }
+body[data-page-cohort="indigo"]  { --accent: #33336B; --page-hue: #33336B; }
+body[data-page-cohort="crimson"] { --accent: #7A1F2C; --page-hue: #7A1F2C; }
+html[data-theme="dark"] body[data-page-cohort="amber"]   { --accent: #D4A269; }
+html[data-theme="dark"] body[data-page-cohort="plum"]    { --accent: #B58DA3; }
+html[data-theme="dark"] body[data-page-cohort="steel"]   { --accent: #8AA3C2; }
+html[data-theme="dark"] body[data-page-cohort="indigo"]  { --accent: #9A9ADE; }
+html[data-theme="dark"] body[data-page-cohort="crimson"] { --accent: #E08792; }
+/* Rails in the page cohort: layered ramp, light-top to dark-bottom, flipped in
+   dark mode, exactly like the logo. */
+body[data-page-cohort] .eos-hero2__rail polygon:nth-child(1) { fill: color-mix(in srgb, var(--page-hue) 22%, #fff); }
+body[data-page-cohort] .eos-hero2__rail polygon:nth-child(2) { fill: color-mix(in srgb, var(--page-hue) 38%, #fff); }
+body[data-page-cohort] .eos-hero2__rail polygon:nth-child(3) { fill: color-mix(in srgb, var(--page-hue) 56%, #fff); }
+body[data-page-cohort] .eos-hero2__rail polygon:nth-child(4) { fill: color-mix(in srgb, var(--page-hue) 74%, #fff); }
+body[data-page-cohort] .eos-hero2__rail polygon:nth-child(5) { fill: color-mix(in srgb, var(--page-hue) 90%, #fff); }
+body[data-page-cohort] .eos-hero2__rail polygon:nth-child(6) { fill: var(--page-hue); }
+/* Dark-mode ramp: an EVEN spread (S249). It used to be front-loaded with a
+   full-hue (100%) top layer that read far more saturated than the rest. Now an
+   even ~11% per step so no single layer dominates; the whole ramp was lifted a
+   touch (top 80%, bottom 25%) so the rail keeps some saturation rather than
+   washing out. Light mode was already even and is left untouched. */
+html[data-theme="dark"] body[data-page-cohort] .eos-hero2__rail polygon:nth-child(1) { fill: color-mix(in srgb, var(--page-hue) 80%, #fff); }
+html[data-theme="dark"] body[data-page-cohort] .eos-hero2__rail polygon:nth-child(2) { fill: color-mix(in srgb, var(--page-hue) 69%, #fff); }
+html[data-theme="dark"] body[data-page-cohort] .eos-hero2__rail polygon:nth-child(3) { fill: color-mix(in srgb, var(--page-hue) 58%, #fff); }
+html[data-theme="dark"] body[data-page-cohort] .eos-hero2__rail polygon:nth-child(4) { fill: color-mix(in srgb, var(--page-hue) 47%, #fff); }
+html[data-theme="dark"] body[data-page-cohort] .eos-hero2__rail polygon:nth-child(5) { fill: color-mix(in srgb, var(--page-hue) 36%, #fff); }
+html[data-theme="dark"] body[data-page-cohort] .eos-hero2__rail polygon:nth-child(6) { fill: color-mix(in srgb, var(--page-hue) 25%, #fff); }
+@media (max-width: 760px) {
+  /* The decorative diamond rails overlapped the centred hero text on phones, so
+     drop them entirely below tablet width (the packs are still reachable from the
+     catalogue and nav). */
+  .eos-hero2__rail { display: none; }
+  /* Dateline: hide the decorative side rules and let the three phrases wrap as
+     whole centred units instead of breaking mid-phrase. */
+  .eos-hero2__dateline { flex-wrap: wrap; justify-content: center; gap: var(--s-2) var(--s-3); }
+  .eos-hero2__dateline-rule { display: none; }
+  .eos-hero2__dateline > span:not(.eos-hero2__dateline-dot):not(.eos-hero2__dateline-rule) { white-space: nowrap; }
+}
+
+.eos-hero2__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 var(--s-5);
+  text-align: center;
+  /* Scroll transition: the inner block lifts gently as the hero scrolls away.
+     The opacity fade was removed (James: it read as a haze/mistiness washing
+     over the hero on scroll). transform only now. */
+  transform: translateY(calc(var(--hero-scroll, 0) * -60px));
+  will-change: transform;
+}
+.eos-hero2__dateline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: var(--s-5);
+}
+.eos-hero2__dateline-rule {
+  flex: 0 0 auto;
+  width: clamp(24px, 6vw, 70px);
+  height: 1px;
+  background: var(--rule);
+}
+.eos-hero2__dateline-dot { color: var(--ink-primary); }
+.eos-hero2__statement {
+  font-family: var(--font-display);
+  /* Point 2: noticeably smaller than the old clamp(34,6.2vw,84). Copy
+     unchanged this round, size only. */
+  font-size: clamp(26px, 4.2vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  font-weight: 580;
+  color: var(--ink-primary);
+  margin: 0 auto;
+  max-width: 20ch;
+}
+.eos-hero2__creed {
+  margin: var(--s-6) auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.eos-hero2__creed-line {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(16px, 2.2vw, 21px);
+  line-height: 1.4;
+  color: var(--ink-soft);
+  margin: 0;
+}
+/* A quiet trust line that can sit under a call to action. */
+.eos-trustline {
+  margin: var(--s-4) auto 0;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  color: var(--ink-muted);
+  text-align: center;
+}
+/* The small quiz prompt under the hero buttons (quiz demoted to a link). */
+.eos-hero2__quiz-link {
+  display: inline-block;
+  margin-top: var(--s-3);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--ink-soft);
+  text-underline-offset: 3px;
+}
+.eos-hero2__scroll {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-2);
+  margin-top: var(--s-7);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  text-decoration: none;
+}
+.eos-hero2__scroll:hover { color: var(--ink-primary); text-decoration: none; }
+.eos-hero2__scroll svg {
+  width: 18px; height: 18px;
+  animation: eos-hero-bob 2.4s ease-in-out infinite;
+}
+@keyframes eos-hero-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .eos-hero2__inner { transform: none; opacity: 1; }
+  .eos-hero2__scroll svg { animation: none; }
+}
+@media (max-width: 640px) {
+  .eos-hero2 { min-height: 80vh; padding: var(--s-7) 0; }
+}
+
+/* ---------- THE FILING CABINET (point 5, the hard one) ----------
+   Five packs as drawer rows in a stack. At rest each row shows its tab
+   (number, name, price). On hover the drawer pulls open: the reveal
+   panel (audience, files, open-pack link) slides up from behind the
+   face and the cohort colour washes in. The motion animates ONLY
+   transform, opacity, colour and the grid-row track that opens the
+   drawer. NO padding shifts, NO border-width changes, NO text reflow,
+   which was the source of the old jitter. */
+.eos-cabinet-section { border-top: none !important; padding-top: var(--s-6); }
+.eos-cabinet__head {
+  max-width: var(--container-wide);
+  margin: 0 auto var(--s-4);
+  padding: 0 var(--s-5) var(--s-4);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-4);
+  border-bottom: 1px solid var(--rule);
+}
+.eos-cabinet__head-title,
+.eos-cabinet__head-meta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.eos-cabinet {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0 var(--s-5);
+  max-width: var(--container-wide);
+  border-top: 1px solid var(--rule);
+}
+
+/* Cohort colour, scoped per drawer (the one colour event per pack). */
+.eos-drawer-pack[data-accent="amber"]   { --pack-accent: #8A4B14; }
+.eos-drawer-pack[data-accent="plum"]    { --pack-accent: #5B2A4A; }
+.eos-drawer-pack[data-accent="steel"]   { --pack-accent: #2E4A6B; }
+.eos-drawer-pack[data-accent="indigo"]  { --pack-accent: #33336B; }
+.eos-drawer-pack[data-accent="crimson"] { --pack-accent: #7A1F2C; }
+html[data-theme="dark"] .eos-drawer-pack[data-accent="amber"]   { --pack-accent: #D4A269; }
+html[data-theme="dark"] .eos-drawer-pack[data-accent="plum"]    { --pack-accent: #B58DA3; }
+html[data-theme="dark"] .eos-drawer-pack[data-accent="steel"]   { --pack-accent: #8AA3C2; }
+html[data-theme="dark"] .eos-drawer-pack[data-accent="indigo"]  { --pack-accent: #9A9ADE; }
+html[data-theme="dark"] .eos-drawer-pack[data-accent="crimson"] { --pack-accent: #E08792; }
+
+.eos-drawer-pack {
+  --pack-accent: var(--ink-primary);
+  border-bottom: 1px solid var(--rule);
+}
+.eos-drawer-pack__link {
+  position: relative;
+  display: block;
+  padding: var(--s-5) var(--s-5) var(--s-5) var(--s-6);
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  isolation: isolate;
+}
+.eos-drawer-pack__link:hover { text-decoration: none; }
+/* The drawer tab: a thick cohort-coloured bar down the left edge that
+   grows on hover, like the spine of a pulled drawer. Transform only. */
+.eos-drawer-pack__tab {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 6px;
+  background: var(--pack-accent);
+  transform: scaleX(0.34);
+  transform-origin: left center;
+  transition: transform var(--motion-base) var(--ease-out);
+  z-index: 2;
+}
+.eos-drawer-pack__link:hover .eos-drawer-pack__tab,
+.eos-drawer-pack__link:focus-visible .eos-drawer-pack__tab { transform: scaleX(1); }
+/* Cohort wash behind the row, revealed on hover. Opacity only. */
+.eos-drawer-pack__link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--pack-accent);
+  opacity: 0;
+  transition: opacity var(--motion-base) var(--ease-hover);
+  z-index: 0;
+  pointer-events: none;
+}
+.eos-drawer-pack__link:hover::before,
+.eos-drawer-pack__link:focus-visible::before { opacity: 0.05; }
+
+/* The visible tab face: number, name, price on one baseline. Fixed
+   layout, no shifting on hover. */
+.eos-drawer-pack__face {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 88px 1fr auto;
+  gap: var(--s-4);
+  align-items: baseline;
+}
+.eos-drawer-pack__num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  transition: color var(--motion-base) var(--ease-hover);
+}
+.eos-drawer-pack__link:hover .eos-drawer-pack__num { color: var(--pack-accent); }
+.eos-drawer-pack__name {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3vw, 30px);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  font-weight: 580;
+  color: var(--ink-primary);
+  margin: 0;
+}
+.eos-drawer-pack__price {
+  font-family: var(--font-mono);
+  font-size: 30px;
+  line-height: 1;
+  color: var(--ink-primary);
+  font-feature-settings: "tnum" 1;
+  transition: color var(--motion-base) var(--ease-hover);
+}
+.eos-drawer-pack__link:hover .eos-drawer-pack__price { color: var(--pack-accent); }
+
+/* The reveal: opens from a 0fr to 1fr grid row (no width/padding reflow
+   of the surrounding text), with the contents sliding up and fading in.
+   transform + opacity + grid-row only. */
+.eos-drawer-pack__reveal {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--motion-drawer) var(--ease-out);
+}
+/* The single grid child clips to the track (min-height:0 + overflow).
+   It carries NO padding, so at 0fr the row is genuinely zero height and
+   nothing leaks under the collapsed tab. Spacing lives on the inner
+   content, which is clipped away when closed. */
+.eos-drawer-pack__reveal-inner {
+  min-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity var(--motion-base) var(--ease-hover),
+              transform var(--motion-base) var(--ease-out);
+  max-width: 70ch;
+  padding-left: 88px;
+}
+.eos-drawer-pack__link:hover .eos-drawer-pack__reveal,
+.eos-drawer-pack__link:focus-visible .eos-drawer-pack__reveal {
+  grid-template-rows: 1fr;
+}
+.eos-drawer-pack__link:hover .eos-drawer-pack__reveal-inner,
+.eos-drawer-pack__link:focus-visible .eos-drawer-pack__reveal-inner {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Top spacing is a margin on the first revealed line so it is clipped
+   to zero when the drawer is closed (padding would leak height). */
+.eos-drawer-pack__audience {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: var(--s-4) 0 0;
+}
+.eos-drawer-pack__files {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--ink-muted);
+  margin: var(--s-3) 0 0;
+}
+.eos-drawer-pack__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin-top: var(--s-4);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--pack-accent);
+}
+.eos-drawer-pack__cta-arrow {
+  display: inline-block;
+  transition: transform var(--motion-fast) var(--ease-hover);
+}
+.eos-drawer-pack__link:hover .eos-drawer-pack__cta-arrow { transform: translateX(4px); }
+
+@media (max-width: 640px) {
+  .eos-drawer-pack__link { padding-left: var(--s-5); }
+  .eos-drawer-pack__face { grid-template-columns: 1fr auto; gap: var(--s-3); }
+  .eos-drawer-pack__num { grid-column: 1 / -1; }
+  .eos-drawer-pack__reveal-inner { padding-left: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .eos-drawer-pack__tab { transition: none; }
+  .eos-drawer-pack__reveal,
+  .eos-drawer-pack__reveal-inner { transition: none; }
+}
+
+.eos-cabinet__footnote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-muted);
+  margin: var(--s-4) auto 0;
+  max-width: var(--container-wide);
+  padding: 0 var(--s-5);
+  text-align: center;
+}
+
+/* ---------- THE MATHS, BY PACK (point 10) ----------
+   Reuses the editorial cut row, recoloured per cohort. Each pack set
+   against its real-world equivalent and its monthly cost, versus our
+   pay-once price. Cohort colour is the only accent. */
+.eos-cuts { list-style: none; }
+.eos-cut {
+  --cut-accent: var(--ink-primary);
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: var(--s-4);
+  padding: var(--s-5) 0;
+  border-top: 1px solid var(--rule);
+}
+.eos-cut:first-of-type { border-top: 0; }
+.eos-cut[data-accent="amber"]   { --cut-accent: #8A4B14; }
+.eos-cut[data-accent="plum"]    { --cut-accent: #5B2A4A; }
+.eos-cut[data-accent="steel"]   { --cut-accent: #2E4A6B; }
+.eos-cut[data-accent="indigo"]  { --cut-accent: #33336B; }
+.eos-cut[data-accent="crimson"] { --cut-accent: #7A1F2C; }
+html[data-theme="dark"] .eos-cut[data-accent="amber"]   { --cut-accent: #D4A269; }
+html[data-theme="dark"] .eos-cut[data-accent="plum"]    { --cut-accent: #B58DA3; }
+html[data-theme="dark"] .eos-cut[data-accent="steel"]   { --cut-accent: #8AA3C2; }
+html[data-theme="dark"] .eos-cut[data-accent="indigo"]  { --cut-accent: #9A9ADE; }
+html[data-theme="dark"] .eos-cut[data-accent="crimson"] { --cut-accent: #E08792; }
+.eos-cut__num {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--cut-accent);
+  padding-top: 6px;
+}
+.eos-cut__body { display: flex; flex-direction: column; gap: var(--s-2); }
+.eos-cut__swap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--s-3) var(--s-4);
+  margin: 0;
+}
+.eos-cut__from,
+.eos-cut__to { display: inline-flex; flex-direction: column; gap: 2px; }
+.eos-cut__from-name {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  line-height: 1.2;
+}
+.eos-cut__from-price {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--ink-muted);
+}
+.eos-cut__arrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--cut-accent);
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  white-space: nowrap;
+}
+.eos-cut__arrow::before {
+  content: ''; width: 24px; height: 1px; background: var(--cut-accent);
+}
+.eos-cut__to-name {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--cut-accent);
+  line-height: 1.2;
+}
+.eos-cut__to-price {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--cut-accent);
+}
+.eos-cut__gloss {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 68ch;
+  margin: 0;
+}
+.eos-cuts__cite {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--ink-muted);
+  max-width: var(--container-standard);
+  margin: var(--s-5) auto 0;
+  padding: 0 var(--s-4);
+  text-align: center;
+}
+@media (max-width: 640px) {
+  .eos-cut { grid-template-columns: 1fr; gap: var(--s-2); }
+  .eos-cut__num { padding-top: 0; }
+  .eos-cut__arrow::before { display: none; }
+}
+
+/* ---------- COMPARISON TABLE (point 7) ----------
+   Per-product table: each pack, its real-world equivalent, what that
+   equivalent charges, versus our pay-once price. Cohort accent on the
+   row marker only, no green anywhere. */
+.eos-compare-wrap {
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: 0 var(--s-5);
+  overflow-x: auto;
+}
+.eos-compare {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-sans);
+}
+.eos-compare thead th {
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  font-weight: 500;
+  padding: 0 var(--s-3) var(--s-3);
+  border-bottom: 1px solid var(--rule);
+  white-space: nowrap;
+}
+/* Must out-specify ".eos-compare thead th { text-align:left }" above, otherwise
+   the "Their cost" / "Ours, once" headers stay left and sit to the LEFT of the
+   right-aligned numbers below them. This right-aligns each header over its column
+   so the label sits directly above its figure. */
+.eos-compare thead th.eos-compare__th-num { text-align: right; }
+.eos-compare tbody tr {
+  --cmp-accent: var(--ink-primary);
+  border-bottom: 1px solid var(--rule);
+}
+.eos-compare tbody tr[data-accent="amber"]   { --cmp-accent: #8A4B14; }
+.eos-compare tbody tr[data-accent="plum"]    { --cmp-accent: #5B2A4A; }
+.eos-compare tbody tr[data-accent="steel"]   { --cmp-accent: #2E4A6B; }
+.eos-compare tbody tr[data-accent="indigo"]  { --cmp-accent: #33336B; }
+.eos-compare tbody tr[data-accent="crimson"] { --cmp-accent: #7A1F2C; }
+html[data-theme="dark"] .eos-compare tbody tr[data-accent="amber"]   { --cmp-accent: #D4A269; }
+html[data-theme="dark"] .eos-compare tbody tr[data-accent="plum"]    { --cmp-accent: #B58DA3; }
+html[data-theme="dark"] .eos-compare tbody tr[data-accent="steel"]   { --cmp-accent: #8AA3C2; }
+html[data-theme="dark"] .eos-compare tbody tr[data-accent="indigo"]  { --cmp-accent: #9A9ADE; }
+html[data-theme="dark"] .eos-compare tbody tr[data-accent="crimson"] { --cmp-accent: #E08792; }
+.eos-compare td,
+.eos-compare tbody th {
+  padding: var(--s-4) var(--s-3);
+  /* Middle so the row marker diamond lines up with the centre of the pack
+     title rather than sitting off against a taller neighbouring cell. */
+  vertical-align: middle;
+}
+/* The two price cells align to a shared baseline so their cost and ours-once
+   numbers sit on the same line despite the size difference. */
+.eos-compare td.eos-compare__num { vertical-align: baseline; }
+.eos-compare__pack {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink-primary);
+  text-align: left;
+  position: relative;
+  padding-left: var(--s-5);
+}
+/* Higher specificity than the shared td/th padding so the marker keeps its
+   room even on narrow screens, where the th padding shorthand would otherwise
+   squeeze the diamond up against the title. */
+.eos-compare tbody th.eos-compare__pack { padding-left: var(--s-5); }
+.eos-compare__pack::before {
+  content: "";
+  position: absolute;
+  left: 4px; top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 8px; height: 8px;
+  background: var(--cmp-accent);
+}
+.eos-compare__equiv {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+.eos-compare__equiv-note {
+  display: block;
+  margin-top: 3px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--ink-muted);
+}
+/* The competitor figure reads as a stack: the number large, the window
+   beneath it muted, so the recurring window is unmistakable. */
+.eos-compare__num-big {
+  /* inline-block so the cell's baseline is THIS number's text baseline (a block
+     child makes the cell fall back to its bottom edge, which is what threw the
+     two figures out of line). The unit below is block, so it still drops a row. */
+  display: inline-block;
+  vertical-align: baseline;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--ink-soft);
+}
+.eos-compare__num-unit {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--ink-muted);
+}
+.eos-compare__num {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--ink-muted);
+  white-space: nowrap;
+  font-feature-settings: "tnum" 1;
+}
+/* The "ours, once" price is the line that should land. It dwarfs the
+   competitor figure and carries the row's cohort colour. */
+.eos-compare__ours { text-align: right; }
+.eos-compare__ours-price {
+  /* Same baseline trick as __num-big: inline-block so the big "ours" figure
+     defines the cell baseline and lands on the same line as "their cost",
+     despite the size difference. The note below stays block. */
+  display: inline-block;
+  vertical-align: baseline;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.4vw, 38px);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--cmp-accent);
+  font-feature-settings: "tnum" 1;
+}
+.eos-compare__ours-note {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--ink-muted);
+}
+@media (max-width: 640px) {
+  /* The four-column table was too wide for a phone (cut off), and a left-stacked
+     version read as squished. Instead each pack becomes a full-width bordered
+     card like the free-tool tiles, filling the width, with their-cost and
+     ours-once as two columns inside. */
+  .eos-compare-wrap { overflow-x: visible; padding: 0 var(--s-4); }
+  .eos-compare, .eos-compare tbody, .eos-compare tr, .eos-compare th, .eos-compare td { display: block; width: auto; }
+  .eos-compare thead { display: none; }
+  .eos-compare tbody tr {
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-card);
+    background: var(--surface-raised);
+    padding: var(--s-5);
+    margin-bottom: var(--s-4);
+  }
+  .eos-compare tbody th.eos-compare__pack {
+    padding: 0 0 var(--s-2);
+    font-size: 19px;
+    line-height: 1.2;
+    text-align: center;
+  }
+  /* Diamond marker flows inline before the name (no longer absolute). */
+  .eos-compare__pack::before {
+    position: static;
+    display: inline-block;
+    margin-right: var(--s-2);
+    transform: rotate(45deg);
+    vertical-align: middle;
+  }
+  .eos-compare td.eos-compare__equiv {
+    padding: 0 0 var(--s-4);
+    font-size: 14px;
+    text-align: center;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: var(--s-4);
+  }
+  /* Their cost on the left, ours-once on the right, so the two figures sit at
+     opposite edges and the row reads evenly. */
+  .eos-compare td.eos-compare__num {
+    display: inline-block;
+    width: 49%;
+    vertical-align: top;
+    text-align: left;
+    padding: 0;
+  }
+  .eos-compare td.eos-compare__ours { text-align: right; }
+  .eos-compare td.eos-compare__num::before {
+    content: "Their cost";
+    display: block;
+    margin-bottom: var(--s-1);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--track-caption);
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .eos-compare td.eos-compare__ours::before { content: "Ours, once"; }
+  .eos-compare__num-big, .eos-compare__ours-price { display: block; }
+  .eos-compare__num-unit, .eos-compare__ours-note { display: block; margin: 2px 0 0; }
+}
+
+/* ---------- SPECIMEN RISE FROM BEHIND THE DIVIDER (point 8) ----------
+   The specimen cards sit on a stage that is clipped at the section
+   divider above them. At rest each card is pushed down and tipped on
+   the Y axis, hidden behind that clip line. On scroll-in each rises up
+   from behind the divider and turns to flat, in sequence, reproducing
+   the proven S241 rise-and-turn motion in pure CSS (no Lottie shipped).
+   transform + opacity only. */
+.eos-specimen-section { overflow: hidden; }
+.eos-specimen-stage {
+  position: relative;
+  padding-top: var(--s-3);
+}
+.eos-specimen.eos-rise {
+  opacity: 0;
+  transform: perspective(1400px) translateY(80px) rotateX(18deg);
+  transform-origin: center bottom;
+  transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out);
+}
+.eos-specimen.eos-rise[data-visible="true"] {
+  opacity: 1;
+  transform: perspective(1400px) translateY(0) rotateX(0);
+}
+.eos-specimen.eos-rise:nth-child(2) { transition-delay: 120ms; }
+.eos-specimen.eos-rise:nth-child(3) { transition-delay: 240ms; }
+@media (prefers-reduced-motion: reduce) {
+  .eos-specimen.eos-rise { opacity: 1; transform: none; transition: none; }
+}
+/* Each specimen gets a title and a short description (point 8). */
+.eos-specimen__caption-desc {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: var(--s-2) 0 0;
+}
+
+/* ---------- WHY THIS EXISTS (point 14) ----------
+   The dropcap keys off the cohort-neutral ink now, not green. */
+.eos-manifesto__dropcap::first-letter { color: var(--ink-primary); }
+.eos-manifesto__kicker-dot { color: var(--ink-primary); }
+
+/* ---------- THE FINALE (point 15) ----------
+   The close reads as an ending: large, centred, with a rule that draws
+   itself across on scroll-in. Bigger than the old end band. */
+.eos-finale {
+  border-top: 1px solid var(--rule);
+  padding: var(--s-9) 0;
+  text-align: center;
+}
+/* Point 10: with the lead lines cut, the close is just the CTAs, so the
+   band tightens to avoid a large empty footer. */
+.eos-finale--cta-only { padding: var(--s-7) 0; }
+.eos-finale--cta-only .eos-finale__cta-row { margin-top: 0; }
+/* Closing sign-off line above the finale CTAs, restating the brand voice. */
+.eos-finale__sign {
+  font-family: 'Newsreader', 'IBM Plex Serif', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(22px, 3vw, 30px);
+  line-height: 1.2;
+  color: var(--ink-primary);
+  margin: 0 0 var(--s-6);
+}
+.eos-finale__inner {
+  max-width: var(--container-standard);
+  margin: 0 auto;
+  padding: 0 var(--s-5);
+}
+.eos-finale__lead {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 7.5vw, 96px);
+  line-height: 1.0;
+  letter-spacing: -0.025em;
+  font-weight: 580;
+  color: var(--ink-primary);
+  margin: 0;
+}
+.eos-finale__lead--alt {
+  font-family: 'Newsreader', 'IBM Plex Serif', Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--ink-primary);
+}
+.eos-finale__rule {
+  display: block;
+  height: 2px;
+  width: 0;
+  max-width: 420px;
+  margin: var(--s-6) auto;
+  background: var(--ink-primary);
+  transition: width 900ms var(--ease-out);
+}
+.eos-finale__inner[data-visible="true"] .eos-finale__rule { width: 64%; }
+.eos-finale__cta-row {
+  display: flex;
+  justify-content: center;
+  gap: var(--s-5);
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+.eos-finale__cta {
+  background: none;
+  border: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink-primary);
+  text-decoration: none;
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--s-2);
+  padding-bottom: 3px;
+}
+.eos-finale__cta::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%; height: 2px;
+  background: var(--ink-primary);
+  transform: scaleX(1);
+  transform-origin: left center;
+  transition: transform var(--motion-base) var(--ease-hover);
+}
+.eos-finale__cta--quiet { color: var(--ink-muted); font-weight: 500; }
+.eos-finale__cta--quiet::after { background: var(--rule); }
+.eos-finale__cta:hover::after { transform: scaleX(0); transform-origin: right center; }
+.eos-finale__cta-arrow {
+  display: inline-block;
+  transition: transform var(--motion-fast) var(--ease-hover);
+}
+.eos-finale__cta:hover .eos-finale__cta-arrow { transform: translateX(3px); }
+@media (prefers-reduced-motion: reduce) {
+  .eos-finale__rule,
+  .eos-finale__inner[data-visible="true"] .eos-finale__rule { width: 64%; transition: none; }
+}
+
+/* Colophon trim (point 17): the long set-in block is gone; what is left
+   sits centred and quiet. (Styling inherited from .eos-footer__colophon.) */
+
+/* ============================================================
+   YESTERDAY'S PROVEN MOTION (S242 round 2, points 5, 6, 11)
+   The rise + 72deg turn below is copied VERBATIM from James's
+   After Effects export at /tmp/specimen-demo/index.html, which
+   is the literal export of his Lottie. Do NOT reinvent it.
+   Outer layer = the rise (position). Inner .turn = the 3D Y
+   rotation, lagging the rise by 0.47s. Easing is the exact AE
+   cubic-bezier from the Lottie tangents.
+   Used by BOTH the specimens (scroll-triggered, point 6) and the
+   catalogue cabinet (hover-triggered, point 5).
+   ============================================================ */
+:root{ --ae:cubic-bezier(0.673,0,0.277,1); } /* exact AE easing */
+
+@keyframes eos-rise{from{transform:translateY(80vh)}to{transform:translateY(0)}}
+@keyframes eos-turn{from{transform:rotateY(72deg)}to{transform:rotateY(0)}}
+
+/* ---------- SPECIMENS: scroll-triggered (point 6) ----------
+   The demo's structure exactly: a .row with perspective, three
+   .specimen figures, each wrapping a .turn that holds the image.
+   IntersectionObserver adds .in at threshold .35, then the
+   verbatim animations fire, staggered right to left. */
+.eos-specimen-row{
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: 0 var(--s-4);
+  display:grid;
+  /* All four in a line when there is room; click one to bring it centre stage
+     (see .is-focused below). Stacks to two, then one, as the viewport narrows. */
+  grid-template-columns:repeat(4,1fr);
+  gap:24px;
+  align-items:start;
+  perspective:1100px;
+}
+.eos-specimen-row .eos-specimen{
+  cursor: zoom-in;
+  /* Use the standalone scale property, not transform, so the hover grow
+     composes with the rise+turn animation that owns transform. */
+  transition: scale var(--motion-base) var(--ease-out);
+}
+.eos-specimen-row .eos-specimen:hover{ scale: 1.03; }
+.eos-specimen-row .eos-specimen .eos-specimen__turn{ transition: box-shadow var(--motion-base) var(--ease-out); }
+.eos-specimen-row .eos-specimen:hover .eos-specimen__turn{ box-shadow: 0 26px 56px -30px rgba(0,0,0,0.5); }
+@media (prefers-reduced-motion: reduce){
+  .eos-specimen-row .eos-specimen:hover{ scale: 1; }
+}
+/* Focused: one specimen centre stage, the rest hidden, nice and big. */
+.eos-specimen-row.is-focused{ display:block; }
+.eos-specimen-row.is-focused .eos-specimen{ display:none; }
+.eos-specimen-row.is-focused .eos-specimen.is-focused-item{
+  display:block;
+  max-width:640px;
+  margin:0 auto;
+  cursor: zoom-out;
+}
+.eos-specimen-row.is-focused .eos-specimen.is-focused-item .eos-specimen__frame{
+  aspect-ratio: 3 / 4;
+}
+/* Pack PDP: the lone specimen opens a true centred lightbox on click. The
+   home's inline enlarge caps at 640px, which inside the PDP's narrow grid
+   column barely grew (read as "not working"); here it escapes the column with
+   position:fixed. Reuses the _eos-ui.js is-focused / is-focused-item toggles,
+   so click-again and Escape still close it. */
+.eos-pdp .eos-specimen-row.is-focused::before{
+  content:''; position:fixed; inset:0; background:rgba(15,15,15,0.84); z-index:1000;
+}
+.eos-pdp .eos-specimen-row.is-focused .eos-specimen.is-focused-item{
+  position:fixed !important; top:50% !important; left:50% !important;
+  transform:translate(-50%,-50%) !important;
+  max-width:min(92vw,760px) !important; width:auto !important; margin:0 !important;
+  z-index:1001; cursor:zoom-out;
+}
+.eos-pdp .eos-specimen-row.is-focused .eos-specimen.is-focused-item .eos-specimen__turn{ transform:none !important; }
+.eos-pdp .eos-specimen-row.is-focused .eos-specimen.is-focused-item img{
+  display:block; width:auto !important; max-width:min(92vw,760px) !important;
+  max-height:84vh !important; height:auto !important;
+  box-shadow:0 40px 120px -40px rgba(0,0,0,0.7);
+}
+.eos-pdp .eos-specimen-row.is-focused .eos-specimen.is-focused-item .eos-specimen__cap{ display:none; }
+@media (max-width: 1000px){
+  .eos-specimen-row{ grid-template-columns:repeat(2,1fr); gap:32px; }
+}
+/* The figure is the rise layer. Reset any legacy .eos-specimen card
+   styling that the old mockup block applied. */
+.eos-specimen-row .eos-specimen{
+  background:transparent;
+  border:0;
+  transform:translateY(80vh);
+  transform-style:preserve-3d;
+  margin:0;
+  display:block;
+}
+.eos-specimen-row .eos-specimen:hover{ transform:translateY(80vh); } /* no legacy hover tilt before reveal */
+.eos-specimen-row.in .eos-specimen:hover{ transform:translateY(0); }
+/* Cohort accent per specimen (no green; cohort hues only). */
+.eos-specimen-row .eos-specimen[data-accent="amber"]   { --accent: #8A4B14; }
+.eos-specimen-row .eos-specimen[data-accent="plum"]    { --accent: #5B2A4A; }
+.eos-specimen-row .eos-specimen[data-accent="steel"]   { --accent: #2E4A6B; }
+.eos-specimen-row .eos-specimen[data-accent="indigo"]  { --accent: #33336B; }
+.eos-specimen-row .eos-specimen[data-accent="crimson"] { --accent: #7A1F2C; }
+html[data-theme="dark"] .eos-specimen-row .eos-specimen[data-accent="amber"]   { --accent: #D4A269; }
+html[data-theme="dark"] .eos-specimen-row .eos-specimen[data-accent="plum"]    { --accent: #B58DA3; }
+html[data-theme="dark"] .eos-specimen-row .eos-specimen[data-accent="steel"]   { --accent: #8AA3C2; }
+html[data-theme="dark"] .eos-specimen-row .eos-specimen[data-accent="indigo"]  { --accent: #9A9ADE; }
+html[data-theme="dark"] .eos-specimen-row .eos-specimen[data-accent="crimson"] { --accent: #E08792; }
+
+.eos-specimen__turn{
+  transform:rotateY(72deg);
+  transform-origin:50% 50%;
+  backface-visibility:hidden;
+  /* No blanket white here. On the home row the caption lives INSIDE __turn, so a
+     white fill made the caption text unreadable in dark mode. White belongs only
+     behind the document image: the home image carries it via __frame, and the PDP
+     image (a direct child of __turn, no __frame) gets it back in the rule below. */
+  border:1px solid var(--rule);
+  border-top:3px solid var(--accent);
+  box-shadow:0 18px 40px -24px rgba(0,0,0,.45);
+  overflow:hidden;
+  display:block;
+}
+/* PDP specimen: the image is a direct child of __turn (no __frame wrapper), so
+   the white sheet lives here. There is no caption inside __turn on the PDP. */
+.eos-pdp .eos-specimen__turn{ background:#ffffff; }
+.eos-specimen__turn img{display:block;width:100%;height:auto}
+
+/* ---------- SPECIMEN ZOOM VIEWER ----------
+   Full-screen viewer opened on specimen click. Scroll or pinch to zoom, drag to
+   pan, double-tap to reset. touch-action:none so the browser does not hijack
+   the pinch/scroll gestures (the JS handles them). Built by _eos-ui.js. */
+.eos-zoom {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.92);
+  touch-action: none;
+  overscroll-behavior: contain;
+  cursor: zoom-out;
+}
+.eos-zoom[hidden] { display: none; }
+.eos-zoom__img {
+  max-width: 94vw;
+  max-height: 88vh;
+  object-fit: contain;
+  background: #ffffff;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  cursor: grab;
+  will-change: transform;
+}
+.eos-zoom.is-zoomed .eos-zoom__img { cursor: grab; }
+.eos-zoom__img:active { cursor: grabbing; }
+.eos-zoom__close {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+}
+.eos-zoom__close:hover { background: rgba(255, 255, 255, 0.26); }
+.eos-zoom__hint {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.7);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  text-align: center;
+  pointer-events: none;
+  padding: 0 var(--s-4);
+}
+
+/* ---------- PDP SPECIMEN: centre it, and collapse behind a button on mobile ----
+   The specimen filled its column flush-left next to the rail; centring it in the
+   column reads better. On phones it collapses behind a reveal button (built by
+   _eos-ui.js) so it does not dominate the screen. */
+.eos-pdp__specimen { display: flex; flex-direction: column; align-items: center; }
+.eos-pdp .eos-specimen-row { width: 100%; max-width: 480px; }
+.eos-pdp__specimen-reveal { display: none; }
+@media (max-width: 760px) {
+  .eos-pdp__specimen-reveal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-3);
+    width: 100%;
+    max-width: 480px;
+    padding: var(--s-4);
+    background: var(--surface-raised);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-card);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink-primary);
+    cursor: pointer;
+  }
+  .eos-pdp__specimen-reveal svg { width: 18px; height: 18px; flex: 0 0 auto; color: var(--pdp-accent); transition: transform var(--motion-base) var(--ease-hover); }
+  .eos-pdp__specimen.is-open .eos-pdp__specimen-reveal svg { transform: rotate(180deg); }
+  /* :not(.is-open) wins over the per-page inline display:block on .eos-specimen-row */
+  .eos-pdp__specimen:not(.is-open) .eos-specimen-row,
+  .eos-pdp__specimen:not(.is-open) .eos-pdp__specimen-hint { display: none; }
+  .eos-pdp__specimen.is-open .eos-specimen-row { margin-top: var(--s-4); }
+}
+.eos-specimen__cap{
+  display:block;
+  padding:var(--s-3) var(--s-3) var(--s-4);
+  border-top:1px solid var(--rule);
+}
+.eos-specimen__cap-tag{
+  display:block;
+  font-family:var(--font-sans);
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:var(--s-1);
+}
+.eos-specimen__cap-title{
+  display:block;
+  font-family:var(--font-serif);
+  font-weight:600;
+  font-size:17px;
+  line-height:1.2;
+  color:var(--ink-primary);
+  margin-bottom:var(--s-1);
+}
+.eos-specimen__cap-desc{
+  display:block;
+  font-family:var(--font-serif);
+  font-size:13px;
+  line-height:1.55;
+  color:var(--ink-soft);
+}
+
+/* Sped up from the original 2.00s/1.635s so the reveal lands quickly, the
+   AE easing and the rise-then-turn relationship kept. Four specimens now,
+   staggered right to left, rightmost leading. */
+.eos-specimen-row.in .eos-specimen{animation:eos-rise 1.15s var(--ae) both}
+.eos-specimen-row.in .eos-specimen .eos-specimen__turn{animation:eos-turn 0.95s var(--ae) both}
+.eos-specimen-row.in .eos-specimen:nth-child(1){animation-delay:0s}
+.eos-specimen-row.in .eos-specimen:nth-child(1) .eos-specimen__turn{animation-delay:.32s}
+.eos-specimen-row.in .eos-specimen:nth-child(2){animation-delay:.12s}
+.eos-specimen-row.in .eos-specimen:nth-child(2) .eos-specimen__turn{animation-delay:.44s}
+.eos-specimen-row.in .eos-specimen:nth-child(3){animation-delay:.24s}
+.eos-specimen-row.in .eos-specimen:nth-child(3) .eos-specimen__turn{animation-delay:.56s}
+.eos-specimen-row.in .eos-specimen:nth-child(4){animation-delay:.36s}
+.eos-specimen-row.in .eos-specimen:nth-child(4) .eos-specimen__turn{animation-delay:.68s}
+
+@media(max-width:760px){
+  .eos-specimen-row{grid-template-columns:1fr;gap:40px;max-width:380px;margin:0 auto}
+}
+@media (prefers-reduced-motion:reduce){
+  .eos-specimen-row .eos-specimen,
+  .eos-specimen-row .eos-specimen__turn{transform:none;animation:none}
+  .eos-specimen-row.in .eos-specimen,
+  .eos-specimen-row.in .eos-specimen__turn{animation:none;transform:none}
+}
+
+/* ============================================================
+   S242 ROUND 3 ADDITIONS
+   Two-button action pair, the redone catalogue cabinet (blank
+   coloured tabs, hover peek, click eases the whole page out),
+   the specimen fixed frame + clip below the divider, the slowed
+   loading-bar free-tool hover, and the why-section rails.
+   transform / opacity only, cohort colours only, no green.
+   ============================================================ */
+
+/* ---------- TWO ACTION BUTTONS (point 7) ----------
+   Exactly two distinct buttons, reused on the hero and the cabinet:
+   "Find my pack" to the questionnaire, "Free tools" to the free tools. */
+.eos-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--s-5);
+  flex-wrap: wrap;
+}
+.eos-actions--hero { margin-top: var(--s-7); }
+.eos-actions--cabinet {
+  margin: var(--s-7) auto 0;
+  max-width: var(--container-wide);
+  padding: 0 var(--s-5);
+}
+
+/* ---------- THE CATALOGUE CARD GRID (S248 redesign) ----------
+   Five cohort-accented cards. Replaces the cabinet. Grid wraps to the
+   viewport (three up on desktop, two on tablet, one on phone). The whole
+   card is the link. No entrance animation, just a hover lift. */
+.eos-packgrid {
+  max-width: var(--container-wide);
+  margin: var(--s-6) auto 0;
+  padding: 0 var(--s-5);
+  /* Flex centred so the final short row (two cards) sits centred under the
+     three above, not pinned to the left. */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--s-4);
+}
+.eos-packcard {
+  --card-accent: var(--ink-primary);
+  flex: 0 1 330px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  padding: var(--s-5) var(--s-5) var(--s-4);
+  background: var(--surface-raised);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-card);
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform var(--motion-base) var(--ease-out),
+              border-color var(--motion-base) var(--ease-out);
+}
+.eos-packcard[data-accent="amber"]   { --card-accent: #8A4B14; }
+.eos-packcard[data-accent="plum"]    { --card-accent: #5B2A4A; }
+.eos-packcard[data-accent="steel"]   { --card-accent: #2E4A6B; }
+.eos-packcard[data-accent="indigo"]  { --card-accent: #33336B; }
+.eos-packcard[data-accent="crimson"] { --card-accent: #7A1F2C; }
+html[data-theme="dark"] .eos-packcard[data-accent="amber"]   { --card-accent: #D4A269; }
+html[data-theme="dark"] .eos-packcard[data-accent="plum"]    { --card-accent: #B58DA3; }
+html[data-theme="dark"] .eos-packcard[data-accent="steel"]   { --card-accent: #8AA3C2; }
+html[data-theme="dark"] .eos-packcard[data-accent="indigo"]  { --card-accent: #9A9ADE; }
+html[data-theme="dark"] .eos-packcard[data-accent="crimson"] { --card-accent: #E08792; }
+.eos-packcard__bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--card-accent);
+}
+/* Hover lift only on clickable (anchor) packcards. The "what is inside" cards
+   on pack pages are <div class="eos-packcard"> (not links), so they stay static
+   with no float, since there is nothing to click. */
+a.eos-packcard:hover {
+  transform: translateY(-4px);
+  border-color: var(--card-accent);
+  text-decoration: none;
+}
+.eos-packcard__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: var(--s-2);
+}
+.eos-packcard__num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--card-accent);
+}
+.eos-packcard__price {
+  font-family: var(--font-display);
+  font-size: 26px;
+  color: var(--ink-primary);
+}
+.eos-packcard__name {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.2vw, 25px);
+  line-height: 1.12;
+  font-weight: 600;
+  color: var(--ink-primary);
+  margin: var(--s-1) 0 0;
+}
+.eos-packcard__detail {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 0;
+}
+.eos-packcard__who {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-muted);
+  margin-top: auto;
+  padding-top: var(--s-3);
+}
+.eos-packcard__cta {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--card-accent);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin-top: var(--s-2);
+}
+.eos-packcard__arrow { transition: transform var(--motion-fast) var(--ease-hover); }
+a.eos-packcard:hover .eos-packcard__arrow { transform: translateX(3px); }
+@media (max-width: 600px) {
+  .eos-packgrid { gap: var(--s-3); }
+  .eos-packcard { flex-basis: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .eos-packcard, .eos-packcard__arrow { transition: none; }
+  a.eos-packcard:hover { transform: none; }
+}
+
+/* ---------- PACK PAGE: single centred specimen (S248 propagation) ----------
+   A lone specimen on a product page, not in the home's animated row. Show it
+   flat (the row animation leaves the turn layer edge-on at rotateY 72deg) and
+   cap its width so it reads large but not overwhelming. */
+.eos-packspec {
+  max-width: 560px;
+  margin: var(--s-6) auto 0;
+  padding: 0 var(--s-5);
+  /* Loose body text (not inside a visible box), so centre it like the rest of
+     the section copy. */
+  text-align: center;
+}
+.eos-packspec .eos-specimen { transform: none; }
+.eos-packspec .eos-specimen__turn { transform: rotateY(0); }
+.eos-action {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: 13px 26px;
+  border: 1px solid var(--ink-primary);
+  transition: background var(--motion-base) var(--ease-hover),
+              color var(--motion-base) var(--ease-hover),
+              box-shadow var(--motion-base) var(--ease-hover),
+              transform var(--motion-fast) var(--ease-hover);
+}
+.eos-action--primary {
+  background: var(--ink-primary);
+  color: var(--surface-base);
+}
+/* Hover: ONLY the button face changes and it grows a touch. The text colour
+   stays put and crisp (the fill stays dark enough that the light text does not
+   look greyed). No lift, no shadow. */
+.eos-action--primary:hover {
+  background: var(--ink-soft);
+  /* Lock the text colour: the buttons are anchors and the global a:hover rule
+     was repainting the label. It stays the surface colour (white in light,
+     near-black in dark) on hover. */
+  color: var(--surface-base);
+  transform: scale(1.04);
+  text-decoration: none;
+}
+.eos-action--primary:active {
+  transform: scale(1);
+}
+.eos-action--quiet {
+  background: transparent;
+  color: var(--ink-primary);
+  border-color: var(--rule);
+}
+.eos-action--quiet:hover {
+  border-color: var(--ink-primary);
+  text-decoration: none;
+}
+.eos-action__arrow {
+  display: inline-block;
+  transition: transform var(--motion-fast) var(--ease-hover);
+}
+.eos-action--primary:hover .eos-action__arrow { transform: translateX(3px); }
+@media (prefers-reduced-motion: reduce) {
+  .eos-action, .eos-action__arrow { transition: none; }
+  .eos-action--primary:hover { transform: none; }
+  .eos-action--primary:hover .eos-action__arrow { transform: none; }
+}
+
+/* ---------- THE CABINET, ROUND 3 (point 2) ----------
+   A horizontal cabinet. Five BLANK cohort-coloured tabs along the top
+   edge (no text on the tab, the colour is the intrigue). HOVER a tab and
+   only its top section (the pack name) peeks up a little. CLICK a tab and
+   the whole page eases fully out into the stage below, showing a short
+   description, who it is for, the price and a button to the pack page.
+   One open at a time, opening another closes the previous. Smooth RISE
+   only, no 3D twist. transform / opacity only. */
+.eos-cabinet-h {
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: 0 var(--s-5);
+}
+.eos-cabinet-h__tabs {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--s-3);
+  align-items: end;
+}
+/* The cabinet body line the tabs sit on. */
+.eos-cabinet-h__tabs::after { content: none; }
+.eos-cabinet-tab {
+  --tab-accent: var(--ink-primary);
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 84px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  overflow: hidden;
+  border-radius: 2px 2px 0 0;
+}
+.eos-cabinet-tab[data-accent="amber"]   { --tab-accent: #8A4B14; }
+.eos-cabinet-tab[data-accent="plum"]    { --tab-accent: #5B2A4A; }
+.eos-cabinet-tab[data-accent="steel"]   { --tab-accent: #2E4A6B; }
+.eos-cabinet-tab[data-accent="indigo"]  { --tab-accent: #33336B; }
+.eos-cabinet-tab[data-accent="crimson"] { --tab-accent: #7A1F2C; }
+html[data-theme="dark"] .eos-cabinet-tab[data-accent="amber"]   { --tab-accent: #D4A269; }
+html[data-theme="dark"] .eos-cabinet-tab[data-accent="plum"]    { --tab-accent: #B58DA3; }
+html[data-theme="dark"] .eos-cabinet-tab[data-accent="steel"]   { --tab-accent: #8AA3C2; }
+html[data-theme="dark"] .eos-cabinet-tab[data-accent="indigo"]  { --tab-accent: #9A9ADE; }
+html[data-theme="dark"] .eos-cabinet-tab[data-accent="crimson"] { --tab-accent: #E08792; }
+/* The solid coloured tab face. The label sits over it (see __peek). */
+.eos-cabinet-tab__colour {
+  position: absolute;
+  inset: 0;
+  background: var(--tab-accent);
+  transition: filter var(--motion-base) var(--ease-hover);
+}
+/* The label sits over the coloured face at rest (number, pack name, price),
+   so a cold visitor sees what each pack is without hovering. A dark scrim
+   keeps the text legible on any cohort colour in either theme. */
+.eos-cabinet-tab__peek {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 1px;
+  padding: var(--s-2);
+  background: linear-gradient(to top, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.16) 52%, transparent 100%);
+  text-align: left;
+  transition: transform var(--motion-base) var(--ease-out);
+}
+.eos-cabinet-tab__peek-num {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.72);
+}
+.eos-cabinet-tab__peek-name {
+  font-family: var(--font-display);
+  font-size: 12.5px;
+  line-height: 1.08;
+  font-weight: 600;
+  color: #fff;
+}
+.eos-cabinet-tab__peek-price {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: rgba(255,255,255,0.9);
+  margin-top: 2px;
+}
+/* HOVER (or keyboard focus): brighten the face and lift the label a touch. */
+.eos-cabinet-tab:hover .eos-cabinet-tab__peek,
+.eos-cabinet-tab:focus-visible .eos-cabinet-tab__peek {
+  transform: translateY(-3px);
+}
+.eos-cabinet-tab:hover .eos-cabinet-tab__colour {
+  filter: brightness(1.08);
+}
+.eos-cabinet-tab:focus-visible {
+  outline: 2px solid var(--ink-primary);
+  outline-offset: 2px;
+}
+/* The selected tab reads taller and brighter, the open drawer. */
+.eos-cabinet-tab[aria-expanded="true"] { height: 96px; }
+.eos-cabinet-tab[aria-expanded="true"] .eos-cabinet-tab__colour { filter: brightness(1.12); }
+
+/* The stage the full page eases out into. Clipped so the page rises from
+   behind the tab row with nothing visible until a tab is selected. */
+.eos-cabinet-h__stage {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface-base);
+  /* collapsed at rest; opens to a fixed height so the absolutely
+     positioned page can ease out into it. Border only when open so the
+     collapsed state shows no hairline. */
+  height: 0;
+  transition: height 560ms var(--ease-out);
+}
+.eos-cabinet-h[data-open] .eos-cabinet-h__stage {
+  height: 300px;
+  border: 1px solid var(--rule);
+  border-top: 0;
+}
+.eos-cabinet-page {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  padding: var(--s-6) var(--s-6) var(--s-5);
+  border-top: 4px solid var(--cab-accent);
+  background: var(--surface-base);
+  transform: translateY(40px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 520ms var(--ease-out), opacity 360ms var(--ease-out);
+}
+.eos-cabinet-page[data-accent="amber"]   { --cab-accent: #8A4B14; }
+.eos-cabinet-page[data-accent="plum"]    { --cab-accent: #5B2A4A; }
+.eos-cabinet-page[data-accent="steel"]   { --cab-accent: #2E4A6B; }
+.eos-cabinet-page[data-accent="indigo"]  { --cab-accent: #33336B; }
+.eos-cabinet-page[data-accent="crimson"] { --cab-accent: #7A1F2C; }
+html[data-theme="dark"] .eos-cabinet-page[data-accent="amber"]   { --cab-accent: #D4A269; }
+html[data-theme="dark"] .eos-cabinet-page[data-accent="plum"]    { --cab-accent: #B58DA3; }
+html[data-theme="dark"] .eos-cabinet-page[data-accent="steel"]   { --cab-accent: #8AA3C2; }
+html[data-theme="dark"] .eos-cabinet-page[data-accent="indigo"]  { --cab-accent: #9A9ADE; }
+html[data-theme="dark"] .eos-cabinet-page[data-accent="crimson"] { --cab-accent: #E08792; }
+.eos-cabinet-page[data-active="true"] {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 1;
+  /* Faint cohort wash so the open page reads as that pack's coloured file,
+     not a plain white card. Falls back to the base surface where color-mix
+     is unsupported. */
+  background: color-mix(in srgb, var(--cab-accent) 6%, var(--surface-base));
+}
+.eos-cabinet-page__num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--cab-accent);
+}
+.eos-cabinet-page__name {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.6vw, 30px);
+  line-height: 1.1;
+  font-weight: 580;
+  color: var(--ink-primary);
+  margin: 2px 0 var(--s-1);
+}
+.eos-cabinet-page__detail {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 0;
+  max-width: 60ch;
+}
+.eos-cabinet-page__who {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 0;
+}
+.eos-cabinet-page__who-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--cab-accent);
+  margin-right: var(--s-2);
+}
+.eos-cabinet-page__foot {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-5);
+  margin-top: auto;
+  padding-top: var(--s-3);
+}
+.eos-cabinet-page__price {
+  font-family: var(--font-mono);
+  font-size: 26px;
+  color: var(--ink-primary);
+}
+.eos-cabinet-page__link {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--cab-accent);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+.eos-cabinet-page__link:hover { text-decoration: underline; }
+@media (max-width: 760px) {
+  .eos-cabinet-h__tabs { grid-template-columns: repeat(5, 1fr); gap: 6px; }
+  .eos-cabinet-tab { height: 64px; }
+  .eos-cabinet-tab__peek-name { font-size: 11px; }
+  .eos-cabinet-h[data-open] .eos-cabinet-h__stage { height: 380px; }
+  .eos-cabinet-page { padding: var(--s-5) var(--s-4) var(--s-4); }
+  .eos-cabinet-page__foot { flex-direction: column; gap: var(--s-2); align-items: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .eos-cabinet-tab__peek,
+  .eos-cabinet-h__stage,
+  .eos-cabinet-page { transition: none; }
+}
+
+/* ---------- SPECIMEN FIXED FRAME + CLIP BELOW DIVIDER (point 3) ----------
+   All three image frames are identical dimensions regardless of caption
+   (fixed frame, object-fit cover). The stage is clipped with overflow
+   hidden so the lowered, tipped start of the rise + 72deg turn sits below
+   the divider and is never visible, even on a fast scroll. */
+.eos-specimen-stage {
+  overflow: hidden;
+}
+.eos-specimen__frame {
+  display: block;
+  width: 100%;
+  /* Width-driven, slightly portrait frame. With object-fit contain the whole
+     document always shows (nothing cut at any width), and a portrait shape
+     suits the mostly-portrait documents so the tall ones (AML, Employment) get
+     more width and stay legible. A fixed pixel height over-cropped as the
+     column narrowed, which was the square-window cut-off. */
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  /* Always white so document specimens sit on white in dark mode too, instead
+     of letterboxing against the dark surface and looking uneven. */
+  background: #ffffff;
+}
+.eos-specimen__frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: top center;
+}
+
+/* ---------- FREE TOOLS: LOADING-BAR HOVER (point 5) ----------
+   Slowed so it reads as a bar LOADING across the top as you hover; when
+   the bar completes, a satisfying conclusion: a wash of the tool's colour
+   washes up the tile and it lifts a touch. */
+/* The only hover feedback is the line loading across the top (the ::before
+   bar). The background colour wash and the tile lift were removed (James S248,
+   distracting). The arrow nudge on the CTA stays. */
+.eos-quicktool::before {
+  height: 4px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 900ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.eos-quicktool:hover::before { transform: scaleX(1); }
+@media (prefers-reduced-motion: reduce) {
+  .eos-quicktool::before { transition: none; }
+}
+
+/* ---------- WHY THIS EXISTS RAILS (point 8) ----------
+   The why-this-exists section carries the same mark rails as the hero,
+   with the same piano per-layer hover (bottom layer unchanged). */
+.eos-why {
+  position: relative;
+  overflow: hidden;
+}
+.eos-why__rail {
+  top: 50%;
+  opacity: 0.5;
+}
+.eos-why .eos-manifesto__kicker,
+.eos-why .eos-manifesto {
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 760px) {
+  .eos-why__rail { display: none; }
+}

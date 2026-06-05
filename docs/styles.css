@@ -1,28 +1,31 @@
 /* ============================================================
-   ExternalOS docs site, Purple Diamond brand
-   Cohesive with landing-page-v2.html. Warm-white surfaces,
-   purple ramp, Libre Baskerville + Syne + Inter, mark rails,
-   3D tilt on cards. Source of truth tokens/components live in
-   brain/10-projects/externalos/landing-page-v2.html.
-   Last cohesion pass: S127 (2026-04-16).
+   ExternalOS docs site, Amber + Ink + Cream
+   Editorial financial-compliance brand. Warm-white surfaces,
+   deep amber accent, Libre Baskerville + Syne + Inter.
+   Palette swapped S206 (2026-05-12) from purple to amber.
+   Token names retain --purple-* for compat; values are amber.
    ============================================================ */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --eos-p1: #DBC8F0; --eos-p2: #BEA0E0; --eos-p3: #9F72D0;
-  --eos-p4: #8248BF; --eos-p5: #6525AB; --eos-p6: #4A1290;
-  --purple-hero: #4B1196; --purple-deep: #3A0D72; --purple-rich: #5C1AB3;
-  --purple-mid: #6B28C2; --purple-light: #8B4DD1; --purple-pale: #C4A8E8;
-  --purple-ghost: #EDE5F9; --purple-tint: #F5F0FC;
-  --warm-white: #FAF8F3; --warm-off: #F4F1EC; --warm-cream: #EDE8DF;
+  /* amber ramp, light to dark */
+  --eos-p1: #FBEEDF; --eos-p2: #F2C9A8; --eos-p3: #E29A6B;
+  --eos-p4: #C25E1A; --eos-p5: #8F3F12; --eos-p6: #5C2A0C;
+  /* legacy --purple-* names retained; values are now amber */
+  --purple-hero: #B8541F; --purple-deep: #8F3F12; --purple-rich: #C25E1A;
+  --purple-mid: #D17638; --purple-light: #E29A6B; --purple-pale: #F2C9A8;
+  --purple-ghost: #FBEEDF; --purple-tint: #FDF6EE;
+  /* semantic aliases (use these for new work) */
+  --accent: #B8541F; --accent-deep: #8F3F12; --accent-tint: #FDF6EE;
+  --warm-white: #FBF7F0; --warm-off: #F4EDE0; --warm-cream: #ECE2CE;
   --warm-sand: #D6CFBF; --warm-mid: #8C8378; --warm-dark: #3D3830;
   --ink: #1A1A1A; --body: #5C5650;
   --shadow-sm: 0 1px 3px rgba(26,26,26,0.08), 0 1px 2px rgba(26,26,26,0.04);
   --shadow-md: 0 4px 16px rgba(26,26,26,0.10), 0 2px 6px rgba(26,26,26,0.06);
   --shadow-lg: 0 12px 40px rgba(26,26,26,0.14), 0 4px 16px rgba(26,26,26,0.08);
-  --shadow-purple: 0 8px 32px rgba(75,17,150,0.22), 0 2px 8px rgba(75,17,150,0.12);
-  --shadow-purple-lg: 0 16px 48px rgba(75,17,150,0.28), 0 4px 16px rgba(75,17,150,0.16);
+  --shadow-purple: 0 8px 32px rgba(184,84,31,0.22), 0 2px 8px rgba(184,84,31,0.12);
+  --shadow-purple-lg: 0 16px 48px rgba(184,84,31,0.28), 0 4px 16px rgba(184,84,31,0.16);
   --radius-sm: 6px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
 }
 

@@ -1,0 +1,72 @@
+/* Legacy tool variables shim (S248).
+   The free-tool calculators (ir35-checker, employer-costs,
+   landlord-compliance-check, compliance-calendar, mtd-clock, mtd-kit, quiz)
+   were built on the old amber/warm palette and reference variable names that
+   used to live in the retired styles.css (--purple-*, --warm-*, --accent*,
+   --radius-*, --shadow-*, --cat-*). Rather than restyle each calculator's
+   internal markup, this shim redefines those names in the new greyscale
+   design tokens, so the calculators recolour to the brand and inherit dark
+   mode automatically. Load AFTER _design-tokens.css and _components.css,
+   BEFORE the page's own inline <style>. No green anywhere. */
+
+:root {
+  /* old "accent"/"purple" family -> greyscale ink (the brand has no colour
+     accent on utility surfaces; cohort colour is reserved for the packs) */
+  --accent: var(--ink-primary);
+  --accent-deep: var(--ink-primary);
+  --accent-mid: var(--ink-soft);
+  --accent-pale: var(--surface-raised);
+  --accent-tint: var(--surface-raised);
+  --purple-hero: var(--ink-primary);
+  --purple-rich: var(--ink-primary);
+  --purple-deep: var(--ink-primary);
+  --purple-mid: var(--ink-soft);
+  --purple-light: var(--ink-soft);
+  --purple-pale: var(--ink-muted);
+  --purple-tint: var(--surface-raised);
+  --purple-ghost: var(--surface-raised);
+
+  /* warm neutrals -> new surfaces and ink */
+  --warm-white: var(--surface-raised);
+  --warm-off: var(--surface-base);
+  --warm-cream: var(--rule);
+  --warm-sand: var(--rule);
+  --warm-mid: var(--ink-muted);
+  --warm-dark: var(--ink-soft);
+  --body: var(--ink-soft);
+  --ink: var(--ink-primary);
+  --muted: var(--ink-muted);
+
+  /* radii */
+  --radius: 12px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+
+  /* neutral greyscale shadows (was amber-tinted) */
+  --shadow-sm: 0 1px 3px rgba(15,15,15,0.08), 0 1px 2px rgba(15,15,15,0.04);
+  --shadow-md: 0 4px 16px rgba(15,15,15,0.10), 0 2px 6px rgba(15,15,15,0.06);
+  --shadow-lg: 0 12px 40px rgba(15,15,15,0.16), 0 4px 16px rgba(15,15,15,0.08);
+  --shadow-purple: 0 8px 32px rgba(15,15,15,0.18), 0 2px 8px rgba(15,15,15,0.10);
+  --shadow-purple-lg: 0 16px 48px rgba(15,15,15,0.22), 0 4px 16px rgba(15,15,15,0.12);
+
+  /* semantic states (no green: "safe" reads as neutral ink, not green) */
+  --safe: var(--ink-primary);
+  --warning: var(--accent-butter);
+  --danger: var(--accent-penalty);
+
+  /* compliance-calendar category colours: distinct, muted, on-brand, no green */
+  --cat-self-assessment: #B26339;
+  --cat-vat: #8A6D3B;
+  --cat-paye: #9B2E2E;
+  --cat-corp-tax: #2E4A6B;
+  --cat-companies-house: #5A4A7A;
+  --cat-pension: #3D5A80;
+  --cat-gdpr: #6A6A6A;
+  --cat-payroll: #7A5C4E;
+}
+
+/* The calculators set their own body background/font in their inline style;
+   keep the new design's base so the chrome matches the rest of the site. */
+body { background: var(--surface-base); color: var(--ink-primary); }

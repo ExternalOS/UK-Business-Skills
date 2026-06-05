@@ -1,0 +1,59 @@
+/* cart.html page-specific styles. Built on the eos design system. */
+
+.eos-cart {
+  max-width: var(--container-standard);
+  margin: 0 auto;
+  padding: 0 var(--s-4);
+}
+
+.eos-cart__empty {
+  text-align: center;
+  padding: var(--s-7) var(--s-4);
+  border: 1px solid var(--rule);
+  background: var(--surface-raised);
+}
+.eos-cart__empty p {
+  font-size: 18px;
+  color: var(--ink-soft);
+  margin-bottom: var(--s-4);
+}
+
+.eos-cart__filled .eos-table {
+  margin-bottom: var(--s-5);
+}
+
+.eos-cart__remove {
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--ink-soft);
+  font-family: var(--font-serif);
+  font-size: 13px;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 0;
+  transition: border-color var(--motion-fast), color var(--motion-fast);
+}
+.eos-cart__remove:hover {
+  border-color: var(--accent-penalty);
+  color: var(--accent-penalty);
+}
+
+.eos-cart__actions {
+  display: flex;
+  gap: var(--s-3);
+  justify-content: flex-end;
+  margin-bottom: var(--s-4);
+}
+
+.eos-cart__note {
+  font-size: 13px;
+  color: var(--ink-muted);
+  text-align: center;
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--rule);
+}
+
+@media (max-width: 600px) {
+  .eos-cart__actions { flex-direction: column-reverse; }
+  .eos-cart__actions .eos-button { width: 100%; }
+}

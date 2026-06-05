@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palette preview - ExternalOS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', system-ui, sans-serif; line-height: 1.6; background: #2a2a2a; }
+.label-bar { position: sticky; top: 0; z-index: 999; background: #111; color: #fff; padding: 14px 24px; display: flex; align-items: center; gap: 16px; border-bottom: 1px solid #333; font-family: 'Inter', sans-serif; font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase; }
+.label-bar strong { font-size: 16px; letter-spacing: 0; text-transform: none; font-family: 'Libre Baskerville', serif; font-style: italic; }
+.label-bar .meta { opacity: 0.6; font-size: 12px; }
+.label-bar .nav { margin-left: auto; display: flex; gap: 18px; }
+.label-bar .nav a { color: #fff; opacity: 0.6; text-decoration: none; font-size: 12px; }
+.label-bar .nav a:hover { opacity: 1; }
+.variant { position: relative; min-height: 100vh; display: flex; flex-direction: column; }
+.variant-tag { position: absolute; top: 16px; left: 16px; background: rgba(0,0,0,0.85); color: #fff; padding: 8px 14px; font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; z-index: 50; border-radius: 4px; }
+
+/* shared hero structure */
+.hero-shell { flex: 1; padding: 96px 24px 120px; position: relative; overflow: hidden; }
+.hero-banner { position: absolute; top: 0; left: 0; right: 0; padding: 10px 24px; text-align: center; font-size: 13px; line-height: 1.4; letter-spacing: 0.01em; }
+.hero-nav { display: flex; justify-content: space-between; align-items: center; max-width: 1180px; margin: 0 auto 64px; padding-top: 32px; }
+.brand { font-family: 'Libre Baskerville', serif; font-size: 22px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+.brand-dot { width: 14px; height: 14px; transform: rotate(45deg); }
+.nav-cta { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; padding: 10px 22px; border-radius: 100px; text-decoration: none; letter-spacing: 0.02em; }
+.hero-copy { max-width: 760px; margin: 0 auto; text-align: center; }
+.eyebrow { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 20px; display: block; }
+.h1 { font-family: 'Libre Baskerville', serif; font-size: 76px; line-height: 1.02; letter-spacing: -0.02em; font-weight: 700; margin-bottom: 26px; }
+.h1 em { font-style: italic; }
+.lede { font-size: 18px; line-height: 1.55; margin: 0 auto 18px; max-width: 600px; }
+.lede strong { font-weight: 700; }
+.cta-row { display: flex; gap: 14px; justify-content: center; margin-top: 36px; flex-wrap: wrap; }
+.btn { padding: 16px 32px; border-radius: 100px; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 15px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s ease; }
+.btn-secondary { background: transparent; }
+.divider { width: 110px; height: 3px; margin: 0 auto 26px; border-radius: 2px; }
+
+/* =========================
+   OPTION 1: SAGE STEAL
+   Near-black + Sage green + cream
+   ========================= */
+.v1 { background: #0E0E0E; color: #F4EFE3; }
+.v1 .hero-banner { background: #000; color: #F4EFE3; border-bottom: 1px solid #1F1F1F; }
+.v1 .hero-banner strong { color: #00DC06; }
+.v1 .hero-banner a { color: #00DC06; }
+.v1 .brand-dot { background: #00DC06; }
+.v1 .nav-cta { background: #00DC06; color: #0E0E0E; }
+.v1 .eyebrow { color: #00DC06; }
+.v1 .h1 { color: #F4EFE3; }
+.v1 .h1 em { color: #00DC06; }
+.v1 .lede { color: rgba(244,239,227,0.75); }
+.v1 .lede strong { color: #F4EFE3; }
+.v1 .divider { background: linear-gradient(90deg, #00DC06, rgba(0,220,6,0.2)); }
+.v1 .btn-primary { background: #00DC06; color: #0E0E0E; }
+.v1 .btn-secondary { color: #F4EFE3; border: 1.5px solid rgba(244,239,227,0.3); }
+
+/* =========================
+   OPTION 2: BANKING BLUE + GREEN CTA
+   Dark editorial blue + warm cream + green CTA
+   ========================= */
+.v2 { background: #FBF7F0; color: #0F2A4D; }
+.v2 .hero-banner { background: #0F2A4D; color: #FBF7F0; }
+.v2 .hero-banner strong { color: #5FCB85; }
+.v2 .hero-banner a { color: #5FCB85; }
+.v2 .brand-dot { background: #0F2A4D; }
+.v2 .nav-cta { background: #0F2A4D; color: #FBF7F0; }
+.v2 .eyebrow { color: #0F2A4D; }
+.v2 .h1 { color: #0F2A4D; }
+.v2 .h1 em { color: #1B6E3A; }
+.v2 .lede { color: #2D3D55; }
+.v2 .lede strong { color: #0F2A4D; }
+.v2 .divider { background: linear-gradient(90deg, #0F2A4D, #5FCB85); }
+.v2 .btn-primary { background: #1B6E3A; color: #FBF7F0; }
+.v2 .btn-secondary { color: #0F2A4D; border: 1.5px solid #0F2A4D; background: #FBF7F0; }
+
+/* =========================
+   OPTION 3: INK + CREAM + QUIET FOREST GREEN
+   Monochrome editorial, one quiet accent
+   ========================= */
+.v3 { background: #F4EDE0; color: #1A1A1A; }
+.v3 .hero-banner { background: #1A1A1A; color: #F4EDE0; }
+.v3 .hero-banner strong { color: #2D7A4A; }
+.v3 .hero-banner a { color: #2D7A4A; }
+.v3 .brand-dot { background: #1A1A1A; }
+.v3 .nav-cta { background: #1A1A1A; color: #F4EDE0; }
+.v3 .eyebrow { color: #2D7A4A; }
+.v3 .h1 { color: #1A1A1A; }
+.v3 .h1 em { color: #2D7A4A; }
+.v3 .lede { color: #4A463E; }
+.v3 .lede strong { color: #1A1A1A; }
+.v3 .divider { background: #2D7A4A; }
+.v3 .btn-primary { background: #1A1A1A; color: #F4EDE0; }
+.v3 .btn-secondary { color: #1A1A1A; border: 1.5px solid #1A1A1A; background: transparent; }
+
+/* =========================
+   OPTION 4: DEEP TEAL + CREAM
+   Editorial trust, distinct from competitors
+   ========================= */
+.v4 { background: #F8F2E4; color: #0F3A3D; }
+.v4 .hero-banner { background: #0F3A3D; color: #F8F2E4; }
+.v4 .hero-banner strong { color: #E8B547; }
+.v4 .hero-banner a { color: #E8B547; }
+.v4 .brand-dot { background: #0F3A3D; }
+.v4 .nav-cta { background: #0F3A3D; color: #F8F2E4; }
+.v4 .eyebrow { color: #0F3A3D; }
+.v4 .h1 { color: #0F3A3D; }
+.v4 .h1 em { color: #C48A2A; font-style: italic; }
+.v4 .lede { color: #2A4F52; }
+.v4 .lede strong { color: #0F3A3D; }
+.v4 .divider { background: linear-gradient(90deg, #0F3A3D, #C48A2A); }
+.v4 .btn-primary { background: #0F3A3D; color: #F8F2E4; }
+.v4 .btn-secondary { color: #0F3A3D; border: 1.5px solid #0F3A3D; background: transparent; }
+
+/* =========================
+   OPTION 5: PURE INK + CREAM (no accent)
+   Maximum minimal, Economist tier
+   ========================= */
+.v5 { background: #F4EDE0; color: #1A1A1A; }
+.v5 .hero-banner { background: #1A1A1A; color: #F4EDE0; }
+.v5 .hero-banner strong { color: #F4EDE0; text-decoration: underline; }
+.v5 .hero-banner a { color: #F4EDE0; text-decoration: underline; }
+.v5 .brand-dot { background: #1A1A1A; }
+.v5 .nav-cta { background: #1A1A1A; color: #F4EDE0; }
+.v5 .eyebrow { color: #1A1A1A; }
+.v5 .h1 { color: #1A1A1A; }
+.v5 .h1 em { color: #1A1A1A; }
+.v5 .lede { color: #4A463E; }
+.v5 .lede strong { color: #1A1A1A; }
+.v5 .divider { background: #1A1A1A; }
+.v5 .btn-primary { background: #1A1A1A; color: #F4EDE0; }
+.v5 .btn-secondary { color: #1A1A1A; border: 1.5px solid #1A1A1A; background: transparent; }
+
+/* =========================
+   OPTION 6: INK + CREAM + PAPER NOISE TEXTURE
+   Same palette as v5, with subtle SVG noise overlay = real paper feel
+   ========================= */
+.v6 { background: #F4EDE0; color: #1A1A1A; position: relative; }
+.v6::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.5; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.4  0 0 0 0 0.35  0 0 0 0 0.25  0 0 0 0.12 0'/></filter><rect width='400' height='400' filter='url(%23n)'/></svg>"); mix-blend-mode: multiply; }
+.v6 .variant-tag, .v6 .hero-banner, .v6 .hero-shell { position: relative; z-index: 1; }
+.v6 .hero-banner { background: #1A1A1A; color: #F4EDE0; }
+.v6 .hero-banner strong { color: #F4EDE0; text-decoration: underline; }
+.v6 .hero-banner a { color: #F4EDE0; text-decoration: underline; }
+.v6 .brand-dot { background: #1A1A1A; }
+.v6 .nav-cta { background: #1A1A1A; color: #F4EDE0; }
+.v6 .eyebrow { color: #1A1A1A; }
+.v6 .h1 { color: #1A1A1A; }
+.v6 .h1 em { color: #1A1A1A; }
+.v6 .lede { color: #4A463E; }
+.v6 .lede strong { color: #1A1A1A; }
+.v6 .divider { background: #1A1A1A; }
+.v6 .btn-primary { background: #1A1A1A; color: #F4EDE0; }
+.v6 .btn-secondary { color: #1A1A1A; border: 1.5px solid #1A1A1A; background: transparent; }
+
+/* =========================
+   OPTION 7: INK + CREAM + DOT GRID (notes-paper)
+   Engineer's dot-grid notebook
+   ========================= */
+.v7 { background: #F4EDE0; background-image: radial-gradient(circle, rgba(26,26,26,0.18) 1px, transparent 1px); background-size: 22px 22px; background-position: 0 0; color: #1A1A1A; }
+.v7 .hero-banner { background: #1A1A1A; color: #F4EDE0; }
+.v7 .hero-banner strong { color: #F4EDE0; text-decoration: underline; }
+.v7 .hero-banner a { color: #F4EDE0; text-decoration: underline; }
+.v7 .brand-dot { background: #1A1A1A; }
+.v7 .nav-cta { background: #1A1A1A; color: #F4EDE0; }
+.v7 .eyebrow { color: #1A1A1A; background: #F4EDE0; padding: 4px 10px; display: inline-block; }
+.v7 .h1 { color: #1A1A1A; }
+.v7 .h1 em { color: #1A1A1A; }
+.v7 .lede { color: #4A463E; background: rgba(244,237,224,0.85); display: inline-block; padding: 2px 6px; }
+.v7 .lede strong { color: #1A1A1A; }
+.v7 .divider { background: #1A1A1A; }
+.v7 .btn-primary { background: #1A1A1A; color: #F4EDE0; }
+.v7 .btn-secondary { color: #1A1A1A; border: 1.5px solid #1A1A1A; background: #F4EDE0; }
+
+/* =========================
+   OPTION 8: LEDGER (ruled-paper feint blue rule)
+   Old-school accountant ledger paper
+   ========================= */
+.v8 { background: #F8F1E1; background-image: repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(26,90,124,0.15) 27px, rgba(26,90,124,0.15) 28px); color: #1A1A1A; }
+.v8 .hero-banner { background: #1A1A1A; color: #F8F1E1; }
+.v8 .hero-banner strong { color: #F8F1E1; text-decoration: underline; }
+.v8 .hero-banner a { color: #F8F1E1; text-decoration: underline; }
+.v8 .brand-dot { background: #B8260F; }
+.v8 .nav-cta { background: #1A1A1A; color: #F8F1E1; }
+.v8 .eyebrow { color: #B8260F; background: #F8F1E1; padding: 4px 10px; display: inline-block; }
+.v8 .h1 { color: #1A1A1A; }
+.v8 .h1 em { color: #B8260F; }
+.v8 .lede { color: #2D2A22; background: rgba(248,241,225,0.9); display: inline-block; padding: 2px 6px; }
+.v8 .lede strong { color: #1A1A1A; }
+.v8 .divider { background: #B8260F; }
+.v8 .btn-primary { background: #1A1A1A; color: #F8F1E1; }
+.v8 .btn-secondary { color: #1A1A1A; border: 1.5px solid #1A1A1A; background: #F8F1E1; }
+
+@media (max-width: 768px) {
+  .h1 { font-size: 44px; }
+  .hero-shell { padding: 80px 20px 80px; }
+  .hero-nav { margin-bottom: 40px; }
+}
+</style>
+</head>
+<body>
+
+<div class="label-bar">
+  <strong>ExternalOS palette compare</strong>
+  <span class="meta">Same hero copy, 5 colour options. Pick one.</span>
+  <nav class="nav">
+    <a href="#v1">1. Sage</a>
+    <a href="#v2">2. Banking</a>
+    <a href="#v3">3. Forest</a>
+    <a href="#v4">4. Teal</a>
+    <a href="#v5">5. Pure ink</a>
+    <a href="#v6">6. Ink + noise</a>
+    <a href="#v7">7. Ink + dots</a>
+    <a href="#v8">8. Ledger</a>
+  </nav>
+</div>
+
+<!-- OPTION 1: SAGE STEAL -->
+<section class="variant v1" id="v1">
+  <div class="variant-tag">1 / Sage steal &middot; near-black + sage green</div>
+  <div class="hero-banner">Most UK compliance software charges &pound;15-&pound;35 <strong>every month</strong>. Ours is paid once. <a href="#">See the bundle &rarr;</a></div>
+  <div class="hero-shell">
+    <nav class="hero-nav">
+      <div class="brand"><span class="brand-dot"></span> ExternalOS</div>
+      <a href="#" class="nav-cta">Get the bundle &pound;79</a>
+    </nav>
+    <div class="hero-copy">
+      <div class="divider"></div>
+      <span class="eyebrow">For UK sole traders, contractors, landlords, and small employers</span>
+      <h1 class="h1">UK compliance, <em>paid once.</em></h1>
+      <p class="lede">Plain-English toolkits for UK tax and compliance you can run yourself. IR35, MTD, landlord, employer. <strong>One payment. No subscriptions. Lifetime updates when the legislation moves.</strong></p>
+      <p class="lede">Audit-ready output, built on the current HMRC framework. Files you keep, not a tool you rent.</p>
+      <div class="cta-row">
+        <a href="#" class="btn btn-primary">Find your toolkit &rarr;</a>
+        <a href="#" class="btn btn-secondary">Try the free IR35 checker</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPTION 2: BANKING BLUE -->
+<section class="variant v2" id="v2">
+  <div class="variant-tag">2 / Banking &middot; dark blue + cream + green CTA</div>
+  <div class="hero-banner">Most UK compliance software charges &pound;15-&pound;35 <strong>every month</strong>. Ours is paid once. <a href="#">See the bundle &rarr;</a></div>
+  <div class="hero-shell">
+    <nav class="hero-nav">
+      <div class="brand"><span class="brand-dot"></span> ExternalOS</div>
+      <a href="#" class="nav-cta">Get the bundle &pound;79</a>
+    </nav>
+    <div class="hero-copy">
+      <div class="divider"></div>
+      <span class="eyebrow">For UK sole traders, contractors, landlords, and small employers</span>
+      <h1 class="h1">UK compliance, <em>paid once.</em></h1>
+      <p class="lede">Plain-English toolkits for UK tax and compliance you can run yourself. IR35, MTD, landlord, employer. <strong>One payment. No subscriptions. Lifetime updates when the legislation moves.</strong></p>
+      <p class="lede">Audit-ready output, built on the current HMRC framework. Files you keep, not a tool you rent.</p>
+      <div class="cta-row">
+        <a href="#" class="btn btn-primary">Find your toolkit &rarr;</a>
+        <a href="#" class="btn btn-secondary">Try the free IR35 checker</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPTION 3: FOREST -->
+<section class="variant v3" id="v3">
+  <div class="variant-tag">3 / Forest &middot; ink + cream + quiet green accent</div>
+  <div class="hero-banner">Most UK compliance software charges &pound;15-&pound;35 <strong>every month</strong>. Ours is paid once. <a href="#">See the bundle &rarr;</a></div>
+  <div class="hero-shell">
+    <nav class="hero-nav">
+      <div class="brand"><span class="brand-dot"></span> ExternalOS</div>
+      <a href="#" class="nav-cta">Get the bundle &pound;79</a>
+    </nav>
+    <div class="hero-copy">
+      <div class="divider"></div>
+      <span class="eyebrow">For UK sole traders, contractors, landlords, and small employers</span>
+      <h1 class="h1">UK compliance, <em>paid once.</em></h1>
+      <p class="lede">Plain-English toolkits for UK tax and compliance you can run yourself. IR35, MTD, landlord, employer. <strong>One payment. No subscriptions. Lifetime updates when the legislation moves.</strong></p>
+      <p class="lede">Audit-ready output, built on the current HMRC framework. Files you keep, not a tool you rent.</p>
+      <div class="cta-row">
+        <a href="#" class="btn btn-primary">Find your toolkit &rarr;</a>
+        <a href="#" class="btn btn-secondary">Try the free IR35 checker</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPTION 4: DEEP TEAL -->
+<section class="variant v4" id="v4">
+  <div class="variant-tag">4 / Teal &middot; deep teal + cream + warm gold accent</div>
+  <div class="hero-banner">Most UK compliance software charges &pound;15-&pound;35 <strong>every month</strong>. Ours is paid once. <a href="#">See the bundle &rarr;</a></div>
+  <div class="hero-shell">
+    <nav class="hero-nav">
+      <div class="brand"><span class="brand-dot"></span> ExternalOS</div>
+      <a href="#" class="nav-cta">Get the bundle &pound;79</a>
+    </nav>
+    <div class="hero-copy">
+      <div class="divider"></div>
+      <span class="eyebrow">For UK sole traders, contractors, landlords, and small employers</span>
+      <h1 class="h1">UK compliance, <em>paid once.</em></h1>
+      <p class="lede">Plain-English toolkits for UK tax and compliance you can run yourself. IR35, MTD, landlord, employer. <strong>One payment. No subscriptions. Lifetime updates when the legislation moves.</strong></p>
+      <p class="lede">Audit-ready output, built on the current HMRC framework. Files you keep, not a tool you rent.</p>
+      <div class="cta-row">
+        <a href="#" class="btn btn-primary">Find your toolkit &rarr;</a>
+        <a href="#" class="btn btn-secondary">Try the free IR35 checker</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPTION 6: INK + NOISE -->
+<section class="variant v6" id="v6">
+  <div class="variant-tag">6 / Paper noise &middot; cream + ink + subtle paper texture</div>
+  <div class="hero-banner">Most UK compliance software charges &pound;15-&pound;35 <strong>every month</strong>. Ours is paid once. <a href="#">See the bundle &rarr;</a></div>
+  <div class="hero-shell">
+    <nav class="hero-nav">
+      <div class="brand"><span class="brand-dot"></span> ExternalOS</div>
+      <a href="#" class="nav-cta">Get the bundle &pound;79</a>
+    </nav>
+    <div class="hero-copy">
+      <div class="divider"></div>
+      <span class="eyebrow">For UK sole traders, contractors, landlords, and small employers</span>
+      <h1 class="h1">UK compliance, <em>paid once.</em></h1>
+      <p class="lede">Plain-English toolkits for UK tax and compliance you can run yourself. IR35, MTD, landlord, employer. <strong>One payment. No subscriptions. Lifetime updates when the legislation moves.</strong></p>
+      <p class="lede">Audit-ready output, built on the current HMRC framework. Files you keep, not a tool you rent.</p>
+      <div class="cta-row">
+        <a href="#" class="btn btn-primary">Find your toolkit &rarr;</a>
+        <a href="#" class="btn btn-secondary">Try the free IR35 checker</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPTION 7: INK + DOTS -->
+<section class="variant v7" id="v7">
+  <div class="variant-tag">7 / Dot grid &middot; cream + ink + notes-paper dot grid</div>
+  <div class="hero-banner">Most UK compliance software charges &pound;15-&pound;35 <strong>every month</strong>. Ours is paid once. <a href="#">See the bundle &rarr;</a></div>
+  <div class="hero-shell">
+    <nav class="hero-nav">
+      <div class="brand"><span class="brand-dot"></span> ExternalOS</div>
+      <a href="#" class="nav-cta">Get the bundle &pound;79</a>
+    </nav>
+    <div class="hero-copy">
+      <div class="divider"></div>
+      <span class="eyebrow">For UK sole traders, contractors, landlords, and small employers</span>
+      <h1 class="h1">UK compliance, <em>paid once.</em></h1>
+      <p class="lede">Plain-English toolkits for UK tax and compliance you can run yourself. IR35, MTD, landlord, employer. <strong>One payment. No subscriptions. Lifetime updates when the legislation moves.</strong></p>
+      <p class="lede">Audit-ready output, built on the current HMRC framework. Files you keep, not a tool you rent.</p>
+      <div class="cta-row">
+        <a href="#" class="btn btn-primary">Find your toolkit &rarr;</a>
+        <a href="#" class="btn btn-secondary">Try the free IR35 checker</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPTION 8: LEDGER -->
+<section class="variant v8" id="v8">
+  <div class="variant-tag">8 / Ledger &middot; ruled accountant paper + red ink accent</div>
+  <div class="hero-banner">Most UK compliance software charges &pound;15-&pound;35 <strong>every month</strong>. Ours is paid once. <a href="#">See the bundle &rarr;</a></div>
+  <div class="hero-shell">
+    <nav class="hero-nav">
+      <div class="brand"><span class="brand-dot"></span> ExternalOS</div>
+      <a href="#" class="nav-cta">Get the bundle &pound;79</a>
+    </nav>
+    <div class="hero-copy">
+      <div class="divider"></div>
+      <span class="eyebrow">For UK sole traders, contractors, landlords, and small employers</span>
+      <h1 class="h1">UK compliance, <em>paid once.</em></h1>
+      <p class="lede">Plain-English toolkits for UK tax and compliance you can run yourself. IR35, MTD, landlord, employer. <strong>One payment. No subscriptions. Lifetime updates when the legislation moves.</strong></p>
+      <p class="lede">Audit-ready output, built on the current HMRC framework. Files you keep, not a tool you rent.</p>
+      <div class="cta-row">
+        <a href="#" class="btn btn-primary">Find your toolkit &rarr;</a>
+        <a href="#" class="btn btn-secondary">Try the free IR35 checker</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPTION 5: PURE INK -->
+<section class="variant v5" id="v5">
+  <div class="variant-tag">5 / Pure ink &middot; cream + ink only, no accent colour</div>
+  <div class="hero-banner">Most UK compliance software charges &pound;15-&pound;35 <strong>every month</strong>. Ours is paid once. <a href="#">See the bundle &rarr;</a></div>
+  <div class="hero-shell">
+    <nav class="hero-nav">
+      <div class="brand"><span class="brand-dot"></span> ExternalOS</div>
+      <a href="#" class="nav-cta">Get the bundle &pound;79</a>
+    </nav>
+    <div class="hero-copy">
+      <div class="divider"></div>
+      <span class="eyebrow">For UK sole traders, contractors, landlords, and small employers</span>
+      <h1 class="h1">UK compliance, <em>paid once.</em></h1>
+      <p class="lede">Plain-English toolkits for UK tax and compliance you can run yourself. IR35, MTD, landlord, employer. <strong>One payment. No subscriptions. Lifetime updates when the legislation moves.</strong></p>
+      <p class="lede">Audit-ready output, built on the current HMRC framework. Files you keep, not a tool you rent.</p>
+      <div class="cta-row">
+        <a href="#" class="btn btn-primary">Find your toolkit &rarr;</a>
+        <a href="#" class="btn btn-secondary">Try the free IR35 checker</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ExternalOS palette grid v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Serif:ital,wght@0,400;0,600;0,700;1,400;1,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600;1,700&family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', system-ui, sans-serif; background: #1a1a1a; padding: 28px; }
+.header { text-align: center; margin-bottom: 28px; color: #f4ede0; }
+.header h1 { font-family: 'Libre Baskerville', serif; font-size: 28px; margin-bottom: 8px; }
+.header p { color: rgba(244,237,224,0.6); font-size: 13px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; max-width: 1280px; margin: 0 auto; }
+.card { position: relative; aspect-ratio: 16 / 11; overflow: hidden; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.25), 0 2px 8px rgba(0,0,0,0.15); }
+.card-tag { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.85); color: #fff; padding: 5px 10px; font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; z-index: 50; border-radius: 3px; }
+
+.mini { width: 100%; height: 100%; padding: 40px 36px 32px; display: flex; flex-direction: column; justify-content: flex-start; position: relative; }
+.mini .banner { position: absolute; top: 0; left: 0; right: 0; padding: 7px 14px; text-align: center; font-size: 10px; line-height: 1.3; letter-spacing: 0.01em; font-family: inherit; }
+.mini .nav { display: flex; justify-content: space-between; align-items: center; margin-top: 22px; margin-bottom: 16px; }
+.mini .brand { font-weight: 700; display: flex; align-items: center; gap: 6px; font-size: 13px; }
+.mini .brand-dot { width: 8px; height: 8px; transform: rotate(45deg); }
+.mini .cta { font-size: 9px; font-weight: 600; padding: 6px 14px; border-radius: 100px; text-decoration: none; letter-spacing: 0.02em; }
+.mini .copy { text-align: center; }
+.mini .eyebrow { font-size: 8px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: 12px; }
+.mini .h1 { font-size: 30px; line-height: 1.04; letter-spacing: -0.02em; font-weight: 700; margin-bottom: 12px; }
+.mini .h1 em { font-style: italic; }
+.mini .lede { font-size: 10px; line-height: 1.5; margin: 0 auto 6px; max-width: 340px; }
+.mini .btn-row { display: flex; gap: 6px; justify-content: center; margin-top: 14px; }
+.mini .btn { padding: 8px 16px; border-radius: 100px; font-weight: 600; font-size: 9px; text-decoration: none; }
+.mini .divider { width: 60px; height: 2px; margin: 0 auto 10px; }
+
+/* =====================================================
+   V1 / EDITORIAL FT-PINK NEWSPAPER
+   FT salmon background + ink + crimson, broadsheet
+   ===================================================== */
+.v1 .mini { background: #FFF1E5; color: #1A1A1A; font-family: 'Libre Baskerville', serif; }
+.v1 .banner { background: #1A1A1A; color: #FFF1E5; font-family: 'Inter', sans-serif; }
+.v1 .banner strong { color: #C8102E; text-decoration: underline; }
+.v1 .brand { font-family: 'Libre Baskerville', serif; }
+.v1 .brand-dot { background: #C8102E; }
+.v1 .cta { background: #1A1A1A; color: #FFF1E5; font-family: 'Inter', sans-serif; }
+.v1 .eyebrow { color: #C8102E; font-family: 'Inter', sans-serif; }
+.v1 .h1 { font-family: 'Libre Baskerville', serif; }
+.v1 .h1 em { color: #C8102E; }
+.v1 .lede { color: #3D3830; font-family: 'Inter', sans-serif; }
+.v1 .lede strong { color: #1A1A1A; }
+.v1 .divider { background: #C8102E; }
+.v1 .btn-primary { background: #1A1A1A; color: #FFF1E5; font-family: 'Inter', sans-serif; }
+.v1 .btn-secondary { color: #1A1A1A; border: 1px solid #1A1A1A; font-family: 'Inter', sans-serif; }
+
+/* =====================================================
+   V2 / BRUTALIST TERMINAL
+   Yellow + black, mono everything, harsh
+   ===================================================== */
+.v2 .mini { background: #F4E445; color: #0A0A0A; font-family: 'JetBrains Mono', monospace; }
+.v2 .banner { background: #0A0A0A; color: #F4E445; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; font-size: 9px; letter-spacing: 0.08em; }
+.v2 .banner strong { color: #F4E445; text-decoration: underline; }
+.v2 .brand { font-family: 'JetBrains Mono', monospace; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; }
+.v2 .brand-dot { background: #0A0A0A; border-radius: 0; transform: none; }
+.v2 .cta { background: #0A0A0A; color: #F4E445; border-radius: 0; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.08em; }
+.v2 .eyebrow { color: #0A0A0A; font-family: 'JetBrains Mono', monospace; }
+.v2 .h1 { font-family: 'JetBrains Mono', monospace; font-weight: 800; text-transform: uppercase; letter-spacing: -0.02em; font-size: 28px; }
+.v2 .h1 em { font-style: normal; background: #0A0A0A; color: #F4E445; padding: 0 6px; }
+.v2 .lede { color: #0A0A0A; font-family: 'JetBrains Mono', monospace; font-size: 9px; }
+.v2 .lede strong { background: #0A0A0A; color: #F4E445; padding: 0 4px; }
+.v2 .divider { background: #0A0A0A; }
+.v2 .btn-primary { background: #0A0A0A; color: #F4E445; border-radius: 0; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; }
+.v2 .btn-secondary { color: #0A0A0A; border: 2px solid #0A0A0A; border-radius: 0; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; }
+
+/* =====================================================
+   V3 / SWISS MODERNIST
+   Ivory + cobalt blue + tomato, sans-only, geometric
+   ===================================================== */
+.v3 .mini { background: #F7F4EC; color: #0A2A6F; font-family: 'Space Grotesk', sans-serif; }
+.v3 .banner { background: #0A2A6F; color: #F7F4EC; font-family: 'Space Grotesk', sans-serif; }
+.v3 .banner strong { color: #FF4F2E; }
+.v3 .brand-dot { background: #FF4F2E; }
+.v3 .cta { background: #0A2A6F; color: #F7F4EC; }
+.v3 .eyebrow { color: #FF4F2E; }
+.v3 .h1 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-spacing: -0.03em; }
+.v3 .h1 em { color: #FF4F2E; font-style: normal; }
+.v3 .lede { color: #2D3D55; }
+.v3 .lede strong { color: #0A2A6F; }
+.v3 .divider { background: #FF4F2E; }
+.v3 .btn-primary { background: #0A2A6F; color: #F7F4EC; }
+.v3 .btn-secondary { color: #0A2A6F; border: 1px solid #0A2A6F; }
+
+/* =====================================================
+   V4 / DARK MODE TECH (Vercel / Arc)
+   Near-black + electric mint, modern sans
+   ===================================================== */
+.v4 .mini { background: #0A0A0B; color: #EDEEEE; font-family: 'Inter', sans-serif; }
+.v4 .banner { background: #000; color: #EDEEEE; border-bottom: 1px solid #1F1F22; }
+.v4 .banner strong { color: #00E5A0; }
+.v4 .brand-dot { background: #00E5A0; }
+.v4 .cta { background: #00E5A0; color: #0A0A0B; }
+.v4 .eyebrow { color: #00E5A0; }
+.v4 .h1 { font-family: 'Inter', sans-serif; font-weight: 700; letter-spacing: -0.035em; }
+.v4 .h1 em { color: #00E5A0; font-style: normal; }
+.v4 .lede { color: rgba(237,238,238,0.65); }
+.v4 .lede strong { color: #EDEEEE; }
+.v4 .divider { background: #00E5A0; }
+.v4 .btn-primary { background: #00E5A0; color: #0A0A0B; }
+.v4 .btn-secondary { color: #EDEEEE; border: 1px solid rgba(237,238,238,0.3); }
+
+/* =====================================================
+   V5 / HERITAGE BRITISH (Penguin / Faber)
+   Racing green + parchment + brass, classic UK
+   ===================================================== */
+.v5 .mini { background: #F0E7D0; color: #0F2E1C; font-family: 'IBM Plex Serif', serif; }
+.v5 .banner { background: #0F2E1C; color: #F0E7D0; font-family: 'IBM Plex Sans', sans-serif; }
+.v5 .banner strong { color: #C19A3A; }
+.v5 .brand { font-family: 'IBM Plex Serif', serif; }
+.v5 .brand-dot { background: #C19A3A; }
+.v5 .cta { background: #0F2E1C; color: #F0E7D0; font-family: 'IBM Plex Sans', sans-serif; }
+.v5 .eyebrow { color: #C19A3A; font-family: 'IBM Plex Sans', sans-serif; }
+.v5 .h1 { font-family: 'IBM Plex Serif', serif; font-weight: 600; }
+.v5 .h1 em { color: #C19A3A; }
+.v5 .lede { color: #2D4530; font-family: 'IBM Plex Sans', sans-serif; }
+.v5 .lede strong { color: #0F2E1C; }
+.v5 .divider { background: #C19A3A; }
+.v5 .btn-primary { background: #0F2E1C; color: #F0E7D0; font-family: 'IBM Plex Sans', sans-serif; }
+.v5 .btn-secondary { color: #0F2E1C; border: 1px solid #0F2E1C; font-family: 'IBM Plex Sans', sans-serif; }
+
+/* =====================================================
+   V6 / SOFT TACTILE PEACH (Notion-feminine)
+   Peach + plum + ivory, Cormorant elegance
+   ===================================================== */
+.v6 .mini { background: #F8E4D5; color: #3D1A2E; font-family: 'Manrope', sans-serif; }
+.v6 .banner { background: #3D1A2E; color: #F8E4D5; }
+.v6 .banner strong { color: #F4B97A; }
+.v6 .brand { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 15px; }
+.v6 .brand-dot { background: #3D1A2E; border-radius: 50%; transform: none; }
+.v6 .cta { background: #3D1A2E; color: #F8E4D5; }
+.v6 .eyebrow { color: #3D1A2E; }
+.v6 .h1 { font-family: 'Cormorant Garamond', serif; font-weight: 600; letter-spacing: -0.01em; font-size: 36px; }
+.v6 .h1 em { color: #B83A6B; font-style: italic; }
+.v6 .lede { color: #5C3D4E; }
+.v6 .lede strong { color: #3D1A2E; }
+.v6 .divider { background: #B83A6B; }
+.v6 .btn-primary { background: #3D1A2E; color: #F8E4D5; }
+.v6 .btn-secondary { color: #3D1A2E; border: 1px solid #3D1A2E; }
+
+/* =====================================================
+   V7 / SATURATED BUTTER (Stripe / Mercury)
+   Butter yellow bg + ink + magenta, fintech-confident
+   ===================================================== */
+.v7 .mini { background: #FFE066; color: #1A1A1A; font-family: 'Inter', sans-serif; }
+.v7 .banner { background: #1A1A1A; color: #FFE066; }
+.v7 .banner strong { color: #FF2D7E; }
+.v7 .brand-dot { background: #FF2D7E; border-radius: 50%; transform: none; }
+.v7 .cta { background: #1A1A1A; color: #FFE066; }
+.v7 .eyebrow { color: #1A1A1A; font-weight: 700; }
+.v7 .h1 { font-family: 'Inter', sans-serif; font-weight: 800; letter-spacing: -0.04em; }
+.v7 .h1 em { color: #FF2D7E; font-style: italic; }
+.v7 .lede { color: #2D2D2D; }
+.v7 .lede strong { color: #1A1A1A; }
+.v7 .divider { background: #FF2D7E; }
+.v7 .btn-primary { background: #1A1A1A; color: #FFE066; }
+.v7 .btn-secondary { color: #1A1A1A; border: 1px solid #1A1A1A; }
+
+/* =====================================================
+   V8 / HMRC GOV.UK
+   GOV.UK red + black + white, institutional
+   ===================================================== */
+.v8 .mini { background: #FFFFFF; color: #0B0C0C; font-family: 'IBM Plex Sans', sans-serif; border-top: 5px solid #B10E1E; }
+.v8 .banner { background: #0B0C0C; color: #FFFFFF; }
+.v8 .banner strong { color: #FFDD00; }
+.v8 .brand { font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; }
+.v8 .brand-dot { background: #B10E1E; border-radius: 0; transform: none; }
+.v8 .cta { background: #00703C; color: #FFFFFF; border-radius: 0; }
+.v8 .eyebrow { color: #B10E1E; font-weight: 700; }
+.v8 .h1 { font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; letter-spacing: -0.02em; }
+.v8 .h1 em { color: #B10E1E; font-style: normal; border-bottom: 4px solid #B10E1E; }
+.v8 .lede { color: #0B0C0C; }
+.v8 .lede strong { color: #0B0C0C; }
+.v8 .divider { background: #B10E1E; }
+.v8 .btn-primary { background: #00703C; color: #FFFFFF; border-radius: 0; }
+.v8 .btn-secondary { color: #0B0C0C; border: 2px solid #0B0C0C; border-radius: 0; }
+
+/* =====================================================
+   V9 / TECH-LUXURY (Origin / Compound)
+   Charcoal + champagne + electric blue, premium wealth
+   ===================================================== */
+.v9 .mini { background: #1A1A1B; color: #E5DDCB; font-family: 'Inter', sans-serif; }
+.v9 .banner { background: #000; color: #E5DDCB; border-bottom: 1px solid #2A2A2C; }
+.v9 .banner strong { color: #5BB8FF; }
+.v9 .brand { font-family: 'Newsreader', serif; font-weight: 500; font-style: italic; font-size: 16px; }
+.v9 .brand-dot { background: #5BB8FF; }
+.v9 .cta { background: #E5DDCB; color: #1A1A1B; }
+.v9 .eyebrow { color: #5BB8FF; }
+.v9 .h1 { font-family: 'Newsreader', serif; font-weight: 600; font-style: italic; letter-spacing: -0.02em; font-size: 34px; }
+.v9 .h1 em { color: #5BB8FF; }
+.v9 .lede { color: rgba(229,221,203,0.7); }
+.v9 .lede strong { color: #E5DDCB; }
+.v9 .divider { background: #5BB8FF; }
+.v9 .btn-primary { background: #5BB8FF; color: #1A1A1B; }
+.v9 .btn-secondary { color: #E5DDCB; border: 1px solid rgba(229,221,203,0.3); }
+
+/* =====================================================
+   V10 / EDITORIAL BROADSHEET (anchor reference)
+   Cream + pure ink, Libre Baskerville, max-minimal
+   ===================================================== */
+.v10 .mini { background: #F4EDE0; color: #1A1A1A; font-family: 'Libre Baskerville', serif; }
+.v10 .banner { background: #1A1A1A; color: #F4EDE0; font-family: 'Inter', sans-serif; }
+.v10 .banner strong { text-decoration: underline; }
+.v10 .brand { font-family: 'Libre Baskerville', serif; font-style: italic; }
+.v10 .brand-dot { background: #1A1A1A; }
+.v10 .cta { background: #1A1A1A; color: #F4EDE0; font-family: 'Inter', sans-serif; }
+.v10 .eyebrow { color: #1A1A1A; font-family: 'Inter', sans-serif; }
+.v10 .h1 { font-family: 'Libre Baskerville', serif; font-weight: 700; }
+.v10 .h1 em { color: #1A1A1A; }
+.v10 .lede { color: #4A463E; font-family: 'Inter', sans-serif; }
+.v10 .lede strong { color: #1A1A1A; }
+.v10 .divider { background: #1A1A1A; }
+.v10 .btn-primary { background: #1A1A1A; color: #F4EDE0; font-family: 'Inter', sans-serif; }
+.v10 .btn-secondary { color: #1A1A1A; border: 1px solid #1A1A1A; font-family: 'Inter', sans-serif; }
+
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>ExternalOS palette grid v2 &middot; 10 distinct directions</h1>
+  <p>Each cell has different typography, colour system, and category positioning. Same hero copy throughout.</p>
+</div>
+
+<div class="grid">
+
+<!-- 1 FT PINK -->
+<div class="card v1"><div class="card-tag">1. FT pink broadsheet</div><div class="mini"><div class="banner">UK compliance software charges &pound;15-&pound;35 <strong>every month</strong>. Ours is paid once.</div><div class="nav"><div class="brand"><span class="brand-dot"></span>ExternalOS</div><a href="#" class="cta">Bundle &pound;79</a></div><div class="copy"><div class="divider"></div><span class="eyebrow">For UK sole traders, contractors, landlords</span><div class="h1">UK compliance, <em>paid once.</em></div><p class="lede">Plain-English toolkits for UK tax and compliance. <strong>One payment. Lifetime updates.</strong></p><div class="btn-row"><a class="btn btn-primary">Find your toolkit</a><a class="btn btn-secondary">Free IR35 checker</a></div></div></div></div>
+
+<!-- 2 BRUTALIST -->
+<div class="card v2"><div class="card-tag">2. Brutalist terminal</div><div class="mini"><div class="banner">SAAS &pound;15-&pound;35 <strong>EVERY MONTH</strong> // OURS &middot; PAID ONCE</div><div class="nav"><div class="brand"><span class="brand-dot"></span>EXTERNALOS</div><a href="#" class="cta">[ &pound;79 ]</a></div><div class="copy"><div class="divider"></div><span class="eyebrow">// FOR UK SOLE TRADERS, CONTRACTORS, LANDLORDS</span><div class="h1">UK COMPLIANCE <em>PAID ONCE.</em></div><p class="lede">PLAIN-ENGLISH TOOLKITS // UK TAX // COMPLIANCE // <strong>ONE PAYMENT</strong></p><div class="btn-row"><a class="btn btn-primary">[ FIND TOOLKIT ]</a><a class="btn btn-secondary">[ FREE IR35 ]</a></div></div></div></div>
+
+<!-- 3 SWISS -->
+<div class="card v3"><div class="card-tag">3. Swiss modernist</div><div class="mini"><div class="banner">UK compliance software charges &pound;15-&pound;35 <strong>every month</strong>. Ours is paid once.</div><div class="nav"><div class="brand"><span class="brand-dot"></span>ExternalOS</div><a href="#" class="cta">Bundle &pound;79</a></div><div class="copy"><div class="divider"></div><span class="eyebrow">For UK sole traders, contractors, landlords</span><div class="h1">UK compliance, <em>paid once.</em></div><p class="lede">Plain-English toolkits for UK tax and compliance. <strong>One payment. Lifetime updates.</strong></p><div class="btn-row"><a class="btn btn-primary">Find your toolkit</a><a class="btn btn-secondary">Free IR35 checker</a></div></div></div></div>
+
+<!-- 4 DARK TECH -->
+<div class="card v4"><div class="card-tag">4. Dark mode tech</div><div class="mini"><div class="banner">UK compliance software charges &pound;15-&pound;35 <strong>every month</strong>. Ours is paid once.</div><div class="nav"><div class="brand"><span class="brand-dot"></span>ExternalOS</div><a href="#" class="cta">Bundle &pound;79</a></div><div class="copy"><div class="divider"></div><span class="eyebrow">For UK sole traders, contractors, landlords</span><div class="h1">UK compliance, <em>paid once.</em></div><p class="lede">Plain-English toolkits for UK tax and compliance. <strong>One payment. Lifetime updates.</strong></p><div class="btn-row"><a class="btn btn-primary">Find your toolkit</a><a class="btn btn-secondary">Free IR35 checker</a></div></div></div></div>
+
+<!-- 5 HERITAGE -->
+<div class="card v5"><div class="card-tag">5. Heritage British</div><div class="mini"><div class="banner">UK compliance software charges &pound;15-&pound;35 <strong>every month</strong>. Ours is paid once.</div><div class="nav"><div class="brand"><span class="brand-dot"></span>ExternalOS</div><a href="#" class="cta">Bundle &pound;79</a></div><div class="copy"><div class="divider"></div><span class="eyebrow">For UK sole traders, contractors, landlords</span><div class="h1">UK compliance, <em>paid once.</em></div><p class="lede">Plain-English toolkits for UK tax and compliance. <strong>One payment. Lifetime updates.</strong></p><div class="btn-row"><a class="btn btn-primary">Find your toolkit</a><a class="btn btn-secondary">Free IR35 checker</a></div></div></div></div>
+
+<!-- 6 TACTILE PEACH -->
+<div class="card v6"><div class="card-tag">6. Tactile peach</div><div class="mini"><div class="banner">UK compliance software charges &pound;15-&pound;35 <strong>every month</strong>. Ours is paid once.</div><div class="nav"><div class="brand"><span class="brand-dot"></span>ExternalOS</div><a href="#" class="cta">Bundle &pound;79</a></div><div class="copy"><div class="divider"></div><span class="eyebrow">For UK sole traders, contractors, landlords</span><div class="h1">UK compliance, <em>paid once.</em></div><p class="lede">Plain-English toolkits for UK tax and compliance. <strong>One payment. Lifetime updates.</strong></p><div class="btn-row"><a class="btn btn-primary">Find your toolkit</a><a class="btn btn-secondary">Free IR35 checker</a></div></div></div></div>
+
+<!-- 7 BUTTER STRIPE -->
+<div class="card v7"><div class="card-tag">7. Saturated butter</div><div class="mini"><div class="banner">UK compliance software charges &pound;15-&pound;35 <strong>every month</strong>. Ours is paid once.</div><div class="nav"><div class="brand"><span class="brand-dot"></span>ExternalOS</div><a href="#" class="cta">Bundle &pound;79</a></div><div class="copy"><div class="divider"></div><span class="eyebrow">For UK sole traders, contractors, landlords</span><div class="h1">UK compliance, <em>paid once.</em></div><p class="lede">Plain-English toolkits for UK tax and compliance. <strong>One payment. Lifetime updates.</strong></p><div class="btn-row"><a class="btn btn-primary">Find your toolkit</a><a class="btn btn-secondary">Free IR35 checker</a></div></div></div></div>
+
+<!-- 8 GOV.UK -->
+<div class="card v8"><div class="card-tag">8. HMRC institutional</div><div class="mini"><div class="banner">UK compliance software charges &pound;15-&pound;35 <strong>every month</strong>. Ours is paid once.</div><div class="nav"><div class="brand"><span class="brand-dot"></span>ExternalOS</div><a href="#" class="cta">Bundle &pound;79</a></div><div class="copy"><div class="divider"></div><span class="eyebrow">For UK sole traders, contractors, landlords</span><div class="h1">UK compliance, <em>paid once.</em></div><p class="lede">Plain-English toolkits for UK tax and compliance. <strong>One payment. Lifetime updates.</strong></p><div class="btn-row"><a class="btn btn-primary">Find your toolkit</a><a class="btn btn-secondary">Free IR35 checker</a></div></div></div></div>
+
+<!-- 9 TECH-LUXURY -->
+<div class="card v9"><div class="card-tag">9. Tech luxury</div><div class="mini"><div class="banner">UK compliance software charges &pound;15-&pound;35 <strong>every month</strong>. Ours is paid once.</div><div class="nav"><div class="brand"><span class="brand-dot"></span>ExternalOS</div><a href="#" class="cta">Bundle &pound;79</a></div><div class="copy"><div class="divider"></div><span class="eyebrow">For UK sole traders, contractors, landlords</span><div class="h1">UK compliance, <em>paid once.</em></div><p class="lede">Plain-English toolkits for UK tax and compliance. <strong>One payment. Lifetime updates.</strong></p><div class="btn-row"><a class="btn btn-primary">Find your toolkit</a><a class="btn btn-secondary">Free IR35 checker</a></div></div></div></div>
+
+<!-- 10 EDITORIAL ANCHOR -->
+<div class="card v10"><div class="card-tag">10. Editorial anchor</div><div class="mini"><div class="banner">UK compliance software charges &pound;15-&pound;35 <strong>every month</strong>. Ours is paid once.</div><div class="nav"><div class="brand"><span class="brand-dot"></span>ExternalOS</div><a href="#" class="cta">Bundle &pound;79</a></div><div class="copy"><div class="divider"></div><span class="eyebrow">For UK sole traders, contractors, landlords</span><div class="h1">UK compliance, <em>paid once.</em></div><p class="lede">Plain-English toolkits for UK tax and compliance. <strong>One payment. Lifetime updates.</strong></p><div class="btn-row"><a class="btn btn-primary">Find your toolkit</a><a class="btn btn-secondary">Free IR35 checker</a></div></div></div></div>
+
+</div>
+
+</body>
+</html>

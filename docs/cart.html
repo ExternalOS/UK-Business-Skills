@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Your cart | ExternalOS</title>
+<meta name="description" content="Review your ExternalOS packs before checkout. Files you keep, paid once, no monthly bill." />
+<meta name="robots" content="noindex, follow" />
+<link rel="canonical" href="https://externalos.com/cart.html" />
+<link rel="preload" href="./assets/fonts/plexserif-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="./assets/fonts/plexsans-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="./_design-tokens.css?v=249g" />
+<link rel="stylesheet" href="./_components.css?v=249g" />
+<style>
+  /* cart.html: a function-appropriate cart and checkout layout (S249 rebuild).
+     Brand greyscale + IBM Plex via design tokens. No cohort colour as a page
+     accent (this is a transactional surface); a single cohort hairline marks
+     each line-item thumbnail so the five packs stay distinguishable.
+     Informed by Mobbin web cart patterns: line items left, sticky order
+     summary card right (Nike, adidas, Faire), inverted-ink total echoing the
+     employer-costs summary card, empty state centred (Faire, Shop, Udemy).
+     The eosCart JS hooks are preserved exactly: [data-eos-cart-table],
+     [data-eos-cart-empty], [data-eos-cart-filled], [data-eos-cart-rows],
+     [data-eos-cart-total], .eos-cart__remove[data-sku], and
+     [data-eos-cart-checkout] (Payhip stub). */
+
+  .eos-cart {
+    max-width: var(--container-wide);
+    margin: 0 auto;
+    padding: 0 var(--s-4) var(--s-8);
+  }
+
+  /* ---- Empty state ---- */
+  .eos-cart__empty {
+    max-width: 560px;
+    margin: 0 auto;
+    text-align: center;
+    padding: var(--s-8) var(--s-5);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-card);
+    background: var(--surface-raised);
+  }
+  .eos-cart__empty-mark {
+    width: 52px;
+    height: 52px;
+    margin: 0 auto var(--s-4);
+    color: var(--ink-muted);
+  }
+  .eos-cart__empty-mark svg { width: 100%; height: 100%; display: block; }
+  .eos-cart__empty h3 {
+    font-family: var(--font-display);
+    font-size: var(--type-h3);
+    line-height: var(--leading-h3);
+    color: var(--ink-primary);
+    margin: 0 0 var(--s-2);
+  }
+  .eos-cart__empty p {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    line-height: var(--leading-body);
+    color: var(--ink-soft);
+    margin: 0 auto var(--s-5);
+    max-width: 420px;
+  }
+
+  /* ---- Filled: two-column grid ---- */
+  .eos-cart__filled {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: var(--s-6);
+    align-items: start;
+    margin-top: var(--s-5);
+  }
+  /* display:grid above overrides the [hidden] attribute, so without this the
+     filled block stayed visible (with the last item's stale markup) after the
+     cart emptied. This restores hidden so an empty cart shows only the empty
+     state. Higher specificity than the rule above, no !important needed. */
+  .eos-cart__filled[hidden] { display: none; }
+
+  .eos-cart__items-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-bottom: var(--s-3);
+    margin-bottom: var(--s-2);
+    border-bottom: 1px solid var(--rule);
+  }
+  .eos-cart__items-head h3 {
+    font-family: var(--font-display);
+    font-size: var(--type-h3);
+    line-height: var(--leading-h3);
+    color: var(--ink-primary);
+    margin: 0;
+  }
+  .eos-cart__count {
+    font-family: var(--font-mono);
+    font-size: var(--type-caption);
+    letter-spacing: var(--track-caption);
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  /* The rows render target. It is a div, so eosCart writes line-item blocks. */
+  [data-eos-cart-rows] {
+    display: block;
+  }
+
+  .eos-cart__item {
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr) auto;
+    gap: var(--s-4);
+    align-items: center;
+    padding: var(--s-4) 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .eos-cart__thumb {
+    width: 64px;
+    height: 64px;
+    display: grid;
+    place-items: center;
+    background: var(--surface-raised);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-card);
+    position: relative;
+    overflow: hidden;
+  }
+  /* The pack's layered diamond mark, in its cohort colour, centred (the box
+     uses place-items:center). Stepped opacity keeps the nested-diamond depth. */
+  /* Exactly the header mark, just coloured: six distinct solid shades of the
+     cohort (a white-mixed ramp to the full colour), so the layers separate
+     crisply like the greyscale header logo instead of soft opacity overlaps. */
+  .eos-cart__thumb svg { width: 34px; height: 34px; display: block; }
+  /* Light mode: lightest layer at top, darkest (full hue) at the bottom, like
+     the header logo. Dark mode flips the ramp (darkest at top, lightest at the
+     bottom) in the same hue, exactly as the greyscale header logo inverts. */
+  .eos-cart__thumb svg polygon:nth-child(1) { fill: color-mix(in srgb, var(--logohue, var(--ink-primary)) 22%, #ffffff); }
+  .eos-cart__thumb svg polygon:nth-child(2) { fill: color-mix(in srgb, var(--logohue, var(--ink-primary)) 38%, #ffffff); }
+  .eos-cart__thumb svg polygon:nth-child(3) { fill: color-mix(in srgb, var(--logohue, var(--ink-primary)) 56%, #ffffff); }
+  .eos-cart__thumb svg polygon:nth-child(4) { fill: color-mix(in srgb, var(--logohue, var(--ink-primary)) 74%, #ffffff); }
+  .eos-cart__thumb svg polygon:nth-child(5) { fill: color-mix(in srgb, var(--logohue, var(--ink-primary)) 90%, #ffffff); }
+  .eos-cart__thumb svg polygon:nth-child(6) { fill: var(--logohue, var(--ink-primary)); }
+  html[data-theme="dark"] .eos-cart__thumb svg polygon:nth-child(1) { fill: var(--logohue, var(--ink-primary)); }
+  html[data-theme="dark"] .eos-cart__thumb svg polygon:nth-child(2) { fill: color-mix(in srgb, var(--logohue, var(--ink-primary)) 90%, #ffffff); }
+  html[data-theme="dark"] .eos-cart__thumb svg polygon:nth-child(3) { fill: color-mix(in srgb, var(--logohue, var(--ink-primary)) 74%, #ffffff); }
+  html[data-theme="dark"] .eos-cart__thumb svg polygon:nth-child(4) { fill: color-mix(in srgb, var(--logohue, var(--ink-primary)) 56%, #ffffff); }
+  html[data-theme="dark"] .eos-cart__thumb svg polygon:nth-child(5) { fill: color-mix(in srgb, var(--logohue, var(--ink-primary)) 38%, #ffffff); }
+  html[data-theme="dark"] .eos-cart__thumb svg polygon:nth-child(6) { fill: color-mix(in srgb, var(--logohue, var(--ink-primary)) 22%, #ffffff); }
+  /* Cohort colour keyed by name so it flips to the dark-mode variant in dark
+     mode, exactly like the pack pages (an inline hex could not theme-flip). */
+  /* One constant hue per cohort (the light-mode hex), used for the logo ramp in
+     both themes; the dark-mode rules above just flip which end is dark. */
+  .eos-cart__thumb[data-cohort="amber"]   { --logohue: #8A4B14; }
+  .eos-cart__thumb[data-cohort="plum"]    { --logohue: #5B2A4A; }
+  .eos-cart__thumb[data-cohort="steel"]   { --logohue: #2E4A6B; }
+  .eos-cart__thumb[data-cohort="indigo"]  { --logohue: #33336B; }
+  .eos-cart__thumb[data-cohort="crimson"] { --logohue: #7A1F2C; }
+  .eos-cart__thumb[data-cohort="ink"]     { --logohue: #0F0F0F; }
+
+  .eos-cart__body { min-width: 0; }
+  .eos-cart__name {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--ink-primary);
+    text-decoration: none;
+    display: inline-block;
+    margin: 0 0 var(--s-1);
+  }
+  .eos-cart__name:hover { text-decoration: underline; }
+  .eos-cart__meta {
+    font-family: var(--font-sans);
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--ink-muted);
+    margin: 0 0 var(--s-2);
+  }
+  .eos-cart__line-price {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--ink-soft);
+    display: none;
+  }
+
+  .eos-cart__col-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--s-2);
+    text-align: right;
+  }
+  .eos-cart__price {
+    font-family: var(--font-display);
+    font-size: 22px;
+    line-height: 1;
+    color: var(--ink-primary);
+    white-space: nowrap;
+  }
+
+  .eos-cart__remove {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    color: var(--ink-muted);
+    font-family: var(--font-sans);
+    font-size: 12.5px;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color var(--motion-fast) var(--ease-hover);
+  }
+  .eos-cart__remove:hover { color: var(--accent-penalty); }
+  .eos-cart__remove:focus-visible { outline: 2px solid var(--ink-primary); outline-offset: 2px; }
+
+  .eos-cart__keep {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-2);
+    margin-top: var(--s-5);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color var(--motion-fast) var(--ease-hover);
+  }
+  .eos-cart__keep:hover { color: var(--ink-primary); }
+  .eos-cart__keep svg { width: 14px; height: 14px; }
+
+  /* ---- Order summary (sticky inverted-ink card) ---- */
+  .eos-cart__summary {
+    position: static;
+  }
+  .eos-cart__summary-card {
+    background: var(--ink-primary);
+    color: var(--surface-raised);
+    border-radius: var(--radius-card);
+    padding: var(--s-6) var(--s-6) var(--s-5);
+  }
+  .eos-cart__summary-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--track-caption);
+    text-transform: uppercase;
+    opacity: 0.65;
+    margin: 0 0 var(--s-4);
+  }
+  .eos-cart__summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--surface-raised);
+    opacity: 0.85;
+    padding: var(--s-2) 0;
+  }
+  .eos-cart__summary-row span:last-child { font-family: var(--font-mono); }
+  .eos-cart__summary-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: var(--s-3);
+    padding-top: var(--s-4);
+    border-top: 1px solid rgba(255,255,255,0.18);
+  }
+  .eos-cart__summary-total-label {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .eos-cart__summary-total-value {
+    font-family: var(--font-display);
+    font-size: clamp(30px, 4vw, 40px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .eos-cart__vatline {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    line-height: 1.5;
+    opacity: 0.6;
+    margin: var(--s-3) 0 var(--s-5);
+  }
+  .eos-cart__checkout {
+    width: 100%;
+    justify-content: center;
+  }
+  .eos-cart__paywith {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--s-2);
+    margin-top: var(--s-4);
+    font-family: var(--font-sans);
+    font-size: 11.5px;
+    letter-spacing: 0.02em;
+    opacity: 0.6;
+  }
+
+  .eos-cart__assurances {
+    margin-top: var(--s-4);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-card);
+    background: var(--surface-raised);
+    padding: var(--s-4);
+  }
+  .eos-cart__assurance {
+    display: flex;
+    gap: var(--s-3);
+    align-items: flex-start;
+    padding: var(--s-2) 0;
+  }
+  .eos-cart__assurance:first-child { padding-top: 0; }
+  .eos-cart__assurance:last-child { padding-bottom: 0; }
+  .eos-cart__assurance svg {
+    width: 16px; height: 16px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--ink-primary);
+  }
+  .eos-cart__assurance span {
+    font-family: var(--font-sans);
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .eos-cart__assurance strong { color: var(--ink-primary); font-weight: 600; }
+
+  .eos-cart__note {
+    grid-column: 1 / -1;
+    font-family: var(--font-sans);
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: var(--ink-muted);
+    text-align: center;
+    margin-top: var(--s-3);
+  }
+  .eos-cart__note a { color: var(--ink-soft); }
+
+  @media (max-width: 860px) {
+    .eos-cart__filled {
+      grid-template-columns: 1fr;
+      gap: var(--s-5);
+    }
+    .eos-cart__summary { position: static; }
+  }
+  @media (max-width: 480px) {
+    .eos-cart__item {
+      grid-template-columns: 52px minmax(0, 1fr);
+      gap: var(--s-3);
+    }
+    .eos-cart__thumb { width: 52px; height: 52px; }
+    .eos-cart__col-right {
+      grid-column: 2;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+</style>
+<script>try{if(sessionStorage.getItem('eosBooted')){document.documentElement.classList.add('eos-boot--skip');}else{sessionStorage.setItem('eosBooted','1');}}catch(e){}</script>
+</head>
+<body>
+<header class="eos-header" data-eos-header role="banner">
+ <div class="eos-header__inner">
+  <a class="eos-header__brand" href="./index.html" aria-label="ExternalOS home">
+   <svg class="eos-header__brand-mark eos-logo-mark" viewBox="0 0 40 40" aria-hidden="true">
+    <polygon points="20,4 34,18 20,32 6,18"/><polygon points="20,8.6 31.7,20.3 20,32 8.3,20.3"/><polygon points="20,13.2 29.4,22.6 20,32 10.6,22.6"/><polygon points="20,17.8 27.1,24.9 20,32 12.9,24.9"/><polygon points="20,22.4 24.8,27.2 20,32 15.2,27.2"/><polygon points="20,27 22.5,29.5 20,32 17.5,29.5"/>
+   </svg>
+   <span class="eos-header__brand-wordmark">ExternalOS</span>
+  </a>
+  <nav class="eos-header__nav" aria-label="Main navigation">
+   <div class="eos-nav-item" data-eos-dropdown>
+    <button class="eos-nav-trigger" type="button" aria-expanded="false" aria-haspopup="true">Packs
+     <svg class="eos-nav-trigger__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="eos-nav-menu" role="menu">
+     <a class="eos-nav-menu__link" role="menuitem" href="./uk-tax-calculator.html"><span class="eos-nav-menu__name">Sole Trader Tax Workspace</span><span class="eos-nav-menu__meta">&pound;19</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./creative-contracts.html"><span class="eos-nav-menu__name">Creative Contracts Pack</span><span class="eos-nav-menu__meta">&pound;39</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./uk-employment-law.html"><span class="eos-nav-menu__name">UK Employment Law Kit</span><span class="eos-nav-menu__meta">&pound;49</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./uk-landlord-compliance.html"><span class="eos-nav-menu__name">UK Landlord Legal Pack</span><span class="eos-nav-menu__meta">&pound;39</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./aml-kyc-docs.html"><span class="eos-nav-menu__name">AML and KYC Document Pack</span><span class="eos-nav-menu__meta">&pound;59</span></a>
+     <a class="eos-nav-menu__link eos-nav-menu__link--all" role="menuitem" href="./tools.html"><span class="eos-nav-menu__name">See all five packs</span></a>
+    </div>
+   </div>
+   <div class="eos-nav-item" data-eos-dropdown>
+    <button class="eos-nav-trigger" type="button" aria-expanded="false" aria-haspopup="true">Free tools
+     <svg class="eos-nav-trigger__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="eos-nav-menu" role="menu">
+     <a class="eos-nav-menu__link" role="menuitem" href="./ir35-checker.html"><span class="eos-nav-menu__name">IR35 Status Checker</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./mtd-clock.html"><span class="eos-nav-menu__name">MTD Penalty Clock</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./employer-costs.html"><span class="eos-nav-menu__name">Employer Costs Calculator</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./landlord-compliance-check.html"><span class="eos-nav-menu__name">Landlord Compliance Check</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./compliance-calendar.html"><span class="eos-nav-menu__name">Compliance Calendar</span></a>
+     <a class="eos-nav-menu__link eos-nav-menu__link--all" role="menuitem" href="./tools.html#free-tools"><span class="eos-nav-menu__name">All free tools</span></a>
+    </div>
+   </div>
+   <div class="eos-nav-item" data-eos-dropdown>
+    <button class="eos-nav-trigger" type="button" aria-expanded="false" aria-haspopup="true">MTD
+     <svg class="eos-nav-trigger__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="eos-nav-menu" role="menu">
+     <a class="eos-nav-menu__link" role="menuitem" href="./mtd.html"><span class="eos-nav-menu__name">Making Tax Digital, explained</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./mtd-spreadsheet.html"><span class="eos-nav-menu__name">The MTD Spreadsheet</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./mtd-kit.html"><span class="eos-nav-menu__name">MTD for ITSA Survival Kit</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./mtd-jargon.html"><span class="eos-nav-menu__name">MTD Jargon Decoder</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./mtd-clock.html"><span class="eos-nav-menu__name">MTD Penalty Clock</span></a>
+    </div>
+   </div>
+  </nav>
+  <div class="eos-header__util">
+   <button class="eos-header__theme" data-eos-theme-toggle type="button" aria-label="Toggle theme">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+   </button>
+   <a class="eos-header__cart" href="./cart.html" data-eos-cart data-count="0" aria-label="View cart">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.6 12.3a2 2 0 0 0 2 1.7h8.8a2 2 0 0 0 2-1.7L22 7H6"/><circle cx="10" cy="21" r="1.3"/><circle cx="18" cy="21" r="1.3"/></svg>
+    <span class="eos-header__cart-count">0</span>
+   </a>
+   <a class="eos-button eos-button--primary eos-button--small" href="./tools.html" data-magnetic>Browse packs</a>
+  </div>
+  <button class="eos-header__hamburger" data-eos-drawer-open type="button" aria-label="Open menu" aria-controls="eos-drawer" aria-expanded="false">
+   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+ </div>
+</header>
+<div class="eos-drawer" id="eos-drawer" data-eos-drawer role="dialog" aria-modal="true" aria-label="Site navigation">
+ <div class="eos-drawer__backdrop" data-eos-drawer-close></div>
+ <div class="eos-drawer__panel">
+  <button class="eos-drawer__close" data-eos-drawer-close type="button" aria-label="Close menu">
+   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <nav class="eos-drawer__nav" aria-label="Mobile navigation">
+   <span class="eos-drawer__group">The five packs</span>
+   <a href="./uk-tax-calculator.html">Sole Trader Tax Workspace</a>
+   <a href="./creative-contracts.html">Creative Contracts Pack</a>
+   <a href="./uk-employment-law.html">UK Employment Law Kit</a>
+   <a href="./uk-landlord-compliance.html">UK Landlord Legal Pack</a>
+   <a href="./aml-kyc-docs.html">AML and KYC Document Pack</a>
+   <span class="eos-drawer__group">Free tools</span>
+   <a href="./ir35-checker.html">IR35 Status Checker</a>
+   <a href="./mtd-clock.html">MTD Penalty Clock</a>
+   <a href="./employer-costs.html">Employer Costs Calculator</a>
+   <a href="./landlord-compliance-check.html">Landlord Compliance Check</a>
+   <a href="./compliance-calendar.html">Compliance Calendar</a>
+   <span class="eos-drawer__group">More</span>
+   <a href="./tools.html">Full catalogue</a>
+   <a href="./mtd.html">Making Tax Digital</a>
+   <a href="./quiz.html">Find my pack</a>
+   <a href="./cart.html">Cart</a>
+  </nav>
+  <div class="eos-drawer__footer">
+   <a class="eos-button eos-button--primary" href="./tools.html">Browse the packs</a>
+  </div>
+ </div>
+</div>
+<section class="eos-section eos-section--flush">
+<div class="eos-section__head">
+<span class="eos-eyebrow">Your cart</span>
+<h2>Review before checkout.</h2>
+<p>Files you keep, paid once, no monthly bill. Checkout runs through Payhip in GBP, with secure card, Apple Pay or Google Pay.</p>
+</div>
+<div class="eos-cart" data-eos-cart-table="">
+
+<div class="eos-cart__empty" data-eos-cart-empty="">
+<div class="eos-cart__empty-mark" aria-hidden="true">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.6 12.3a2 2 0 0 0 2 1.7h8.8a2 2 0 0 0 2-1.7L22 7H6"/><circle cx="10" cy="21" r="1.3"/><circle cx="18" cy="21" r="1.3"/></svg>
+</div>
+<h3>Your cart is empty.</h3>
+<p>Nothing here yet. Add a pack and it stays in your cart on this browser until you check out.</p>
+<a class="eos-button eos-button--primary" href="./tools.html">Browse the packs</a>
+</div>
+
+<div class="eos-cart__filled" data-eos-cart-filled="" hidden="">
+<div class="eos-cart__items">
+<div class="eos-cart__items-head">
+<h3>Your packs</h3>
+<span class="eos-cart__count" data-eos-cart-count-label="">0 items</span>
+</div>
+<div data-eos-cart-rows=""></div>
+<a class="eos-cart__keep" href="./tools.html">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+Keep browsing the catalogue
+</a>
+</div>
+
+<aside class="eos-cart__summary" aria-label="Order summary">
+<div class="eos-cart__summary-card">
+<p class="eos-cart__summary-title">Order summary</p>
+<div class="eos-cart__summary-row">
+<span>Subtotal</span>
+<span data-eos-cart-subtotal="">&pound;0</span>
+</div>
+<div class="eos-cart__summary-row">
+<span>VAT</span>
+<span>Included</span>
+</div>
+<div class="eos-cart__summary-total">
+<span class="eos-cart__summary-total-label">Total</span>
+<span class="eos-cart__summary-total-value" data-eos-cart-total="">&pound;0</span>
+</div>
+<p class="eos-cart__vatline">All prices are VAT inclusive. No shipping, no recurring charge. Your files download straight after payment.</p>
+<button class="eos-button eos-button--primary eos-cart__checkout" data-eos-cart-checkout="" type="button">Checkout via Payhip</button>
+<div class="eos-cart__paywith" aria-hidden="true">
+<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg>
+Secure payment by Payhip
+</div>
+</div>
+<div class="eos-cart__assurances">
+<div class="eos-cart__assurance">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+<span><strong>Paid once.</strong> No subscription and no monthly bill. The files are yours to keep.</span>
+</div>
+<div class="eos-cart__assurance">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+<span><strong>Editable files.</strong> Spreadsheets and documents you can adapt to your own business.</span>
+</div>
+<div class="eos-cart__assurance">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+<span><strong>UK rules, kept current.</strong> Built around the live HMRC and regulator requirements.</span>
+</div>
+</div>
+</aside>
+
+<p class="eos-cart__note">Checkout runs through Payhip in pounds, with card, Apple Pay or Google Pay. Your files download straight after payment. Any trouble, email <a href="mailto:hello@externalos.com">hello@externalos.com</a>.</p>
+</div>
+
+</div>
+</section><footer class="eos-footer" role="contentinfo">
+ <div class="eos-footer__inner">
+  <div class="eos-footer__sitemap">
+   <div class="eos-footer__col">
+    <h5>The packs</h5>
+    <ul>
+     <li><a href="./uk-tax-calculator.html">Sole Trader Tax Workspace</a></li>
+     <li><a href="./creative-contracts.html">Creative Contracts Pack</a></li>
+     <li><a href="./uk-employment-law.html">UK Employment Law Kit</a></li>
+     <li><a href="./uk-landlord-compliance.html">UK Landlord Legal Pack</a></li>
+     <li><a href="./aml-kyc-docs.html">AML and KYC Document Pack</a></li>
+    </ul>
+   </div>
+   <div class="eos-footer__col">
+    <h5>Free tools</h5>
+    <ul>
+     <li><a href="./ir35-checker.html">IR35 status checker</a></li>
+     <li><a href="./compliance-calendar.html">Compliance calendar</a></li>
+     <li><a href="./employer-costs.html">Employer costs</a></li>
+     <li><a href="./landlord-compliance-check.html">Landlord compliance check</a></li>
+     <li><a href="./mtd-clock.html">MTD penalty clock</a></li>
+    </ul>
+   </div>
+   <div class="eos-footer__col">
+    <h5>More</h5>
+    <ul>
+     <li><a href="./tools.html">Full catalogue</a></li>
+     <li><a href="./mtd.html">Making Tax Digital</a></li>
+     <li><a href="./quiz.html">Find my pack</a></li>
+     <li><a href="mailto:hello@externalos.com">Contact</a></li>
+    </ul>
+   </div>
+   <div class="eos-footer__col">
+    <h5>Company</h5>
+    <ul>
+     <li><a href="./cart.html">Cart</a></li>
+     <li><a href="./terms.html">Terms</a></li>
+     <li><a href="./privacy.html">Privacy</a></li>
+     <li><a href="./refund-policy.html">Refund policy</a></li>
+     <li><a href="./unsubscribe.html">Unsubscribe</a></li>
+    </ul>
+   </div>
+  </div>
+  <div class="eos-footer__colophon">
+   <p>Set in Fraunces, Newsreader and IBM Plex. Built in 2026. Informational tools, not tax or legal advice.</p>
+  </div>
+ </div>
+ <div class="eos-footer__legalbar" aria-label="Legal and compliance">
+  <span class="eos-footer__legalbar-brand">ExternalOS &middot; 2026</span>
+  <span class="eos-footer__legalbar-sep" aria-hidden="true">&middot;</span>
+  <a href="./privacy.html">Privacy policy</a>
+  <span class="eos-footer__legalbar-sep" aria-hidden="true">&middot;</span>
+  <a href="./terms.html">Terms</a>
+  <span class="eos-footer__legalbar-sep" aria-hidden="true">&middot;</span>
+  <a href="./refund-policy.html">Refund policy</a>
+  <span class="eos-footer__legalbar-sep" aria-hidden="true">&middot;</span>
+  <a href="./privacy.html#cookies">Cookies</a>
+  <span class="eos-footer__legalbar-sep" aria-hidden="true">&middot;</span>
+  <span class="eos-footer__legalbar-status">All systems running</span>
+ </div>
+</footer>
+<script src="./_eos-ui.js?v=249g" defer></script>
+<script defer="">
+document.addEventListener('DOMContentLoaded', function () {
+  // Cohort colour per pack (greyscale page, single hairline marker on the
+  // line-item thumbnail). Keyed by the same sku the product pages emit via
+  // [data-eos-add-to-cart]. Unknown skus fall back to ink. One short line of
+  // meta per pack keeps the line items legible without a stored description.
+  /* payhip = the product key (the part after payhip.com/b/) used by the checkout
+     bridge to add each item to the Payhip cart. */
+  var PACKS = {
+    'sole-trader-tax-workspace': { accent: 'amber',   url: './uk-tax-calculator.html',    meta: 'Document pack, paid once', payhip: 'JyWnR' },
+    'creative-contracts-pack':   { accent: 'plum',    url: './creative-contracts.html',   meta: 'Document pack, paid once', payhip: 'KY9j8' },
+    'uk-employment-law-kit':     { accent: 'steel',   url: './uk-employment-law.html',    meta: 'Document pack, paid once', payhip: 'qtS3y' },
+    'uk-landlord-legal-pack':    { accent: 'indigo',  url: './uk-landlord-compliance.html', meta: 'Document pack, paid once', payhip: 'PDiuz' },
+    'aml-kyc-document-pack':     { accent: 'crimson', url: './aml-kyc-docs.html',         meta: 'Document pack, paid once', payhip: 'sBlDL' },
+    'full-uk-business-suite':    { accent: 'ink',     url: './tools.html',                meta: 'All five packs, paid once', payhip: 'PzIQx' }
+  };
+  // The full layered ExternalOS mark (six nested diamonds), coloured per cohort
+  // via the thumb's --cohort and the stepped-opacity polygon CSS.
+  var DIAMOND = '<svg viewBox="0 0 40 40" aria-hidden="true">' +
+    '<polygon points="20,4 34,18 20,32 6,18"></polygon>' +
+    '<polygon points="20,8.6 31.7,20.3 20,32 8.3,20.3"></polygon>' +
+    '<polygon points="20,13.2 29.4,22.6 20,32 10.6,22.6"></polygon>' +
+    '<polygon points="20,17.8 27.1,24.9 20,32 12.9,24.9"></polygon>' +
+    '<polygon points="20,22.4 24.8,27.2 20,32 15.2,27.2"></polygon>' +
+    '<polygon points="20,27 22.5,29.5 20,32 17.5,29.5"></polygon></svg>';
+
+  function esc(str) {
+    return String(str == null ? '' : str)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  function render() {
+    var items = (window.eosCart && window.eosCart.read()) || [];
+    var empty = document.querySelector('[data-eos-cart-empty]');
+    var filled = document.querySelector('[data-eos-cart-filled]');
+    var rows = document.querySelector('[data-eos-cart-rows]');
+    var subtotalEl = document.querySelector('[data-eos-cart-subtotal]');
+    var totalEl = document.querySelector('[data-eos-cart-total]');
+    var countEl = document.querySelector('[data-eos-cart-count-label]');
+    if (!items.length) {
+      empty.hidden = false;
+      filled.hidden = true;
+      if (rows) rows.innerHTML = '';
+      return;
+    }
+    empty.hidden = true;
+    filled.hidden = false;
+
+    rows.innerHTML = items.map(function (i) {
+      var pack = PACKS[i.sku] || { accent: 'ink', url: './tools.html', meta: 'Document pack, paid once' };
+      var name = esc(i.name || i.sku);
+      var url = esc(pack.url || './tools.html');
+      return '<div class="eos-cart__item">' +
+        '<a class="eos-cart__thumb" href="' + url + '" data-cohort="' + pack.accent + '" aria-label="View ' + name + '">' + DIAMOND + '</a>' +
+        '<div class="eos-cart__body">' +
+          '<a class="eos-cart__name" href="' + url + '">' + name + '</a>' +
+          '<p class="eos-cart__meta">' + esc(pack.meta) + '</p>' +
+        '</div>' +
+        '<div class="eos-cart__col-right">' +
+          '<span class="eos-cart__price">&pound;' + esc(i.price) + '</span>' +
+          '<button type="button" class="eos-cart__remove" data-sku="' + esc(i.sku) + '" aria-label="Remove ' + name + ' from cart">Remove</button>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+
+    var total = items.reduce(function (s, i) { return s + Number(i.price || 0); }, 0);
+    if (subtotalEl) subtotalEl.innerHTML = '&pound;' + total;
+    if (totalEl) totalEl.innerHTML = '&pound;' + total;
+    if (countEl) countEl.textContent = items.length + (items.length === 1 ? ' item' : ' items');
+  }
+
+  document.addEventListener('click', function (e) {
+    var rm = e.target.closest('.eos-cart__remove');
+    if (rm && window.eosCart) {
+      window.eosCart.remove(rm.getAttribute('data-sku'));
+      render();
+    }
+    var co = e.target.closest('[data-eos-cart-checkout]');
+    if (co) {
+      e.preventDefault();
+      checkoutViaPayhip(co);
+    }
+  });
+
+  /* Bridge the custom cart to Payhip by building a direct multi-item checkout
+     URL. Payhip's /buy endpoint takes array params (link[], cart_links[],
+     qty[KEY]) so every pack in the cart goes into one checkout. Verified: two
+     packs -> one Payhip checkout at the combined total, VAT inclusive, in pounds.
+     This avoids the unreliable in-page Payhip cart JS entirely. */
+  function checkoutViaPayhip(btn) {
+    var items = (window.eosCart && window.eosCart.read()) || [];
+    var keys = items.map(function (i) { return PACKS[i.sku] && PACKS[i.sku].payhip; }).filter(Boolean);
+    if (!keys.length) { window.location.href = 'mailto:hello@externalos.com?subject=ExternalOS%20order'; return; }
+    var params = [];
+    keys.forEach(function (k) {
+      params.push('link%5B%5D=' + encodeURIComponent(k));
+      params.push('cart_links%5B%5D=' + encodeURIComponent(k));
+      params.push('qty%5B' + encodeURIComponent(k) + '%5D=1');
+    });
+    params.push('s=1');
+    window.location.href = 'https://payhip.com/buy?' + params.join('&');
+  }
+  render();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ExternalOS palette grid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', system-ui, sans-serif; background: #f0eee8; padding: 28px; }
+.header { text-align: center; margin-bottom: 24px; }
+.header h1 { font-family: 'Libre Baskerville', serif; font-size: 26px; color: #1A1A1A; margin-bottom: 6px; }
+.header p { color: #666; font-size: 13px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 1280px; margin: 0 auto; }
+.card { position: relative; aspect-ratio: 16 / 11; overflow: hidden; border-radius: 10px; box-shadow: 0 6px 24px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.08); }
+.card-tag { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.85); color: #fff; padding: 5px 10px; font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; z-index: 50; border-radius: 3px; }
+
+/* Each cell renders a mini hero */
+.mini { width: 100%; height: 100%; padding: 36px 32px 32px; display: flex; flex-direction: column; justify-content: flex-start; position: relative; }
+.mini .banner { position: absolute; top: 0; left: 0; right: 0; padding: 6px 12px; text-align: center; font-size: 10px; line-height: 1.3; letter-spacing: 0.01em; }
+.mini .nav { display: flex; justify-content: space-between; align-items: center; margin-top: 22px; margin-bottom: 18px; }
+.mini .brand { font-family: 'Libre Baskerville', serif; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+.mini .brand-dot { width: 8px; height: 8px; transform: rotate(45deg); }
+.mini .cta { font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 600; padding: 6px 14px; border-radius: 100px; text-decoration: none; letter-spacing: 0.02em; }
+.mini .copy { text-align: center; }
+.mini .eyebrow { font-family: 'Syne', sans-serif; font-size: 8px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: 10px; }
+.mini .h1 { font-family: 'Libre Baskerville', serif; font-size: 30px; line-height: 1.04; letter-spacing: -0.02em; font-weight: 700; margin-bottom: 12px; }
+.mini .h1 em { font-style: italic; }
+.mini .lede { font-size: 10px; line-height: 1.5; margin: 0 auto 6px; max-width: 320px; }
+.mini .btn-row { display: flex; gap: 6px; justify-content: center; margin-top: 14px; }
+.mini .btn { padding: 8px 16px; border-radius: 100px; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 9px; text-decoration: none; }
+.mini .divider { width: 60px; height: 2px; margin: 0 auto 10px; }
+
+/* 1 SAGE STEAL */
+.v1 .mini { background: #0E0E0E; color: #F4EFE3; }
+.v1 .banner { background: #000; color: #F4EFE3; }
+.v1 .banner strong { color: #00DC06; }
+.v1 .brand-dot { background: #00DC06; }
+.v1 .cta { background: #00DC06; color: #0E0E0E; }
+.v1 .eyebrow { color: #00DC06; }
+.v1 .h1 em { color: #00DC06; }
+.v1 .lede { color: rgba(244,239,227,0.75); }
+.v1 .divider { background: #00DC06; }
+.v1 .btn-primary { background: #00DC06; color: #0E0E0E; }
+.v1 .btn-secondary { color: #F4EFE3; border: 1px solid rgba(244,239,227,0.3); }
+
+/* 2 BANKING */
+.v2 .mini { background: #FBF7F0; color: #0F2A4D; }
+.v2 .banner { background: #0F2A4D; color: #FBF7F0; }
+.v2 .banner strong { color: #5FCB85; }
+.v2 .brand-dot { background: #0F2A4D; }
+.v2 .cta { background: #0F2A4D; color: #FBF7F0; }
+.v2 .eyebrow { color: #0F2A4D; }
+.v2 .h1 em { color: #1B6E3A; }
+.v2 .lede { color: #2D3D55; }
+.v2 .divider { background: #0F2A4D; }
+.v2 .btn-primary { background: #1B6E3A; color: #FBF7F0; }
+.v2 .btn-secondary { color: #0F2A4D; border: 1px solid #0F2A4D; }
+
+/* 3 FOREST */
+.v3 .mini { background: #F4EDE0; color: #1A1A1A; }
+.v3 .banner { background: #1A1A1A; color: #F4EDE0; }
+.v3 .banner strong { color: #2D7A4A; }
+.v3 .brand-dot { background: #1A1A1A; }
+.v3 .cta { background: #1A1A1A; color: #F4EDE0; }
+.v3 .eyebrow { color: #2D7A4A; }
+.v3 .h1 em { color: #2D7A4A; }
+.v3 .lede { color: #4A463E; }
+.v3 .divider { background: #2D7A4A; }
+.v3 .btn-primary { background: #1A1A1A; color: #F4EDE0; }
+.v3 .btn-secondary { color: #1A1A1A; border: 1px solid #1A1A1A; }
+
+/* 4 TEAL */
+.v4 .mini { background: #F8F2E4; color: #0F3A3D; }
+.v4 .banner { background: #0F3A3D; color: #F8F2E4; }
+.v4 .banner strong { color: #E8B547; }
+.v4 .brand-dot { background: #0F3A3D; }
+.v4 .cta { background: #0F3A3D; color: #F8F2E4; }
+.v4 .eyebrow { color: #0F3A3D; }
+.v4 .h1 em { color: #C48A2A; }
+.v4 .lede { color: #2A4F52; }
+.v4 .divider { background: #0F3A3D; }
+.v4 .btn-primary { background: #0F3A3D; color: #F8F2E4; }
+.v4 .btn-secondary { color: #0F3A3D; border: 1px solid #0F3A3D; }
+
+/* 5 PURE INK */
+.v5 .mini { background: #F4EDE0; color: #1A1A1A; }
+.v5 .banner { background: #1A1A1A; color: #F4EDE0; }
+.v5 .banner strong { text-decoration: underline; }
+.v5 .brand-dot { background: #1A1A1A; }
+.v5 .cta { background: #1A1A1A; color: #F4EDE0; }
+.v5 .eyebrow { color: #1A1A1A; }
+.v5 .h1 em { color: #1A1A1A; }
+.v5 .lede { color: #4A463E; }
+.v5 .divider { background: #1A1A1A; }
+.v5 .btn-primary { background: #1A1A1A; color: #F4EDE0; }
+.v5 .btn-secondary { color: #1A1A1A; border: 1px solid #1A1A1A; }
+
+/* 6 PAPER NOISE */
+.v6 .mini { background: #F4EDE0; color: #1A1A1A; position: relative; }
+.v6 .mini::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.5; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.4  0 0 0 0 0.35  0 0 0 0 0.25  0 0 0 0.12 0'/></filter><rect width='400' height='400' filter='url(%23n)'/></svg>"); mix-blend-mode: multiply; }
+.v6 .banner, .v6 .nav, .v6 .copy { position: relative; z-index: 2; }
+.v6 .banner { background: #1A1A1A; color: #F4EDE0; }
+.v6 .banner strong { text-decoration: underline; }
+.v6 .brand-dot { background: #1A1A1A; }
+.v6 .cta { background: #1A1A1A; color: #F4EDE0; }
+.v6 .eyebrow { color: #1A1A1A; }
+.v6 .h1 em { color: #1A1A1A; }
+.v6 .lede { color: #4A463E; }
+.v6 .divider { background: #1A1A1A; }
+.v6 .btn-primary { background: #1A1A1A; color: #F4EDE0; }
+.v6 .btn-secondary { color: #1A1A1A; border: 1px solid #1A1A1A; }
+
+/* 7 DOT GRID */
+.v7 .mini { background: #F4EDE0; background-image: radial-gradient(circle, rgba(26,26,26,0.18) 1px, transparent 1px); background-size: 14px 14px; color: #1A1A1A; }
+.v7 .banner { background: #1A1A1A; color: #F4EDE0; }
+.v7 .banner strong { text-decoration: underline; }
+.v7 .brand-dot { background: #1A1A1A; }
+.v7 .cta { background: #1A1A1A; color: #F4EDE0; }
+.v7 .eyebrow { color: #1A1A1A; background: #F4EDE0; padding: 3px 8px; display: inline-block; }
+.v7 .h1 em { color: #1A1A1A; }
+.v7 .lede { color: #4A463E; background: rgba(244,237,224,0.85); display: inline-block; padding: 2px 5px; }
+.v7 .divider { background: #1A1A1A; }
+.v7 .btn-primary { background: #1A1A1A; color: #F4EDE0; }
+.v7 .btn-secondary { color: #1A1A1A; border: 1px solid #1A1A1A; background: #F4EDE0; }
+
+/* 8 LEDGER */
+.v8 .mini { background: #F8F1E1; background-image: repeating-linear-gradient(0deg, transparent, transparent 18px, rgba(26,90,124,0.18) 18px, rgba(26,90,124,0.18) 19px); color: #1A1A1A; }
+.v8 .banner { background: #1A1A1A; color: #F8F1E1; }
+.v8 .banner strong { text-decoration: underline; }
+.v8 .brand-dot { background: #B8260F; }
+.v8 .cta { background: #1A1A1A; color: #F8F1E1; }
+.v8 .eyebrow { color: #B8260F; background: #F8F1E1; padding: 3px 8px; display: inline-block; }
+.v8 .h1 em { color: #B8260F; }
+.v8 .lede { color: #2D2A22; background: rgba(248,241,225,0.9); display: inline-block; padding: 2px 5px; }
+.v8 .divider { background: #B8260F; }
+.v8 .btn-primary { background: #1A1A1A; color: #F8F1E1; }
+.v8 .btn-secondary { color: #1A1A1A; border: 1px solid #1A1A1A; background: #F8F1E1; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>ExternalOS: 8 palette options for the hero</h1>
+  <p>Same copy, same structure. Which signals trust + simplicity for a UK compliance buyer?</p>
+</div>
+
+<div class="grid">
+
+<!-- VARIANTS -->
+<div class="card v1"><div class="card-tag">1. Sage steal</div><div class="mini"><div class="banner">UK compliance software charges &pound;15-&pound;35 <strong>every month</strong>. Ours is paid once.</div><div class="nav"><div class="brand"><span class="brand-dot"></span>ExternalOS</div><a href="#" class="cta">Bundle &pound;79</a></div><div class="copy"><div class="divider"></div><span class="eyebrow">For UK sole traders, contractors, landlords</span><div class="h1">UK compliance, <em>paid once.</em></div><p class="lede">Plain-English toolkits for UK tax and compliance. <strong>One payment. Lifetime updates.</strong></p><div class="btn-row"><a class="btn btn-primary">Find your toolkit</a><a class="btn btn-secondary">Free IR35 checker</a></div></div></div></div>
+
+<div class="card v2"><div class="card-tag">2. Banking</div><div class="mini"><div class="banner">UK compliance software charges &pound;15-&pound;35 <strong>every month</strong>. Ours is paid once.</div><div class="nav"><div class="brand"><span class="brand-dot"></span>ExternalOS</div><a href="#" class="cta">Bundle &pound;79</a></div><div class="copy"><div class="divider"></div><span class="eyebrow">For UK sole traders, contractors, landlords</span><div class="h1">UK compliance, <em>paid once.</em></div><p class="lede">Plain-English toolkits for UK tax and compliance. <strong>One payment. Lifetime updates.</strong></p><div class="btn-row"><a class="btn btn-primary">Find your toolkit</a><a class="btn btn-secondary">Free IR35 checker</a></div></div></div></div>
+
+<div class="card v3"><div class="card-tag">3. Forest</div><div class="mini"><div class="banner">UK compliance software charges &pound;15-&pound;35 <strong>every month</strong>. Ours is paid once.</div><div class="nav"><div class="brand"><span class="brand-dot"></span>ExternalOS</div><a href="#" class="cta">Bundle &pound;79</a></div><div class="copy"><div class="divider"></div><span class="eyebrow">For UK sole traders, contractors, landlords</span><div class="h1">UK compliance, <em>paid once.</em></div><p class="lede">Plain-English toolkits for UK tax and compliance. <strong>One payment. Lifetime updates.</strong></p><div class="btn-row"><a class="btn btn-primary">Find your toolkit</a><a class="btn btn-secondary">Free IR35 checker</a></div></div></div></div>
+
+<div class="card v4"><div class="card-tag">4. Teal + gold</div><div class="mini"><div class="banner">UK compliance software charges &pound;15-&pound;35 <strong>every month</strong>. Ours is paid once.</div><div class="nav"><div class="brand"><span class="brand-dot"></span>ExternalOS</div><a href="#" class="cta">Bundle &pound;79</a></div><div class="copy"><div class="divider"></div><span class="eyebrow">For UK sole traders, contractors, landlords</span><div class="h1">UK compliance, <em>paid once.</em></div><p class="lede">Plain-English toolkits for UK tax and compliance. <strong>One payment. Lifetime updates.</strong></p><div class="btn-row"><a class="btn btn-primary">Find your toolkit</a><a class="btn btn-secondary">Free IR35 checker</a></div></div></div></div>
+
+<div class="card v5"><div class="card-tag">5. Pure ink</div><div class="mini"><div class="banner">UK compliance software charges &pound;15-&pound;35 <strong>every month</strong>. Ours is paid once.</div><div class="nav"><div class="brand"><span class="brand-dot"></span>ExternalOS</div><a href="#" class="cta">Bundle &pound;79</a></div><div class="copy"><div class="divider"></div><span class="eyebrow">For UK sole traders, contractors, landlords</span><div class="h1">UK compliance, <em>paid once.</em></div><p class="lede">Plain-English toolkits for UK tax and compliance. <strong>One payment. Lifetime updates.</strong></p><div class="btn-row"><a class="btn btn-primary">Find your toolkit</a><a class="btn btn-secondary">Free IR35 checker</a></div></div></div></div>
+
+<div class="card v6"><div class="card-tag">6. Paper noise</div><div class="mini"><div class="banner">UK compliance software charges &pound;15-&pound;35 <strong>every month</strong>. Ours is paid once.</div><div class="nav"><div class="brand"><span class="brand-dot"></span>ExternalOS</div><a href="#" class="cta">Bundle &pound;79</a></div><div class="copy"><div class="divider"></div><span class="eyebrow">For UK sole traders, contractors, landlords</span><div class="h1">UK compliance, <em>paid once.</em></div><p class="lede">Plain-English toolkits for UK tax and compliance. <strong>One payment. Lifetime updates.</strong></p><div class="btn-row"><a class="btn btn-primary">Find your toolkit</a><a class="btn btn-secondary">Free IR35 checker</a></div></div></div></div>
+
+<div class="card v7"><div class="card-tag">7. Dot grid</div><div class="mini"><div class="banner">UK compliance software charges &pound;15-&pound;35 <strong>every month</strong>. Ours is paid once.</div><div class="nav"><div class="brand"><span class="brand-dot"></span>ExternalOS</div><a href="#" class="cta">Bundle &pound;79</a></div><div class="copy"><div class="divider"></div><span class="eyebrow">For UK sole traders, contractors, landlords</span><div class="h1">UK compliance, <em>paid once.</em></div><p class="lede">Plain-English toolkits for UK tax and compliance. <strong>One payment. Lifetime updates.</strong></p><div class="btn-row"><a class="btn btn-primary">Find your toolkit</a><a class="btn btn-secondary">Free IR35 checker</a></div></div></div></div>
+
+<div class="card v8"><div class="card-tag">8. Ledger</div><div class="mini"><div class="banner">UK compliance software charges &pound;15-&pound;35 <strong>every month</strong>. Ours is paid once.</div><div class="nav"><div class="brand"><span class="brand-dot"></span>ExternalOS</div><a href="#" class="cta">Bundle &pound;79</a></div><div class="copy"><div class="divider"></div><span class="eyebrow">For UK sole traders, contractors, landlords</span><div class="h1">UK compliance, <em>paid once.</em></div><p class="lede">Plain-English toolkits for UK tax and compliance. <strong>One payment. Lifetime updates.</strong></p><div class="btn-row"><a class="btn btn-primary">Find your toolkit</a><a class="btn btn-secondary">Free IR35 checker</a></div></div></div></div>
+
+</div>
+
+</body>
+</html>

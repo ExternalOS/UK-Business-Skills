@@ -3,191 +3,353 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Privacy Policy | ExternalOS</title>
-<meta name="description" content="How ExternalOS collects, uses, and protects your data. UK GDPR and Data Protection Act 2018 compliant." />
+<title>Privacy policy | ExternalOS</title>
+<meta name="description" content="How ExternalOS collects, uses and protects your data. UK GDPR and Data Protection Act 2018 compliant." />
 <meta name="robots" content="index, follow" />
 <link rel="canonical" href="https://externalos.com/privacy.html" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Privacy Policy | ExternalOS" />
-<meta property="og:description" content="How ExternalOS handles your data. Plain English, UK GDPR compliant." />
+<meta property="og:title" content="Privacy policy | ExternalOS" />
+<meta property="og:description" content="How ExternalOS collects, uses and protects your data. UK GDPR and Data Protection Act 2018 compliant." />
 <meta property="og:url" content="https://externalos.com/privacy.html" />
 <meta property="og:site_name" content="ExternalOS" />
 <meta property="og:locale" content="en_GB" />
-
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=135" />
-
+<link rel="preload" href="./assets/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="./assets/fonts/plexserif-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="./assets/fonts/plexsans-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="./_design-tokens.css?v=249g" />
+<link rel="stylesheet" href="./_components.css?v=249g" />
 <style>
- .legal-wrap { max-width: 720px; margin: 0 auto; padding: 72px 24px 96px; }
- .legal-eyebrow { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--purple-hero); margin-bottom: 14px; }
- .legal-wrap h1 { font-family: 'Libre Baskerville', serif; font-size: clamp(32px, 4.5vw, 44px); line-height: 1.15; color: var(--ink); margin-bottom: 18px; }
- .legal-wrap .legal-meta { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--warm-mid); margin-bottom: 40px; }
- .legal-wrap h2 { font-family: 'Libre Baskerville', serif; font-size: 22px; color: var(--ink); margin-top: 38px; margin-bottom: 14px; }
- .legal-wrap h3 { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--purple-hero); margin-top: 28px; margin-bottom: 10px; }
- .legal-wrap p, .legal-wrap li { font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.7; color: var(--warm-dark); margin-bottom: 12px; }
- .legal-wrap ul { padding-left: 22px; margin-bottom: 12px; }
- .legal-wrap a { color: var(--purple-hero); }
- .legal-wrap strong { font-weight: 600; color: var(--ink); }
+ /* ===== Legal / document reading layout (siblings: terms, privacy, refund, unsubscribe) =====
+    Two-column document: a sticky table-of-contents rail on the left, a narrow
+    readable prose column on the right. Centred under the standard container.
+    Informed by Mobbin web refs: Google Terms (sticky left TOC), TikTok ToS
+    (numbered left index), Unsplash Privacy ("What's in this policy" anchor list),
+    YouTube ToS (top index block). Greyscale only, tokens only. */
+ .eos-legal{padding:0 0 var(--s-8)}
+ .eos-legal__layout{
+  max-width:var(--container-standard);
+  margin:0 auto;
+  padding:var(--s-6) var(--s-4) 0;
+  display:grid;
+  grid-template-columns:220px minmax(0,1fr);
+  gap:var(--s-7);
+  align-items:start;
+ }
+ /* Table of contents rail */
+ .eos-legal__toc{
+  position:sticky;
+  top:calc(var(--header-height) + var(--s-4));
+  align-self:start;
+ }
+ .eos-legal__toc-label{
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:var(--track-caption);
+  text-transform:uppercase;
+  color:var(--ink-muted);
+  margin-bottom:var(--s-3);
+  padding-bottom:var(--s-2);
+  border-bottom:1px solid var(--rule);
+ }
+ .eos-legal__toc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
+ .eos-legal__toc li{counter-increment:toc;margin:0}
+ .eos-legal__toc a{
+  display:flex;
+  gap:var(--s-2);
+  font-family:var(--font-sans);
+  font-size:13px;
+  line-height:1.4;
+  color:var(--ink-muted);
+  text-decoration:none;
+  padding:7px 0;
+  border-bottom:1px solid transparent;
+  transition:color var(--motion-fast) var(--ease-hover);
+ }
+ .eos-legal__toc a::before{
+  content:counter(toc,decimal-leading-zero);
+  font-family:var(--font-mono);
+  font-size:11px;
+  color:var(--ink-muted);
+  flex:0 0 auto;
+  padding-top:1px;
+ }
+ .eos-legal__toc a:hover{color:var(--ink-primary)}
+ .eos-legal__toc--plain ol{counter-reset:none}
+ .eos-legal__toc--plain li{counter-increment:none}
+ .eos-legal__toc--plain a::before{content:none}
+ /* Reading column */
+ .eos-legal__wrap{max-width:var(--container-reading);margin:0;padding:0}
+ .eos-legal__wrap p,.eos-legal__wrap li{font-family:var(--font-serif);font-size:17px;line-height:1.72;color:var(--ink-soft);margin-bottom:var(--s-3)}
+ .eos-legal__lede{font-size:19px;line-height:1.6;color:var(--ink-soft)}
+ .eos-legal__wrap h2{font-family:var(--font-display);font-size:26px;line-height:1.2;color:var(--ink-primary);margin:var(--s-6) 0 var(--s-3);scroll-margin-top:calc(var(--header-height) + var(--s-4))}
+ .eos-legal__wrap h2:first-child{margin-top:0}
+ .eos-legal__wrap h3{font-family:var(--font-sans);font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-muted);margin:var(--s-4) 0 var(--s-2)}
+ .eos-legal__wrap ul,.eos-legal__wrap ol{padding-left:22px;margin-bottom:var(--s-3)}
+ .eos-legal__wrap a{color:var(--ink-primary);text-decoration:underline;text-decoration-color:var(--rule);text-underline-offset:3px}
+ .eos-legal__wrap a:hover{text-decoration-color:var(--ink-primary)}
+ .eos-legal__wrap strong{color:var(--ink-primary);font-weight:600}
+ .eos-legal__callout{background:var(--surface-raised);border:1px solid var(--rule);border-left:3px solid var(--ink-primary);border-radius:var(--radius-card);padding:var(--s-4) var(--s-4);margin:var(--s-4) 0}
+ .eos-legal__callout p{margin-bottom:var(--s-3)}
+ .eos-legal__callout p:last-child{margin-bottom:0}
+ .eos-legal__contact{margin-top:var(--s-6);padding-top:var(--s-4);border-top:1px solid var(--rule);font-family:var(--font-sans);font-size:14px;color:var(--ink-muted)}
+ .eos-legal__contact a{color:var(--ink-soft)}
+ .eos-legal__form{margin-top:var(--s-5);display:flex;flex-direction:column;gap:var(--s-2);max-width:460px}
+ .eos-legal__form label{font-family:var(--font-sans);font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft)}
+ .eos-legal__form input[type=email]{font-family:var(--font-sans);font-size:16px;padding:14px 16px;border:1px solid var(--rule);border-radius:var(--radius-button);background:var(--surface-raised);color:var(--ink-primary)}
+ .eos-legal__form input[type=email]:focus{outline:2px solid var(--ink-primary);outline-offset:2px}
+ .eos-legal__form button{font-family:var(--font-sans);font-size:15px;font-weight:600;letter-spacing:0.02em;padding:14px 20px;background:var(--ink-primary);color:var(--surface-base);border:none;border-radius:var(--radius-button);cursor:pointer;transition:background var(--motion-base) var(--ease-hover)}
+ .eos-legal__form button:hover{background:var(--ink-soft)}
+ .eos-legal__confirmed{background:var(--surface-raised);border:1px solid var(--rule);border-radius:var(--radius-card);padding:var(--s-4);margin-top:var(--s-5);font-family:var(--font-sans);font-size:15px;color:var(--ink-primary);line-height:1.6;display:none}
+ .eos-legal__fallback{margin-top:var(--s-5);padding-top:var(--s-4);border-top:1px solid var(--rule);font-family:var(--font-sans);font-size:14px;color:var(--ink-muted)}
+ @media (max-width:860px){
+  .eos-legal__layout{grid-template-columns:1fr;gap:var(--s-5);padding-top:var(--s-5)}
+  .eos-legal__toc{position:static;border:1px solid var(--rule);border-radius:var(--radius-card);padding:var(--s-4);background:var(--surface-raised)}
+  .eos-legal__toc-label{margin-bottom:var(--s-2)}
+  .eos-legal__wrap{max-width:none}
+ }
 </style>
 </head>
 <body>
-
-<div class="masthead">
- <div class="wrap">
-  <div class="masthead-inner">
-   <a class="masthead-brand" href="/" aria-label="ExternalOS home">
-    <span class="mark-wrap" aria-hidden="true">
-     <svg viewBox="6 4 28 28" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="20,4 34,18 20,32 6,18" fill="#DBC8F0"/>
-      <polygon points="20,8.6 31.7,20.3 20,32 8.3,20.3" fill="#BEA0E0"/>
-      <polygon points="20,13.2 29.4,22.6 20,32 10.6,22.6" fill="#9F72D0"/>
-      <polygon points="20,17.8 27.1,24.9 20,32 12.9,24.9" fill="#8248BF"/>
-      <polygon points="20,22.4 24.8,27.2 20,32 15.2,27.2" fill="#6525AB"/>
-      <polygon points="20,27 22.5,29.5 20,32 17.5,29.5" fill="#4A1290"/>
-     </svg>
-    </span>
-    <span class="wordmark">External<span>OS</span></span>
+<header class="eos-header" data-eos-header role="banner">
+ <div class="eos-header__inner">
+  <a class="eos-header__brand" href="./index.html" aria-label="ExternalOS home">
+   <svg class="eos-header__brand-mark eos-logo-mark" viewBox="0 0 40 40" aria-hidden="true">
+    <polygon points="20,4 34,18 20,32 6,18"/><polygon points="20,8.6 31.7,20.3 20,32 8.3,20.3"/><polygon points="20,13.2 29.4,22.6 20,32 10.6,22.6"/><polygon points="20,17.8 27.1,24.9 20,32 12.9,24.9"/><polygon points="20,22.4 24.8,27.2 20,32 15.2,27.2"/><polygon points="20,27 22.5,29.5 20,32 17.5,29.5"/>
+   </svg>
+   <span class="eos-header__brand-wordmark">ExternalOS</span>
+  </a>
+  <nav class="eos-header__nav" aria-label="Main navigation">
+   <div class="eos-nav-item" data-eos-dropdown>
+    <button class="eos-nav-trigger" type="button" aria-expanded="false" aria-haspopup="true">Packs
+     <svg class="eos-nav-trigger__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="eos-nav-menu" role="menu">
+     <a class="eos-nav-menu__link" role="menuitem" href="./uk-tax-calculator.html"><span class="eos-nav-menu__name">Sole Trader Tax Workspace</span><span class="eos-nav-menu__meta">&pound;19</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./creative-contracts.html"><span class="eos-nav-menu__name">Creative Contracts Pack</span><span class="eos-nav-menu__meta">&pound;39</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./uk-employment-law.html"><span class="eos-nav-menu__name">UK Employment Law Kit</span><span class="eos-nav-menu__meta">&pound;49</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./uk-landlord-compliance.html"><span class="eos-nav-menu__name">UK Landlord Legal Pack</span><span class="eos-nav-menu__meta">&pound;39</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./aml-kyc-docs.html"><span class="eos-nav-menu__name">AML and KYC Document Pack</span><span class="eos-nav-menu__meta">&pound;59</span></a>
+     <a class="eos-nav-menu__link eos-nav-menu__link--all" role="menuitem" href="./tools.html"><span class="eos-nav-menu__name">See all five packs</span></a>
+    </div>
+   </div>
+   <div class="eos-nav-item" data-eos-dropdown>
+    <button class="eos-nav-trigger" type="button" aria-expanded="false" aria-haspopup="true">Free tools
+     <svg class="eos-nav-trigger__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="eos-nav-menu" role="menu">
+     <a class="eos-nav-menu__link" role="menuitem" href="./ir35-checker.html"><span class="eos-nav-menu__name">IR35 Status Checker</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./mtd-clock.html"><span class="eos-nav-menu__name">MTD Penalty Clock</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./employer-costs.html"><span class="eos-nav-menu__name">Employer Costs Calculator</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./landlord-compliance-check.html"><span class="eos-nav-menu__name">Landlord Compliance Check</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./compliance-calendar.html"><span class="eos-nav-menu__name">Compliance Calendar</span></a>
+     <a class="eos-nav-menu__link eos-nav-menu__link--all" role="menuitem" href="./tools.html#free-tools"><span class="eos-nav-menu__name">All free tools</span></a>
+    </div>
+   </div>
+   <div class="eos-nav-item" data-eos-dropdown>
+    <button class="eos-nav-trigger" type="button" aria-expanded="false" aria-haspopup="true">MTD
+     <svg class="eos-nav-trigger__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="eos-nav-menu" role="menu">
+     <a class="eos-nav-menu__link" role="menuitem" href="./mtd.html"><span class="eos-nav-menu__name">Making Tax Digital, explained</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./mtd-spreadsheet.html"><span class="eos-nav-menu__name">The MTD Spreadsheet</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./mtd-kit.html"><span class="eos-nav-menu__name">MTD for ITSA Survival Kit</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./mtd-jargon.html"><span class="eos-nav-menu__name">MTD Jargon Decoder</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./mtd-clock.html"><span class="eos-nav-menu__name">MTD Penalty Clock</span></a>
+    </div>
+   </div>
+  </nav>
+  <div class="eos-header__util">
+   <button class="eos-header__theme" data-eos-theme-toggle type="button" aria-label="Toggle theme">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+   </button>
+   <a class="eos-header__cart" href="./cart.html" data-eos-cart data-count="0" aria-label="View cart">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.6 12.3a2 2 0 0 0 2 1.7h8.8a2 2 0 0 0 2-1.7L22 7H6"/><circle cx="10" cy="21" r="1.3"/><circle cx="18" cy="21" r="1.3"/></svg>
+    <span class="eos-header__cart-count">0</span>
    </a>
-   <nav class="masthead-nav" aria-label="Main navigation">
-    <span data-skills-nav></span>
-    <span data-free-tools-nav></span>
-    <a href="/#products">Bundles</a>
-    <a class="btn-nav" href="/#products">Get the bundle &pound;79</a>
-   </nav>
+   <a class="eos-button eos-button--primary eos-button--small" href="./tools.html" data-magnetic>Browse packs</a>
+  </div>
+  <button class="eos-header__hamburger" data-eos-drawer-open type="button" aria-label="Open menu" aria-controls="eos-drawer" aria-expanded="false">
+   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+ </div>
+</header>
+<div class="eos-drawer" id="eos-drawer" data-eos-drawer role="dialog" aria-modal="true" aria-label="Site navigation">
+ <div class="eos-drawer__backdrop" data-eos-drawer-close></div>
+ <div class="eos-drawer__panel">
+  <button class="eos-drawer__close" data-eos-drawer-close type="button" aria-label="Close menu">
+   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <nav class="eos-drawer__nav" aria-label="Mobile navigation">
+   <span class="eos-drawer__group">The five packs</span>
+   <a href="./uk-tax-calculator.html">Sole Trader Tax Workspace</a>
+   <a href="./creative-contracts.html">Creative Contracts Pack</a>
+   <a href="./uk-employment-law.html">UK Employment Law Kit</a>
+   <a href="./uk-landlord-compliance.html">UK Landlord Legal Pack</a>
+   <a href="./aml-kyc-docs.html">AML and KYC Document Pack</a>
+   <span class="eos-drawer__group">Free tools</span>
+   <a href="./ir35-checker.html">IR35 Status Checker</a>
+   <a href="./mtd-clock.html">MTD Penalty Clock</a>
+   <a href="./employer-costs.html">Employer Costs Calculator</a>
+   <a href="./landlord-compliance-check.html">Landlord Compliance Check</a>
+   <a href="./compliance-calendar.html">Compliance Calendar</a>
+   <span class="eos-drawer__group">More</span>
+   <a href="./tools.html">Full catalogue</a>
+   <a href="./mtd.html">Making Tax Digital</a>
+   <a href="./quiz.html">Find my pack</a>
+   <a href="./cart.html">Cart</a>
+  </nav>
+  <div class="eos-drawer__footer">
+   <a class="eos-button eos-button--primary" href="./tools.html">Browse the packs</a>
   </div>
  </div>
 </div>
+<section class="eos-hero2 eos-hero2--compact" data-section-type="statement" data-eos-hero>
+ <div class="eos-hero2__rail eos-hero2__rail--left" aria-hidden="true">
+  <svg viewBox="0 0 40 40" preserveAspectRatio="xMidYMid meet"><polygon points="20,6 34,20 20,34 6,20"/><polygon points="20,10.6 31.7,22.3 20,34 8.3,22.3"/><polygon points="20,15.2 29.4,24.6 20,34 10.6,24.6"/><polygon points="20,19.8 27.1,26.9 20,34 12.9,26.9"/><polygon points="20,24.4 24.8,29.2 20,34 15.2,29.2"/><polygon points="20,29 22.5,31.5 20,34 17.5,31.5"/></svg>
+ </div>
+ <div class="eos-hero2__rail eos-hero2__rail--right" aria-hidden="true">
+  <svg viewBox="0 0 40 40" preserveAspectRatio="xMidYMid meet"><polygon points="20,6 34,20 20,34 6,20"/><polygon points="20,10.6 31.7,22.3 20,34 8.3,22.3"/><polygon points="20,15.2 29.4,24.6 20,34 10.6,24.6"/><polygon points="20,19.8 27.1,26.9 20,34 12.9,26.9"/><polygon points="20,24.4 24.8,29.2 20,34 15.2,29.2"/><polygon points="20,29 22.5,31.5 20,34 17.5,31.5"/></svg>
+ </div>
+ <div class="eos-hero2__inner">
+  <p class="eos-hero2__dateline">
+   <span class="eos-hero2__dateline-rule"></span>
+   <span>Legal</span>
+   <span class="eos-hero2__dateline-dot">&middot;</span>
+   <span>ExternalOS</span>
+   <span class="eos-hero2__dateline-dot">&middot;</span>
+   <span>2026/27</span>
+   <span class="eos-hero2__dateline-rule"></span>
+  </p>
+  <h1 class="eos-hero2__statement" data-eos-hero-statement>Privacy policy</h1>
+  <div class="eos-hero2__creed"><p class="eos-hero2__creed-line">Last updated 3 June 2026. UK GDPR and Data Protection Act 2018.</p></div>
+ </div>
+</section>
+<section class="eos-section eos-legal" data-section-type="default">
+ <div class="eos-legal__layout">
+  <aside class="eos-legal__toc eos-legal__toc--plain" aria-label="On this page">
+   <p class="eos-legal__toc-label">On this page</p>
+   <ol>
+    <li><a href="#who-we-are">Who we are</a></li>
+    <li><a href="#what-we-collect">What we collect</a></li>
+    <li><a href="#cookies">Cookies</a></li>
+    <li><a href="#lawful-basis">Lawful basis</a></li>
+    <li><a href="#sharing">Who we share data with</a></li>
+    <li><a href="#retention">How long we keep it</a></li>
+    <li><a href="#your-rights">Your rights</a></li>
+    <li><a href="#complaints">Complaints</a></li>
+    <li><a href="#policy-changes">Changes to this policy</a></li>
+   </ol>
+  </aside>
+  <div class="eos-legal__wrap">
+<p class="eos-legal__lede">This is a short, plain-English version of how ExternalOS handles your data. If anything here is unclear, email <a href="mailto:hello@externalos.com">hello@externalos.com</a> and a human will reply.</p>
 
-<main class="legal-wrap">
- <div class="legal-eyebrow">Legal</div>
- <h1>Privacy Policy</h1>
- <p class="legal-meta">Last updated 18 April 2026. UK GDPR and Data Protection Act 2018 compliant.</p>
+ <h2 id="who-we-are">Who we are</h2>
+ <p>ExternalOS is a UK sole trader based in Leeds, England, operating the website at <strong>externalos.com</strong> and selling digital files through <strong>Payhip</strong> (payhip.com/ExternalOS). Contact: <a href="mailto:hello@externalos.com">hello@externalos.com</a>.</p>
 
- <p>This is a short, plain-English version of how ExternalOS handles your data. If anything here is unclear, email <a href="mailto:hello@externalos.com">hello@externalos.com</a> and a human will reply.</p>
-
- <h2>Who we are</h2>
- <p>ExternalOS is a UK sole trader based in Leeds, England, operating the website at <strong>externalos.com</strong> and selling digital files via <strong>externalos.gumroad.com</strong>. Contact: <a href="mailto:hello@externalos.com">hello@externalos.com</a>.</p>
-
- <h2>What we collect</h2>
- <h3>Newsletter signup</h3>
- <p>If you give us your email for the newsletter, we store your email address and the date you signed up. That is it. No name, no address, no phone.</p>
-
+ <h2 id="what-we-collect">What we collect</h2>
+ <h3>Mailing list</h3>
+ <p>If you give us your email for a mailing list, we store your email address and the date you signed up. That's it. No name, no address, no phone.</p>
  <h3>Purchases</h3>
- <p>When you buy a file, the transaction happens on Gumroad. Gumroad collects payment details, delivery email, and billing country for VAT. We do not see or store your card details. We receive your email and order reference from Gumroad so we can send updates when legislation changes.</p>
-
- <h3>IR35 checker</h3>
- <p>The free IR35 checker runs entirely in your browser. Your answers never leave your device. We do not log, store, or transmit your responses.</p>
-
+ <p>When you buy a file, the transaction happens on Payhip. Payhip collects payment details, delivery email and billing country for VAT, and acts as the merchant of record. We don't see or store your card details. We receive your email and order reference from Payhip so we can send updates when legislation changes.</p>
+ <h3>Free tools</h3>
+ <p>The free tools (the IR35 checker, the employer costs calculator, the landlord compliance check and the rest) run entirely in your browser. Your answers never leave your device. We don't log, store or transmit your responses.</p>
  <h3>Analytics</h3>
  <p>The site currently runs no analytics, no tracking pixels, no behavioural cookies. If that changes, this page will change first.</p>
+ <h2 id="cookies">Cookies</h2>
+ <p>ExternalOS sets no cookies of its own. The Payhip checkout may set its own cookies when you buy, governed by Payhip's policy. Fonts are self-hosted, so no third-party font service is contacted.</p>
 
- <h3>Essential cookies</h3>
- <p>None are set by ExternalOS. Google Fonts and Gumroad checkout may set their own, governed by their policies.</p>
-
- <h2>Why we can hold your data (lawful basis)</h2>
+ <h2 id="lawful-basis">Why we can hold your data (lawful basis)</h2>
  <ul>
-  <li><strong>Consent</strong>, for newsletter signup. You opted in, you can opt out at any time.</li>
-  <li><strong>Contract</strong>, for purchases. We need your email to deliver the file and lifetime updates you paid for.</li>
+  <li><strong>Consent</strong>, for mailing list signup. You opted in, you can opt out at any time.</li>
+  <li><strong>Contract</strong>, for purchases. We need your email to deliver the file and the updates you paid for.</li>
   <li><strong>Legitimate interest</strong>, for responding to support emails and keeping basic order records for accounting.</li>
  </ul>
 
- <h2>Who we share data with</h2>
+ <h2 id="sharing">Who we share data with</h2>
  <ul>
-  <li><strong>Gumroad</strong>, payment and delivery (US, privacy-shield successor frameworks apply).</li>
-  <li><strong>Formspree</strong>, form submission relay for the newsletter signup (US).</li>
-  <li><strong>Zoho Mail</strong>, inbound email hosting (Netherlands/India).</li>
+  <li><strong>Payhip</strong>, payment, delivery and merchant of record (UK and EU VAT handling).</li>
+  <li><strong>Formspree</strong>, form submission relay for the unsubscribe form (US).</li>
+  <li><strong>Zoho Mail</strong>, inbound and outbound email hosting (Netherlands and India).</li>
   <li><strong>GitHub Pages</strong>, static site hosting (US).</li>
  </ul>
- <p>We do not sell your data. We do not share it with advertisers. We do not build profiles or use automated decision-making.</p>
+ <p>We don't sell your data. We don't share it with advertisers. We don't build profiles or use automated decision-making.</p>
 
- <h2>How long we keep it</h2>
- <p>Newsletter emails are kept until you unsubscribe. Order records are kept for six years, the HMRC minimum for self-assessment records. Support emails are kept for two years and then deleted.</p>
+ <h2 id="retention">How long we keep it</h2>
+ <p>Mailing list emails are kept until you unsubscribe. Order records are kept for six years, the HMRC minimum for self-assessment records. Support emails are kept for two years and then deleted.</p>
 
- <h2>Your rights</h2>
- <p>Under UK GDPR you can ask us to:</p>
- <ul>
-  <li>Show you what data we hold about you.</li>
-  <li>Correct it if wrong.</li>
-  <li>Delete it (right to erasure).</li>
-  <li>Export it in a portable format.</li>
-  <li>Stop using it for a specific purpose.</li>
- </ul>
- <p>Email <a href="mailto:hello@externalos.com">hello@externalos.com</a> with the request. We will respond within 30 days, usually much sooner.</p>
+ <h2 id="your-rights">Your rights</h2>
+ <p>Under UK GDPR you can ask us to show you what data we hold, correct it, delete it (right to erasure), export it in a portable format, or stop using it for a specific purpose. Email <a href="mailto:hello@externalos.com">hello@externalos.com</a> with the request. We'll respond within 30 days, usually much sooner.</p>
 
- <h2>Complaints</h2>
+ <h2 id="complaints">Complaints</h2>
  <p>If you think we have mishandled your data, you can complain to the UK Information Commissioner's Office at <a href="https://ico.org.uk" target="_blank" rel="noopener">ico.org.uk</a> or on 0303 123 1113.</p>
 
- <h2>Changes to this policy</h2>
- <p>When we change this page, the "Last updated" date at the top changes too. Material changes will be announced in the newsletter.</p>
-</main>
-
-<footer class="footer">
- <div class="wrap">
-  <div class="footer-top">
-   <div class="footer-brand">
-    <div class="brand">
-     <span class="mark-svg" aria-hidden="true" style="display:inline-flex;width:28px;height:28px;align-items:center;justify-content:center;">
-      <svg viewBox="6 4 28 28" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
-       <polygon points="20,4 34,18 20,32 6,18" fill="#DBC8F0"/>
-       <polygon points="20,8.6 31.7,20.3 20,32 8.3,20.3" fill="#BEA0E0"/>
-       <polygon points="20,13.2 29.4,22.6 20,32 10.6,22.6" fill="#9F72D0"/>
-       <polygon points="20,17.8 27.1,24.9 20,32 12.9,24.9" fill="#8248BF"/>
-       <polygon points="20,22.4 24.8,27.2 20,32 15.2,27.2" fill="#6525AB"/>
-       <polygon points="20,27 22.5,29.5 20,32 17.5,29.5" fill="#4A1290"/>
-      </svg>
-     </span>
-     <span class="wordmark">ExternalOS</span>
-    </div>
-    <p>The work, already done. UK tax, IR35, MTD, employment law, tenancy. Built in Leeds. Files you keep.</p>
-    <p class="footer-refund">14-day refund, no questions asked.</p>
-   </div>
-   <div>
-    <h5>Products</h5>
-    <ul>
-     <li><a href="https://externalos.gumroad.com" target="_blank" rel="noopener">UK Freelancer OS</a></li>
-     <li><a href="https://externalos.gumroad.com/l/aavttu" target="_blank" rel="noopener">Freelancer Toolkit</a></li>
-     <li><a href="https://externalos.gumroad.com/l/fxlgeq" target="_blank" rel="noopener">Employer Compliance</a></li>
-     <li><a href="https://externalos.gumroad.com/l/landlord31may" target="_blank" rel="noopener">31 May Landlord Kit</a></li>
-     <li><a href="https://externalos.gumroad.com/l/iuffuj" target="_blank" rel="noopener">Landlord Legal Pack</a></li>
-     <li><a href="https://externalos.gumroad.com/l/vrmevr" target="_blank" rel="noopener">Full UK Suite</a></li>
-    </ul>
-   </div>
-   <div>
-    <h5>Free Tools</h5>
-    <ul>
-     <li><a href="./ir35-checker.html">IR35 Checker</a></li>
-     <li><a href="./compliance-calendar.html">Compliance Calendar</a></li>
-     <li><a href="./employer-costs.html">Employer Costs Calculator</a></li>
-     <li><a href="./landlord-compliance-check.html">Landlord Compliance Check</a></li>
-    </ul>
-    <h5 style="margin-top: 22px;">Legal</h5>
-    <ul>
-     <li><a href="/privacy.html">Privacy</a></li>
-     <li><a href="/refund-policy.html">Refund policy</a></li>
-    </ul>
-   </div>
-   <div>
-    <h5>Connect</h5>
-    <ul>
-     <li><a href="https://github.com/externalOS" target="_blank" rel="noopener">GitHub</a></li>
-     <li><a href="https://twitter.com/ExternalOS_" target="_blank" rel="noopener">X / Twitter</a></li>
-     <li><a href="https://instagram.com/externalos" target="_blank" rel="noopener">Instagram</a></li>
-     <li><a href="mailto:hello@externalos.com">Email</a></li>
-    </ul>
-   </div>
-  </div>
-  <div class="footer-bottom">
-   <div>ExternalOS 2026 <span class="full-stop" aria-hidden="true"></span> Leeds, UK <span class="full-stop" aria-hidden="true"></span> <a href="mailto:hello@externalos.com">hello@externalos.com</a></div>
-   <div>Sole trader, not VAT registered <span class="full-stop" aria-hidden="true"></span> Lifetime licence <span class="full-stop" aria-hidden="true"></span> Files you keep <span class="full-stop" aria-hidden="true"></span> <a href="./terms.html">Terms</a> <span class="full-stop" aria-hidden="true"></span> <a href="./privacy.html">Privacy</a> <span class="full-stop" aria-hidden="true"></span> <a href="./refund-policy.html">Refunds</a></div>
-  </div>
-  <div class="footer-strap" style="margin-top:14px;padding-top:14px;border-top:1px solid var(--warm-cream);font-size:11px;color:var(--warm-mid);text-align:center;letter-spacing:0;line-height:1.5;">Informational tool, not tax or legal advice. Consult a qualified adviser for decisions affecting your tax, legal, or compliance position.
+ <h2 id="policy-changes">Changes to this policy</h2>
+ <p>When we change this page, the "last updated" date in the header changes too.</p>
   </div>
  </div>
+</section>
+<footer class="eos-footer" role="contentinfo">
+ <div class="eos-footer__inner">
+  <div class="eos-footer__sitemap">
+   <div class="eos-footer__col">
+    <h5>The packs</h5>
+    <ul>
+     <li><a href="./uk-tax-calculator.html">Sole Trader Tax Workspace</a></li>
+     <li><a href="./creative-contracts.html">Creative Contracts Pack</a></li>
+     <li><a href="./uk-employment-law.html">UK Employment Law Kit</a></li>
+     <li><a href="./uk-landlord-compliance.html">UK Landlord Legal Pack</a></li>
+     <li><a href="./aml-kyc-docs.html">AML and KYC Document Pack</a></li>
+    </ul>
+   </div>
+   <div class="eos-footer__col">
+    <h5>Free tools</h5>
+    <ul>
+     <li><a href="./ir35-checker.html">IR35 status checker</a></li>
+     <li><a href="./compliance-calendar.html">Compliance calendar</a></li>
+     <li><a href="./employer-costs.html">Employer costs</a></li>
+     <li><a href="./landlord-compliance-check.html">Landlord compliance check</a></li>
+     <li><a href="./mtd-clock.html">MTD penalty clock</a></li>
+    </ul>
+   </div>
+   <div class="eos-footer__col">
+    <h5>More</h5>
+    <ul>
+     <li><a href="./tools.html">Full catalogue</a></li>
+     <li><a href="./mtd.html">Making Tax Digital</a></li>
+     <li><a href="./quiz.html">Find my pack</a></li>
+     <li><a href="mailto:hello@externalos.com">Contact</a></li>
+    </ul>
+   </div>
+   <div class="eos-footer__col">
+    <h5>Company</h5>
+    <ul>
+     <li><a href="./cart.html">Cart</a></li>
+     <li><a href="./terms.html">Terms</a></li>
+     <li><a href="./privacy.html">Privacy</a></li>
+     <li><a href="./refund-policy.html">Refund policy</a></li>
+     <li><a href="./unsubscribe.html">Unsubscribe</a></li>
+    </ul>
+   </div>
+  </div>
+  <div class="eos-footer__colophon">
+   <p>Set in Fraunces, Newsreader and IBM Plex. Built in 2026. Informational tools, not tax or legal advice.</p>
+  </div>
+ </div>
+ <div class="eos-footer__legalbar" aria-label="Legal and compliance">
+  <span class="eos-footer__legalbar-brand">ExternalOS &middot; 2026</span>
+  <span class="eos-footer__legalbar-sep" aria-hidden="true">&middot;</span>
+  <a href="./privacy.html">Privacy policy</a>
+  <span class="eos-footer__legalbar-sep" aria-hidden="true">&middot;</span>
+  <a href="./terms.html">Terms</a>
+  <span class="eos-footer__legalbar-sep" aria-hidden="true">&middot;</span>
+  <a href="./refund-policy.html">Refund policy</a>
+  <span class="eos-footer__legalbar-sep" aria-hidden="true">&middot;</span>
+  <a href="./privacy.html#cookies">Cookies</a>
+  <span class="eos-footer__legalbar-sep" aria-hidden="true">&middot;</span>
+  <span class="eos-footer__legalbar-status">All systems running</span>
+ </div>
 </footer>
-
-<script src="./skills-nav.js?v=136" defer></script>
-<script src="./free-tools-nav.js?v=3" defer></script>
+<script src="./_eos-ui.js?v=249g" defer></script>
 </body>
 </html>

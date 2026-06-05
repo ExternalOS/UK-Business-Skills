@@ -1,0 +1,146 @@
+/* ============================================================
+   ExternalOS design tokens
+   Locked at second-meaning-workshop-2026-05-13 (Q3 colour,
+   Q4 type, Q5 spacing, Q9 motion). No additions, no improv.
+   ============================================================ */
+
+:root {
+  /* S240 greyscale pivot: cream + HMRC-green stripped from the home
+     page palette. Cohort accents (amber/plum/teal/indigo/crimson) stay
+     scoped per-product in _components.css so each pack is the only
+     colour event when it appears. Surface tones are warm-grey, not
+     flat white/black, so the page reads as intentional editorial
+     greyscale rather than blank. */
+  --surface-base: #F2F2F2;
+  --surface-raised: #FAFAFA;
+  --ink-primary: #0F0F0F;
+  --ink-soft: #383838;
+  --ink-muted: #6A6A6A;
+  --rule: #C5C5C5;
+
+  /* Cohort accent palette retained for per-product surfaces, NOT used
+     as the page accent any more. The home page is greyscale. */
+  /* S242: --accent-hmrc retired to ink. The HMRC green is banned from
+     the site (cohort colours are the only accents). The variable name
+     is kept so the ~33 historic references stay valid, but it now
+     resolves to ink so no green renders anywhere. Subheadings and
+     section furniture therefore read monochrome; per-pack cohort hexes
+     (--cover-accent etc.) carry all the colour. */
+  --accent-butter: #E6B547;
+  --accent-hmrc: var(--ink-primary);
+  --accent-heritage: #B26339;
+  --accent-penalty: #9B2E2E;
+
+  /* Default page accent = ink. Removes the green from the home. */
+  --accent: var(--ink-primary);
+
+  /* Type families (IBM Plex family, locked S209 v5; S240 hero pivot:
+     display swapped from Fraunces to IBM Plex Serif so the hero,
+     kicker and body all sit in the same type family). Fraunces and
+     Newsreader are still installed as fallbacks for any page that
+     wants them. */
+  --font-serif: 'IBM Plex Serif', Georgia, 'Times New Roman', serif;
+  --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SF Mono', Menlo, monospace;
+  --font-display: 'IBM Plex Serif', 'Fraunces', Georgia, serif;
+
+  /* Q4 type scale (S221: display + h1 pushed larger for contrast -
+     the dramatic scale jump is the "modern, not boring" lever) */
+  --type-display: clamp(40px, 5.4vw, 74px);
+  --type-h1: clamp(40px, 5.2vw, 60px);
+  --type-h2: clamp(30px, 4vw, 44px);
+  --type-h3: 22px;
+  --type-body: 17px;
+  --type-caption: 13px;
+  --type-button: 15px;
+
+  --leading-display: 1.0;
+  --leading-h1: 1.05;
+  --leading-h2: 1.1;
+  --leading-h3: 1.25;
+  --leading-body: 1.55;
+
+  --track-display: -0.02em;
+  --track-h1: -0.015em;
+  --track-h2: -0.01em;
+  --track-h3: 0;
+  --track-body: 0.015em;
+  --track-caption: 0.05em;
+  --track-button: 0.08em;
+  --track-eyebrow: 0.18em;
+
+  /* Q5 spacing scale (8px base) */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 16px;
+  --s-4: 24px;
+  --s-5: 32px;
+  --s-6: 48px;
+  --s-7: 64px;
+  --s-8: 96px;
+  --s-9: 128px;
+
+  /* Q5 container widths */
+  --container-reading: 640px;
+  --container-standard: 960px;
+  --container-wide: 1180px;
+
+  /* Header geometry */
+  --header-height: 64px;
+  --header-height-mobile: 56px;
+
+  /* Q9 motion */
+  --ease-hover: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-fast: 150ms;
+  --motion-base: 200ms;
+  --motion-drawer: 250ms;
+
+  /* Slight rounding (workshop allows up to 2px on buttons; pulled to 3px for non-button surfaces) */
+  --radius-button: 3px;
+  --radius-card: 2px;
+
+  /* Logo + mark-rail 6-step gradient (greyscale ramp, light surface).
+     Paper-grey at the outer step, ink-black at the inner step, so the
+     layered diamond reads as architectural depth without colour. */
+  --step-1: #BFBFBF;
+  --step-2: #999999;
+  --step-3: #777777;
+  --step-4: #555555;
+  --step-5: #2E2E2E;
+  --step-6: #0F0F0F;
+}
+
+html[data-theme="dark"] {
+  --surface-base: #0F0F0F;
+  --surface-raised: #1A1A1A;
+  --ink-primary: #F2F2F2;
+  /* Point 4: dark-mode body/muted ink lifted for legibility. The old
+     soft #C5C5C5 and muted #8A8A8A read too dark on #0F0F0F. */
+  --ink-soft: #D6D6D6;
+  --ink-muted: #A8A8A8;
+  --rule: #2A2A2A;
+
+  --accent-butter: #F7C95B;
+  --accent-hmrc: var(--ink-primary);
+  --accent-heritage: #D58A65;
+  --accent-penalty: #D26464;
+
+  --accent: var(--ink-primary);
+
+  /* Greyscale ramp inverted for dark surface */
+  --step-1: #2A2A2A;
+  --step-2: #4A4A4A;
+  --step-3: #6A6A6A;
+  --step-4: #8A8A8A;
+  --step-5: #BFBFBF;
+  --step-6: #F2F2F2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0ms;
+    --motion-base: 0ms;
+    --motion-drawer: 0ms;
+  }
+}

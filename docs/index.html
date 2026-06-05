@@ -3,35 +3,33 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ExternalOS: The UK business work, already done</title>
-<meta name="description" content="UK business tools as files you keep, plus a live UK Compliance Tracker updated monthly. Tax, IR35, MTD, employment law, tenancy. Built on 2025/26 HMRC rates and real case law. 19 tools in 5 packs, pay once. Compliance Tracker £59 lifetime." />
-<meta name="keywords" content="ExternalOS, UK freelancer toolkit, IR35 checker, employer compliance, landlord legal pack, UK tax calculator, MTD, Notion template, UK business tools" />
+<title>ExternalOS. The boring admin, done.</title>
+<meta name="description" content="Five UK business admin document packs, paid once and yours to keep. Sole trader tax, creative contracts, employment law, landlord legal, AML and KYC. Files you download, not subscriptions you rent." />
 <meta name="author" content="ExternalOS" />
 <meta name="robots" content="index, follow" />
 <link rel="canonical" href="https://externalos.com/" />
 
-<!-- Open Graph -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="ExternalOS: The UK business work, already done" />
-<meta property="og:description" content="UK business tools as files you keep. 19 tools in 5 packs, plus a live UK Compliance Tracker refreshed every Friday. Tax, IR35, MTD, employment, tenancy." />
+<meta property="og:title" content="ExternalOS. The boring admin, done." />
+<meta property="og:description" content="Five UK business admin document packs, paid once and yours to keep. Files you download, not subscriptions you rent." />
 <meta property="og:url" content="https://externalos.com/" />
 <meta property="og:site_name" content="ExternalOS" />
 <meta property="og:locale" content="en_GB" />
 <meta property="og:image" content="https://externalos.com/og-image.png" />
 
-<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@ExternalOS_" />
-<meta name="twitter:title" content="ExternalOS: The UK business work, already done" />
-<meta name="twitter:description" content="UK business tools as files you keep. 19 tools in 5 packs, plus a live UK Compliance Tracker refreshed every Friday. Tax, IR35, MTD, employment, tenancy." />
+<meta name="twitter:title" content="ExternalOS. The boring admin, done." />
+<meta name="twitter:description" content="Five UK business admin document packs, paid once and yours to keep. Files you download, not subscriptions you rent." />
 <meta name="twitter:image" content="https://externalos.com/og-image.png" />
 
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="preload" href="./assets/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="./assets/fonts/newsreader-700-italic.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="./assets/fonts/plexserif-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="./assets/fonts/plexsans-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="./_design-tokens.css?v=249g" />
+<link rel="stylesheet" href="./_components.css?v=249g" />
 
-<!-- Schema.org Organisation markup -->
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -39,10 +37,9 @@
  "name": "ExternalOS",
  "url": "https://externalos.com/",
  "logo": "https://externalos.com/og-image.png",
- "description": "ExternalOS builds UK business tools for freelancers, employers and landlords. Files you download once and keep, covering tax, IR35, MTD, compliance, employment law and tenancy. Built on 2025/26 HMRC rates and real case law.",
+ "description": "ExternalOS makes UK business admin document packs: sole trader tax, creative contracts, employment law, landlord legal, and AML and KYC. Files you download once and keep. No subscriptions.",
  "foundingDate": "2026",
  "sameAs": [
-  "https://externalos.gumroad.com",
   "https://github.com/externalOS",
   "https://twitter.com/ExternalOS_",
   "https://instagram.com/externalos"
@@ -56,1335 +53,620 @@
  }
 }
 </script>
-
-
-<style>
- /* RESET AND TOKENS */
- *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- :root {
-  --eos-p1: #DBC8F0; --eos-p2: #BEA0E0; --eos-p3: #9F72D0;
-  --eos-p4: #8248BF; --eos-p5: #6525AB; --eos-p6: #4A1290;
-  --purple-hero: #4B1196; --purple-deep: #3A0D72; --purple-rich: #5C1AB3;
-  --purple-mid: #6B28C2; --purple-light: #8B4DD1; --purple-pale: #C4A8E8;
-  --purple-ghost: #EDE5F9; --purple-tint: #F5F0FC;
-  --warm-white: #FAF8F3; --warm-off: #F4F1EC; --warm-cream: #EDE8DF;
-  --warm-sand: #D6CFBF; --warm-mid: #6E665C; --warm-dark: #3D3830;
-  --ink: #1A1A1A; --body: #5C5650;
-  --shadow-sm: 0 1px 3px rgba(26,26,26,0.08), 0 1px 2px rgba(26,26,26,0.04);
-  --shadow-md: 0 4px 16px rgba(26,26,26,0.10), 0 2px 6px rgba(26,26,26,0.06);
-  --shadow-lg: 0 12px 40px rgba(26,26,26,0.14), 0 4px 16px rgba(26,26,26,0.08);
-  --shadow-purple: 0 8px 32px rgba(75,17,150,0.22), 0 2px 8px rgba(75,17,150,0.12);
-  --shadow-purple-lg: 0 16px 48px rgba(75,17,150,0.28), 0 4px 16px rgba(75,17,150,0.16);
-  --radius-sm: 6px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
-  --type-h1: clamp(44px, 6vw, 80px); --type-h2: clamp(32px, 4vw, 53px);
-  --type-h3: clamp(22px, 2.4vw, 32px); --type-lede: 18px; --type-body: 16px;
- }
- html { font-size: 16px; -webkit-font-smoothing: antialiased; }
- body { background: var(--warm-white); color: var(--ink); font-family: 'Inter', -apple-system, system-ui, sans-serif; font-size: var(--type-body); line-height: 1.6; overflow-x: hidden; }
- body::before { content: ''; position: fixed; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--eos-p6), var(--eos-p4), var(--eos-p2)); z-index: 100; }
- h1, h2 { font-family: 'Libre Baskerville', Georgia, serif; font-weight: 700; letter-spacing: -0.02em; }
- h3 { font-family: 'Syne', sans-serif; font-weight: 600; letter-spacing: -0.01em; }
- h4 { font-family: 'Syne', sans-serif; font-weight: 600; }
- a { color: var(--purple-hero); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
- a:hover { color: var(--purple-deep); }
- a:focus-visible { outline: 2px solid var(--purple-mid); outline-offset: 3px; border-radius: 3px; }
- .wrap { max-width: 1100px; margin: 0 auto; padding: 0 40px; position: relative; z-index: 2; }
- @media (max-width: 720px) { .wrap { padding: 0 22px; } }
- .eyebrow { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--purple-mid); display: inline-flex; align-items: center; gap: 10px; margin-bottom: 22px; }
- .eyebrow::before { content: ''; display: inline-block; width: 20px; height: 2px; background: var(--purple-mid); }
- .hero-copy .eyebrow::before, .how-inner .eyebrow::before, .fyp-head .eyebrow::before, .file-preview-head .eyebrow::before { display: none; }
- .fyp-head .eyebrow, .file-preview-head .eyebrow { gap: 0; justify-content: center; }
- .hero-copy .eyebrow, .how-inner .eyebrow { gap: 0; justify-content: center; }
- .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-
- /* MASTHEAD */
- .masthead { padding: 32px 0 0; position: relative; z-index: 10; }
- .masthead-inner { display: flex; justify-content: space-between; align-items: center; }
- .masthead-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
- .masthead-brand .mark-wrap { width: 24px; height: 28px; display: flex; align-items: center; justify-content: center; position: relative; top: -1px; }
- .masthead-brand .wordmark { font-family: 'Libre Baskerville', serif; font-weight: 700; font-size: 17px; letter-spacing: -0.02em; color: var(--ink); }
- .masthead-brand .wordmark span { color: var(--warm-sand); }
- .masthead-nav { display: flex; align-items: center; gap: 28px; }
- .masthead-nav a { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: var(--warm-mid); text-decoration: none; transition: color 0.15s ease; }
- .masthead-nav a:hover { color: var(--purple-hero); }
- .masthead-nav .btn-nav { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 13px; padding: 9px 20px; border-radius: 100px; background: var(--purple-hero); color: #fff; text-decoration: none; transition: background 0.2s ease; }
- .masthead-nav .btn-nav:hover { background: var(--purple-deep); color: #fff; }
- @media (max-width: 640px) { .masthead-nav { gap: 18px; } .masthead-nav > a { display: none; } .masthead-nav .skills-dropdown, .masthead-nav .free-tools-dropdown { display: inline-flex; } .masthead-nav .skills-dropdown-trigger, .masthead-nav .free-tools-dropdown-trigger { font-size: 13px; } .masthead-brand .wordmark { font-size: 15px; } .masthead { padding: 20px 0 0; } }
-
- /* ---------------------------------------------------------------
-    MARK RAILS - static, hero-only decor. No scroll animation.
-    Rails live inside the hero so they scroll away naturally
-    as the user moves down. Diamond cluster centered on the H1.
-    --------------------------------------------------------------- */
- .mark-rail {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 50vw;
-  z-index: 110;
-  pointer-events: none;
-  overflow: visible;
- }
- .mark-rail-left { left: 0; }
- .mark-rail-right { right: 0; }
- .mark-rail svg {
-  position: absolute;
-  top: 0;
-  /* Scales with viewport; never wider than the gap between hero text and screen edge.
-     Hero text caps at 700px wide; we keep an ~80px breathing buffer on each side. */
-  width: clamp(60px, calc((100vw - 780px) / 2), 200px);
-  overflow: visible;
- }
- .mark-rail-left svg { left: 0; }
- .mark-rail-right svg { right: 0; }
- /* Solid at screen edge, fading toward content center */
- .mark-rail-left {
-  -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 55%, transparent 100%);
-  mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 55%, transparent 100%);
- }
- .mark-rail-right {
-  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 55%, transparent 100%);
-  mask-image: linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 55%, transparent 100%);
- }
- @media (max-width: 900px) {
-  .mark-rail { display: none; }
- }
-
-
- /* HERO */
- .hero { padding: 80px 0 88px; position: relative; }
- .hero-inner { max-width: 700px; margin: 0 auto; text-align: center; }
- .hero-copy { position: relative; z-index: 2; }
- .hero h1 { font-size: var(--type-h1); line-height: 1.02; color: var(--ink); }
- .hero h1 .accent { color: var(--purple-hero); font-style: italic; }
- .hero p.lede { font-size: var(--type-lede); color: var(--warm-mid); max-width: 580px; margin: 26px auto 0; line-height: 1.75; }
- .hero p.lede strong { color: var(--warm-dark); font-weight: 500; }
- .hero .divider { width: 120px; height: 3px; background: linear-gradient(90deg, var(--purple-hero), var(--purple-mid), var(--purple-pale)); border-radius: 2px; margin: 0 auto 26px; }
- .hero .cta-row { margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; justify-content: center; }
- .hero .proof-line { margin-top: 20px; font-size: 13px; color: var(--warm-mid); display: flex; align-items: center; gap: 20px; flex-wrap: wrap; justify-content: center; }
- .hero .proof-line .proof-item { display: inline-flex; align-items: center; gap: 6px; }
- .hero .proof-line .proof-dot { width: 6px; height: 6px; border-radius: 0; background: var(--purple-mid); transform: rotate(45deg); }
- @media (max-width: 480px) { .hero { padding: 56px 0 64px; } .hero h1 { font-size: 38px; line-height: 1.06; } .hero p.lede { font-size: 16px; } }
-
- /* HERO TRUST (in-hero, under CTAs and proof-line) */
- .hero-trust { margin: 32px auto 0; max-width: 560px; padding: 0; background: transparent; border: 0; display: flex; flex-direction: column; gap: 6px; align-items: center; text-align: center; }
- .hero-trust-item { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--warm-mid); line-height: 1.6; letter-spacing: 0.01em; }
- .hero-trust-item .ht-text { display: inline; }
- .hero-trust-item strong { font-family: 'Inter', sans-serif; font-weight: 600; color: var(--warm-dark); letter-spacing: 0; }
- .hero-trust-item a { color: var(--warm-dark); text-decoration: underline; text-decoration-color: var(--warm-cream); text-underline-offset: 3px; }
- .hero-trust-item a:hover { text-decoration-color: var(--purple-hero); color: var(--purple-hero); }
- .hero-trust-item .ht-dot { display: none; }
- @media (max-width: 720px) { .hero-trust { margin-top: 26px; max-width: 420px; } .hero-trust-item { font-size: 11.5px; } }
-
- /* BUTTONS */
- .btn { display: inline-flex; align-items: center; gap: 10px; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 0.02em; text-decoration: none; padding: 14px 24px; border-radius: 100px; border: 1px solid transparent; cursor: pointer; transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease; }
- .btn-primary { background: var(--purple-hero); color: #ffffff; box-shadow: var(--shadow-purple); }
- .btn-primary:hover { background: var(--purple-deep); color: #ffffff; box-shadow: var(--shadow-purple-lg); transform: translateY(1px); }
- .btn-secondary { background: var(--warm-white); color: var(--purple-hero); border-color: var(--warm-cream); }
- .btn-secondary:hover { background: var(--purple-tint); color: var(--purple-deep); border-color: var(--purple-pale); }
- .btn-lg { font-size: 16px; padding: 18px 36px; }
- .btn svg { width: 14px; height: 14px; }
-
- /* HOW IT WORKS */
- .how { padding: 64px 0 56px; border-top: 1px solid var(--warm-cream); position: relative; }
- .how-inner { max-width: 720px; margin: 0 auto; text-align: center; }
- .how h2 { font-size: var(--type-h2); line-height: 1.08; color: var(--ink); margin-bottom: 20px; }
- .how h2 em { font-style: italic; color: var(--purple-hero); }
- .how-inner > p { font-size: var(--type-lede); line-height: 1.75; color: var(--warm-dark); max-width: 600px; margin: 0 auto 14px; }
- .how-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; max-width: 960px; margin-left: auto; margin-right: auto; }
- .how-step { position: relative; padding: 32px 24px 28px; background: var(--warm-white); border: 1px solid var(--warm-cream); border-radius: var(--radius-lg); text-align: center; }
- .how-step-num { font-family: 'Libre Baskerville', serif; font-size: 44px; font-weight: 700; color: var(--eos-p3); line-height: 1; margin-bottom: 14px; }
- .how-step h4 { font-size: 15px; letter-spacing: 0.02em; color: var(--purple-hero); margin-bottom: 10px; }
- .how-step p { font-size: 14px; line-height: 1.65; color: var(--warm-mid); }
- @media (max-width: 720px) { .how-steps { grid-template-columns: 1fr; max-width: 520px; gap: 16px; } }
-
- /* FEATURED PRODUCT */
- .featured-product { padding: 48px 0 0; position: relative; }
- .featured-card { background: linear-gradient(135deg, #1A0A38 0%, #0F0523 60%, #1A0A38 100%); border-radius: var(--radius-xl); padding: 52px 48px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: center; position: relative; overflow: hidden; transform-style: preserve-3d; z-index: 5; }
- .featured-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--eos-p1), var(--eos-p3), var(--eos-p5)); }
- .featured-card .glow { position: absolute; inset: 0; border-radius: inherit; opacity: 0; transition: opacity 0.4s ease; background: radial-gradient(600px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(101, 37, 171, 0.12), transparent 60%); pointer-events: none; z-index: 1; }
- .featured-card:hover .glow { opacity: 1; }
- .featured-copy { position: relative; z-index: 2; }
- .featured-copy .product-label { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--eos-p2); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
- .featured-copy .product-label-dot { width: 7px; height: 7px; border-radius: 0; background: var(--eos-p2); transform: rotate(45deg); }
- .featured-copy h3 { font-family: 'Libre Baskerville', serif; font-size: clamp(28px, 3.5vw, 40px); font-weight: 700; color: #fff; line-height: 1.1; margin-bottom: 16px; }
- .featured-copy .product-type-badge { display: inline-block; font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: var(--eos-p5); color: #fff; padding: 4px 12px; border-radius: 100px; margin-bottom: 18px; }
- .featured-copy p { font-size: 15px; line-height: 1.7; color: var(--purple-pale); max-width: 420px; margin-bottom: 28px; }
- .featured-pricing { display: flex; align-items: baseline; gap: 16px; margin-bottom: 24px; }
- .featured-pricing .price { font-family: 'Libre Baskerville', serif; font-size: 48px; font-weight: 700; color: #fff; line-height: 1; }
- .featured-pricing .price-meta { font-size: 13px; color: var(--purple-pale); line-height: 1.5; }
- .featured-copy .buy-links a { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; color: var(--eos-p1); text-decoration: none; display: inline-flex; align-items: center; gap: 5px; transition: color 0.15s ease; }
- .featured-copy .buy-links a:hover { color: #fff; }
- .featured-copy .buy-links .sep { width: 1px; height: 14px; background: var(--eos-p5); }
- .featured-visual { position: relative; z-index: 2; }
- .featured-skill-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
- .featured-skill-list li { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500; color: var(--purple-pale); padding: 10px 14px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-sm); display: flex; align-items: center; gap: 8px; }
- .featured-skill-list li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--eos-p3); flex-shrink: 0; }
- @media (max-width: 800px) { .featured-card { grid-template-columns: 1fr; padding: 40px 28px; gap: 32px; } }
- @media (max-width: 480px) { .featured-card { padding: 32px 22px; } .featured-skill-list { grid-template-columns: 1fr; } }
-
- /* PRODUCTS GRID */
- .products { padding: 32px 0 64px; position: relative; }
- .products-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid var(--warm-cream); }
- .products-head h2 { font-size: var(--type-h3); color: var(--ink); max-width: 520px; }
- .products-head h2 em { font-style: italic; color: var(--purple-hero); }
- .products-head p { font-size: 13px; color: var(--warm-mid); text-align: right; line-height: 1.6; }
- @media (max-width: 720px) { .products-head { flex-direction: column; align-items: center; text-align: center; gap: 12px; } .products-head h2 { max-width: 100%; text-wrap: balance; } .products-head p { text-align: center; } }
- .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
- @media (max-width: 560px) { .product-grid { grid-template-columns: 1fr; } }
- .product-card { background: var(--warm-white); border: 1px solid var(--warm-cream); border-radius: var(--radius-lg); padding: 28px 24px 24px; display: flex; flex-direction: column; position: relative; overflow: hidden; transform-style: preserve-3d; will-change: transform; z-index: 5; }
- .product-card-featured { padding-top: 48px; }
- .product-card-badge { position: absolute; top: 14px; right: 14px; font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; background: var(--purple-hero); color: #fff; padding: 5px 14px; border-radius: 100px; box-shadow: 0 2px 8px rgba(75,17,150,0.2); z-index: 6; }
- @media (max-width: 720px) { .product-card-featured { padding-top: 56px; } .product-card-badge { top: 14px; right: 14px; } }
- .product-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--eos-p5), var(--eos-p3)); }
- .product-label { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--purple-mid); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
- .product-label-dot { width: 7px; height: 7px; border-radius: 0; background: var(--eos-p6); transform: rotate(45deg); }
- .product-name { font-family: 'Libre Baskerville', serif; font-size: 21px; font-weight: 700; line-height: 1.15; color: var(--ink); margin-bottom: 12px; }
- .product-type-badge { display: inline-block; font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: var(--purple-ghost); color: var(--purple-hero); padding: 4px 10px; border-radius: 100px; margin-bottom: 14px; }
- .product-desc { font-size: 13px; line-height: 1.65; color: var(--warm-mid); margin-bottom: 24px; flex: 1 1 auto; }
- .product-price { font-family: 'Libre Baskerville', serif; font-size: 32px; font-weight: 700; color: var(--ink); line-height: 1; margin-bottom: 4px; }
- .product-price small { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--warm-mid); margin-left: 6px; }
- .buy-links { margin-top: 18px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
- .buy-links a { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; color: var(--purple-hero); text-decoration: none; display: inline-flex; align-items: center; gap: 5px; transition: color 0.15s ease; }
- .buy-links a:hover { color: var(--purple-deep); }
- .buy-links a svg { width: 12px; height: 12px; }
- .buy-links .sep { width: 1px; height: 14px; background: var(--warm-sand); }
-
- /* LAUNCH PRICING */
- .launch-pricing { padding: 24px 0 40px; text-align: center; }
- .launch-pricing-inner { display: inline-flex; align-items: center; gap: 10px; font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--purple-hero); background: var(--purple-ghost); padding: 10px 22px; border-radius: 100px; border: 1px solid var(--purple-pale); }
- .launch-pricing-inner span.dot { width: 6px; height: 6px; background: var(--purple-hero); border-radius: 0; transform: rotate(45deg); display: inline-block; }
- .launch-pricing-inner strong { font-family: 'Syne', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink); font-size: 12px; }
- @media (max-width: 560px) { .launch-pricing-inner { font-size: 11px; padding: 8px 16px; letter-spacing: 0.1em; } }
-
- /* WHY NOT CHATGPT */
- .why-not { padding: 72px 0 56px; border-top: 1px solid var(--warm-cream); }
- .why-not-head { text-align: center; max-width: 620px; margin: 0 auto 44px; }
- .why-not-head h2 { font-size: var(--type-h2); line-height: 1.08; color: var(--ink); margin-bottom: 14px; }
- .why-not-head h2 em { font-style: italic; color: var(--purple-hero); }
- .why-not-head p { font-size: 15px; color: var(--warm-mid); line-height: 1.7; }
- .why-not-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 960px; margin: 0 auto; }
- .why-not-col { padding: 32px 28px; border-radius: var(--radius-lg); position: relative; overflow: hidden; }
- .why-not-col.col-chatgpt { background: var(--warm-off); border: 1px solid var(--warm-sand); }
- .why-not-col.col-eos { background: var(--warm-white); border: 1px solid var(--purple-pale); }
- .why-not-col.col-eos::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--eos-p3), var(--eos-p5)); }
- .why-not-col h3 { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 22px; }
- .why-not-col.col-chatgpt h3 { color: var(--warm-mid); }
- .why-not-col.col-eos h3 { color: var(--purple-hero); }
- .why-not-col ul { list-style: none; }
- .why-not-col li { font-size: 14px; line-height: 1.6; padding: 10px 0 10px 24px; border-bottom: 1px solid var(--warm-cream); color: var(--warm-dark); position: relative; }
- .why-not-col li:last-child { border-bottom: none; }
- .why-not-col.col-chatgpt li::before { content: ''; position: absolute; left: 2px; top: 16px; width: 10px; height: 2px; background: var(--warm-mid); }
- .why-not-col.col-eos li::before { content: ''; position: absolute; left: 0; top: 14px; width: 8px; height: 8px; background: var(--purple-hero); transform: rotate(45deg); }
- .wn-count { display: inline-block; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 0.06em; padding: 2px 7px; border-radius: 4px; margin-right: 6px; vertical-align: 1px; }
- .col-chatgpt .wn-count { background: rgba(26,26,26,0.06); color: var(--warm-mid); }
- .col-eos .wn-count { background: var(--purple-tint); color: var(--purple-hero); }
- @media (max-width: 720px) { .why-not-grid { grid-template-columns: 1fr; } }
-
- /* FOUNDER NOTE */
- .founder { padding: 72px 0 40px; border-top: 1px solid var(--warm-cream); }
- .founder-inner { max-width: 720px; margin: 0 auto; text-align: center; }
- .founder-eyebrow { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--purple-mid); margin-bottom: 18px; }
- .founder-inner h3 { font-family: 'Libre Baskerville', serif; font-size: clamp(24px, 2.6vw, 32px); line-height: 1.25; color: var(--ink); margin-bottom: 22px; font-weight: 400; font-style: italic; }
- .founder-inner p { font-size: 15px; line-height: 1.8; color: var(--warm-dark); margin-bottom: 14px; text-align: left; }
- .founder-pull { margin: 28px auto; padding: 18px 22px; background: var(--purple-tint); border-left: 3px solid var(--purple-hero); border-radius: 0 var(--radius-md) var(--radius-md) 0; font-family: 'Libre Baskerville', serif; font-style: italic; font-size: 17px; line-height: 1.5; color: var(--ink); max-width: 580px; text-align: left; }
- .founder-sig { margin-top: 22px; font-family: 'Libre Baskerville', serif; font-style: italic; font-size: 15px; color: var(--purple-hero); }
- .founder-sig a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
- .founder-sig a:hover { color: var(--purple-deep); }
-
- /* FILE PREVIEW */
- .file-preview { padding: 24px 0 56px; }
- .file-preview-head { text-align: center; max-width: 620px; margin: 0 auto 32px; }
- .file-preview-head h2 { font-size: var(--type-h3); line-height: 1.1; color: var(--ink); margin-bottom: 12px; }
- .file-preview-head h2 em { font-style: italic; color: var(--purple-hero); }
- .file-preview-head p { font-size: 14px; line-height: 1.7; color: var(--warm-dark); }
- .file-preview-window { max-width: 880px; margin: 0 auto; border: 1px solid var(--warm-cream); border-radius: var(--radius-lg); overflow: hidden; background: var(--warm-white); box-shadow: var(--shadow-md); }
- .file-preview-bar { background: var(--warm-off); border-bottom: 1px solid var(--warm-cream); padding: 12px 18px; display: flex; align-items: center; gap: 12px; font-family: 'Inter', sans-serif; font-size: 12px; color: var(--warm-mid); }
- .file-preview-bar-dots { display: inline-flex; gap: 6px; }
- .file-preview-bar-dot { width: 11px; height: 11px; border-radius: 50%; background: var(--warm-sand); }
- .file-preview-bar-name { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--warm-dark); font-weight: 500; }
- .file-preview-bar-meta { margin-left: auto; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--warm-mid); }
- .file-preview-body { padding: 28px 32px; font-family: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace; font-size: 13px; line-height: 1.75; color: var(--warm-dark); background: var(--warm-white); }
- .file-preview-body .fp-h1 { font-family: 'Libre Baskerville', serif; font-size: 22px; font-weight: 700; color: var(--ink); margin-bottom: 8px; letter-spacing: -0.01em; }
- .file-preview-body .fp-meta { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--warm-mid); margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--warm-cream); }
- .file-preview-body .fp-h2 { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--purple-hero); margin: 18px 0 10px; }
- .file-preview-body .fp-h2:first-of-type { margin-top: 0; }
- .file-preview-body .fp-h3 { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; color: var(--ink); margin: 12px 0 6px; }
- .file-preview-body p { font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.75; color: var(--warm-dark); margin-bottom: 8px; }
- .file-preview-body code { background: var(--purple-tint); color: var(--purple-deep); padding: 1px 6px; border-radius: 4px; font-size: 12.5px; }
- .file-preview-body ul { list-style: none; padding-left: 0; margin-bottom: 10px; }
- .file-preview-body ul li { padding-left: 18px; position: relative; margin-bottom: 4px; font-size: 13px; }
- .file-preview-body ul li::before { content: '\2192'; position: absolute; left: 0; color: var(--purple-hero); }
- .file-preview-body .fp-cite { background: var(--purple-tint); border-left: 3px solid var(--purple-hero); padding: 10px 14px; margin: 12px 0; font-family: 'Inter', sans-serif; font-size: 12.5px; color: var(--warm-dark); border-radius: 0 6px 6px 0; }
- .file-preview-body .fp-cite strong { color: var(--purple-hero); font-weight: 700; }
- .file-preview-foot { padding: 16px 22px; background: var(--warm-off); border-top: 1px solid var(--warm-cream); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-family: 'Inter', sans-serif; font-size: 12px; color: var(--warm-mid); }
- .file-preview-foot a { color: var(--purple-hero); }
- @media (max-width: 720px) { .file-preview-body { padding: 22px 22px; font-size: 12.5px; } .file-preview-bar-meta { display: none; } }
- @media (max-width: 480px) { .file-preview-window { max-width: 100%; } .file-preview-body { padding: 18px 16px; font-size: 12px; overflow-x: auto; -webkit-overflow-scrolling: touch; } .file-preview-body .fp-h1 { font-size: 18px; } .file-preview-body pre, .file-preview-body code { white-space: pre-wrap; word-break: break-word; } }
-
- /* FAQ */
- .faq { padding: 72px 0 56px; border-top: 1px solid var(--warm-cream); }
- .faq-head { text-align: center; margin-bottom: 40px; }
- .faq-head h2 { font-size: var(--type-h2); color: var(--ink); line-height: 1.08; }
- .faq-head h2 em { font-style: italic; color: var(--purple-hero); }
- .faq-list { max-width: 720px; margin: 0 auto; }
- .faq-item { border-bottom: 1px solid var(--warm-cream); padding: 4px 0; transition: background 0.25s ease; border-radius: var(--radius-md); }
- .faq-item:last-child { border-bottom: none; }
- .faq-item:hover { background: var(--purple-tint); }
- .faq-item summary { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 16px; color: var(--ink); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 18px; transition: color 0.2s ease; }
- .faq-item summary::-webkit-details-marker { display: none; }
- .faq-chevron { width: 18px; height: 18px; flex-shrink: 0; color: var(--purple-hero); transition: transform 0.35s cubic-bezier(0.32, 0.72, 0.24, 1); transform-origin: center; }
- .faq-item[open] .faq-chevron { transform: rotate(180deg); }
- .faq-item summary:hover { color: var(--purple-hero); }
- .faq-body { overflow: hidden; height: 0; opacity: 0; transition: height 0.4s cubic-bezier(0.32, 0.72, 0.24, 1), opacity 0.3s ease; }
- .faq-item[open] .faq-body { opacity: 1; }
- .faq-body-inner { padding: 0 18px 22px; }
- .faq-item p { font-size: 14px; line-height: 1.75; color: var(--warm-dark); padding-right: 36px; margin: 0; }
- @media (prefers-reduced-motion: reduce) {
-  .faq-body { transition: none; }
-  .faq-chevron { transition: none; }
- }
-
- /* FREE TOOL - gift box */
- .free-tool { padding: 72px 0 56px; border-top: 1px solid var(--warm-cream); position: relative; }
- .free-tool-gift { max-width: 760px; margin: 0 auto; background: var(--purple-tint); border: 1px solid var(--purple-pale); border-radius: var(--radius-xl); padding: 48px 48px 44px; position: relative; overflow: hidden; text-align: center; box-shadow: var(--shadow-md); z-index: 5; }
- .free-tool-gift::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--purple-deep), var(--purple-mid), var(--eos-p3)); }
- .free-tool-gift .eyebrow { display: inline-flex; justify-content: center; margin-bottom: 20px; gap: 0; color: var(--purple-mid); }
- .free-tool-gift .eyebrow::before, .free-tool .eyebrow::before { display: none; }
- .free-tool-gift h2 { font-family: 'Libre Baskerville', serif; font-weight: 700; letter-spacing: -0.02em; font-size: var(--type-h2); color: var(--ink); margin-bottom: 18px; line-height: 1.1; }
- .free-tool-gift > p { font-size: 15px; line-height: 1.75; color: var(--warm-dark); max-width: 540px; margin: 0 auto 26px; }
- .free-tool-gift .gift-price { font-family: 'Libre Baskerville', serif; font-size: 64px; font-weight: 700; color: var(--purple-hero); line-height: 1; margin-bottom: 22px; letter-spacing: -0.03em; }
- .free-tool-gift .btn-primary { background: var(--purple-hero); color: #fff; font-size: 16px; padding: 18px 40px; box-shadow: var(--shadow-purple); }
- .free-tool-gift .btn-primary:hover { background: var(--purple-deep); color: #fff; }
- @media (max-width: 720px) { .free-tool-gift { padding: 36px 28px 32px; } .free-tool-gift .gift-price { font-size: 52px; } }
-
- /* EMAIL CAPTURE */
- .email-capture { padding: 80px 0 72px; position: relative; overflow: hidden; border-top: 1px solid var(--warm-cream); }
- .email-capture .wrap { position: relative; z-index: 2; }
- .email-inner { max-width: 560px; text-align: center; margin: 0 auto; }
- .email-capture h2 { font-size: clamp(28px, 3.5vw, 42px); color: var(--ink); margin-bottom: 18px; line-height: 1.08; }
- .email-capture h2 em { font-style: italic; color: var(--purple-hero); }
- .email-capture .email-desc { font-size: var(--type-lede); line-height: 1.75; color: var(--warm-mid); max-width: 460px; margin: 0 auto 40px; }
- .email-reveal-btn { display: inline-flex; align-items: center; gap: 10px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 17px; letter-spacing: 0.02em; padding: 18px 40px; border-radius: 100px; border: none; background: var(--purple-hero); color: #fff; cursor: pointer; transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease; box-shadow: 0 8px 32px rgba(75,17,150,0.2); }
- .email-reveal-btn:hover { background: var(--purple-deep); transform: translateY(1px); box-shadow: 0 12px 40px rgba(75,17,150,0.3); }
- .email-reveal-btn svg { width: 16px; height: 16px; }
- .email-reveal-btn.hidden { display: none; }
- .email-step2 { max-width: 440px; margin: 0 auto; }
- .email-step2.hidden { display: none; }
- .email-step2-nudge { font-family: 'Libre Baskerville', serif; font-size: 14px; font-style: italic; color: var(--purple-mid); margin-bottom: 20px; }
- .email-form { display: flex; gap: 10px; }
- .email-form input[type="email"] { flex: 1; font-family: 'Inter', sans-serif; font-size: 15px; padding: 15px 20px; border: 2px solid var(--warm-cream); border-radius: 100px; background: var(--warm-white); color: var(--ink); outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
- .email-form input[type="email"]::placeholder { color: var(--warm-mid); opacity: 0.6; }
- .email-form input[type="email"]:focus { border-color: var(--purple-mid); box-shadow: 0 0 0 4px rgba(159,114,208,0.15); }
- .email-form button { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; padding: 15px 28px; border-radius: 100px; border: none; background: var(--purple-hero); color: #fff; cursor: pointer; transition: background 0.2s ease, transform 0.15s ease; white-space: nowrap; }
- .email-form button:hover { background: var(--purple-deep); transform: translateY(1px); }
- .email-privacy { font-size: 12px; color: var(--warm-mid); margin-top: 24px; letter-spacing: 0.02em; }
- @media (max-width: 480px) { .email-capture { padding: 56px 0 48px; } .email-form { flex-direction: column; } }
-
- /* MID-PAGE NUDGE */
- .mid-nudge { padding: 36px 0 40px; border-top: 1px solid var(--warm-cream); border-bottom: 1px solid var(--warm-cream); background: var(--warm-off); }
- .mid-nudge-inner { max-width: 780px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
- .mid-nudge-copy { font-size: 15px; line-height: 1.6; color: var(--warm-dark); margin: 0; flex: 1 1 320px; }
- .mid-nudge-copy strong { color: var(--ink); }
- @media (max-width: 600px) { .mid-nudge { padding: 28px 0 28px; } .mid-nudge-inner { flex-direction: column; align-items: stretch; gap: 18px; } .mid-nudge-copy { flex: 0 0 auto; font-size: 15px; } .mid-nudge-inner .btn-secondary { width: 100%; justify-content: center; } }
-
- /* FOOTER */
- .footer { padding: 56px 0 40px; border-top: 1px solid var(--warm-cream); margin-top: 24px; }
- .footer-inner { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; align-items: flex-start; }
- .footer-brand { display: flex; flex-direction: column; gap: 14px; }
- .footer-brand-logo { display: flex; align-items: center; gap: 10px; }
- .footer-brand .mark-wrap { width: 26px; height: 30px; display: flex; align-items: center; justify-content: center; position: relative; top: -1px; }
- .footer-brand .wordmark { font-family: 'Libre Baskerville', serif; font-weight: 700; font-size: 18px; color: var(--ink); }
- .footer-brand p { font-size: 12px; color: var(--warm-mid); line-height: 1.6; max-width: 260px; }
- .footer-brand .footer-refund { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; color: var(--purple-hero); margin-top: 4px; }
- .footer h5 { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); margin-bottom: 14px; }
- .footer ul { list-style: none; }
- .footer ul li { margin-bottom: 8px; }
- .footer ul li a { font-size: 13px; color: var(--warm-mid); text-decoration: none; }
- .footer ul li a:hover { color: var(--purple-hero); }
- .footer-bottom { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--warm-cream); display: flex; justify-content: space-between; align-items: center; font-size: 11px; letter-spacing: 0.06em; color: var(--warm-mid); }
- .footer-bottom .full-stop { display: inline-block; width: 7px; height: 7px; border-radius: 0; background: var(--eos-p6); vertical-align: middle; margin: 0 6px; transform: rotate(45deg); }
- @media (max-width: 760px) { .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; } .footer-bottom { flex-direction: column; gap: 12px; text-align: center; } }
- @media (max-width: 480px) { .footer-inner { grid-template-columns: 1fr; } }
-
- /* STICKY MOBILE CTA */
- .sticky-cta { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 90; background: var(--warm-white); border-top: 1px solid var(--warm-cream); padding: 12px 22px; box-shadow: 0 -4px 24px rgba(26,26,26,0.10); transform: translateY(100%); transition: transform 0.3s ease; }
- .sticky-cta.is-visible { transform: translateY(0); }
- .sticky-cta-inner { display: flex; gap: 10px; align-items: center; justify-content: center; }
- .sticky-cta .btn { flex: 1; justify-content: center; font-size: 13px; padding: 12px 16px; }
- @media (max-width: 720px) { .sticky-cta { display: block; } body { padding-bottom: 72px; } }
-
- /* REVEAL ANIMATIONS */
- /* Reveal: visible by default; only the JS-marked .js-reveal hides for animation.
-    Prevents content from appearing blank when IntersectionObserver hasn't fired
-    (slow connections, fast scrollers, mid-page anchor landings). */
- .reveal { opacity: 1; transform: none; transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
- .js-reveal { opacity: 0; transform: translateY(32px); }
- .js-reveal.visible { opacity: 1; transform: translateY(0); }
- .reveal-stagger > .reveal:nth-child(2) { transition-delay: 0.1s; }
- .reveal-stagger > .reveal:nth-child(3) { transition-delay: 0.2s; }
- .reveal-stagger > .reveal:nth-child(4) { transition-delay: 0.3s; }
-
- @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
-
- /* SKILLS NAV DROPDOWN */
- .skills-dropdown { position: relative; display: inline-flex; align-items: center; }
- .skills-dropdown-trigger { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: var(--warm-mid); background: transparent; border: 0; cursor: pointer; padding: 0; display: inline-flex; align-items: center; gap: 6px; transition: color 0.15s ease; }
- .skills-dropdown-trigger:hover, .skills-dropdown.is-open .skills-dropdown-trigger { color: var(--purple-hero); }
- .skills-dropdown-trigger svg { transition: transform 0.15s ease; }
- .skills-dropdown.is-open .skills-dropdown-trigger svg { transform: rotate(180deg); }
- .skills-menu { position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(-6px); background: var(--warm-white); border: 1px solid var(--warm-cream); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: 24px 28px; min-width: 820px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s; z-index: 200; }
- .skills-dropdown.is-open .skills-menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
- .skills-menu::before { content: ''; position: absolute; top: -6px; left: 50%; transform: translateX(-50%) rotate(45deg); width: 10px; height: 10px; background: var(--warm-white); border-left: 1px solid var(--warm-cream); border-top: 1px solid var(--warm-cream); }
- .skills-menu-col { min-width: 0; }
- .skills-menu-title { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--purple-hero); padding-bottom: 10px; margin-bottom: 8px; border-bottom: 1px solid var(--warm-cream); }
- .skills-menu-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 2px; }
- .skills-menu-list a { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--ink); text-decoration: none; padding: 7px 10px; margin: 0 -10px; border-radius: var(--radius-sm); display: flex; align-items: center; gap: 8px; line-height: 1.4; transition: background 0.12s ease, color 0.12s ease; }
- .skills-menu-list a:hover { background: var(--purple-tint); color: var(--purple-hero); }
- .skills-menu-badge { font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: #F4EAD5; color: #8A6A1F; padding: 2px 7px; border-radius: 100px; margin-left: auto; flex-shrink: 0; }
- .skills-menu-dot { width: 8px; height: 8px; border-radius: 50%; background: #d97706; margin-left: auto; flex-shrink: 0; box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.12); }
- @media (max-width: 880px) { .skills-menu { position: fixed; top: 68px; left: 16px; right: 16px; transform: none; min-width: 0; width: auto; grid-template-columns: 1fr; gap: 18px; padding: 20px; max-height: calc(100vh - 100px); overflow-y: auto; } .skills-dropdown.is-open .skills-menu { transform: none; } .skills-menu::before { display: none; } }
-
- /* Free tools dropdown (mirrors skills-dropdown, single column with name + blurb) */
- .free-tools-dropdown { position: relative; display: inline-flex; align-items: center; }
- .free-tools-dropdown-trigger { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: var(--warm-mid); background: transparent; border: 0; cursor: pointer; padding: 0; display: inline-flex; align-items: center; gap: 6px; transition: color 0.15s ease; }
- .free-tools-dropdown-trigger:hover, .free-tools-dropdown.is-open .free-tools-dropdown-trigger { color: var(--purple-hero); }
- .free-tools-dropdown-trigger svg { transition: transform 0.15s ease; }
- .free-tools-dropdown.is-open .free-tools-dropdown-trigger svg { transform: rotate(180deg); }
- .free-tools-menu { position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(-6px); background: var(--warm-white); border: 1px solid var(--warm-cream); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: 18px 22px; min-width: 360px; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s; z-index: 200; }
- .free-tools-dropdown.is-open .free-tools-menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
- .free-tools-menu::before { content: ''; position: absolute; top: -6px; left: 50%; transform: translateX(-50%) rotate(45deg); width: 10px; height: 10px; background: var(--warm-white); border-left: 1px solid var(--warm-cream); border-top: 1px solid var(--warm-cream); }
- .free-tools-menu-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 2px; }
- .free-tools-menu-item { font-family: 'Inter', sans-serif; text-decoration: none; color: var(--ink); padding: 12px 14px; margin: 0 -6px; border-radius: var(--radius-sm); display: flex; flex-direction: column; gap: 4px; line-height: 1.4; transition: background 0.12s ease, color 0.12s ease; }
- .free-tools-menu-item:hover { background: var(--purple-tint); color: var(--purple-hero); }
- .free-tools-menu-name { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; color: inherit; letter-spacing: -0.01em; }
- .free-tools-menu-blurb { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 400; color: var(--warm-mid); }
- .free-tools-menu-foot { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--purple-hero); margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--warm-cream); text-align: center; }
- @media (max-width: 880px) { .free-tools-menu { position: fixed; top: 68px; left: 16px; right: 16px; transform: none; min-width: 0; width: auto; padding: 18px; } .free-tools-dropdown.is-open .free-tools-menu { transform: none; } .free-tools-menu::before { display: none; } }
- @media (max-width: 640px) { .masthead-nav .free-tools-dropdown { display: inline-flex; } }
-</style>
+<script>/* Boot mark plays once per browser session, first open only,
+ not on every page change. Runs before paint so repeats skip clean. */
+try{if(sessionStorage.getItem('eosBooted')){document.documentElement.classList.add('eos-boot--skip');}else{sessionStorage.setItem('eosBooted','1');}}catch(e){}</script>
 </head>
 <body>
 
-<!-- MASTHEAD -->
-<div class="masthead">
- <div class="wrap">
-  <div class="masthead-inner">
-   <a class="masthead-brand" href="./" aria-label="ExternalOS home">
-    <span class="mark-wrap" aria-hidden="true">
-     <svg viewBox="6 4 28 28" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="20,4 34,18 20,32 6,18" fill="#DBC8F0"/>
-      <polygon points="20,8.6 31.7,20.3 20,32 8.3,20.3" fill="#BEA0E0"/>
-      <polygon points="20,13.2 29.4,22.6 20,32 10.6,22.6" fill="#9F72D0"/>
-      <polygon points="20,17.8 27.1,24.9 20,32 12.9,24.9" fill="#8248BF"/>
-      <polygon points="20,22.4 24.8,27.2 20,32 15.2,27.2" fill="#6525AB"/>
-      <polygon points="20,27 22.5,29.5 20,32 17.5,29.5" fill="#4A1290"/>
-     </svg>
-    </span>
-    <span class="wordmark">External<span>OS</span></span>
-   </a>
-   <nav class="masthead-nav" aria-label="Main navigation">
-    <span data-skills-nav></span>
-    <span data-free-tools-nav></span>
-    <a href="#products">Bundles</a>
-    <a class="btn-nav" href="#products">Get the bundle &pound;79</a>
-   </nav>
-  </div>
- </div>
+<div class="eos-boot" data-eos-boot aria-hidden="true">
+ <svg class="eos-boot__mark" viewBox="0 0 40 40">
+  <polygon points="20,6 34,20 20,34 6,20"/>
+  <polygon points="20,10.6 31.7,22.3 20,34 8.3,22.3"/>
+  <polygon points="20,15.2 29.4,24.6 20,34 10.6,24.6"/>
+  <polygon points="20,19.8 27.1,26.9 20,34 12.9,26.9"/>
+  <polygon points="20,24.4 24.8,29.2 20,34 15.2,29.2"/>
+  <polygon points="20,29 22.5,31.5 20,34 17.5,31.5"/>
+ </svg>
 </div>
 
-<!-- HERO -->
-<header class="hero" id="hero" role="banner">
- <div class="mark-rail mark-rail-left" aria-hidden="true">
-  <svg viewBox="0 0 140 280" xmlns="http://www.w3.org/2000/svg">
-   <polygon points="0,0 140,140 0,280" fill="#DBC8F0"/>
-   <polygon points="0,46 117,163 0,280" fill="#BEA0E0"/>
-   <polygon points="0,92 94,186 0,280" fill="#9F72D0"/>
-   <polygon points="0,138 71,209 0,280" fill="#8248BF"/>
-   <polygon points="0,184 48,232 0,280" fill="#6525AB"/>
-   <polygon points="0,230 25,255 0,280" fill="#4A1290"/>
-  </svg>
- </div>
- <div class="mark-rail mark-rail-right" aria-hidden="true">
-  <svg viewBox="0 0 140 280" xmlns="http://www.w3.org/2000/svg">
-   <polygon points="140,0 0,140 140,280" fill="#DBC8F0"/>
-   <polygon points="140,46 23,163 140,280" fill="#BEA0E0"/>
-   <polygon points="140,92 46,186 140,280" fill="#9F72D0"/>
-   <polygon points="140,138 69,209 140,280" fill="#8248BF"/>
-   <polygon points="140,184 92,232 140,280" fill="#6525AB"/>
-   <polygon points="140,230 115,255 140,280" fill="#4A1290"/>
-  </svg>
- </div>
- <div class="wrap">
-  <div class="hero-inner">
-   <div class="hero-copy">
-    <div class="divider" aria-hidden="true"></div>
-    <span class="eyebrow">For UK sole traders, contractors, landlords, and small employers</span>
-    <h1>The UK business work <span class="accent">already done.</span></h1>
-    <p class="lede">We turn UK tax and compliance into plain-English toolkits you can run yourself. IR35, MTD, landlord, employer. <strong>Buy once. Saves days of admin.</strong></p>
-    <p class="lede" style="margin-top: 14px;">Plug each toolkit into ChatGPT, Claude, or Gemini. One paste, audit-ready output, no generic guesses.</p>
-    <div class="cta-row">
-     <a class="btn btn-primary btn-lg" href="#find-your-pack">Find your toolkit <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-     <a class="btn btn-secondary btn-lg" href="./ir35-checker.html" target="_blank" rel="noopener">Try the free IR35 checker</a>
-    </div>
-    <div class="hero-trust">
-     <span class="hero-trust-item"><span class="ht-dot" aria-hidden="true"></span><span class="ht-text"><strong>Built for HMRC, not the IRS.</strong> UK law, UK rates, UK case law. Built on 2025/26 HMRC bands.</span></span>
-     <span class="hero-trust-item"><span class="ht-dot" aria-hidden="true"></span><span class="ht-text">Free <a href="./ir35-checker.html" target="_blank" rel="noopener">IR35 checker live now</a>. Try it before you buy.</span></span>
-     <span class="hero-trust-item"><span class="ht-dot" aria-hidden="true"></span><span class="ht-text">MTD for Income Tax phase 1 starts 6 April 2026 for &gt;&pound;50k. We're already on the 2025/26 bands. Last updated 18 Apr 2026.</span></span>
-     <span class="hero-trust-item"><span class="ht-dot" aria-hidden="true"></span><span class="ht-text"><strong>14-day refund, no questions.</strong> Every file yours to keep, lifetime updates when the legislation moves.</span></span>
+
+<!-- Header (S242): full-site dropdown navigation. Every part of the
+     site is reachable: the five packs, the free tools, the broader
+     document catalogue, MTD, and the company pages. -->
+<header class="eos-header" data-eos-header role="banner">
+ <div class="eos-header__inner">
+  <a class="eos-header__brand" href="./index.html" aria-label="ExternalOS home">
+   <svg class="eos-header__brand-mark eos-logo-mark" viewBox="0 0 40 40" aria-hidden="true">
+    <polygon points="20,4 34,18 20,32 6,18"/>
+    <polygon points="20,8.6 31.7,20.3 20,32 8.3,20.3"/>
+    <polygon points="20,13.2 29.4,22.6 20,32 10.6,22.6"/>
+    <polygon points="20,17.8 27.1,24.9 20,32 12.9,24.9"/>
+    <polygon points="20,22.4 24.8,27.2 20,32 15.2,27.2"/>
+    <polygon points="20,27 22.5,29.5 20,32 17.5,29.5"/>
+   </svg>
+   <span class="eos-header__brand-wordmark">ExternalOS</span>
+  </a>
+  <nav class="eos-header__nav" aria-label="Main navigation">
+
+   <div class="eos-nav-item" data-eos-dropdown>
+    <button class="eos-nav-trigger" type="button" aria-expanded="false" aria-haspopup="true">Packs
+     <svg class="eos-nav-trigger__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="eos-nav-menu" role="menu">
+     <a class="eos-nav-menu__link" role="menuitem" href="./uk-tax-calculator.html"><span class="eos-nav-menu__name">Sole Trader Tax Workspace</span><span class="eos-nav-menu__meta">&pound;19</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./creative-contracts.html"><span class="eos-nav-menu__name">Creative Contracts Pack</span><span class="eos-nav-menu__meta">&pound;39</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./uk-employment-law.html"><span class="eos-nav-menu__name">UK Employment Law Kit</span><span class="eos-nav-menu__meta">&pound;49</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./uk-landlord-compliance.html"><span class="eos-nav-menu__name">UK Landlord Legal Pack</span><span class="eos-nav-menu__meta">&pound;39</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./aml-kyc-docs.html"><span class="eos-nav-menu__name">AML and KYC Document Pack</span><span class="eos-nav-menu__meta">&pound;59</span></a>
+     <a class="eos-nav-menu__link eos-nav-menu__link--all" role="menuitem" href="#packs"><span class="eos-nav-menu__name">See all five packs</span></a>
     </div>
    </div>
+
+   <div class="eos-nav-item" data-eos-dropdown>
+    <button class="eos-nav-trigger" type="button" aria-expanded="false" aria-haspopup="true">Free tools
+     <svg class="eos-nav-trigger__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="eos-nav-menu" role="menu">
+     <a class="eos-nav-menu__link" role="menuitem" href="./ir35-checker.html"><span class="eos-nav-menu__name">IR35 Status Checker</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./mtd-clock.html"><span class="eos-nav-menu__name">MTD Penalty Clock</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./employer-costs.html"><span class="eos-nav-menu__name">Employer Costs Calculator</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./landlord-compliance-check.html"><span class="eos-nav-menu__name">Landlord Compliance Check</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./compliance-calendar.html"><span class="eos-nav-menu__name">Compliance Calendar</span></a>
+     <a class="eos-nav-menu__link eos-nav-menu__link--all" role="menuitem" href="#free-tools"><span class="eos-nav-menu__name">All free tools</span></a>
+    </div>
+   </div>
+
+   <div class="eos-nav-item" data-eos-dropdown>
+    <button class="eos-nav-trigger" type="button" aria-expanded="false" aria-haspopup="true">MTD
+     <svg class="eos-nav-trigger__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="eos-nav-menu" role="menu">
+     <a class="eos-nav-menu__link" role="menuitem" href="./mtd.html"><span class="eos-nav-menu__name">Making Tax Digital, explained</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./mtd-spreadsheet.html"><span class="eos-nav-menu__name">The MTD Spreadsheet</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./mtd-kit.html"><span class="eos-nav-menu__name">MTD for ITSA Survival Kit</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./mtd-jargon.html"><span class="eos-nav-menu__name">MTD Jargon Decoder</span></a>
+     <a class="eos-nav-menu__link" role="menuitem" href="./mtd-clock.html"><span class="eos-nav-menu__name">MTD Penalty Clock</span></a>
+    </div>
+   </div>
+
+  </nav>
+  <div class="eos-header__util">
+   <button class="eos-header__theme" data-eos-theme-toggle type="button" aria-label="Toggle theme">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+   </button>
+   <a class="eos-header__cart" href="./cart.html" data-eos-cart data-count="0" aria-label="View cart">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.6 12.3a2 2 0 0 0 2 1.7h8.8a2 2 0 0 0 2-1.7L22 7H6"/><circle cx="10" cy="21" r="1.3"/><circle cx="18" cy="21" r="1.3"/></svg>
+    <span class="eos-header__cart-count">0</span>
+   </a>
+   <a class="eos-button eos-button--primary eos-button--small" href="#packs" data-magnetic>Browse packs</a>
   </div>
+  <button class="eos-header__hamburger" data-eos-drawer-open type="button" aria-label="Open menu" aria-controls="eos-drawer" aria-expanded="false">
+   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
  </div>
 </header>
 
-<!-- HOW IT WORKS -->
-<section class="how" id="how" aria-labelledby="how-title">
- <div class="wrap">
-  <div class="how-inner">
-   <span class="eyebrow">How it works</span>
-   <h2 id="how-title">File in. <em>Answer out.</em></h2>
-   <p>Each skill is a structured instruction set you drop into whichever chat tool you already use. Not a chatbot, not a wrapper. The 2025/26 HMRC bands, CEST criteria, and named UK case law are already inside the file. Three steps:</p>
-   <div class="how-steps reveal-stagger">
-    <div class="how-step reveal tilt-card" data-step="1">
-     <div class="how-step-num">1</div>
-     <h4>Download the skill file</h4>
-     <p>Pick the pack that matches your work. Each file covers one specific area of UK business compliance.</p>
-    </div>
-    <div class="how-step reveal tilt-card" data-step="2">
-     <div class="how-step-num">2</div>
-     <h4>Drop it into your chat tool</h4>
-     <p>Tested on ChatGPT, Claude, and Gemini. Free tiers work. No API keys, no integrations, no setup.</p>
-    </div>
-    <div class="how-step reveal tilt-card" data-step="3">
-     <div class="how-step-num">3</div>
-     <h4>Get the answer</h4>
-     <p>The skill walks you through the inputs, runs the maths against current rates, and gives you the figure your accountant or HMRC actually wants.</p>
-    </div>
-   </div>
+<div class="eos-drawer" id="eos-drawer" data-eos-drawer role="dialog" aria-modal="true" aria-label="Site navigation">
+ <div class="eos-drawer__backdrop" data-eos-drawer-close></div>
+ <div class="eos-drawer__panel">
+  <button class="eos-drawer__close" data-eos-drawer-close type="button" aria-label="Close menu">
+   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <nav class="eos-drawer__nav" aria-label="Mobile navigation">
+   <span class="eos-drawer__group">The five packs</span>
+   <a href="./uk-tax-calculator.html">Sole Trader Tax Workspace</a>
+   <a href="./creative-contracts.html">Creative Contracts Pack</a>
+   <a href="./uk-employment-law.html">UK Employment Law Kit</a>
+   <a href="./uk-landlord-compliance.html">UK Landlord Legal Pack</a>
+   <a href="./aml-kyc-docs.html">AML and KYC Document Pack</a>
+   <span class="eos-drawer__group">Free tools</span>
+   <a href="./ir35-checker.html">IR35 Status Checker</a>
+   <a href="./mtd-clock.html">MTD Penalty Clock</a>
+   <a href="./employer-costs.html">Employer Costs Calculator</a>
+   <a href="./landlord-compliance-check.html">Landlord Compliance Check</a>
+   <a href="./compliance-calendar.html">Compliance Calendar</a>
+   <span class="eos-drawer__group">More</span>
+   <a href="./tools.html">Full catalogue</a>
+   <a href="./mtd.html">Making Tax Digital</a>
+   <a href="./quiz.html">Find my pack</a>
+   <a href="./cart.html">Cart</a>
+  </nav>
+  <div class="eos-drawer__footer">
+   <a class="eos-button eos-button--primary" href="#packs">Browse the packs</a>
   </div>
- </div>
-</section>
-
-<!-- FILE PREVIEW -->
-<section class="file-preview" aria-labelledby="file-preview-title">
- <div class="wrap">
-  <div class="file-preview-head">
-   <span class="eyebrow">Sample skill file</span>
-   <h2 id="file-preview-title">This is what you actually <em>download</em>.</h2>
-   <p>Plain Markdown. Open it in any text editor. Drop it into your chat tool as context. Below: the first page of the IR35 Status Assessment skill.</p>
-  </div>
-  <div class="file-preview-window">
-   <div class="file-preview-bar">
-    <span class="file-preview-bar-dots" aria-hidden="true"><span class="file-preview-bar-dot"></span><span class="file-preview-bar-dot"></span><span class="file-preview-bar-dot"></span></span>
-    <span class="file-preview-bar-name">ir35-status-assessment.md</span>
-    <span class="file-preview-bar-meta">v2025.4 &middot; 11 pages &middot; 8.4 KB</span>
-   </div>
-   <div class="file-preview-body">
-    <div class="fp-h1">IR35 Status Assessment, UK 2025/26</div>
-    <div class="fp-meta">ExternalOS skill file &middot; Last updated 9 Apr 2026 &middot; Built against current case law</div>
-
-    <div class="fp-h2">Purpose</div>
-    <p>Determine whether a contract falls inside or outside IR35 (off-payroll working rules) under HMRC's published guidance and the leading UK case law. Output: a written status decision, a CEST comparison, and a Status Determination Statement (SDS) ready to send.</p>
-
-    <div class="fp-h2">Reference framework</div>
-    <ul>
-     <li><code>ITEPA 2003 Part 2 Chapter 8</code>, the IR35 statute</li>
-     <li>HMRC's <code>CEST</code> tool decision logic, current at April 2026</li>
-     <li>Atholl House Productions Ltd v HMRC <code>[2022] EWCA Civ 501</code></li>
-     <li>HMRC v PGMOL <code>[2024] UKSC 29</code></li>
-     <li>Kickabout Productions Ltd v HMRC <code>[2022] EWCA Civ 502</code></li>
-    </ul>
-
-    <div class="fp-h2">How the skill works</div>
-    <p>Walk the user through 14 questions covering: mutuality of obligation, right of substitution, control over work, financial risk, integration, exclusivity, intent and pay structure. Score against the three-stage Ready Mixed Concrete test as restated by the Court of Appeal in Atholl House.</p>
-
-    <div class="fp-cite">
-     <strong>Worked example:</strong> A contract showing a genuine right of substitution (substitute exercised, no veto) plus pay-per-deliverable plus genuine financial risk weighs heavily toward outside IR35, even where day-to-day control sits with the client. See PGMOL on the limits of "control" alone.
-    </div>
-
-    <div class="fp-h3">Output formats supported</div>
-    <ul>
-     <li>Plain-English status decision (1 paragraph)</li>
-     <li>Structured SDS document (HMRC-format, ready for the client)</li>
-     <li>CEST comparison table (your reasoning vs CEST output)</li>
-     <li>Risk register entry (for accountant/IFA records)</li>
-    </ul>
-   </div>
-   <div class="file-preview-foot">
-    <span>Showing page 1 of 11. Full file is included with the IR35 pack and the Full UK Suite.</span>
-    <a href="./ir35-checker.html" target="_blank" rel="noopener">See the same engine in the free IR35 checker &rsaquo;</a>
-   </div>
-  </div>
- </div>
-</section>
-
-<!-- FIND YOUR PACK ASSESSMENT -->
-<section class="find-pack" id="find-your-pack" aria-labelledby="fyp-title">
- <div class="wrap">
-  <div class="fyp-head">
-   <span class="eyebrow" style="color:var(--purple,#5b3dc9); gap:0;">Five questions, honest recommendation</span>
-   <h2 id="fyp-title">Find the pack that fits <em>your</em> setup.</h2>
-   <p>Takes about 30 seconds. We'll highlight the pack we think suits you and show you the rest. You still decide.</p>
-  </div>
-
-  <div class="fyp-shell" id="fyp-shell">
-   <div class="fyp-progress"><div class="fyp-progress-bar" id="fyp-bar" style="width:20%"></div></div>
-   <div class="fyp-step-count" id="fyp-count">Question 1 of 5</div>
-
-   <div class="fyp-q fyp-q-active" data-q="1">
-    <h3>Which hat do you wear?</h3>
-    <div class="fyp-opts">
-     <button type="button" class="fyp-opt" data-key="role" data-val="freelancer">Sole trader or freelancer</button>
-     <button type="button" class="fyp-opt" data-key="role" data-val="landlord">Landlord (one or more properties)</button>
-     <button type="button" class="fyp-opt" data-key="role" data-val="employer">Employer (I hire staff)</button>
-     <button type="button" class="fyp-opt" data-key="role" data-val="multi">Multiple of the above</button>
-    </div>
-   </div>
-
-   <div class="fyp-q" data-q="2">
-    <h3>What's pressing right now?</h3>
-    <div class="fyp-opts">
-     <button type="button" class="fyp-opt" data-key="pain" data-val="tax">Self Assessment, tax bands, or MTD</button>
-     <button type="button" class="fyp-opt" data-key="pain" data-val="ir35">IR35 status on a contract</button>
-     <button type="button" class="fyp-opt" data-key="pain" data-val="rra">Renters' Rights Act 31 May deadline</button>
-     <button type="button" class="fyp-opt" data-key="pain" data-val="hr">Hiring, contracts, or employment paperwork</button>
-     <button type="button" class="fyp-opt" data-key="pain" data-val="general">General compliance, no fire yet</button>
-    </div>
-   </div>
-
-   <div class="fyp-q" data-q="3">
-    <h3>Where do you do the thinking?</h3>
-    <p style="font-size:13px; color:var(--warm-mid,#6e665c); margin:-12px 0 16px">Every skill is plain Markdown. It works in whatever chat tool you already use. This just helps us point you at the best starting format.</p>
-    <div class="fyp-opts">
-     <button type="button" class="fyp-opt" data-key="tool" data-val="code">Terminal or CLI tool (Claude Code, Cursor, similar)</button>
-     <button type="button" class="fyp-opt" data-key="tool" data-val="app">Chat UI (Claude, ChatGPT, Gemini, web or app)</button>
-     <button type="button" class="fyp-opt" data-key="tool" data-val="notion">Notion-first, my business lives in databases</button>
-     <button type="button" class="fyp-opt" data-key="tool" data-val="docs">Just PDFs and docs, I'll read them myself</button>
-    </div>
-   </div>
-
-   <div class="fyp-q" data-q="4">
-    <h3>What would make this worth &pound;30 to &pound;80?</h3>
-    <div class="fyp-opts">
-     <button type="button" class="fyp-opt" data-key="worth" data-val="fees">Save accountant fees</button>
-     <button type="button" class="fyp-opt" data-key="worth" data-val="fine">Avoid a fine or penalty</button>
-     <button type="button" class="fyp-opt" data-key="worth" data-val="peace">Peace of mind before a deadline</button>
-     <button type="button" class="fyp-opt" data-key="worth" data-val="all">All of the above</button>
-    </div>
-   </div>
-
-   <div class="fyp-q" data-q="5">
-    <h3>Budget comfort?</h3>
-    <div class="fyp-opts">
-     <button type="button" class="fyp-opt" data-key="budget" data-val="low">Under &pound;30</button>
-     <button type="button" class="fyp-opt" data-key="budget" data-val="mid">&pound;30 to &pound;50</button>
-     <button type="button" class="fyp-opt" data-key="budget" data-val="high">&pound;50 or more if it's comprehensive</button>
-     <button type="button" class="fyp-opt" data-key="budget" data-val="any">Price isn't the blocker</button>
-    </div>
-   </div>
-
-   <div class="fyp-result" id="fyp-result" hidden>
-    <span class="eyebrow" style="color:var(--purple,#5b3dc9)">Your match</span>
-    <h3 id="fyp-result-name">Loading...</h3>
-    <p id="fyp-result-why"></p>
-    <div class="fyp-result-meta">
-     <span class="fyp-result-price" id="fyp-result-price"></span>
-     <a href="#" id="fyp-result-cta" class="btn btn-primary">Jump to this pack <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-    </div>
-    <button type="button" class="fyp-restart" id="fyp-restart">Start over</button>
-   </div>
-  </div>
- </div>
-</section>
-
-<style>
-.find-pack { padding: 80px 0 40px; background: linear-gradient(180deg, transparent 0%, rgba(91,61,201,0.04) 100%); }
-.fyp-head { text-align: center; max-width: 640px; margin: 0 auto 40px; }
-.fyp-head h2 { font-family: 'Libre Baskerville', serif; font-size: clamp(28px, 4vw, 42px); line-height: 1.15; margin: 12px 0; }
-.fyp-head h2 em { color: var(--purple, #5b3dc9); font-style: italic; }
-.fyp-head p { color: var(--warm-mid, #6e665c); font-size: 15px; }
-.fyp-shell { max-width: 720px; margin: 0 auto; background: var(--warm-white, #FAF8F3); border: 1px solid var(--warm-cream, #EDE8DF); padding: 32px; border-radius: 2px; box-shadow: 0 1px 0 rgba(60,40,10,0.02); }
-.fyp-progress { height: 3px; background: #efeae0; border-radius: 2px; overflow: hidden; margin-bottom: 6px; }
-.fyp-progress-bar { height: 100%; background: var(--purple, #5b3dc9); transition: width 0.3s ease; }
-.fyp-step-count { font-family: 'Syne', sans-serif; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm-mid, #6e665c); font-weight: 600; margin-bottom: 24px; }
-.fyp-q { display: none; }
-.fyp-q-active { display: block; animation: fyp-fade 0.3s ease; }
-@keyframes fyp-fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
-.fyp-q h3 { font-family: 'Libre Baskerville', serif; font-size: 22px; margin-bottom: 20px; line-height: 1.3; }
-.fyp-opts { display: flex; flex-direction: column; gap: 8px; }
-.fyp-opt { text-align: left; padding: 14px 18px; border: 1px solid var(--line, #e5dfd3); background: transparent; border-radius: 2px; font-family: inherit; font-size: 14px; cursor: pointer; color: inherit; transition: all 0.15s; }
-.fyp-opt:hover { border-color: var(--purple, #5b3dc9); background: rgba(91,61,201,0.04); }
-.fyp-opt:focus-visible { outline: 2px solid var(--purple, #5b3dc9); outline-offset: 2px; }
-.fyp-result { text-align: center; animation: fyp-fade 0.4s ease; }
-.fyp-result h3 { font-family: 'Libre Baskerville', serif; font-size: 32px; margin: 10px 0 14px; }
-.fyp-result p { color: var(--warm-mid, #6e665c); max-width: 540px; margin: 0 auto 24px; line-height: 1.55; }
-.fyp-result-meta { display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; }
-.fyp-result-price { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 18px; }
-.fyp-restart { margin-top: 20px; background: none; border: none; color: var(--warm-mid, #6e665c); font-family: inherit; font-size: 13px; cursor: pointer; text-decoration: underline; text-decoration-color: rgba(110,102,92,0.35); }
-.product-card-highlighted { box-shadow: 0 0 0 3px var(--purple, #5b3dc9), 0 20px 40px rgba(91,61,201,0.15); position: relative; }
-.product-card-highlighted::before { content: 'Recommended for you'; position: absolute; top: -14px; left: 20px; background: var(--purple, #5b3dc9); color: #fff; font-family: 'Syne', sans-serif; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; padding: 5px 10px; border-radius: 2px; z-index: 2; }
-.featured-card-highlighted { box-shadow: 0 0 0 3px var(--purple, #5b3dc9), 0 30px 60px rgba(91,61,201,0.2); }
-</style>
-
-<script>
-(function(){
- const answers = {};
- const qs = document.querySelectorAll('.fyp-q');
- const bar = document.getElementById('fyp-bar');
- const count = document.getElementById('fyp-count');
- const result = document.getElementById('fyp-result');
- const resultName = document.getElementById('fyp-result-name');
- const resultWhy = document.getElementById('fyp-result-why');
- const resultPrice = document.getElementById('fyp-result-price');
- const resultCta = document.getElementById('fyp-result-cta');
- const restart = document.getElementById('fyp-restart');
-
- const catalog = {
-  suite: { name: 'Full UK Business Suite', price: '£79', href: '#products', target: 'featured-card' },
-  os: { name: 'UK Freelancer OS (Notion Template)', price: '£29', href: '#product-os', target: 'product-os' },
-  toolkit: { name: 'UK Freelancer Toolkit', price: '£29', href: '#product-toolkit', target: 'product-toolkit' },
-  employer: { name: 'UK Employer Compliance Pack', price: '£39', href: '#product-employer', target: 'product-employer' },
-  rra: { name: 'Landlord 31 May Deadline Kit', price: '£29', href: '#product-rra', target: 'product-rra' },
-  landlord: { name: 'UK Landlord Legal Pack', price: '£29', href: '#product-landlord', target: 'product-landlord' }
- };
-
- function recommend(a) {
-  const s = { suite: 0, os: 0, toolkit: 0, employer: 0, rra: 0, landlord: 0 };
-  if (a.role === 'freelancer') { s.toolkit += 4; s.os += 3; }
-  else if (a.role === 'landlord') { s.landlord += 4; s.rra += 3; }
-  else if (a.role === 'employer') { s.employer += 5; }
-  else if (a.role === 'multi') { s.suite += 6; }
-
-  if (a.pain === 'tax') { s.toolkit += 3; s.os += 1; }
-  else if (a.pain === 'ir35') { s.toolkit += 4; }
-  else if (a.pain === 'rra') { s.rra += 6; }
-  else if (a.pain === 'hr') { s.employer += 4; s.suite += 1; }
-  else if (a.pain === 'general') { s.suite += 2; s.toolkit += 1; s.landlord += 1; s.employer += 1; }
-
-  if (a.tool === 'notion') { s.os += 4; }
-  else if (a.tool === 'code') { s.toolkit += 2; s.employer += 2; s.landlord += 2; s.suite += 2; }
-  else if (a.tool === 'app') { s.toolkit += 2; s.employer += 2; s.landlord += 2; s.suite += 2; }
-  else if (a.tool === 'docs') { s.rra += 2; }
-
-  if (a.worth === 'fees') { s.toolkit += 1; s.os += 1; }
-  else if (a.worth === 'fine') { s.rra += 2; s.employer += 2; }
-  else if (a.worth === 'peace') { s.suite += 1; }
-  else if (a.worth === 'all') { s.suite += 2; }
-
-  if (a.budget === 'low') { s.os += 2; s.toolkit += 1; s.rra += 1; s.landlord += 1; }
-  else if (a.budget === 'mid') { s.toolkit += 2; s.employer += 2; }
-  else if (a.budget === 'high') { s.suite += 3; }
-  else if (a.budget === 'any') { s.suite += 2; }
-
-  let top = 'toolkit', max = -1;
-  for (const k in s) { if (s[k] > max) { max = s[k]; top = k; } }
-  return top;
- }
-
- const whyCopy = {
-  suite: 'You wear multiple hats. The Suite covers tax, IR35, property, employment, HR, and trade-specific compliance in one download. At £79 it pays back the first time you avoid a fine or skip an accountant call.',
-  os: 'You live in Notion. The Freelancer OS slots into that: CRM, invoicing, tax dashboard, HMRC deadlines, eight connected modules. Cheapest door in, most structural if you want your whole business in one workspace.',
-  toolkit: 'You\'re a sole trader and the pressure is tax or IR35. Toolkit ships six files: tax calculator, IR35 assessment, contract review, invoicer, proposal generator, client comms. Covers Self Assessment and MTD phase 1.',
-  employer: 'You hire people. Employment law, handbook generator, H&S risk assessment, GDPR, AML/KYC, contracts. Seven files built on 2025/26 statutory rates (SSP £118.75, redundancy cap £719).',
-  rra: 'The 31 May Renters\' Rights Act deadline is the fire. Section 21 transition guide, tenant information sheet, Ground 4A template, full possession grounds reference. Up to £7,000 per breach if you miss it.',
-  landlord: 'Portfolio landlord, general compliance. Landlord compliance skill (RRA-aware), rental yield and SDLT calculator (post-1 April 2025 bands), GDPR for tenant data. Built for England-based portfolios.'
- };
-
- function showQ(n) {
-  qs.forEach(q => q.classList.toggle('fyp-q-active', parseInt(q.dataset.q) === n));
-  bar.style.width = (n * 20) + '%';
-  count.textContent = 'Question ' + n + ' of 5';
- }
-
- function showResult() {
-  document.querySelectorAll('.fyp-q').forEach(q => q.style.display = 'none');
-  const top = recommend(answers);
-  const item = catalog[top];
-  resultName.textContent = item.name;
-  resultWhy.textContent = whyCopy[top];
-  resultPrice.textContent = item.price + ' (ex-VAT)';
-  resultCta.href = item.href;
-  result.hidden = false;
-  bar.style.width = '100%';
-  count.textContent = 'Recommendation';
-
-  document.querySelectorAll('.product-card-highlighted, .featured-card-highlighted').forEach(el => {
-   el.classList.remove('product-card-highlighted', 'featured-card-highlighted');
-  });
-  if (top === 'suite') {
-   const fc = document.getElementById('featured-card');
-   if (fc) fc.classList.add('featured-card-highlighted');
-  } else {
-   const card = document.getElementById(item.target);
-   if (card) card.classList.add('product-card-highlighted');
-  }
- }
-
- document.querySelectorAll('.fyp-opt').forEach(btn => {
-  btn.addEventListener('click', () => {
-   const key = btn.dataset.key;
-   const val = btn.dataset.val;
-   answers[key] = val;
-   const current = parseInt(btn.closest('.fyp-q').dataset.q);
-   if (current < 5) showQ(current + 1);
-   else showResult();
-  });
- });
-
- restart.addEventListener('click', () => {
-  for (const k in answers) delete answers[k];
-  result.hidden = true;
-  document.querySelectorAll('.fyp-q').forEach(q => q.style.display = '');
-  document.querySelectorAll('.product-card-highlighted, .featured-card-highlighted').forEach(el => {
-   el.classList.remove('product-card-highlighted', 'featured-card-highlighted');
-  });
-  showQ(1);
- });
-})();
-</script>
-
-<!-- FEATURED PRODUCT -->
-<section class="featured-product" id="products" aria-labelledby="featured-title">
- <div class="wrap">
-  <div class="featured-card tilt-card" id="featured-card">
-   <div class="glow"></div>
-   <div class="featured-copy">
-    <span class="product-label"><span class="product-label-dot"></span>For multi-hat businesses</span>
-    <h3 id="featured-title">Full UK Business Suite</h3>
-    <p><strong>Buy the Suite if you wear more than one hat.</strong> Landlord plus freelancer. Employer plus contractor. Property pro running a side shop. If you're only one thing, the single pack below is the honest answer, save your &pound;40. If you're three things at once, this pays for itself on the first deadline.</p>
-    <div class="featured-pricing">
-     <span class="price">&pound;79</span>
-     <span class="price-meta"><strong style="color:#fff;font-family:'Syne',sans-serif;letter-spacing:0.02em">vs &pound;200 to &pound;2,000+</strong><br>for equivalent accountant work (Crunch, Qdos published rates, 2025).<br><span style="opacity:0.7">About &pound;4 per skill. Lifetime updates.</span><br><span style="opacity:0.6;font-size:11px">UK buyers: Gumroad adds 20% VAT at checkout (legally required, Gumroad handles the filing).</span></span>
-    </div>
-    <div class="buy-links">
-     <a href="https://externalos.gumroad.com/l/vrmevr" target="_blank" rel="noopener">Buy on Gumroad &pound;79 <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-    </div>
-   </div>
-   <div class="featured-visual">
-    <ul class="featured-skill-list">
-     <li>UK Tax Calculator</li><li>IR35 Assessment</li>
-     <li>Invoice Categoriser</li><li>Contract Review</li>
-     <li>Client Comms</li><li>Proposal Generator</li>
-     <li>Employment Law</li><li>Employee Handbook</li>
-     <li>H&amp;S Risk Assessment</li><li>GDPR Compliance</li>
-     <li>AML/KYC Docs</li><li>Landlord Compliance</li>
-     <li>Rental Yield Calc</li><li>HACCP Food Hygiene</li>
-     <li>Construction Quote</li><li>Creative Contracts</li>
-     <li>Grant Application</li><li>Meeting Notes</li>
-     <li>Lesson Plans</li>
-    </ul>
-   </div>
-  </div>
- </div>
-</section>
-
-<!-- EARLY NUDGE -->
-<section class="mid-nudge mid-nudge-early" aria-label="Try one free before committing">
- <div class="wrap">
-  <div class="mid-nudge-inner">
-   <p class="mid-nudge-copy"><strong>Not ready for the full suite?</strong> Start with the free IR35 checker, or grab one pack below to test the work.</p>
-   <a class="btn btn-secondary" href="./ir35-checker.html" target="_blank" rel="noopener">Try the free IR35 checker <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-  </div>
- </div>
-</section>
-
-<!-- INDIVIDUAL PRODUCTS -->
-<section class="products" aria-label="Individual product packs">
- <div class="wrap">
-  <div class="products-head">
-   <h2>The work, <em>already done</em>. Pick the pack that fits.</h2>
-   <p>Lifetime licence. Download once, use forever.</p>
-  </div>
-  <div class="product-grid">
-   <div class="product-card tilt-card" id="product-os">
-    <span class="product-label"><span class="product-label-dot"></span>01 / Freelancer OS</span>
-    <h3 class="product-name">UK Freelancer OS</h3>
-    <span class="product-type-badge">Notion Template</span>
-    <p class="product-desc">8 connected Notion modules. CRM, invoicing, tax dashboard, time tracking, HMRC deadlines. Your entire freelance business in one workspace.</p>
-    <div class="product-price">&pound;29 <small>GBP</small></div>
-    <p style="font-size:11px;color:var(--warm-mid);margin:4px 0 0;opacity:0.75">ex-VAT. Gumroad adds 20% VAT for UK/EU buyers at checkout.</p>
-    <div class="buy-links">
-     <a href="https://externalos.gumroad.com/l/ipzsn" target="_blank" rel="noopener">Buy on Gumroad <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-    </div>
-   </div>
-   <div class="product-card tilt-card product-card-featured" id="product-toolkit">
-    <div class="product-card-badge">Most popular</div>
-    <span class="product-label"><span class="product-label-dot"></span>02 / Freelancer Toolkit</span>
-    <h3 class="product-name">UK Freelancer Toolkit</h3>
-    <span class="product-type-badge">6 Skill Files</span>
-    <p class="product-desc">Tax calculator, IR35 assessment, contract review, invoice categoriser, proposal generator, client comms. Six files, one download. Covers Self Assessment 31 January 2026 and MTD for Income Tax (phase 1 live 6 April 2026 for &gt;&pound;50k turnover, phase 2 April 2027 &gt;&pound;30k, phase 3 April 2028 &gt;&pound;20k).</p>
-    <div class="product-price">&pound;29 <small>GBP</small></div>
-    <p style="font-size:11px;color:var(--warm-mid);margin:4px 0 0;opacity:0.75">ex-VAT. Gumroad adds 20% VAT for UK/EU buyers at checkout.</p>
-    <div class="buy-links">
-     <a href="https://externalos.gumroad.com/l/aavttu" target="_blank" rel="noopener">Buy on Gumroad <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-    </div>
-    <p style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(60,40,10,0.08);font-size:12px;color:var(--warm-mid);line-height:1.5;">Prefer us to run the IR35 assessment for you? <a href="https://externalos.gumroad.com/l/ir35dfy" target="_blank" rel="noopener" style="color:var(--purple-deep,#3A0D72);font-weight:600;text-decoration:underline;">£150 done-for-you review, 48hr turnaround →</a></p>
-   </div>
-   <div class="product-card tilt-card" id="product-employer">
-    <span class="product-label"><span class="product-label-dot"></span>03 / Employer</span>
-    <h3 class="product-name">UK Employer Compliance Pack</h3>
-    <span class="product-type-badge">7 Skill Files</span>
-    <p class="product-desc">Employment law, employee handbooks, health and safety risk assessments, GDPR compliance, AML/KYC documentation, contract review, client comms drafter. Seven files, one download. Updated for 2025/26 statutory rates (SSP £118.75, redundancy cap £719) and ERA 2025 commencement timing.</p>
-    <div class="product-price">&pound;39 <small>GBP</small></div>
-    <p style="font-size:11px;color:var(--warm-mid);margin:4px 0 0;opacity:0.75">ex-VAT. Gumroad adds 20% VAT for UK/EU buyers at checkout.</p>
-    <div class="buy-links">
-     <a href="https://externalos.gumroad.com/l/fxlgeq" target="_blank" rel="noopener">Buy on Gumroad <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-    </div>
-   </div>
-   <div class="product-card tilt-card product-card-featured" id="product-rra" style="background:linear-gradient(180deg,#FFF8EC 0%,#FAF8F3 100%);border-color:#d97706;">
-    <span class="product-label"><span class="product-label-dot" style="background:#d97706;"></span>04 / Landlord 31 May Kit</span>
-    <h3 class="product-name">UK Landlord 31 May Deadline Kit</h3>
-    <span class="product-type-badge">4 Documents + Getting Started PDF</span>
-    <p class="product-desc">Landlords of assured tenancies in England must comply with Renters' Rights Act 2025 transition rules by 31 May 2026. Financial penalty up to &pound;7,000 per breach. The kit ships a Section 21 transition guide, a tenant information sheet template, a Ground 4A statement template, and the full grounds-for-possession quick reference. Plain English, ready to use.</p>
-    <div class="product-price">&pound;29 <small>GBP</small></div>
-    <p style="font-size:11px;color:var(--warm-mid);margin:4px 0 0;opacity:0.75">ex-VAT. Gumroad adds 20% VAT for UK/EU buyers at checkout.</p>
-    <div class="buy-links">
-     <a href="https://externalos.gumroad.com/l/landlord31may" target="_blank" rel="noopener">Buy on Gumroad <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-    </div>
-   </div>
-   <div class="product-card tilt-card" id="product-landlord">
-    <span class="product-label"><span class="product-label-dot"></span>05 / Landlord</span>
-    <h3 class="product-name">UK Landlord Legal Pack</h3>
-    <span class="product-type-badge">3 Skill Files</span>
-    <p class="product-desc">Landlord compliance (RRA 2025-aware), rental yield and SDLT calculator (post-1 April 2025 bands), GDPR compliance for tenant data. Built for England-based portfolio landlords.</p>
-    <div class="product-price">&pound;29 <small>GBP</small></div>
-    <p style="font-size:11px;color:var(--warm-mid);margin:4px 0 0;opacity:0.75">ex-VAT. Gumroad adds 20% VAT for UK/EU buyers at checkout.</p>
-    <div class="buy-links">
-     <a href="https://externalos.gumroad.com/l/iuffuj" target="_blank" rel="noopener">Buy on Gumroad <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-    </div>
-   </div>
-   <div class="product-card tilt-card product-card-featured" id="product-tracker" style="background:linear-gradient(180deg,#EEF2FF 0%,#FAF8F3 100%);border-color:#3A0D72;">
-    <div class="product-card-badge">New</div>
-    <span class="product-label"><span class="product-label-dot" style="background:#3A0D72;"></span>06 / Compliance Tracker</span>
-    <h3 class="product-name">UK Compliance Tracker</h3>
-    <span class="product-type-badge">Live Google Sheet</span>
-    <p class="product-desc">Every UK tax deadline, threshold, rate change, landlord reform milestone and IR35 tribunal citation a UK operator needs, in one live Sheet. Updated monthly with the latest HMRC, Companies House, ICO and landlord rule changes. 8 tabs, every figure sourced to gov.uk or BAILII with a last-verified date. Lifetime access, one payment.</p>
-    <div class="product-price">&pound;59 <small>GBP, lifetime</small></div>
-    <p style="font-size:11px;color:var(--warm-mid);margin:4px 0 0;opacity:0.75">ex-VAT. One-time payment, lifetime access, monthly updates. Gumroad adds 20% VAT for UK/EU buyers at checkout.</p>
-    <div class="buy-links">
-     <a href="https://externalos.gumroad.com/l/compliance-tracker" target="_blank" rel="noopener">Buy on Gumroad <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-    </div>
-   </div>
-  </div>
- </div>
-</section>
-
-
-<!-- WHY NOT CHATGPT -->
-<section class="why-not" aria-labelledby="why-not-title">
- <div class="wrap">
-  <div class="why-not-head">
-   <h2 id="why-not-title">Why not just <em>ask ChatGPT?</em></h2>
-   <p>Because a generic chatbot is a starting point, not a finishing line. UK tax and compliance need more than a best guess.</p>
-  </div>
-  <div class="why-not-grid">
-   <div class="why-not-col col-chatgpt">
-    <h3>Generic chatbot</h3>
-    <ul>
-     <li><span class="wn-count">0</span> named UK case law citations. Guesses UK rates from training data that may be months or years out of date.</li>
-     <li><span class="wn-count">3+</span> jurisdictions blurred. Mixes UK, US, and EU regulations without warning.</li>
-     <li><span class="wn-count">69-88%</span> hallucination rate on legal queries (Stanford HAI, Dahl et al., <a href="https://arxiv.org/abs/2401.01301" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-decoration-color:rgba(110,102,92,0.35)">arxiv 2401.01301</a>, 2024).</li>
-     <li>You have to know what to ask, and how to ask it. Every single time.</li>
-     <li>Doesn't know what Renters' Rights Act 2025 actually changed.</li>
-    </ul>
-   </div>
-   <div class="why-not-col col-eos">
-    <h3>ExternalOS skill</h3>
-    <ul>
-     <li><span class="wn-count">3</span> named IR35 cases embedded (Atholl House, PGMOL, Kickabout Productions). 2025/26 HMRC bands. CEST-aligned.</li>
-     <li><span class="wn-count">1</span> jurisdiction, UK only. Built for HMRC, not the IRS.</li>
-     <li><span class="wn-count">42</span> rate variables tracked. <span class="wn-count">17</span> Section 8 grounds documented. <span class="wn-count">38</span> CEST decision points.</li>
-     <li>Structured workflow, no prompt engineering required.</li>
-     <li>Written by a small UK team who file the same forms and sit with the same HMRC tabs as the people this is for.</li>
-    </ul>
-    <p style="font-size:12px;color:var(--warm-mid);margin-top:18px;padding-top:16px;border-top:1px solid var(--warm-cream);line-height:1.5"><strong style="color:var(--purple-hero);font-family:'Syne',sans-serif;font-weight:700;letter-spacing:0.04em">11 discrete checks per IR35 run</strong>, versioned against 2025/26 HMRC bands. Methodology on <a href="https://github.com/externalOS" target="_blank" rel="noopener" style="color:var(--purple-hero)">GitHub</a>.</p>
-   </div>
-  </div>
- </div>
-</section>
-
-<!-- FOUNDER NOTE -->
-<section class="founder" aria-label="Why ExternalOS exists">
- <div class="wrap">
-  <div class="founder-inner">
-   <div class="founder-eyebrow">Why this exists</div>
-   <p>We started ExternalOS in Leeds in early 2026 because we'd all done the same Sundays, the same HMRC tabs, the same 11pm panic before 30 January. Our team is small and built around the work itself: UK tax, employment law, contracting, landlord compliance, and the engineering to package it.</p>
-   <p>We spent months on the parts of running a UK business that nobody packages and everyone redoes. The HMRC bands. The CEST criteria. The Renters' Rights Act 2025. The Employment Rights Act 2025. We turned that work into files: one file per job, each one structured tight enough that the answer comes out the same every time, whoever opens it.</p>
-   <p class="founder-pull">We charge &pound;29 to &pound;79 because the work is done. Not per user, not per month, not per filing. You download the file, you keep the file, and when the legislation moves we ship the update. That's the whole arrangement.</p>
-   <div class="founder-sig">Reach us at <a href="mailto:hello@externalos.com">hello@externalos.com</a>.</div>
-  </div>
- </div>
-</section>
-
-<!-- FREE TOOL - IR35 checker -->
-<section class="free-tool" id="free-tool" aria-labelledby="free-tool-title">
- <div class="wrap">
-  <div style="text-align:center; max-width: 720px; margin: 0 auto 40px;">
-   <span class="eyebrow" style="display:inline-flex; justify-content:center; gap:0; color: var(--purple-mid); margin-bottom: 14px;">No signup required</span>
-   <h2 id="free-tool-title" style="font-family:'Libre Baskerville',serif; font-weight:700; letter-spacing:-0.02em; font-size: var(--type-h2); color: var(--ink); line-height: 1.1; margin-bottom: 14px;">Four free tools. <em style="font-style:italic; color: var(--purple-hero);">No email gate.</em></h2>
-   <p style="font-size:16px; line-height:1.7; color: var(--warm-dark); max-width: 580px; margin: 0 auto;">Plain-text, browser-based tools using the same case law, HMRC rates, and Companies House rules as the paid packs. Use them as much as you want. Buy if and when you want the rest.</p>
-  </div>
-  <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1180px; margin: 0 auto;" class="free-tools-grid">
-   <article style="background: var(--warm-white); border: 1px solid var(--warm-cream); border-radius: var(--radius-xl); padding: 32px 28px 28px; position: relative; overflow: hidden; text-align: left; transition: border-color 0.2s ease, box-shadow 0.2s ease;" class="tilt-card free-tool-card">
-    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple-deep),var(--purple-mid),var(--eos-p3));"></div>
-    <div style="font-family:'Syne',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color: var(--purple-mid); margin-bottom: 12px; display:flex; align-items:center; gap:8px;"><span style="width:7px;height:7px;background:var(--eos-p6);transform:rotate(45deg);"></span>Free tool · Contractor</div>
-    <h3 style="font-family:'Libre Baskerville',serif; font-size: 22px; font-weight: 700; line-height: 1.15; color: var(--ink); margin-bottom: 12px;">IR35 Status Checker</h3>
-    <p style="font-size: 13px; line-height: 1.65; color: var(--warm-mid); margin-bottom: 24px;">Seven CEST-style questions, instant verdict. Substitution, control, mutuality of obligation, financial risk, equipment, integration, exclusivity. Modelled on Atholl House, PGMOL, and Pimlico Plumbers.</p>
-    <a class="btn btn-primary" href="./ir35-checker.html" style="font-size:13px; padding:11px 20px;">Open the checker <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-   </article>
-   <article style="background: var(--warm-white); border: 1px solid var(--warm-cream); border-radius: var(--radius-xl); padding: 32px 28px 28px; position: relative; overflow: hidden; text-align: left; transition: border-color 0.2s ease, box-shadow 0.2s ease;" class="tilt-card free-tool-card">
-    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple-deep),var(--purple-mid),var(--eos-p3));"></div>
-    <div style="font-family:'Syne',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color: var(--purple-mid); margin-bottom: 12px; display:flex; align-items:center; gap:8px;"><span style="width:7px;height:7px;background:var(--eos-p6);transform:rotate(45deg);"></span>Free tool · UK Ltd</div>
-    <h3 style="font-family:'Libre Baskerville',serif; font-size: 22px; font-weight: 700; line-height: 1.15; color: var(--ink); margin-bottom: 12px;">Compliance Calendar</h3>
-    <p style="font-size: 13px; line-height: 1.65; color: var(--warm-mid); margin-bottom: 24px;">Year-end in. Every Companies House and HMRC deadline for the next 12 months out. Accounts, Corp Tax, VAT quarters, PAYE, P11D, MTD ITSA. Exportable as <strong>.ics</strong>.</p>
-    <a class="btn btn-primary" href="./compliance-calendar.html" style="font-size:13px; padding:11px 20px;">Build my calendar <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-   </article>
-   <article style="background: var(--warm-white); border: 1px solid var(--warm-cream); border-radius: var(--radius-xl); padding: 32px 28px 28px; position: relative; overflow: hidden; text-align: left; transition: border-color 0.2s ease, box-shadow 0.2s ease;" class="tilt-card free-tool-card">
-    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple-deep),var(--purple-mid),var(--eos-p3));"></div>
-    <div style="font-family:'Syne',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color: var(--purple-mid); margin-bottom: 12px; display:flex; align-items:center; gap:8px;"><span style="width:7px;height:7px;background:var(--eos-p6);transform:rotate(45deg);"></span>Free tool · Employer</div>
-    <h3 style="font-family:'Libre Baskerville',serif; font-size: 22px; font-weight: 700; line-height: 1.15; color: var(--ink); margin-bottom: 12px;">Employer Costs Calculator</h3>
-    <p style="font-size: 13px; line-height: 1.65; color: var(--warm-mid); margin-bottom: 24px;">Salary in. Full annual cost out. Class 1 employer NI (15% above £5k), Employment Allowance £10,500, pension auto-enrol, holiday accrual, NLW/NMW compliance. April 2026 rates.</p>
-    <a class="btn btn-primary" href="./employer-costs.html" style="font-size:13px; padding:11px 20px;">Calculate the cost <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-   </article>
-   <article style="background: var(--warm-white); border: 1px solid var(--warm-cream); border-radius: var(--radius-xl); padding: 32px 28px 28px; position: relative; overflow: hidden; text-align: left; transition: border-color 0.2s ease, box-shadow 0.2s ease;" class="tilt-card free-tool-card">
-    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple-deep),var(--purple-mid),var(--eos-p3));"></div>
-    <div style="font-family:'Syne',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color: var(--purple-mid); margin-bottom: 12px; display:flex; align-items:center; gap:8px;"><span style="width:7px;height:7px;background:var(--eos-p6);transform:rotate(45deg);"></span>Free tool &middot; Landlord</div>
-    <h3 style="font-family:'Libre Baskerville',serif; font-size: 22px; font-weight: 700; line-height: 1.15; color: var(--ink); margin-bottom: 12px;">Landlord Compliance Check</h3>
-    <p style="font-size: 13px; line-height: 1.65; color: var(--warm-mid); margin-bottom: 24px;">12 yes/no questions covering the Renters' Rights Act 2026, the 31 May Information Sheet (&pound;7,000 fines), Section 13 rent rules, deposit protection, EPC, Right to Rent, HMO, MTD ITSA.</p>
-    <a class="btn btn-primary" href="./landlord-compliance-check.html" style="font-size:13px; padding:11px 20px;">Start the check <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-   </article>
-  </div>
-  <style>
-   .free-tool-card { display: flex !important; flex-direction: column; }
-   .free-tool-card h3 { min-height: 2.6em; }
-   .free-tool-card > p { flex: 1 1 auto; }
-   .free-tool-card > a.btn { align-self: stretch; margin-top: auto; white-space: nowrap; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
-   .free-tool-card:hover { border-color: var(--purple-pale); box-shadow: var(--shadow-md); }
-   @media (max-width: 1080px) { .free-tools-grid { grid-template-columns: repeat(2, 1fr) !important; max-width: 720px !important; } .free-tool-card h3 { min-height: 0; } }
-   @media (max-width: 600px) { .free-tools-grid { grid-template-columns: 1fr !important; } }
-  </style>
- </div>
-</section>
-
-<!-- MID-PAGE NUDGE -->
-<section class="mid-nudge" aria-label="Free IR35 skill nudge">
- <div class="wrap">
-  <div class="mid-nudge-inner">
-   <p class="mid-nudge-copy"><strong>Not ready to buy?</strong> Take the free IR35 skill file and see the work first. A new tool lands every Friday. Stop any time.</p>
-   <a class="btn btn-secondary" href="#newsletter">Send me the IR35 skill <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-  </div>
- </div>
-</section>
-
-<!-- FAQ -->
-<section class="faq" aria-labelledby="faq-title">
- <div class="wrap">
-  <div class="faq-head">
-   <h2 id="faq-title">Questions you're probably <em>about to ask.</em></h2>
-  </div>
-  <div class="faq-list">
-   <details class="faq-item">
-    <summary>Is this just prompts with a nice label?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
-    <div class="faq-body"><div class="faq-body-inner"><p>No. A skill is a structured instruction set your chat tool loads before it answers you. It contains 2025/26 HMRC rates, CEST criteria, and named UK case law (Atholl House, PGMOL, Kickabout Productions) already embedded. A prompt is a sentence. A skill is an entire working system.</p></div></div>
-   </details>
-   <details class="faq-item">
-    <summary>What does the file actually look like?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
-    <div class="faq-body"><div class="faq-body-inner"><p>A plain-text instruction file (Markdown). About 4 to 12 pages of structured content per skill. Inside: the relevant HMRC rates and thresholds for 2025/26, the legislative references, the named case law, the step-by-step the tool walks you through, and the exact output format your accountant or HMRC software expects. You drop the whole file into your chat tool as context, then ask your question in plain English. The free IR35 checker shows you the same engine running in your browser.</p></div></div>
-   </details>
-   <details class="faq-item">
-    <summary>Who wrote these, and how do we know they're right?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
-    <div class="faq-body"><div class="faq-body-inner"><p>Each skill is peer-reviewed against current UK case law and HMRC guidance before it ships. The IR35 logic cites Atholl House, PGMOL, and Kickabout Productions with paragraph references. Rates are tied to the 2025/26 HMRC bands. The source of the free IR35 checker is public on GitHub. If a figure ever moves, the update is shipped free under the lifetime licence. First-buyer feedback will be credited with names and roles in the Behind section once it lands. If you spot a mistake before we do, email hello@externalos.com and we will rebate your purchase price and patch the file the same day.</p></div></div>
-   </details>
-   <details class="faq-item">
-    <summary>Do I still need an accountant?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
-    <div class="faq-body"><div class="faq-body-inner"><p>Yes, if you want someone to file your self-assessment, sign off your accounts, or represent you to HMRC. ExternalOS does the prep work an accountant would otherwise charge you for: the calculations, the categorisation, the IR35 check, the contract review. Most of our customers use both, and pay their accountant for less time.</p></div></div>
-   </details>
-   <details class="faq-item">
-    <summary>How is this different from Tide's free MTD filing?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
-    <div class="faq-body"><div class="faq-body-inner"><p>Banks file what's already in your account. ExternalOS does the work that produces what gets filed: categorisation, IR35 status, expense classification, allowable deductions, and the maths that turns transactions into a quarterly summary. Banks own your account. We don't. The files are yours, on your computer, usable with any chat tool, with no platform dependency.</p></div></div>
-   </details>
-   <details class="faq-item">
-    <summary>Why is the price higher at checkout?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
-    <div class="faq-body"><div class="faq-body-inner"><p>Gumroad adds 20% VAT at checkout for UK and EU buyers. That's the law (Gumroad is the registered merchant of record, they handle the VAT filing so we don't have to). Our listed prices (&pound;29, &pound;39, &pound;79) are ex-VAT. If you're VAT-registered, you can reclaim it on your next return. If you're outside the UK and EU, no VAT is added.</p></div></div>
-   </details>
-   <details class="faq-item">
-    <summary>Do I need to be technical to use this?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
-    <div class="faq-body"><div class="faq-body-inner"><p>If you can copy and paste, you can use it. Drop the skill file into whichever chat tool you already use, then ask your question in plain English. No API keys, no setup, no technical skills required.</p></div></div>
-   </details>
-   <details class="faq-item">
-    <summary>What happens when HMRC rates change?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
-    <div class="faq-body"><div class="faq-body-inner"><p>You get the update. Lifetime licence means every rate change, legislation update, and CEST revision ships to you automatically. When the 2026/27 tax year drops, your skill already knows the new numbers.</p></div></div>
-   </details>
-   <details class="faq-item">
-    <summary>Which chat tool does this work with?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
-    <div class="faq-body"><div class="faq-body-inner"><p>Any modern chat tool that accepts a file or a long instruction set. No lock-in, no subscription, no platform dependency.</p></div></div>
-   </details>
-   <details class="faq-item">
-    <summary>What if it doesn't work for me?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
-    <div class="faq-body"><div class="faq-body-inner"><p>14-day refund, no questions asked. Email hello@externalos.com and it's sorted. You keep the files either way.</p></div></div>
-   </details>
-  </div>
- </div>
-</section>
-
-<!-- EMAIL CAPTURE -->
-<section class="email-capture" id="newsletter" aria-labelledby="email-title">
- <div class="wrap">
-  <div class="email-inner">
-   <h2 id="email-title">Your first skill, free. <em>Then one every Friday.</em></h2>
-   <p class="email-desc">Drop your email, get the IR35 skill file to keep. Every Friday after that: a new free tool, a rate update, or a real use case. Stop any time.</p>
-   <div class="email-step2" id="email-step2">
-    <form class="email-form" id="email-form" action="https://formspree.io/f/mwvaveor" method="POST" aria-label="Newsletter signup">
-     <label for="email-input" class="sr-only">Email address</label>
-     <input type="email" id="email-input" name="email" placeholder="you@company.co.uk" required />
-     <button type="submit">Send the IR35 skill</button>
-    </form>
-    <p class="email-step2-nudge" style="margin-top:14px">First email lands within 60 seconds. IR35 skill file, plain Markdown, 8.4KB, yours to keep.</p>
-    <label style="display:flex;gap:10px;align-items:flex-start;margin-top:18px;font-family:'Inter',sans-serif;font-size:13px;line-height:1.5;color:var(--warm-mid);text-align:left;max-width:440px;margin-left:auto;margin-right:auto;">
-     <input type="checkbox" id="consent" name="consent" required style="margin-top:3px;flex-shrink:0;" />
-     <span>I agree to receive the free IR35 skill file and the weekly newsletter from ExternalOS. I can unsubscribe in one click. See the <a href="./privacy.html" style="color:var(--purple-mid);">privacy policy</a>.</span>
-    </label>
-   </div>
-   <p class="email-privacy">No spam. Unsubscribe in one click. We log the date and IP of your signup as proof of consent (UK GDPR).</p>
-  </div>
- </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer" role="contentinfo">
- <div class="wrap">
-  <div class="footer-inner">
-   <div class="footer-brand">
-    <div class="footer-brand-logo">
-     <span class="mark-wrap" aria-hidden="true">
-      <svg viewBox="6 4 28 28" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
-       <polygon points="20,4 34,18 20,32 6,18" fill="#DBC8F0"/>
-       <polygon points="20,8.6 31.7,20.3 20,32 8.3,20.3" fill="#BEA0E0"/>
-       <polygon points="20,13.2 29.4,22.6 20,32 10.6,22.6" fill="#9F72D0"/>
-       <polygon points="20,17.8 27.1,24.9 20,32 12.9,24.9" fill="#8248BF"/>
-       <polygon points="20,22.4 24.8,27.2 20,32 15.2,27.2" fill="#6525AB"/>
-       <polygon points="20,27 22.5,29.5 20,32 17.5,29.5" fill="#4A1290"/>
-      </svg>
-     </span>
-     <span class="wordmark">ExternalOS</span>
-    </div>
-    <p>The work, already done. UK tax, IR35, MTD, employment law, tenancy. Built in Leeds. Files you keep.</p>
-    <p class="footer-refund">14-day refund, no questions asked.</p>
-   </div>
-   <div>
-    <h5>Products</h5>
-    <ul>
-     <li><a href="https://externalos.gumroad.com" target="_blank" rel="noopener">UK Freelancer OS</a></li>
-     <li><a href="https://externalos.gumroad.com/l/aavttu" target="_blank" rel="noopener">Freelancer Toolkit</a></li>
-     <li><a href="https://externalos.gumroad.com/l/fxlgeq" target="_blank" rel="noopener">Employer Compliance</a></li>
-     <li><a href="https://externalos.gumroad.com/l/landlord31may" target="_blank" rel="noopener">31 May Landlord Kit</a></li>
-     <li><a href="https://externalos.gumroad.com/l/iuffuj" target="_blank" rel="noopener">Landlord Legal Pack</a></li>
-     <li><a href="https://externalos.gumroad.com/l/vrmevr" target="_blank" rel="noopener">Full UK Suite</a></li>
-     <li><a href="https://externalos.gumroad.com/l/compliance-tracker" target="_blank" rel="noopener">Compliance Tracker (live)</a></li>
-    </ul>
-   </div>
-   <div>
-    <h5>Free Tools</h5>
-    <ul>
-     <li><a href="./ir35-checker.html">IR35 Checker</a></li>
-     <li><a href="./compliance-calendar.html">Compliance Calendar</a></li>
-     <li><a href="./employer-costs.html">Employer Costs Calculator</a></li>
-     <li><a href="./landlord-compliance-check.html">Landlord Compliance Check</a></li>
-    </ul>
-    <h5 style="margin-top: 22px;">Legal</h5>
-    <ul>
-     <li><a href="/privacy.html">Privacy</a></li>
-     <li><a href="/refund-policy.html">Refund policy</a></li>
-    </ul>
-   </div>
-   <div>
-    <h5>Connect</h5>
-    <ul>
-     <li><a href="https://github.com/externalOS" target="_blank" rel="noopener">GitHub</a></li>
-     <li><a href="https://twitter.com/ExternalOS_" target="_blank" rel="noopener">X / Twitter</a></li>
-     <li><a href="https://instagram.com/externalos" target="_blank" rel="noopener">Instagram</a></li>
-     <li><a href="mailto:hello@externalos.com">Email</a></li>
-    </ul>
-   </div>
-  </div>
-  <div class="footer-bottom">
-   <div>ExternalOS 2026 <span class="full-stop" aria-hidden="true"></span> Leeds, UK <span class="full-stop" aria-hidden="true"></span> <a href="mailto:hello@externalos.com">hello@externalos.com</a></div>
-   <div>Sole trader, not VAT registered <span class="full-stop" aria-hidden="true"></span> Lifetime licence <span class="full-stop" aria-hidden="true"></span> Files you keep <span class="full-stop" aria-hidden="true"></span> <a href="./terms.html">Terms</a> <span class="full-stop" aria-hidden="true"></span> <a href="./privacy.html">Privacy</a> <span class="full-stop" aria-hidden="true"></span> <a href="./refund-policy.html">Refunds</a></div>
-  </div>
-  <div class="footer-strap" style="margin-top:14px;padding-top:14px;border-top:1px solid var(--warm-cream);font-size:11px;color:var(--warm-mid);text-align:center;letter-spacing:0;line-height:1.5;">Informational tool, not tax or legal advice. Consult a qualified adviser for decisions affecting your tax, legal, or compliance position.
-  </div>
- </div>
-</footer>
-
-<!-- STICKY MOBILE CTA -->
-<div class="sticky-cta" aria-label="Quick actions">
- <div class="sticky-cta-inner">
-  <a class="btn btn-primary" href="#products">Get the &pound;79 bundle</a>
  </div>
 </div>
 
-<script>
-(function(){
- var RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
- var vw = window.innerWidth;
+<!-- Hero (S242): STATIC mark rails, prominent and large, hero-only.
+     They sit in the hero flow (not fixed, not full-scroll) and bleed
+     off both page edges behind the statement. The hero carries a TEXT
+     statement, not the wordmark (the wordmark is in the header). On
+     scroll the statement lifts and the catalogue rises in beneath it. -->
+<section class="eos-hero2" id="hero" data-section-type="statement" data-eos-hero>
+ <div class="eos-hero2__rail eos-hero2__rail--left" aria-hidden="true">
+  <svg viewBox="0 0 40 40" preserveAspectRatio="xMidYMid meet">
+   <polygon points="20,6 34,20 20,34 6,20"/>
+   <polygon points="20,10.6 31.7,22.3 20,34 8.3,22.3"/>
+   <polygon points="20,15.2 29.4,24.6 20,34 10.6,24.6"/>
+   <polygon points="20,19.8 27.1,26.9 20,34 12.9,26.9"/>
+   <polygon points="20,24.4 24.8,29.2 20,34 15.2,29.2"/>
+   <polygon points="20,29 22.5,31.5 20,34 17.5,31.5"/>
+  </svg>
+ </div>
+ <div class="eos-hero2__rail eos-hero2__rail--right" aria-hidden="true">
+  <svg viewBox="0 0 40 40" preserveAspectRatio="xMidYMid meet">
+   <polygon points="20,6 34,20 20,34 6,20"/>
+   <polygon points="20,10.6 31.7,22.3 20,34 8.3,22.3"/>
+   <polygon points="20,15.2 29.4,24.6 20,34 10.6,24.6"/>
+   <polygon points="20,19.8 27.1,26.9 20,34 12.9,26.9"/>
+   <polygon points="20,24.4 24.8,29.2 20,34 15.2,29.2"/>
+   <polygon points="20,29 22.5,31.5 20,34 17.5,31.5"/>
+  </svg>
+ </div>
 
- // -- Smooth anchor scroll --
- document.querySelectorAll('a[href^="#"]').forEach(function(a){
-  a.addEventListener('click', function(e){
-   var id = a.getAttribute('href');
-   if (id.length > 1) { var el = document.querySelector(id); if (el) { e.preventDefault(); el.scrollIntoView({behavior:'smooth',block:'start'}); } }
-  });
- });
+ <div class="eos-hero2__inner">
+  <p class="eos-hero2__dateline">
+   <span class="eos-hero2__dateline-rule"></span>
+   <span>Downloadable UK admin packs</span>
+   <span class="eos-hero2__dateline-dot">&middot;</span>
+   <span>Paid once</span>
+   <span class="eos-hero2__dateline-dot">&middot;</span>
+   <span>2026/27</span>
+   <span class="eos-hero2__dateline-rule"></span>
+  </p>
+  <h1 class="eos-hero2__statement" data-eos-hero-statement>UK business admin, paid once and yours to keep.</h1>
+  <div class="eos-hero2__creed">
+   <p class="eos-hero2__creed-line">Subscriptions rent you software.</p>
+   <p class="eos-hero2__creed-line">Packs hand you the document.</p>
+  </div>
+  <div class="eos-actions eos-actions--hero">
+   <a class="eos-action eos-action--primary" href="#packs">Browse the packs <span class="eos-action__arrow" aria-hidden="true">&rarr;</span></a>
+   <a class="eos-action eos-action--quiet" href="#free-tools">Free tools</a>
+  </div>
+  <p class="eos-trustline">Thirty day refund, no questions. Files yours to keep, VAT included.</p>
+  <a class="eos-hero2__quiz-link" href="./quiz.html">Not sure which pack? Find my pack in 30 seconds &rarr;</a>
+ </div>
+</section>
 
- // -- FAQ smooth open/close --
- // Native <details> snaps. We intercept summary clicks, animate height of
- // .faq-body, then settle the [open] state. Falls back to native behaviour
- // for users with reduced motion.
- document.querySelectorAll('.faq-item').forEach(function(item){
-  var summary = item.querySelector('summary');
-  var body = item.querySelector('.faq-body');
-  if (!summary || !body) return;
-  summary.addEventListener('click', function(e){
-   if (RM) return; // let native behaviour handle it
-   e.preventDefault();
-   var isOpen = item.hasAttribute('open');
-   if (isOpen) {
-    // Body may currently be height:auto. Pin to explicit pixel value, force a
-    // reflow, then animate to 0 in the next frame so the transition fires.
-    body.style.height = body.offsetHeight + 'px';
-    void body.offsetHeight; // force layout
-    requestAnimationFrame(function(){
-     body.style.height = '0px';
-     body.style.opacity = '0';
-    });
-    var onEnd = function(ev){
-     if (ev.propertyName !== 'height') return;
-     item.removeAttribute('open');
-     body.style.height = '';
-     body.style.opacity = '';
-     body.removeEventListener('transitionend', onEnd);
-    };
-    body.addEventListener('transitionend', onEnd);
-   } else {
-    item.setAttribute('open', '');
-    body.style.height = '0px';
-    body.style.opacity = '0';
-    requestAnimationFrame(function(){
-     body.style.height = body.scrollHeight + 'px';
-     body.style.opacity = '1';
-    });
-    var onEndOpen = function(ev){
-     if (ev.propertyName !== 'height') return;
-     body.style.height = 'auto';
-     body.removeEventListener('transitionend', onEndOpen);
-    };
-    body.addEventListener('transitionend', onEndOpen);
-   }
-  });
- });
+<!-- Section 02: The catalogue (S248 redesign). Five cohort-accented cards,
+     one per pack: number, price, name, a short description, who it is for and
+     a link to the pack page. The whole card is the link. Replaces the cabinet
+     (the tabs read as awful and cramped, especially on mobile). A plain card
+     grid that wraps to the viewport and stacks to one column on phones. -->
+<section class="eos-section eos-catalogue" id="packs" aria-labelledby="catalogue-title">
+ <div class="eos-section__head">
+  <span class="eos-eyebrow">The catalogue</span>
+  <h2 id="catalogue-title">Five packs, paid once</h2>
+  <p>Each written in accordance with current UK statute, with the case law named in the footnotes so you can check the working.</p>
+ </div>
 
- // -- Two-step opt-in --
- var revealBtn = null;
- var step2El = document.getElementById('email-step2');
- var emailRevealed = false;
- function doEmailReveal() {
-  if (emailRevealed) return;
-  emailRevealed = true;
-  if (revealBtn) revealBtn.classList.add('hidden');
-  if (step2El) { step2El.classList.remove('hidden'); step2El.querySelector('input[type="email"]').focus(); }
- }
- if (revealBtn && step2El) {
-  revealBtn.addEventListener('click', doEmailReveal);
- }
+ <div class="eos-packgrid">
 
- // -- Lerped 3D tilt on cards --
- if (!RM) {
-  document.querySelectorAll('.tilt-card').forEach(function(card){
-   var cur = {x:0, y:0}, tgt = {x:0, y:0}, running = false;
-   var maxDeg = (card.classList.contains('featured-card') || card.classList.contains('free-tool-gift')) ? 2 : 4;
-   function tick(){
-    cur.x += (tgt.x - cur.x) * 0.08;
-    cur.y += (tgt.y - cur.y) * 0.08;
-    card.style.transform = 'perspective(800px) rotateX(' + cur.x.toFixed(3) + 'deg) rotateY(' + cur.y.toFixed(3) + 'deg)';
-    if (Math.abs(cur.x - tgt.x) > 0.005 || Math.abs(cur.y - tgt.y) > 0.005) {
-     requestAnimationFrame(tick);
-    } else {
-     cur.x = tgt.x; cur.y = tgt.y;
-     card.style.transform = (tgt.x === 0 && tgt.y === 0) ? '' : 'perspective(800px) rotateX(' + tgt.x.toFixed(3) + 'deg) rotateY(' + tgt.y.toFixed(3) + 'deg)';
-     running = false;
-    }
-   }
-   function startLoop(){ if (!running) { running = true; requestAnimationFrame(tick); } }
-   card.addEventListener('mousemove', function(e){
-    var r = card.getBoundingClientRect();
-    tgt.x = ((e.clientY - r.top - r.height/2) / (r.height/2)) * -maxDeg;
-    tgt.y = ((e.clientX - r.left - r.width/2) / (r.width/2)) * maxDeg;
-    startLoop();
-    if (card.querySelector('.glow')) {
-     card.style.setProperty('--glow-x', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
-     card.style.setProperty('--glow-y', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
-    }
-   });
-   card.addEventListener('mouseleave', function(){ tgt.x = 0; tgt.y = 0; startLoop(); });
-  });
- }
+  <a class="eos-packcard" data-accent="amber" href="./uk-tax-calculator.html">
+   <span class="eos-packcard__bar" aria-hidden="true"></span>
+   <span class="eos-packcard__top">
+    <span class="eos-packcard__num">Pack 01</span>
+    <span class="eos-packcard__price">&pound;19</span>
+   </span>
+   <h3 class="eos-packcard__name">Sole Trader Tax Workspace</h3>
+   <p class="eos-packcard__detail">A seven sheet workbook with the Companion Guide and Walkthrough, built on the 2026/27 bands and ready for Making Tax Digital.</p>
+   <span class="eos-packcard__who">For the freelancer filing their own Self Assessment.</span>
+   <span class="eos-packcard__cta">Open this pack <span class="eos-packcard__arrow" aria-hidden="true">&rarr;</span></span>
+  </a>
 
- // -- Section reveal on scroll --
- // We add .js-reveal at runtime so non-JS / pre-JS users see the content.
- // If anything's already on screen, mark it visible immediately so it never
- // animates in from below the fold.
- if ('IntersectionObserver' in window && !RM) {
-  var els = document.querySelectorAll('.reveal');
-  els.forEach(function(el){
-   var r = el.getBoundingClientRect();
-   var inView = r.top < window.innerHeight && r.bottom > 0;
-   if (!inView) el.classList.add('js-reveal');
-  });
-  var ro = new IntersectionObserver(function(entries){
-   entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('visible'); });
-  }, {threshold:0.15, rootMargin:'0px 0px -40px 0px'});
-  document.querySelectorAll('.js-reveal').forEach(function(el){ ro.observe(el); });
- }
+  <a class="eos-packcard" data-accent="plum" href="./creative-contracts.html">
+   <span class="eos-packcard__bar" aria-hidden="true"></span>
+   <span class="eos-packcard__top">
+    <span class="eos-packcard__num">Pack 02</span>
+    <span class="eos-packcard__price">&pound;39</span>
+   </span>
+   <h3 class="eos-packcard__name">Creative Contracts Pack</h3>
+   <p class="eos-packcard__detail">Nine contracts and four supporting documents, aligned to the CDPA 1988, written to hold in plain English.</p>
+   <span class="eos-packcard__who">For the designer, photographer or studio who needs a contract that holds.</span>
+   <span class="eos-packcard__cta">Open this pack <span class="eos-packcard__arrow" aria-hidden="true">&rarr;</span></span>
+  </a>
 
- // -- Sticky CTA: hidden by default (CSS), reveal once user scrolls past hero --
- var sticky = document.querySelector('.sticky-cta');
- if (sticky && 'IntersectionObserver' in window) {
-  var heroEl = document.querySelector('.hero');
-  if (heroEl) {
-   new IntersectionObserver(function(entries){
-    entries.forEach(function(e){ sticky.classList.toggle('is-visible', !e.isIntersecting); });
-   },{threshold:0.05}).observe(heroEl);
-  }
- }
+  <a class="eos-packcard" data-accent="steel" href="./uk-employment-law.html">
+   <span class="eos-packcard__bar" aria-hidden="true"></span>
+   <span class="eos-packcard__top">
+    <span class="eos-packcard__num">Pack 03</span>
+    <span class="eos-packcard__price">&pound;49</span>
+   </span>
+   <h3 class="eos-packcard__name">UK Employment Law Kit</h3>
+   <p class="eos-packcard__detail">Eleven letters and a payroll cost calculator, current to the Acas Code, covering the hiring lifecycle.</p>
+   <span class="eos-packcard__who">For the small employer hiring a first person.</span>
+   <span class="eos-packcard__cta">Open this pack <span class="eos-packcard__arrow" aria-hidden="true">&rarr;</span></span>
+  </a>
 
- // Mark rails: static, no scroll-driven animation. One-shot positioning
- // so the diamond cluster's vertical centre (vertex) aligns with the hero
- // H1 text centre. Re-aligns on resize and after fonts load (may shift H1
- // height). No animation, no per-frame work.
- function alignRails() {
-  var h1 = document.querySelector('.hero h1');
-  var hero = document.querySelector('.hero');
-  var svgs = document.querySelectorAll('.mark-rail svg');
-  if (!h1 || !hero || !svgs.length || window.innerWidth < 900) return;
-  var heroRect = hero.getBoundingClientRect();
-  var h1Rect = h1.getBoundingClientRect();
-  var h1CenterInHero = h1Rect.top + h1Rect.height / 2 - heroRect.top;
-  // SVG is big enough that centering vertex on H1 naturally extends above
-  // the hero top, covering the masthead area (rail z-index:20 > masthead:10).
-  svgs.forEach(function(svg) {
-   var svgHeight = svg.getBoundingClientRect().height;
-   if (svgHeight > 0) svg.style.top = (h1CenterInHero - svgHeight / 2) + 'px';
-   svg.style.transform = 'none';
-  });
- }
- alignRails();
- window.addEventListener('load', alignRails);
- window.addEventListener('resize', alignRails);
- if (document.fonts && document.fonts.ready) { document.fonts.ready.then(alignRails); }
-})();
-</script>
-<script src="./skills-nav.js?v=136" defer></script>
-<script src="./free-tools-nav.js?v=3" defer></script>
+  <a class="eos-packcard" data-accent="indigo" href="./uk-landlord-compliance.html">
+   <span class="eos-packcard__bar" aria-hidden="true"></span>
+   <span class="eos-packcard__top">
+    <span class="eos-packcard__num">Pack 04</span>
+    <span class="eos-packcard__price">&pound;39</span>
+   </span>
+   <h3 class="eos-packcard__name">UK Landlord Legal Pack</h3>
+   <p class="eos-packcard__detail">Twelve documents, eight guides and four tools, written for the RRA 2025 transition, the 31 May information sheet and the new grounds.</p>
+   <span class="eos-packcard__who">For the private landlord managing their own lets.</span>
+   <span class="eos-packcard__cta">Open this pack <span class="eos-packcard__arrow" aria-hidden="true">&rarr;</span></span>
+  </a>
+
+  <a class="eos-packcard" data-accent="crimson" href="./aml-kyc-docs.html">
+   <span class="eos-packcard__bar" aria-hidden="true"></span>
+   <span class="eos-packcard__top">
+    <span class="eos-packcard__num">Pack 05</span>
+    <span class="eos-packcard__price">&pound;59</span>
+   </span>
+   <h3 class="eos-packcard__name">AML and KYC Document Pack</h3>
+   <p class="eos-packcard__detail">The AML policy, risk assessment and procedures every supervised agent is legally required to hold. Fifteen templates across eight sectors, no free official equivalent, ready for an HMRC inspection.</p>
+   <span class="eos-packcard__who">For the estate or letting agent under HMRC supervision.</span>
+   <span class="eos-packcard__cta">Open this pack <span class="eos-packcard__arrow" aria-hidden="true">&rarr;</span></span>
+  </a>
+
+ </div>
+
+ <div class="eos-actions eos-actions--cabinet">
+  <a class="eos-action eos-action--quiet" href="./quiz.html">Not sure which pack? Find my pack <span class="eos-action__arrow" aria-hidden="true">&rarr;</span></a>
+  <a class="eos-action eos-action--quiet" href="#free-tools">Free tools</a>
+ </div>
+ <p class="eos-cabinet__footnote">All prices VAT inclusive. Delivered as spreadsheet, document and PDF files, yours to download and keep, with updates when HMRC rates change.</p>
+</section>
+
+<!-- Section 03: What's actually inside (real specimens). The specimen
+     pages rise up from behind the divider beneath them on scroll-in. -->
+<section class="eos-section eos-specimen-section" aria-labelledby="specimens-title" data-section-type="specimen">
+ <div class="eos-section__head">
+  <span class="eos-eyebrow">What's actually inside</span>
+  <h2 id="specimens-title">Four specimens from the catalogue</h2>
+  <p>Real pages from the packs, not stock mockups. The income tax and National Insurance working from the sole trader workspace, a project fee calculator from the creative contracts pack, a flexible working decision tree from the employment law kit, and the statutory anchors index from the AML and KYC pack.</p>
+ </div>
+
+ <div class="eos-specimen-stage">
+  <div class="eos-specimen-row" data-eos-specimen-row>
+
+   <figure class="eos-specimen" tabindex="0" role="button" data-accent="amber">
+    <div class="eos-specimen__turn">
+     <span class="eos-specimen__frame">
+      <img src="./assets/specimens/current/sole-trader-tax-workspace/sole-trader-answers-s248.png" data-zoom-src="./assets/specimens/current/sole-trader-tax-workspace/sole-trader-answers-hires.png" alt="The Sole Trader Tax Workspace computing a full Self Assessment from one income figure" loading="lazy" />
+     </span>
+     <figcaption class="eos-specimen__cap">
+      <span class="eos-specimen__cap-tag">From Pack 01</span>
+      <span class="eos-specimen__cap-title">Sole Trader Tax Workspace</span>
+      <span class="eos-specimen__cap-desc">Put in one income figure and the sheet returns the whole Self Assessment: income tax, Class 4 National Insurance, the effective rate, and the monthly amount to set aside, each mapped to the box it belongs in on the return.</span>
+     </figcaption>
+    </div>
+   </figure>
+
+   <figure class="eos-specimen" tabindex="0" role="button" data-accent="plum">
+    <div class="eos-specimen__turn">
+     <span class="eos-specimen__frame">
+      <img src="./assets/specimens/current/creative-contracts-pack/creative-calculator-s248.png" alt="The project fee calculator from the Creative Contracts Pack working out a quote" loading="lazy" />
+     </span>
+     <figcaption class="eos-specimen__cap">
+      <span class="eos-specimen__cap-tag">From Pack 02</span>
+      <span class="eos-specimen__cap-title">Creative Contracts Pack</span>
+      <span class="eos-specimen__cap-desc">A project fee calculator. Set the scope, the day rate and the complexity, and it returns a base, a suggested, a floor and a ceiling fee, so a quote stops being a guess.</span>
+     </figcaption>
+    </div>
+   </figure>
+
+   <figure class="eos-specimen" tabindex="0" role="button" data-accent="steel">
+    <div class="eos-specimen__turn">
+     <span class="eos-specimen__frame">
+      <img src="./assets/specimens/current/uk-employment-law-kit/employment-steel-s248.png" alt="The flexible working decision tree from the UK Employment Law Kit, five steps with the statutory grounds for refusal" loading="lazy" />
+     </span>
+     <figcaption class="eos-specimen__cap">
+      <span class="eos-specimen__cap-tag">From Pack 03</span>
+      <span class="eos-specimen__cap-title">UK Employment Law Kit</span>
+      <span class="eos-specimen__cap-desc">A flexible working decision tree. Five steps from the request to the decision, with the eight statutory grounds for refusal, so a reply stays inside the Acas Code.</span>
+     </figcaption>
+    </div>
+   </figure>
+
+   <figure class="eos-specimen" tabindex="0" role="button" data-accent="crimson">
+    <div class="eos-specimen__turn">
+     <span class="eos-specimen__frame">
+      <img src="./assets/specimens/current/aml-kyc-document-pack/aml-index-s248.png" alt="The statutory anchors index from the AML and KYC Document Pack mapping each template to its regulation" loading="lazy" />
+     </span>
+     <figcaption class="eos-specimen__cap">
+      <span class="eos-specimen__cap-tag">From Pack 05</span>
+      <span class="eos-specimen__cap-title">AML and KYC Document Pack</span>
+      <span class="eos-specimen__cap-desc">A statutory anchors index. Every template mapped to the regulation it answers to, the MLR 2017 regulation and the POCA section, so an inspector can see the control behind each document.</span>
+     </figcaption>
+    </div>
+   </figure>
+
+  </div>
+ </div>
+ <p class="eos-specimen__footnote">Click any specimen to enlarge it, click again to return. Specimens are extracts. The packs contain the full statute-current document set.</p>
+</section>
+
+<!-- Section 04: The maths, by pack (S242 round 3). The ONLY place
+     competitor pricing appears. Each pack sits against one credible UK
+     equivalent, its real verified price, reframed over a sensible
+     recurring window (per year) so a small monthly figure does not sit
+     confusingly beside our one-off. Cohort accents only, no green. All
+     figures verified live May 2026; sources cited beneath the table. -->
+<section class="eos-section eos-section--alt" id="pricing-cuts" aria-labelledby="cuts-title">
+ <div class="eos-section__head">
+  <span class="eos-eyebrow">The maths, by pack</span>
+  <h2 id="cuts-title">Pay once, not every year</h2>
+  <p>Each pack stands against the credible product people pay for instead. Subscriptions are shown over a year, so you can see the accumulative cost compared to our products.</p>
+ </div>
+
+ <div class="eos-compare-wrap">
+  <!-- AML and KYC is deliberately excluded from this table: rival document
+       packs cost about the same, so it has no per-row price win. It wins on
+       being legally required with no free official equivalent, which is the
+       angle carried on its own pack page and its catalogue card. -->
+  <table class="eos-compare">
+   <thead>
+    <tr>
+     <th scope="col" class="eos-compare__th-pack">The pack</th>
+     <th scope="col">The credible equivalent</th>
+     <th scope="col" class="eos-compare__th-num">Their cost</th>
+     <th scope="col" class="eos-compare__th-num">Ours, once</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr data-accent="amber">
+     <th scope="row" class="eos-compare__pack">Sole Trader Tax Workspace</th>
+     <td class="eos-compare__equiv">FreeAgent sole trader plan<span class="eos-compare__equiv-note">accounting software, billed monthly</span></td>
+     <td class="eos-compare__num"><span class="eos-compare__num-big">&pound;228</span><span class="eos-compare__num-unit">a year</span></td>
+     <td class="eos-compare__num eos-compare__ours"><span class="eos-compare__ours-price">&pound;19</span><span class="eos-compare__ours-note">Yours to keep</span></td>
+    </tr>
+    <tr data-accent="plum">
+     <th scope="row" class="eos-compare__pack">Creative Contracts Pack</th>
+     <td class="eos-compare__equiv">Rocket Lawyer UK membership<span class="eos-compare__equiv-note">legal document subscription</span></td>
+     <td class="eos-compare__num"><span class="eos-compare__num-big">&pound;420</span><span class="eos-compare__num-unit">a year</span></td>
+     <td class="eos-compare__num eos-compare__ours"><span class="eos-compare__ours-price">&pound;39</span><span class="eos-compare__ours-note">Yours to keep</span></td>
+    </tr>
+    <tr data-accent="steel">
+     <th scope="row" class="eos-compare__pack">UK Employment Law Kit</th>
+     <td class="eos-compare__equiv">Keeping HR Simple template pack<span class="eos-compare__equiv-note">closest one for one bundle</span></td>
+     <td class="eos-compare__num"><span class="eos-compare__num-big">&pound;399</span><span class="eos-compare__num-unit">once</span></td>
+     <td class="eos-compare__num eos-compare__ours"><span class="eos-compare__ours-price">&pound;49</span><span class="eos-compare__ours-note">Yours to keep</span></td>
+    </tr>
+    <tr data-accent="indigo">
+     <th scope="row" class="eos-compare__pack">UK Landlord Legal Pack</th>
+     <td class="eos-compare__equiv">NRLA landlord membership<span class="eos-compare__equiv-note">where most landlords get their tenancy documents</span></td>
+     <td class="eos-compare__num"><span class="eos-compare__num-big">&pound;125</span><span class="eos-compare__num-unit">a year</span></td>
+     <td class="eos-compare__num eos-compare__ours"><span class="eos-compare__ours-price">&pound;39</span><span class="eos-compare__ours-note">Yours to keep</span></td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="eos-cuts__cite">Comparable prices verified June 2026 from each supplier's own listing, shown inclusive of VAT. Our prices include VAT.</p>
+</section>
+
+<!-- Section 05: Free tools (utility quicktools, paired to packs by cohort) -->
+<section class="eos-section" id="free-tools" aria-labelledby="free-title">
+ <div class="eos-section__head">
+  <span class="eos-eyebrow">Free tools</span>
+  <h2 id="free-title">Free tools, on us</h2>
+  <p>Five quick checks that share the statute behind the packs. Try the free tool. If you need the document set, the paired pack is one click away.</p>
+ </div>
+
+ <div class="eos-quicktools">
+
+  <a class="eos-quicktool" data-accent="amber" href="./ir35-checker.html">
+   <div class="eos-quicktool__head">
+    <span class="eos-quicktool__num">01</span>
+    <span class="eos-quicktool__pair">Pairs with Sole Trader</span>
+   </div>
+   <h3 class="eos-quicktool__title">IR35 Status Checker</h3>
+   <p class="eos-quicktool__body">Seven CEST-style questions, instant verdict. Atholl House, PGMOL and Kickabout citations baked in.</p>
+   <span class="eos-quicktool__cta">Open checker <span class="eos-quicktool__arrow">&rarr;</span></span>
+  </a>
+
+  <a class="eos-quicktool" data-accent="amber" href="./mtd-clock.html">
+   <div class="eos-quicktool__head">
+    <span class="eos-quicktool__num">02</span>
+    <span class="eos-quicktool__pair">Pairs with Sole Trader</span>
+   </div>
+   <h3 class="eos-quicktool__title">MTD Penalty Clock</h3>
+   <p class="eos-quicktool__body">Live countdown to MTD ITSA phase 1. Penalty bands, late-filing points, daily-rate triggers.</p>
+   <span class="eos-quicktool__cta">Start clock <span class="eos-quicktool__arrow">&rarr;</span></span>
+  </a>
+
+  <a class="eos-quicktool" data-accent="steel" href="./employer-costs.html">
+   <div class="eos-quicktool__head">
+    <span class="eos-quicktool__num">03</span>
+    <span class="eos-quicktool__pair">Pairs with Employment Law</span>
+   </div>
+   <h3 class="eos-quicktool__title">Employer Costs Calculator</h3>
+   <p class="eos-quicktool__body">Salary in, true annual cost out. Class 1 NI, Employment Allowance, pension auto-enrol, holiday accrual.</p>
+   <span class="eos-quicktool__cta">Calculate <span class="eos-quicktool__arrow">&rarr;</span></span>
+  </a>
+
+  <a class="eos-quicktool" data-accent="indigo" href="./landlord-compliance-check.html">
+   <div class="eos-quicktool__head">
+    <span class="eos-quicktool__num">04</span>
+    <span class="eos-quicktool__pair">Pairs with Landlord Legal</span>
+   </div>
+   <h3 class="eos-quicktool__title">Landlord Compliance Check</h3>
+   <p class="eos-quicktool__body">Twelve yes or no questions covering RRA 2025, the 31 May information sheet, Section 13 rents, EPC, Right to Rent.</p>
+   <span class="eos-quicktool__cta">Start check <span class="eos-quicktool__arrow">&rarr;</span></span>
+  </a>
+
+  <a class="eos-quicktool" data-accent="crimson" href="./compliance-calendar.html">
+   <div class="eos-quicktool__head">
+    <span class="eos-quicktool__num">05</span>
+    <span class="eos-quicktool__pair">Pairs with AML and KYC</span>
+   </div>
+   <h3 class="eos-quicktool__title">Compliance Calendar</h3>
+   <p class="eos-quicktool__body">Every HMRC and Companies House deadline for the next twelve months. Exportable as .ics for your calendar app.</p>
+   <span class="eos-quicktool__cta">Build calendar <span class="eos-quicktool__arrow">&rarr;</span></span>
+  </a>
+
+ </div>
+</section>
+
+<!-- Section 06: FAQ -->
+<section class="eos-section eos-section--alt" id="faq" aria-labelledby="faq-title">
+ <div class="eos-section__head">
+  <span class="eos-eyebrow">Questions</span>
+  <h2 id="faq-title">Things people ask before they buy</h2>
+  <p>Five answers, written by a UK sole trader, not a marketing team.</p>
+ </div>
+ <ol class="eos-faq" data-eos-faq>
+
+  <li class="eos-faq__row eos-faq__row--open">
+   <details open>
+    <summary><span class="eos-faq__num">Q1</span><span class="eos-faq__q">What happens when HMRC rates or statute changes?</span><span class="eos-faq__glyph" aria-hidden="true"></span></summary>
+    <div class="eos-faq__a">
+     <p>You get the updated file. Free, by email, in the same order line as the original purchase. April rate changes, mid-year case law, new Acas Code wording, all included. The packs are built so the figures live in named cells, not in body text, so an update is a re-export, not a rewrite.</p>
+    </div>
+   </details>
+  </li>
+
+  <li class="eos-faq__row">
+   <details>
+    <summary><span class="eos-faq__num">Q2</span><span class="eos-faq__q">How do I know the documents are actually right?</span><span class="eos-faq__glyph" aria-hidden="true"></span></summary>
+    <div class="eos-faq__a">
+     <p>Every pack cites the UK legislation and the named case law it rests on in the footnotes, dated to the tax year, so you don't have to take my word for it. Each figure traces back to the gov.uk or HMRC source it came from, and you can check the working yourself before you ever rely on it.</p>
+    </div>
+   </details>
+  </li>
+
+  <li class="eos-faq__row">
+   <details>
+    <summary><span class="eos-faq__num">Q3</span><span class="eos-faq__q">Will these hold up in an inspection or a dispute?</span><span class="eos-faq__glyph" aria-hidden="true"></span></summary>
+    <div class="eos-faq__a">
+     <p>Each pack is built to the rules it answers to, the MLR 2017 for AML, the Renters' Rights Act 2025 for landlords, the Acas Code for employment, and written to be inspection ready. They're thorough, structured templates, not legal advice, so if you're in a live dispute with real money on it, take the document to a solicitor. For the everyday compliance most independents actually face, it's the file you'd otherwise pay an advisor far more to produce.</p>
+    </div>
+   </details>
+  </li>
+
+  <li class="eos-faq__row">
+   <details>
+    <summary><span class="eos-faq__num">Q4</span><span class="eos-faq__q">What is the refund policy?</span><span class="eos-faq__glyph" aria-hidden="true"></span></summary>
+    <div class="eos-faq__a">
+     <p>Thirty days, no question. Reply to the receipt with the word "refund" and the original purchase is reversed inside the week. You keep the files; we are not in the business of policing whether you used them in the meantime.</p>
+    </div>
+   </details>
+  </li>
+
+  <li class="eos-faq__row">
+   <details>
+    <summary><span class="eos-faq__num">Q5</span><span class="eos-faq__q">Who are these built for?</span><span class="eos-faq__glyph" aria-hidden="true"></span></summary>
+    <div class="eos-faq__a">
+     <p>UK independents who handle their own admin. Sole traders, freelancers, micro-employers, private landlords, small letting and estate agents under HMRC AML supervision. If you're running a business on small margins and the SaaS bills are eating the margin, the packs are written for you. If you have a finance team and an accountant already, the packs probably duplicate their work.</p>
+    </div>
+   </details>
+  </li>
+
+ </ol>
+</section>
+
+<!-- Section 07: Why this exists (S242, James's provisional copy). Carries
+     the same mark rails as the hero (point 8), piano per-layer hover. -->
+<section class="eos-section eos-why" id="why" aria-labelledby="why-title">
+ <div class="eos-manifesto__kicker" aria-hidden="true">
+  <span class="eos-manifesto__kicker-rule"></span>
+  <span>Behind the packs</span>
+  <span class="eos-manifesto__kicker-rule"></span>
+ </div>
+ <div class="eos-manifesto">
+  <h2 id="why-title" class="eos-manifesto__head">Why this exists</h2>
+
+  <div class="eos-manifesto__prose">
+   <p>Hi :) I'm James Thom, a sole trader, and I built ExternalOS because I kept hitting the same wall. Whenever a compliance question came up, the only answers online were a monthly subscription priced for a firm with ten staff, or an advisor charging two hundred pounds an hour for a conversation I didn't really need. Nobody sold the thing itself, the spreadsheet that does the maths, the template with the statute already in it.</p>
+
+   <p>So I wrote them. It took about six months to get the five packs to a standard I'm happy to put my name on, each one citing the UK legislation and the case law it rests on in the footnotes, so you can check the working yourself. You pay once and the file is yours. If you find a mistake, or a rate I haven't updated yet, email me and the correction, or a full refund, comes back in the same thread as your receipt. We offer free tools also, any feedback would be appreciated!</p>
+  </div>
+
+  <p class="eos-manifesto__byline">James Thom</p>
+  <p class="eos-manifesto__contact">Questions, corrections, a statute citation I missed: <a href="mailto:hello@externalos.com">hello@externalos.com</a>.</p>
+ </div>
+</section>
+
+<!-- Section 08: The ending. Point 10: the "We do the boring admin. You do
+     the work." lead lines are cut entirely this round (candidate future
+     hero copy, not a footer line). The close is now the calls to action. -->
+<section class="eos-section eos-finale eos-finale--cta-only" aria-label="The close">
+ <div class="eos-finale__inner" data-eos-rise>
+  <p class="eos-hero2__dateline eos-finale__dateline">
+   <span class="eos-hero2__dateline-rule"></span>
+   <span>ExternalOS</span>
+   <span class="eos-hero2__dateline-dot">&middot;</span>
+   <span>2026/27</span>
+   <span class="eos-hero2__dateline-rule"></span>
+  </p>
+  <p class="eos-finale__sign">The boring admin, done.</p>
+  <div class="eos-finale__cta-row">
+   <a class="eos-finale__cta" href="#packs">Browse all five <span class="eos-finale__cta-arrow">&rarr;</span></a>
+   <a class="eos-finale__cta eos-finale__cta--quiet" href="./quiz.html">Find my pack</a>
+  </div>
+ </div>
+</section>
+
+<!-- Footer (S242: manifesto page removed, newsletter dropped for now) -->
+<footer class="eos-footer" role="contentinfo">
+ <div class="eos-footer__inner">
+  <div class="eos-footer__sitemap">
+   <div class="eos-footer__col">
+    <h5>The packs</h5>
+    <ul>
+     <li><a href="./uk-tax-calculator.html">Sole Trader Tax Workspace</a></li>
+     <li><a href="./creative-contracts.html">Creative Contracts Pack</a></li>
+     <li><a href="./uk-employment-law.html">UK Employment Law Kit</a></li>
+     <li><a href="./uk-landlord-compliance.html">UK Landlord Legal Pack</a></li>
+     <li><a href="./aml-kyc-docs.html">AML and KYC Document Pack</a></li>
+    </ul>
+   </div>
+   <div class="eos-footer__col">
+    <h5>Free tools</h5>
+    <ul>
+     <li><a href="./ir35-checker.html">IR35 status checker</a></li>
+     <li><a href="./compliance-calendar.html">Compliance calendar</a></li>
+     <li><a href="./employer-costs.html">Employer costs</a></li>
+     <li><a href="./landlord-compliance-check.html">Landlord compliance check</a></li>
+     <li><a href="./mtd-clock.html">MTD penalty clock</a></li>
+    </ul>
+   </div>
+   <div class="eos-footer__col">
+    <h5>More</h5>
+    <ul>
+     <li><a href="./tools.html">Full catalogue</a></li>
+     <li><a href="./mtd.html">Making Tax Digital</a></li>
+     <li><a href="./quiz.html">Find my pack</a></li>
+     <li><a href="#faq">Questions</a></li>
+     <li><a href="mailto:hello@externalos.com">Contact</a></li>
+    </ul>
+   </div>
+   <div class="eos-footer__col">
+    <h5>Company</h5>
+    <ul>
+     <li><a href="./cart.html">Cart</a></li>
+     <li><a href="./terms.html">Terms</a></li>
+     <li><a href="./privacy.html">Privacy</a></li>
+     <li><a href="./refund-policy.html">Refund policy</a></li>
+     <li><a href="./unsubscribe.html">Unsubscribe</a></li>
+    </ul>
+   </div>
+  </div>
+
+  <div class="eos-footer__colophon">
+   <p>Set in Fraunces, Newsreader and IBM Plex. Built in 2026. Informational tools, not tax or legal advice.</p>
+  </div>
+ </div>
+ <div class="eos-footer__legalbar" aria-label="Legal and compliance">
+  <span class="eos-footer__legalbar-brand">ExternalOS &middot; 2026</span>
+  <span class="eos-footer__legalbar-sep" aria-hidden="true">&middot;</span>
+  <a href="./privacy.html">Privacy policy</a>
+  <span class="eos-footer__legalbar-sep" aria-hidden="true">&middot;</span>
+  <a href="./terms.html">Terms</a>
+  <span class="eos-footer__legalbar-sep" aria-hidden="true">&middot;</span>
+  <a href="./refund-policy.html">Refund policy</a>
+  <span class="eos-footer__legalbar-sep" aria-hidden="true">&middot;</span>
+  <a href="./privacy.html#cookies">Cookies</a>
+  <span class="eos-footer__legalbar-sep" aria-hidden="true">&middot;</span>
+  <span class="eos-footer__legalbar-status">All systems running</span>
+ </div>
+</footer>
+
+<script src="./_eos-ui.js?v=249g" defer></script>
 </body>
 </html>
