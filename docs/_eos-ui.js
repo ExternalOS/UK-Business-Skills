@@ -558,11 +558,14 @@
     return readCart().length;
   }
   function refreshCartBadge() {
+    var count = cartCount();
     var nodes = document.querySelectorAll('[data-eos-cart]');
     nodes.forEach(function (n) {
-      n.setAttribute('data-count', String(cartCount()));
-      var badge = n.querySelector('.eos-header__cart-count');
-      if (badge) badge.textContent = String(cartCount());
+      n.setAttribute('data-count', String(count));
+      // Update both the header badge and the drawer card badge so the count
+      // is visible wherever the cart is rendered (S250: drawer cart added).
+      var badge = n.querySelector('.eos-header__cart-count, .eos-drawer__cart-count');
+      if (badge) badge.textContent = String(count);
     });
   }
   function addToCart(sku, name, price) {
