@@ -618,7 +618,19 @@ html[data-theme="dark"] .eos-header__theme .icon-moon { display: inline-block; }
   margin-bottom: var(--s-4);
 }
 .eos-drawer__close svg { width: 16px; height: 16px; }
-.eos-drawer__nav { display: flex; flex-direction: column; gap: var(--s-4); flex: 1; }
+.eos-drawer__nav {
+  display: flex; flex-direction: column; gap: var(--s-4);
+  flex: 1 1 auto;
+  /* min-height:0 is the flex trick that lets a flex child actually shrink so
+     its overflow can scroll instead of pushing the panel taller than the
+     viewport. Without it the MTD subgroup or stacked groups get clipped. */
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  /* tiny inner padding so the last item doesn't sit flush against the footer */
+  padding-bottom: var(--s-2);
+}
 .eos-drawer__nav a {
   font-size: 22px; font-weight: 500; line-height: 1.5; letter-spacing: 0.01em;
   color: var(--ink-primary); text-decoration: none;
@@ -5673,4 +5685,33 @@ html:has(body[data-page-cohort="crimson"]) { background: #7A1F2C; }
    simply hide them on small screens and let the gap do the spacing. */
 @media (max-width: 768px) {
   .eos-hero2__dateline-dot { display: none; }
+}
+
+/* ---------- S250 PDP SPEC RAIL MOBILE LAYOUT ----------
+   The pack PDP spec rail is a 3-column grid on desktop:
+     [icon 18px] [key 110px] [value 1fr]
+   On a ~390px portrait phone, 18 + gap + 110 + gap eats roughly 150px,
+   leaving the value column reading 11 to 12 chars wide. The "FORMAT" and
+   "WHAT YOU GET" rows then read as a tall thin paragraph beside a wide
+   blank left, which looks unprofessional. On mobile we stack: icon and
+   key share a top row (icon flush left), the value uses the FULL row
+   width below, breathing properly across the panel. Selector specificity
+   .eos-pdp .eos-pdp__spec beats the inline per-page rule. */
+@media (max-width: 720px) {
+  .eos-pdp .eos-pdp__spec {
+    grid-template-columns: 18px 1fr;
+    grid-template-areas:
+      "icon key"
+      "val  val";
+    column-gap: var(--s-2);
+    row-gap: var(--s-2);
+    padding: var(--s-3) 0;
+  }
+  .eos-pdp .eos-pdp__spec-icon { grid-area: icon; }
+  .eos-pdp .eos-pdp__spec-key  { grid-area: key; padding-top: 3px; }
+  .eos-pdp .eos-pdp__spec-val  {
+    grid-area: val;
+    font-size: 15px;
+    line-height: 1.55;
+  }
 }
