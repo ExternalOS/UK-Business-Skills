@@ -5664,3 +5664,13 @@ html:has(body[data-page-cohort="crimson"]) { background: #7A1F2C; }
     transform: none;
   }
 }
+
+/* ---------- S250 KICKER MOBILE ALIGN ----------
+   On mobile the dateline kicker wraps to two lines and the inline middot
+   separators end up dangling at the start of the wrapped line, so
+   "2026/27" reads as "&middot; 2026/27" off-centre. The kicker is flex
+   wrap with gap already; the dots are decorative not structural, so we
+   simply hide them on small screens and let the gap do the spacing. */
+@media (max-width: 768px) {
+  .eos-hero2__dateline-dot { display: none; }
+}
