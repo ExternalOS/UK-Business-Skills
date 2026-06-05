@@ -6,14 +6,6 @@
     .l4 { fill: #777777; }
     .l5 { fill: #999999; }
     .l6 { fill: #BFBFBF; }
-    @media (prefers-color-scheme: dark) {
-      .l1 { fill: #F2F2F2; }
-      .l2 { fill: #BFBFBF; }
-      .l3 { fill: #8A8A8A; }
-      .l4 { fill: #6A6A6A; }
-      .l5 { fill: #4A4A4A; }
-      .l6 { fill: #2A2A2A; }
-    }
   </style>
   <polygon class="l1" points="20,4 34,18 20,32 6,18"/>
   <polygon class="l2" points="20,8.6 31.7,20.3 20,32 8.3,20.3"/>
