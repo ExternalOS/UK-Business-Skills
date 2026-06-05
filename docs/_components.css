@@ -420,11 +420,40 @@ html[data-theme="dark"] .eos-header__theme .icon-moon { display: inline-block; }
   .eos-header__inner { display: flex; align-items: center; gap: var(--s-3); padding: 0 var(--s-3); }
   .eos-header__brand { margin-right: auto; }
   .eos-header__nav { display: none; }
-  /* Keep the theme toggle and cart on mobile; drop only the Browse-packs button.
-     Roomier gap so the theme, cart and hamburger are not easy to misclick. */
+  /* S250: cart icon moves INTO the hamburger drawer on mobile so the
+     header carries only the theme toggle and the hamburger. The drawer
+     "Cart" row gets an icon + count badge so it stays recognisable. */
   .eos-header__util { display: flex; gap: var(--s-3); }
   .eos-header__util .eos-button { display: none; }
+  .eos-header__cart { display: none; }
   .eos-header__hamburger { display: inline-flex; }
+
+  /* drawer cart row (S250): icon + label on the left, count badge on the right */
+  .eos-drawer__cart {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0 4px;
+    margin-top: 4px;
+    border-top: 1px solid var(--rule);
+  }
+  .eos-drawer__cart-label { display: inline-flex; align-items: center; gap: 12px; }
+  .eos-drawer__cart-label svg { width: 22px; height: 22px; }
+  .eos-drawer__cart-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 7px;
+    border-radius: 11px;
+    background: var(--accent, var(--ink-primary));
+    color: var(--paper, #fff);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .eos-drawer__cart[data-count="0"] .eos-drawer__cart-count { display: none; }
 }
 
 /* ---------- BUTTONS (Q4, tightened, slight 3px rounding) ---------- */
