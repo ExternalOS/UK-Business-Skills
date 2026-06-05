@@ -5582,3 +5582,19 @@ html[data-theme="dark"] .eos-cabinet-page[data-accent="crimson"] { --cab-accent:
 @media (max-width: 760px) {
   .eos-why__rail { display: none; }
 }
+
+/* ---------- S250 LATE OVERRIDES ----------
+   These rules need to come AFTER the base .eos-header__cart and the
+   first mobile @media block at line 416, because both define
+   .eos-header__cart and CSS cascade picks the LAST matching rule of
+   equal specificity. Without this block the cart re-appears on mobile.
+   The overscroll line also force-applies surface-base to html in case
+   any later cascade reset it. */
+html,
+html[data-theme="light"],
+html[data-theme="dark"] {
+  background: var(--surface-base);
+}
+@media (max-width: 768px) {
+  .eos-header__cart { display: none !important; }
+}
