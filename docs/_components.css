@@ -5616,15 +5616,14 @@ html[data-theme="dark"] .eos-cabinet-page[data-accent="crimson"] { --cab-accent:
    equal specificity. Without this block the cart re-appears on mobile.
    The overscroll line also force-applies surface-base to html in case
    any later cascade reset it. */
-/* Overscroll: bind html background to whatever the page is leading
-   with so the iOS rubber-band bounce reads as the page extending,
-   rather than punching through to an unrelated colour. Default is
-   surface-base so home / info pages match the header. Per cohort it
-   switches to that pack's hue so on a product page the bounce
-   visually extends the rails. :has() needed because data-page-cohort
-   sits on body, not html, and css variables defined on body do not
-   cascade up to html. */
-html { background: var(--surface-base); }
+/* Overscroll: bind html background to whatever colour the 4px thin
+   top band (body::before) is showing, so the iOS rubber-band bounce
+   reads as that band extending. The band uses var(--accent), which
+   resolves to ink-primary on home / info pages (black in light, white
+   in dark) and to the pack hue on product pages. CSS variables on body
+   do not cascade up to html, so we use :has() to mirror each cohort
+   override directly on html. */
+html { background: var(--accent); }
 html:has(body[data-page-cohort="amber"])   { background: #8A4B14; }
 html:has(body[data-page-cohort="plum"])    { background: #5B2A4A; }
 html:has(body[data-page-cohort="steel"])   { background: #2E4A6B; }
