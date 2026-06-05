@@ -5687,6 +5687,90 @@ html:has(body[data-page-cohort="crimson"]) { background: #7A1F2C; }
   .eos-hero2__dateline-dot { display: none; }
 }
 
+/* ---------- S250 FREE TOOL / LEAD MAGNET CARD ----------
+   Reused across all five product pages, top region. Either a PDF
+   download button (sole-trader -> MTD Survival Kit, creative ->
+   Contract Checklist, AML -> AML/KYC Checklist) or an "Open the
+   free tool" button to an interactive page (employment -> Employer
+   Costs Calculator, landlord -> Landlord Compliance Check). Same
+   card, cohort accent per page via data-accent. Mirrors the
+   .kit-download styling on mtd-kit.html so the visual language
+   carries across the catalogue. */
+.eos-freetool { padding: var(--s-6) 0 var(--s-4); }
+.eos-freetool[data-accent="amber"]   { --ft-accent: #8A4B14; }
+.eos-freetool[data-accent="plum"]    { --ft-accent: #5B2A4A; }
+.eos-freetool[data-accent="steel"]   { --ft-accent: #2E4A6B; }
+.eos-freetool[data-accent="indigo"]  { --ft-accent: #33336B; }
+.eos-freetool[data-accent="crimson"] { --ft-accent: #7A1F2C; }
+html[data-theme="dark"] .eos-freetool[data-accent="amber"]   { --ft-accent: #D4A269; }
+html[data-theme="dark"] .eos-freetool[data-accent="plum"]    { --ft-accent: #B58DA3; }
+html[data-theme="dark"] .eos-freetool[data-accent="steel"]   { --ft-accent: #8AA3C2; }
+html[data-theme="dark"] .eos-freetool[data-accent="indigo"]  { --ft-accent: #9A9ADE; }
+html[data-theme="dark"] .eos-freetool[data-accent="crimson"] { --ft-accent: #E08792; }
+.eos-freetool__card {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+  background: var(--surface-raised);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-card);
+  padding: var(--s-6) var(--s-5);
+}
+.eos-freetool__kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--ft-accent);
+  margin-bottom: var(--s-2);
+}
+.eos-freetool__title {
+  font-family: var(--font-display);
+  font-size: var(--type-h3);
+  line-height: var(--leading-h3);
+  color: var(--ink-primary);
+  margin: 0 0 var(--s-3);
+}
+.eos-freetool__meta {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 540px;
+  margin: 0 auto var(--s-4);
+}
+.eos-freetool__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: var(--track-button);
+  color: var(--surface-base);
+  background: var(--ink-primary);
+  border: 1px solid var(--ink-primary);
+  border-radius: var(--radius-button);
+  padding: 14px 26px;
+  text-decoration: none;
+  transition: background var(--motion-base) var(--ease-hover),
+              transform var(--motion-fast) var(--ease-hover);
+}
+.eos-freetool__btn:hover {
+  background: var(--ink-soft);
+  color: var(--surface-base);
+  transform: scale(1.04);
+  text-decoration: none;
+}
+.eos-freetool__btn svg { width: 16px; height: 16px; }
+.eos-freetool__sub {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-muted);
+  margin-top: var(--s-3);
+}
+
 /* ---------- S250 PDP SPEC RAIL MOBILE LAYOUT ----------
    The pack PDP spec rail is a 3-column grid on desktop:
      [icon 18px] [key 110px] [value 1fr]
